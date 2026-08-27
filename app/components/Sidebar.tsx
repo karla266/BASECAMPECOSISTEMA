@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Users, Box, PhoneCall, Receipt, Settings, MountainSnow, LogOut } from 'lucide-react';
+import { Suspense } from 'react';
 
-export default function Sidebar() {
+function SidebarContent() {
   const pathname = usePathname();
 
   return (
@@ -45,6 +46,14 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
+  );
+}
+
+export default function Sidebar() {
+  return (
+    <Suspense fallback={<div className="w-64 bg-slate-950 h-screen border-r border-slate-800/50" />}>
+      <SidebarContent />
+    </Suspense>
   );
 }
 

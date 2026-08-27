@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
 import { MountainSnow, ShoppingBag, Globe, Users, Play, ArrowRight, CheckCircle2, ShieldCheck, Award, Zap } from 'lucide-react';
@@ -41,12 +42,12 @@ export default function LandingPage() {
             Plataforma B2B SaaS de alto rendimiento para marcas de deportes extremos, estilo de vida alternativo y agencias digitales. Aprovisionamiento instantáneo con IA.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
+            <Link href="/adventure" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
               Explorar Tours <MountainSnow className="w-5 h-5" />
-            </button>
-            <button className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
+            </Link>
+            <Link href="/thetrip" className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
               Ver Smokeshop <ShoppingBag className="w-5 h-5 text-emerald-400" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>

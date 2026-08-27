@@ -4,20 +4,20 @@
   "description": "GRUPO BASECAMP 420 - Hub Central Matriz y SaaS",
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "start": "node server.ts",
     "lint": "next lint"
   },
   "dependencies": {
     "@types/node": "^20.12.7",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "lucide-react": "^0.378.0",
     "mercadopago": "^2.0.9",
     "next": "14.2.3",
     "postcss": "^8.4.38",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "recharts": "^3.10.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.5"

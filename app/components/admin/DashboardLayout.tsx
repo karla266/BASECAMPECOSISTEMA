@@ -16,9 +16,9 @@ import {
   LogOut,
   Check
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isTenantMenuOpen, setIsTenantMenuOpen] = useState(false);
   const [activeTenant, setActiveTenant] = useState('Grupo Basecamp');
@@ -43,6 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 block px-3">Copiloto IA</span>
           <nav className="space-y-1 mb-8">
+            <NavItem href="/ai-copilot" icon={<LayoutTemplate size={18} />} label="Galería Campañas" active={pathname === '/ai-copilot'} />
             <NavItem href="/admin/voice" icon={<Mic size={18} />} label="Agente de Voz IA" active={pathname === '/admin/voice'} />
             <NavItem href="/admin/social" icon={<Share2 size={18} />} label="Redes Sociales" active={pathname === '/admin/social'} />
           </nav>
@@ -117,6 +118,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </main>
       </div>
     </div>
+  );
+}
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-emerald-400">Cargando plataforma...</div>}>
+      <DashboardLayoutContent>{children}</DashboardLayoutContent>
+    </Suspense>
   );
 }
 

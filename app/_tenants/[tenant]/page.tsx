@@ -1,3 +1,4 @@
+"use client";
 export default function TenantPage({ params }: { params: { tenant: string } }) {
   // Aquí consultaríamos a https://api.basecamp420.com/api/tenant/{tenant} 
   // para obtener la configuración, la plantilla (smokeshop-dark, adventure-outdoor) y los productos.
