@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { FileUp, UploadCloud } from 'lucide-react';
 
 export default function AdminCsvPage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
           <FileUp className="w-8 h-8 text-emerald-400" />
@@ -26,6 +25,6 @@ export default function AdminCsvPage() {
           Seleccionar Archivo
         </button>
       </div>
-    </DashboardLayout>
+    </>
   );
 }

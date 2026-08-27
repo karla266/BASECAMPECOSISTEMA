@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { Share2, Instagram, Facebook } from 'lucide-react';
 
 export default function AdminSocialPage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
           <Share2 className="w-8 h-8 text-emerald-400" />
@@ -45,6 +44,6 @@ export default function AdminSocialPage() {
           </button>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 }

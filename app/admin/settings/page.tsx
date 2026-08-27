@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { Settings, Shield } from 'lucide-react';
 
 export default function AdminSettingsPage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
           <Settings className="w-8 h-8 text-slate-400" />
@@ -30,6 +29,6 @@ export default function AdminSettingsPage() {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 }

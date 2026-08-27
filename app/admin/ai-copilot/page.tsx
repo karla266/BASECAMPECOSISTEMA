@@ -1,7 +1,6 @@
 "use client";
 import Image from 'next/image';
 import { CheckCircle2, Sparkles, Image as ImageIcon } from 'lucide-react';
-import DashboardLayout from '../components/admin/DashboardLayout';
 
 export default function AICopilotPage() {
   const generatedImages = [
@@ -14,7 +13,7 @@ export default function AICopilotPage() {
   ];
 
   return (
-    <DashboardLayout>
+    <>
     <div className="p-8 max-w-7xl mx-auto w-full min-h-full">
       {/* Header section en tonos verdes (Emerald) */}
       <div className="mb-8 border-b border-emerald-100 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -79,6 +78,6 @@ export default function AICopilotPage() {
         ))}
       </div>
     </div>
-    </DashboardLayout>
+    </>
   );
 }

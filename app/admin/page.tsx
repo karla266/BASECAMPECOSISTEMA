@@ -1,11 +1,10 @@
 "use client";
-import DashboardLayout from '../components/admin/DashboardLayout';
 import TemplateSelector from '../components/admin/TemplateSelector';
 import { DollarSign, PhoneCall, Box, ArrowUpRight } from 'lucide-react';
 
 export default function AdminDashboardPage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8 flex items-end justify-between">
         <div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2">Resumen General</h1>
@@ -57,6 +56,6 @@ export default function AdminDashboardPage() {
         <TemplateSelector />
       </div>
 
-    </DashboardLayout>
+    </>
   );
 }

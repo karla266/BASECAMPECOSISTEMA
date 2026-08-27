@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { Package, Search, Filter, Plus } from 'lucide-react';
 
 export default function AdminProductsPage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8 flex items-end justify-between">
         <div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
@@ -40,6 +39,6 @@ export default function AdminProductsPage() {
           <p className="text-slate-400 text-sm max-w-sm mx-auto mb-6">El catálogo actual está vacío. Importa un archivo CSV o crea un producto manualmente.</p>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 }

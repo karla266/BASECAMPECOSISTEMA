@@ -3,6 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MountainSnow, ShoppingBag, Globe, Users, Play, ArrowRight, CheckCircle2, ShieldCheck, Award, Zap } from 'lucide-react';
 
+import { UnitCard } from './components/landing/UnitCard';
+import { Metric } from './components/landing/Metric';
+import { TenantCard } from './components/landing/TenantCard';
+
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-950">
@@ -120,46 +125,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-    </div>
-  );
-}
-
-function UnitCard({ title, icon, desc, color }: { title: string, icon: React.ReactNode, desc: string, color: 'emerald' | 'cyan' }) {
-  return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:-translate-y-2 hover:border-emerald-500/50 hover:bg-slate-800/50 transition-all duration-300 group cursor-pointer">
-      <div className={`w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-${color}-400 mb-6 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(16,185,129,0.1)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]`}>
-        {icon}
-      </div>
-      <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
-function Metric({ value, label, icon }: { value: string, label: string, icon: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        {icon}
-        <span className="text-3xl font-extrabold text-white">{value}</span>
-      </div>
-      <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">{label}</span>
-    </div>
-  );
-}
-
-function TenantCard({ name, url, status }: { name: string, url: string, status: string }) {
-  const isActive = status === 'Activo';
-  return (
-    <div className="p-6 rounded-xl bg-slate-900/40 border border-slate-800 flex items-center justify-between group hover:bg-slate-900 transition-colors cursor-pointer">
-      <div>
-        <h4 className="font-bold text-white text-lg">{name}</h4>
-        <p className="text-xs text-slate-500 mt-1 font-mono">{url}</p>
-      </div>
-      <div className={`flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-bold ${isActive ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400'}`}>
-        {isActive && <CheckCircle2 className="w-3 h-3" />}
-        {status}
-      </div>
     </div>
   );
 }

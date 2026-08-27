@@ -43,7 +43,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 block px-3">Copiloto IA</span>
           <nav className="space-y-1 mb-8">
-            <NavItem href="/ai-copilot" icon={<LayoutTemplate size={18} />} label="Galería Campañas" active={pathname === '/ai-copilot'} />
+            <NavItem href="/admin/ai-copilot" icon={<LayoutTemplate size={18} />} label="Galería Campañas" active={pathname === '/admin/ai-copilot'} />
             <NavItem href="/admin/voice" icon={<Mic size={18} />} label="Agente de Voz IA" active={pathname === '/admin/voice'} />
             <NavItem href="/admin/social" icon={<Share2 size={18} />} label="Redes Sociales" active={pathname === '/admin/social'} />
           </nav>

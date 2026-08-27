@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { Mic, Settings2 } from 'lucide-react';
 
 export default function AdminVoicePage() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
           <Mic className="w-8 h-8 text-blue-400" />
@@ -39,6 +38,6 @@ export default function AdminVoicePage() {
           </button>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 }
