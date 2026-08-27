@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Basecamp 420",
+  "description": "Plataforma B2B SaaS de alto rendimiento para marcas de deportes extremos y estilo de vida alternativo.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

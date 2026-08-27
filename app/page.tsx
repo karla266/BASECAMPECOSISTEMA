@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MountainSnow, ShoppingBag, Globe, Users, Play, ArrowRight, CheckCircle2, ShieldCheck, Award, Zap } from 'lucide-react';
 
 export default function LandingPage() {
@@ -93,7 +94,7 @@ export default function LandingPage() {
               </div>
             </div>
             {/* Fallback image representing video */}
-            <img src="https://picsum.photos/seed/mountain_climb/800/450" alt="Club Trepacerros YouTube" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
+            <Image src="https://picsum.photos/seed/mountain_climb/800/450" alt="Club Trepacerros YouTube" fill className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" referrerPolicy="no-referrer" />
           </div>
         </div>
       </section>
