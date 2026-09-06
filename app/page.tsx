@@ -1,130 +1,113 @@
-"use client";
-import Link from 'next/link';
-import Image from 'next/image';
-import { MountainSnow, ShoppingBag, Globe, Users, Play, ArrowRight, CheckCircle2, ShieldCheck, Award, Zap } from 'lucide-react';
-
-import { UnitCard } from './components/landing/UnitCard';
-import { Metric } from './components/landing/Metric';
-import { TenantCard } from './components/landing/TenantCard';
-
-
-export default function LandingPage() {
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950">
-      {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <MountainSnow className="w-8 h-8 text-emerald-400" />
-            <span className="font-extrabold text-xl tracking-widest text-white">BASECAMP 420</span>
-            <span className="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-sm uppercase tracking-wider ml-2">
-              Matriz
-            </span>
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+        header { background-color: #111827; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
+        header h1 { color: #fff; margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
+        .nav-links a { color: #9ca3af; text-decoration: none; margin-left: 20px; transition: color 0.3s; font-weight: 400; }
+        .nav-links a:hover { color: #3b82f6; }
+        .hero { position: relative; height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; overflow: hidden; padding: 20px; }
+        .hero-video { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.55); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; max-width: 850px; }
+        .hero-content h2 { font-size: 3.5rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-content p { font-size: 1.25rem; color: #e5e7eb; margin: 0 auto 35px; line-height: 1.6; }
+        .btn-primary { background-color: #3b82f6; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #2563eb; }
+        .features { display: flex; justify-content: center; gap: 30px; padding: 70px 20px; flex-wrap: wrap; background-color: #ffffff; }
+        .feature-box { background: #f8fafc; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; max-width: 320px; border: 1px solid #e2e8f0; }
+        .feature-box h3 { color: #111827; font-size: 1.3rem; margin-bottom: 15px; }
+        .feature-box p { color: #475569; line-height: 1.5; }
+        .pricing { text-align: center; padding: 70px 20px; background-color: #f4f7f6; }
+        .pricing-cards { display: flex; justify-content: center; gap: 30px; margin-top: 50px; flex-wrap: wrap; }
+        .plan { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 40px 20px; width: 320px; transition: transform 0.3s; position: relative;}
+        .plan:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
+        .plan h3 { margin-top: 0; font-size: 1.4rem; color: #1e293b; }
+        .price { font-size: 2.8rem; font-weight: bold; color: #111827; margin: 20px 0; }
+        .plan ul { list-style: none; padding: 0; color: #6b7280; margin-bottom: 30px; text-align: left; padding-left: 20px; }
+        .plan ul li { margin-bottom: 12px; position: relative; }
+        .plan ul li::before { content: '✓'; color: #3b82f6; position: absolute; left: -20px; font-weight: bold; }
+        .plan-destacado { border: 2px solid #3b82f6; background-color: #f0f9ff; }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        footer { background: #111827; color: #6b7280; text-align: center; padding: 25px; font-size: 0.9rem; }
+      `}} />
+      
+      <header>
+          <h1>BASECAMP 420</h1>
+          <div className="nav-links">
+              <a href="#soluciones">El Ecosistema</a>
+              <a href="#precios">Planes</a>
+              <a href="#contacto">Contacto</a>
           </div>
-          <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
-            <Link href="/adventure" className="hover:text-emerald-400 transition-colors">Adventure</Link>
-            <Link href="/thetrip" className="hover:text-emerald-400 transition-colors">The Trip</Link>
-            <Link href="/cimadigital" className="hover:text-emerald-400 transition-colors">Cima Digital</Link>
-            <Link href="/trepacerros" className="hover:text-emerald-400 transition-colors">Club Trepacerros</Link>
-          </div>
-          <Link href="/admin" className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-md font-bold text-sm transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]">
-            Unirse a la Red
-          </Link>
-        </div>
-      </nav>
+      </header>
 
-      {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden flex flex-col items-center text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/10 blur-[120px] pointer-events-none rounded-full" />
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            Ecosistema Hub <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">
-              Multi-Tenant & E-Commerce
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Plataforma B2B SaaS de alto rendimiento para marcas de deportes extremos, estilo de vida alternativo y agencias digitales. Aprovisionamiento instantáneo con IA.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/adventure" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
-              Explorar Tours <MountainSnow className="w-5 h-5" />
-            </Link>
-            <Link href="/thetrip" className="w-full sm:w-auto bg-slate-900 border border-slate-700 hover:border-slate-500 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
-              Ver Smokeshop <ShoppingBag className="w-5 h-5 text-emerald-400" />
-            </Link>
+      <section className="hero">
+          <iframe className="hero-video" 
+              src="https://www.youtube.com/embed/cqxPXm6j_Cs?autoplay=1&mute=1&loop=1&playlist=cqxPXm6j_Cs&controls=0&showinfo=0&modestbranding=1" 
+              frameBorder="0" allow="autoplay; fullscreen">
+          </iframe>
+          <div className="hero-overlay"></div>
+          <div className="hero-content">
+              <h2>Aventureros 420</h2>
+              <p>Transformando la montaña en México. Relájate y enfócate en tu aventura mientras nuestra Inteligencia Artificial y automatización se encargan de las ventas y el inventario de tu negocio.</p>
+              <a href="#contacto" className="btn-primary">Solicitar mis 30 días de prueba</a>
           </div>
-        </div>
       </section>
 
-      {/* UNIDADES DE NEGOCIO MATRIZ */}
-      <section className="py-20 px-6 bg-slate-950 relative border-t border-slate-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">Unidades de Negocio Estratégicas</h2>
-            <p className="text-slate-400">Nuestras operaciones core impulsadas por tecnología compartida.</p>
+      <section id="soluciones" className="features">
+          <div className="feature-box">
+              <h3>🌐 Mini-Sitios Web Inteligentes</h3>
+              <p>Tu propia sucursal digital. Conectamos tu inventario masivo con plantillas autoadministrables. Tú despachas, nosotros operamos tu web.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <UnitCard title="Basecamp Adventure" icon={<MountainSnow />} desc="Tours de alta montaña y parapente extremo." color="emerald" />
-            <UnitCard title="The Trip Smokeshop" icon={<ShoppingBag />} desc="Parafernalia legal, bongs y pipas pyrex." color="emerald" />
-            <UnitCard title="Cima Digital" icon={<Globe />} desc="Agencia web B2B y publicidad aérea en velas." color="cyan" />
-            <UnitCard title="Papelería Madera" icon={<Users />} desc="40 años de tradición retail operando en el cloud." color="emerald" />
+          <div className="feature-box">
+              <h3>🤖 Asistente IA (Tulio)</h3>
+              <p>Atención automatizada 24/7. Tus vendedores consultan existencias y precios en tiempo real directo a SICAR solo usando su voz.</p>
           </div>
-        </div>
+          <div className="feature-box">
+              <h3>📞 Enrutamiento de Leads</h3>
+              <p>Filtramos prospectos con Twilio. Si un cliente está listo para comprar, te entra una llamada o WhatsApp directo al mostrador.</p>
+          </div>
       </section>
 
-      {/* RESPALDO SOCIAL & AUTORIDAD */}
-      <section className="py-24 px-6 bg-slate-900/50 border-t border-b border-slate-800">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 mb-6">
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">Comunidad Activa</span>
-            </div>
-            <h2 className="text-4xl font-extrabold text-white mb-6 leading-tight">
-              Respaldado por el <span className="text-emerald-400">Club Trepacerros</span>
-            </h2>
-            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-              Más de 130 videos de expediciones documentadas en YouTube, formando un embudo de retención masivo para nuestra unidad Adventure y E-Commerce.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <Metric value="33+" label="Años Parapente" icon={<ShieldCheck className="w-5 h-5 text-emerald-400" />} />
-              <Metric value="40+" label="Años Papelería" icon={<Award className="w-5 h-5 text-emerald-400" />} />
-              <Metric value="5+" label="Años Cloud SaaS" icon={<Globe className="w-5 h-5 text-emerald-400" />} />
-            </div>
-          </div>
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-slate-700 bg-slate-900 group cursor-pointer shadow-2xl">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10 flex items-center justify-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.5)] group-hover:scale-110 transition-transform">
-                <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-              </div>
-            </div>
-            {/* Fallback image representing video */}
-            <Image src="https://picsum.photos/seed/mountain_climb/800/450" alt="Club Trepacerros YouTube" fill className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" referrerPolicy="no-referrer" />
-          </div>
-        </div>
-      </section>
-
-      {/* DIRECTORIO MARCAS ALIADAS */}
-      <section className="py-20 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-4">Marcas Aliadas en el Hub</h2>
-              <p className="text-slate-400">Inquilinos B2B utilizando nuestra infraestructura SaaS y motor omnicanal.</p>
-            </div>
-            <Link href="/admin" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-bold transition-colors">
-              Ver panel de control <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+      <section id="precios" className="pricing">
+          <h2>Plataforma Tecnológica Integral</h2>
+          <p style={{color: '#64748b', marginBottom: '40px'}}>Soluciones para negocios que quieren dominar su mercado.</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <TenantCard name="Parapentitis" url="parapentitis.basecamp420.com" status="Activo" />
-            <TenantCard name="Fisiozom" url="fisiozom.basecamp420.com" status="Activo" />
-            <TenantCard name="Devolada" url="devolada.basecamp420.com" status="Configurando" />
+          <div className="pricing-cards">
+              <div className="plan">
+                  <h3>Basecamp Digital</h3>
+                  <div className="price">$499<small style={{fontSize: '1rem', color: '#94a3b8'}}>/mes</small></div>
+                  <ul>
+                      <li>1 Mini-sitio web personalizado</li>
+                      <li>Subida masiva por CSV</li>
+                      <li>Generación de imágenes por IA</li>
+                      <li>Soporte técnico estándar</li>
+                  </ul>
+                  <a href="#contacto" className="btn-primary" style={{backgroundColor: '#64748b', width: '80%', boxSizing: 'border-box'}}>Elegir Plan</a>
+              </div>
+              
+              <div className="plan plan-destacado">
+                  <div className="badge">RECOMENDADO</div>
+                  <h3>Ecosistema IA 360°</h3>
+                  <div className="price">$999<small style={{fontSize: '1rem', color: '#94a3b8'}}>/mes</small></div>
+                  <ul>
+                      <li>Todo lo del plan Digital</li>
+                      <li><b>Asistente de Voz IA en Mostrador</b></li>
+                      <li>Integración bidireccional SICAR</li>
+                      <li>Automatización Redes y YouTube</li>
+                      <li>Enrutamiento de prospectos (Twilio)</li>
+                  </ul>
+                  <a href="#contacto" className="btn-primary" style={{width: '80%', boxSizing: 'border-box'}}>Solicitar Acceso</a>
+              </div>
           </div>
-        </div>
       </section>
-    </div>
+
+      <footer id="contacto">
+          <p>¿Listo para transformar tu negocio? Escríbenos para evaluar tu integración.</p>
+          <br />
+          &copy; 2026 Basecamp 420. Transformando la montaña y la tecnología en México.
+      </footer>
+    </>
   );
 }
