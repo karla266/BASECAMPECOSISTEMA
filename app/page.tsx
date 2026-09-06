@@ -41,7 +41,7 @@ export default function Home() {
       `}} />
       
       <header>
-          <h1>Grupo Basecamp 420</h1>
+          <h1>Basecamp 420</h1>
           <div className="nav-links">
               <a href="#vuelos">Vuelos en Parapente</a>
               <a href="#tours">Tours de Montaña</a>
@@ -57,10 +57,9 @@ export default function Home() {
           <div className="hero-overlay"></div>
           
           <div className="hero-content">
-              <h2>Grupo Basecamp 420</h2>
+              <h2>BASECAMP 420</h2>
               <p>Vive la experiencia de tu vida. Vuelos en parapente, expediciones de alta montaña y conexión total con la naturaleza. Despierta tu espíritu aventurero con nosotros.</p>
               
-              {/* Botón enlazado al WhatsApp de Tulio (272 725 8748) */}
               <a href="https://wa.me/522727258748?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20para%20reservar%20una%20aventura." target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Inicia tu Aventura
               </a>
@@ -69,3 +68,4 @@ export default function Home() {
     </>
   );
 }
+      
