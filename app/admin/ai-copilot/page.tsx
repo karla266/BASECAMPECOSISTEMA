@@ -1,6 +1,6 @@
 "use client";
-import Image from 'next/image';
-import { CheckCircle2, Sparkles, Image as ImageIcon } from 'lucide-react';
+
+import React from 'react';
 
 export default function AICopilotPage() {
   const generatedImages = [
@@ -13,71 +13,55 @@ export default function AICopilotPage() {
   ];
 
   return (
-    <>
-    <div className="p-8 max-w-7xl mx-auto w-full min-h-full">
-      {/* Header section en tonos verdes (Emerald) */}
-      <div className="mb-8 border-b border-emerald-100 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', width: '100%', minHeight: '100vh', backgroundColor: '#090d16', color: '#fff', fontFamily: 'sans-serif' }}>
+      {/* Header section en tonos verdes */}
+      <div style={{ marginBottom: '32px', borderBottom: '1px solid #065f46', paddingBottom: '24px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
         <div>
-          <h1 className="text-3xl font-extrabold text-emerald-950 tracking-tight flex items-center gap-3">
-            <Sparkles className="w-8 h-8 text-emerald-600" />
-            Copiloto IA: Galería de Campañas
+          <h1 style={{ fontSize: '1.875rem', fontWeight: '800', color: '#065f46', letterSpacing: '-0.025em', display: 'flex', alignItems: 'center', gap: '12px', margin: 0 }}>
+            <span>✨</span> Copiloto IA: Galería de Campañas
           </h1>
-          <p className="text-emerald-700 text-sm mt-2 font-medium">
+          <p style={{ color: '#047857', fontSize: '0.875rem', marginTop: '8px', fontWeight: '500', margin: '8px 0 0' }}>
             Selecciona una imagen llamativa generada por DALL-E 3 para tu próxima pauta multicanal.
           </p>
         </div>
-        <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-sm shadow-emerald-200 transition-all flex items-center gap-2">
-          <ImageIcon className="w-5 h-5" />
+        <button style={{ backgroundColor: '#059669', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer' }}>
           Generar Nueva Imagen
         </button>
       </div>
 
       {/* Grid de tarjetas para selección */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
         {generatedImages.map((img) => (
           <div 
             key={img.id} 
-            className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-emerald-900/10 transition-all duration-300 border border-emerald-100 cursor-pointer"
+            style={{ position: 'relative', backgroundColor: '#0f172a', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1e293b', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
           >
             {/* Contenedor de Imagen */}
-            <div className="aspect-[4/3] relative w-full overflow-hidden bg-emerald-50">
-              <Image 
+            <div style={{ position: 'relative', width: '100%', height: '200px', backgroundColor: '#064e3b' }}>
+              <img 
                 src={img.url} 
                 alt={img.title} 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
-              {/* Overlay en Hover */}
-              <div className="absolute inset-0 bg-emerald-900/0 group-hover:bg-emerald-900/20 transition-colors duration-300" />
-              
               {/* Badge Flotante */}
-              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-emerald-100 shadow-sm">
-                <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide">
-                  {img.badge}
-                </span>
-              </div>
-            </div>
-            
-            {/* Detalles de la Tarjeta */}
-            <div className="p-5">
-              <div className="flex justify-between items-center">
-                <h3 className="font-bold text-emerald-950 text-lg">{img.title}</h3>
-                
-                {/* Indicador de Selección (Checkbox animado) */}
-                <div className="w-8 h-8 rounded-full border-2 border-emerald-200 group-hover:border-emerald-500 group-hover:bg-emerald-50 flex items-center justify-center transition-colors">
-                  <CheckCircle2 className="w-5 h-5 text-transparent group-hover:text-emerald-600 transition-colors" />
-                </div>
-              </div>
-              <p className="text-emerald-600/80 text-sm mt-1 font-medium">Renderizado en calidad HD (1024x1024)</p>
+              <span style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: 'rgba(6, 78, 59, 0.8)', backdropFilter: 'blur(4px)', color: '#6ee7b7', padding: '4px 12px', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 'bold', uppercase: 'true' }}>
+                {img.badge}
+              </span>
             </div>
 
-            {/* Borde activo en hover simulando selección */}
-            <div className="absolute inset-0 border-2 border-transparent group-hover:border-emerald-500 rounded-2xl pointer-events-none transition-colors duration-300" />
+            {/* Detalles de la Tarjeta */}
+            <div style={{ padding: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontWeight: 'bold', color: '#065f46', fontSize: '1.125rem', margin: 0 }}>{img.title}</h3>
+                <span style={{ color: '#10b981', fontSize: '1.25rem' }}>✓</span>
+              </div>
+              <p style={{ color: '#047857', fontSize: '0.75rem', marginTop: '4px', fontWeight: '500', margin: '4px 0 0' }}>
+                Renderizado en calidad HD (1024x1024)
+              </p>
+            </div>
           </div>
         ))}
       </div>
     </div>
-    </>
   );
 }
