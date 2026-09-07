@@ -1,43 +1,55 @@
 "use client";
 
-import { Mic, Settings2 } from 'lucide-react';
+import React, { useState } from 'react';
 
 export default function AdminVoicePage() {
+  const [prompt, setPrompt] = useState(
+    "Eres un agente de ventas experto para la marca Basecamp 420, The Trip Smokeshop y Papelería Madera. Respondes con amabilidad, consultas existencias en SICAR y agendas tours."
+  );
+
   return (
-    <>
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2 flex items-center gap-3">
-          <Mic className="w-8 h-8 text-blue-400" />
-          Agente de Voz IA
+    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', width: '100%', minHeight: '100vh', backgroundColor: '#090d16', color: '#fff', fontFamily: 'sans-serif' }}>
+      <div style={{ marginBottom: '32px' }}>
+        <h1 style={{ fontSize: '1.875rem', fontWeight: '800', color: '#fff', letterSpacing: '-0.025em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span>🎙️</span> Agente de Voz IA (Tulio)
         </h1>
-        <p className="text-slate-400 text-sm">Configuración de respuestas automatizadas y leads.</p>
+        <p style={{ color: '#94a3b8', fontSize: '0.875rem', margin: 0 }}>
+          Configuración de respuestas automatizadas y manejo de leads.
+        </p>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-        <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-800">
-          <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center border border-blue-500/20">
-            <Settings2 className="w-6 h-6 text-blue-400" />
+      <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '16px', padding: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid #1e293b' }}>
+          <div style={{ width: '48px', height: '48px', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(59, 130, 246, 0.2)', fontSize: '1.5rem' }}>
+            ⚙️
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Configuración del Agente</h2>
-            <p className="text-sm text-slate-400">Entrenamiento y directrices del sistema</p>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#fff', margin: '0 0 4px 0' }}>Configuración del Agente</h2>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>Entrenamiento y directrices del sistema.</p>
           </div>
         </div>
-        
-        <div className="space-y-6">
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div>
-            <label className="block text-sm font-bold text-slate-300 mb-2">Prompt Base del Sistema</label>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 'bold', color: '#cbd5e1', marginBottom: '8px' }}>
+              Prompt Base del Sistema
+            </label>
             <textarea 
               rows={4} 
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-4 text-sm text-slate-300 focus:outline-none focus:border-blue-500"
-              defaultValue="Eres un agente de ventas experto para la marca..."
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '8px', padding: '16px', fontSize: '0.875rem', color: '#cbd5e1', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
             />
           </div>
-          <button className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-colors">
+
+          <button 
+            onClick={() => alert("¡Prompt de Tulio actualizado con éxito!")}
+            style={{ backgroundColor: '#3b82f6', color: '#fff', padding: '10px 24px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer', alignSelf: 'flex-start' }}
+          >
             Guardar Configuración
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
