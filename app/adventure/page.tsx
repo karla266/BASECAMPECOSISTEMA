@@ -1,78 +1,85 @@
 "use client";
 
+import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { MountainSnow, ArrowLeft, Calendar, MapPin, Star } from 'lucide-react';
 
 export default function AdventurePage() {
-  const tours = [
-    { id: 1, title: 'Ascenso Pico de Orizaba', duration: '2 Días', level: 'Extremo', price: '$4,500 MXN', img: 'https://picsum.photos/seed/orizaba/800/600' },
-    { id: 2, title: 'Vuelo en Parapente Valle de Bravo', duration: 'Medio Día', level: 'Principiante', price: '$1,800 MXN', img: 'https://picsum.photos/seed/parapente/800/600' },
-    { id: 3, title: 'Ruta de los Volcanes (MTB)', duration: '1 Día', level: 'Intermedio', price: '$1,200 MXN', img: 'https://picsum.photos/seed/mtb/800/600' }
+  const expediciones = [
+    {
+      id: 'pico-orizaba',
+      title: 'Ascenso Pico de Orizaba',
+      nivel: 'Extremo',
+      duration: '2 Días',
+      location: 'Orizaba / Citlaltépetl',
+      price: '$4,500 MXN',
+      badgeColor: '#e11d48'
+    },
+    {
+      id: 'valle-bravo',
+      title: 'Vuelo en Parapente Valle de Bravo',
+      nivel: 'Intermedio',
+      duration: 'Medio Día',
+      location: 'Valle de Bravo',
+      price: '$1,800 MXN',
+      badgeColor: '#0284c7'
+    },
+    {
+      id: 'mtb-volcanes',
+      title: 'Ruta de los Volcanes (MTB)',
+      nivel: 'Principiante',
+      duration: '1 Día',
+      location: 'Paso de Cortés',
+      price: '$1,200 MXN',
+      badgeColor: '#22c55e'
+    }
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-200">
-      {/* Header */}
-      <header className="border-b border-slate-800 bg-slate-950/80 sticky top-0 z-50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            <span className="font-bold text-sm uppercase tracking-wider">Volver al Hub</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <MountainSnow className="w-6 h-6 text-emerald-400" />
-            <span className="font-extrabold tracking-widest text-white">ADVENTURE</span>
-          </div>
-        </div>
-      </header>
+    <div style={{ minHeight: '100vh', backgroundColor: '#090d16', color: '#f8fafc', fontFamily: 'sans-serif', padding: '32px 16px' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+        
+        {/* Enlace Volver */}
+        <Link href="/admin" style={{ color: '#38bdf8', textDecoration: 'none', fontSize: '0.9rem', display: 'inline-block', marginBottom: '24px' }}>
+          ← Volver al Hub
+        </Link>
 
-      {/* Hero */}
-      <div className="relative h-[40vh] min-h-[300px] flex items-center justify-center border-b border-slate-800 overflow-hidden">
-        <Image src="https://picsum.photos/seed/adventure_hero/1920/1080" alt="Adventure Hero" fill className="object-cover opacity-30 grayscale" referrerPolicy="no-referrer" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
-            Expediciones <span className="text-emerald-400">Extremas</span>
-          </h1>
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">
+        {/* Encabezado */}
+        <div style={{ borderBottom: '1px solid #1e293b', paddingBottom: '24px', marginBottom: '32px' }}>
+          <span style={{ color: '#e11d48', fontWeight: 'bold', fontSize: '0.85rem', letterSpacing: '1px' }}>ADVENTURE</span>
+          <h1 style={{ fontSize: '2.25rem', fontWeight: '800', margin: '8px 0', color: '#fff' }}>Expediciones Extremas</h1>
+          <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
             Alta montaña, vuelos en parapente y tours todoterreno diseñados para los verdaderos exploradores.
           </p>
         </div>
-      </div>
 
-      {/* Tours Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-20 w-full">
-        <h2 className="text-2xl font-bold text-white mb-10 border-b border-slate-800 pb-4">Próximas Salidas</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours.map(tour => (
-            <div key={tour.id} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-emerald-500/50 transition-colors">
-              <div className="aspect-[4/3] relative">
-                <Image src={tour.img} alt={tour.title} fill className="object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" referrerPolicy="no-referrer" />
-                <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-emerald-400 border border-emerald-500/30">
-                  {tour.level}
+        {/* Próximas Salidas */}
+        <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '20px', color: '#cbd5e1' }}>Próximas Salidas</h2>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+          {expediciones.map((exp) => (
+            <div key={exp.id} style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <span style={{ backgroundColor: `${exp.badgeColor}20`, color: exp.badgeColor, border: `1px solid ${exp.badgeColor}40`, padding: '4px 10px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                  {exp.nivel}
+                </span>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff', margin: '16px 0 12px' }}>{exp.title}</h3>
+                
+                <div style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px' }}>
+                  <span>📅 {exp.duration}</span>
+                  <span>📍 {exp.location}</span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{tour.title}</h3>
-                <div className="flex flex-col gap-2 mb-6">
-                  <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
-                    <Calendar className="w-4 h-4" /> {tour.duration}
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
-                    <MapPin className="w-4 h-4" /> Varias Locaciones
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-extrabold text-white">{tour.price}</span>
-                  <button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-lg">
-                    Reservar
-                  </button>
-                </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #1e293b', paddingTop: '16px' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#22c55e' }}>{exp.price}</span>
+                <button style={{ backgroundColor: '#0284c7', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}>
+                  Reservar
+                </button>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
