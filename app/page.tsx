@@ -52,11 +52,11 @@ export default function Home() {
           </div>
       </header>
 
-      {/* Banner de Aniversario / 15 de Septiembre  */}
+      {/* Banner de Aniversario / 15 de Septiembre */}
       <div className="event-banner" id="aniversario">
-          🇲🇽 ¡PRÓXIMA SEMANA: Aniversario del Club Trepacerros en el Cerro del Gentil 
+          🇲🇽 ¡PRÓXIMA SEMANA: Aniversario del Club Trepacerros en el Cerro del Gentil & Festejo del 15 de Septiembre! (Expedición Gratuita de la Comunidad)
       </div>
-  
+
       {/* Hero Video */}
       <section className="hero">
           <iframe className="hero-video" 
