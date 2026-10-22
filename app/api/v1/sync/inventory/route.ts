@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
         price: parseFloat(item.price || 0.0),
         stock: stockNum,
         available: stockNum > 0,
-        image: /assets/products/ + (item.barcode || id) + .webp,
+        image: `/assets/products/${item.barcode || id}.webp`,
         isPresale: false,
         updated_at: new Date().toISOString()
       };
