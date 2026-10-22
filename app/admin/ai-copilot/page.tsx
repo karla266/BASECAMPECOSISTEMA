@@ -44,7 +44,7 @@ export default function AICopilotPage() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
               {/* Badge Flotante */}
-              <span style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: 'rgba(6, 78, 59, 0.8)', backdropFilter: 'blur(4px)', color: '#6ee7b7', padding: '4px 12px', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 'bold', uppercase: 'true' }}>
+              <span style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: 'rgba(6, 78, 59, 0.8)', backdropFilter: 'blur(4px)', color: '#6ee7b7', padding: '4px 12px', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase' }}>
                 {img.badge}
               </span>
             </div>

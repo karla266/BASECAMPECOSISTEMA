@@ -6,7 +6,7 @@ export default function AdminCsvPage() {
   return (
     <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', width: '100%', minHeight: '100vh', backgroundColor: '#090d16', color: '#fff', fontFamily: 'sans-serif' }}>
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '1.875rem', fontWeight: '800', color: '#fff', tracking: '-0.025em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <h1 style={{ fontSize: '1.875rem', fontWeight: '800', color: '#fff', letterSpacing: '-0.025em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span>📄</span> Carga Masiva CSV
         </h1>
         <p style={{ color: '#94a3b8', fontSize: '0.875rem', margin: 0 }}>

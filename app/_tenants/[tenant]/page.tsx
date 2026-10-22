@@ -1,11 +1,10 @@
 "use client";
 
-import { CheckCircle2, Server, Shield, Globe } from 'lucide-react';
+import { Server, Shield, Globe } from 'lucide-react';
 
 export default function TenantPage({ params }: { params: { tenant: string } }) {
-  // Aquí consultaríamos a https://api.basecamp420.com/api/tenant/{tenant} 
-  // para obtener la configuración, la plantilla (smokeshop-dark, adventure-outdoor) y los productos.
-  
+  const { tenant } = params;
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 p-6 text-slate-200">
       <div className="max-w-4xl w-full text-center p-12 bg-slate-900 rounded-3xl shadow-2xl border border-slate-800 relative overflow-hidden">
@@ -18,7 +17,7 @@ export default function TenantPage({ params }: { params: { tenant: string } }) {
           </div>
           
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-            {params.tenant}
+            {tenant}
           </h1>
           
           <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
