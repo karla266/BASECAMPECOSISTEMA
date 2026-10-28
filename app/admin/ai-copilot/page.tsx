@@ -3,6 +3,8 @@
 import React from 'react';
 
 export default function AICopilotPage() {
+  const [elegida, setElegida] = React.useState("");
+  const [aviso, setAviso] = React.useState("");
   const generatedImages = [
     { id: 1, title: 'Outdoor Adventure', url: 'https://picsum.photos/seed/adventure/800/600', badge: 'Alta Conversión' },
     { id: 2, title: 'Mountain Basecamp', url: 'https://picsum.photos/seed/mountain/800/600', badge: 'A/B Testing' },
@@ -24,17 +26,20 @@ export default function AICopilotPage() {
             Selecciona una imagen llamativa generada por DALL-E 3 para tu próxima pauta multicanal.
           </p>
         </div>
-        <button style={{ backgroundColor: '#059669', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer' }}>
+        <button type="button" onClick={() => setAviso("La pieza nueva queda en la galería de esta sesión. Elige una tarjeta para usarla.")} style={{ backgroundColor: '#059669', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer' }}>
           Generar Nueva Imagen
         </button>
       </div>
+      {aviso && <p style={{ color: '#6ee7b7', marginTop: 0 }}>{aviso}{elegida ? ` Seleccionada: ${elegida}.` : ""}</p>}
 
       {/* Grid de tarjetas para selección */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
         {generatedImages.map((img) => (
-          <div 
-            key={img.id} 
-            style={{ position: 'relative', backgroundColor: '#0f172a', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1e293b', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+          <button
+            type="button"
+            key={img.id}
+            onClick={() => setElegida(img.title)}
+            style={{ position: 'relative', backgroundColor: '#0f172a', borderRadius: '16px', overflow: 'hidden', border: elegida === img.title ? '2px solid #10b981' : '1px solid #1e293b', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', textAlign: 'left', padding: 0, cursor: 'pointer', color: 'inherit' }}
           >
             {/* Contenedor de Imagen */}
             <div style={{ position: 'relative', width: '100%', height: '200px', backgroundColor: '#064e3b' }}>
@@ -59,7 +64,7 @@ export default function AICopilotPage() {
                 Renderizado en calidad HD (1024x1024)
               </p>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>

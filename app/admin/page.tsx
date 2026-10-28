@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
+import { posApiUrl } from '@/lib/apiBase'
 
 interface Propuesta {
   id: number
@@ -37,7 +38,7 @@ function GestorFavicon() {
     formData.append('file', archivo)
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/admin/settings/favicon', {
+      const res = await fetch(posApiUrl('/api/v1/admin/settings/favicon'), {
         method: 'POST',
         body: formData,
       })
@@ -68,7 +69,7 @@ function GestorFavicon() {
             <img src={preview} alt="Preview" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
           ) : (
             <img
-              src="http://127.0.0.1:8000/favicon.ico"
+              src={posApiUrl('/favicon.ico')}
               alt="Actual"
               style={{ width: '32px', height: '32px', objectFit: 'contain' }}
               onError={(e) => {
@@ -109,7 +110,7 @@ function MandoControlRemoto() {
 
   const enviarComando = async (action: string, msg: string = '') => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/v1/admin/remote-control?action=${action}&message=${encodeURIComponent(msg)}`, {
+      await fetch(`${posApiUrl('/api/v1/admin/remote-control')}?action=${action}&message=${encodeURIComponent(msg)}`, {
         method: 'POST',
       })
       if (action === 'LOCK_SCREEN') setEstadoCaja('BLOQUEADA')
@@ -181,7 +182,7 @@ function ControlAccesoMultimedia() {
 
   const consultarEstado = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/admin/remote-media/status/mostrador_principal')
+      const res = await fetch(posApiUrl('/api/v1/admin/remote-media/status/mostrador_principal'))
       if (!res.ok) throw new Error('offline')
       const data = await res.json()
       setStatus(data.status || 'idle')
@@ -202,7 +203,7 @@ function ControlAccesoMultimedia() {
   const solicitarAcceso = async (opcion: 'camera' | 'microphone' | 'both') => {
     setKind(opcion)
     try {
-      await fetch(`http://127.0.0.1:8000/api/v1/admin/remote-media?target_id=mostrador_principal&kind=${opcion}&message=${encodeURIComponent('Solicita permiso para acceder a audio o video del mostrador.')}`, {
+      await fetch(`${posApiUrl('/api/v1/admin/remote-media')}?target_id=mostrador_principal&kind=${opcion}&message=${encodeURIComponent('Solicita permiso para acceder a audio o video del mostrador.')}`, {
         method: 'POST',
       })
       setStatus('requesting')
@@ -241,9 +242,9 @@ function VistaCamarasNVR() {
   const cargar = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/system/nvr/cameras', { method: 'GET' })
+      const res = await fetch(posApiUrl('/api/v1/system/nvr/cameras'), { method: 'GET' })
       if (!res.ok) {
-        const fallback = await fetch('http://127.0.0.1:8000/api/camaras')
+        const fallback = await fetch(posApiUrl('/api/camaras'))
         const data = await fallback.json()
         if (data.success) {
           setCamaras(data.data)
@@ -333,7 +334,7 @@ function GestorActualizacionesRemotas() {
   const [logResultado, setLogResultado] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/v1/system/version')
+    fetch(posApiUrl('/api/v1/system/version'))
       .then(async (res) => {
         if (!res.ok) throw new Error('offline')
         const data = await res.json()
@@ -355,7 +356,7 @@ function GestorActualizacionesRemotas() {
     formData.append('notas_version', notas)
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/system/update/apply', {
+      const res = await fetch(posApiUrl('/api/v1/system/update/apply'), {
         method: 'POST',
         body: formData,
       })
@@ -471,7 +472,7 @@ function DirectorioOperadoresAdmin() {
 
   const cargarOperadores = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/directorio/operadores')
+      const res = await fetch(posApiUrl('/api/v1/directorio/operadores'))
       if (!res.ok) throw new Error('offline')
       const data = await res.json()
       setOperadores(Array.isArray(data) ? data : [])
@@ -487,7 +488,7 @@ function DirectorioOperadoresAdmin() {
 
   const cambiarEstado = async (id: number, nuevoEstado: 'DISPONIBLE' | 'LLENO' | 'INACTIVO') => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/v1/directorio/admin/operadores/${id}/estado?estado=${nuevoEstado}`, {
+      await fetch(`${posApiUrl(`/api/v1/directorio/admin/operadores/${id}/estado`)}?estado=${nuevoEstado}`, {
         method: 'PATCH',
       })
       await cargarOperadores()
@@ -504,7 +505,7 @@ function DirectorioOperadoresAdmin() {
         prioridad: Number(nuevo.prioridad),
         tarifa_pago_base: Number(nuevo.tarifa_pago_base || 0),
       }
-      const res = await fetch('http://127.0.0.1:8000/api/v1/directorio/admin/operadores', {
+      const res = await fetch(posApiUrl('/api/v1/directorio/admin/operadores'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -687,7 +688,7 @@ function CursosParapenteAdmin() {
 
   const cargarCursos = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/cursos/proximos')
+      const res = await fetch(posApiUrl('/api/v1/cursos/proximos'))
       if (!res.ok) throw new Error('offline')
       const data = await res.json()
       setCursos(Array.isArray(data) ? data : [])
@@ -710,7 +711,7 @@ function CursosParapenteAdmin() {
         precio_total: Number(form.precio_total || 0),
         precio_anticipo: Number(form.precio_anticipo || 0),
       }
-      const res = await fetch('http://127.0.0.1:8000/api/v1/cursos/admin', {
+      const res = await fetch(posApiUrl('/api/v1/cursos/admin'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -739,7 +740,7 @@ function CursosParapenteAdmin() {
 
   const eliminarCurso = async (id: number) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/v1/cursos/admin/${id}`, { method: 'DELETE' })
+      const res = await fetch(posApiUrl(`/api/v1/cursos/admin/${id}`), { method: 'DELETE' })
       if (!res.ok) throw new Error('No se pudo eliminar.')
       await cargarCursos()
     } catch {
@@ -848,7 +849,7 @@ function GestorBranding() {
   useEffect(() => {
     const cargar = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/v1/config/empresa')
+        const res = await fetch(posApiUrl('/api/v1/config/empresa'))
         if (!res.ok) return
         const data = await res.json()
         const nombreComercial = data.nombre_comercial || data.nombre || 'Basecamp 420'
@@ -891,7 +892,7 @@ function GestorBranding() {
         nombre: form.nombre_comercial || form.nombre,
         nombre_comercial: form.nombre_comercial || form.nombre,
       }
-      const res = await fetch('http://127.0.0.1:8000/api/v1/config/admin/empresa', {
+      const res = await fetch(posApiUrl('/api/v1/config/admin/empresa'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -972,14 +973,64 @@ function GestorBranding() {
   )
 }
 
+type FilaSicar = {
+  art_id: string
+  descripcion: string
+  depto: string
+  existencia: number
+  tipo: string
+}
+
+type PanelSicar = {
+  conectado: boolean
+  error?: string
+  fuente?: string
+  total_articulos: number | null
+  en_venta: number | null
+  en_renta: number | null
+  piezas: number | null
+  activos: number | null
+  valor_inventario: number | null
+  productos: FilaSicar[]
+  hostinger?: { conectado: boolean; motivo: string; sitio_configurado: string; lectura_ia: string | null }
+}
+
+function dinero(valor: number | null) {
+  if (valor === null || Number.isNaN(valor)) return "—"
+  return valor.toLocaleString("es-MX", { style: "currency", currency: "MXN" })
+}
+
 export default function AdminDashboardPage() {
-  const [activeTab, setActiveTab] = useState('overview')
   const [propuestas, setPropuestas] = useState<Propuesta[]>([])
   const [filtro, setFiltro] = useState<'PENDIENTE' | 'APROBADA' | 'DESCARTADA'>('PENDIENTE')
+  const [sicar, setSicar] = useState<PanelSicar | null>(null)
+  const [sicarError, setSicarError] = useState("")
+
+  useEffect(() => {
+    let vivo = true
+    fetch("/api/sicar/panel", { cache: "no-store" })
+      .then(async (res) => {
+        const data = await res.json()
+        if (!vivo) return
+        if (!res.ok || !data.conectado) {
+          setSicarError(data.error || "SICAR no respondió.")
+          setSicar(data)
+          return
+        }
+        setSicar(data)
+        setSicarError("")
+      })
+      .catch(() => {
+        if (vivo) setSicarError("No se pudo consultar SICAR.")
+      })
+    return () => {
+      vivo = false
+    }
+  }, [])
 
   const cargarPropuestas = React.useCallback(async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/v1/operations/audio/admin/proposals?estado=${filtro}`)
+      const res = await fetch(`${posApiUrl('/api/v1/operations/audio/admin/proposals')}?estado=${filtro}`)
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`)
       }
@@ -996,82 +1047,56 @@ export default function AdminDashboardPage() {
   }, [cargarPropuestas])
 
   const resolverPropuesta = async (id: number, nuevoEstado: 'APROBADA' | 'DESCARTADA') => {
-    await fetch(`http://127.0.0.1:8000/api/v1/operations/audio/admin/proposals/${id}?estado=${nuevoEstado}`, {
+    await fetch(`${posApiUrl(`/api/v1/operations/audio/admin/proposals/${id}`)}?estado=${nuevoEstado}`, {
       method: 'PATCH',
     })
     cargarPropuestas()
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#090d16', color: '#f8fafc', fontFamily: 'Inter, sans-serif' }}>
-      
-      {/* Sidebar */}
-      <aside style={{ width: '260px', backgroundColor: '#0f172a', borderRight: '1px solid #1e293b', padding: '24px 16px', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '0 12px 24px', borderBottom: '1px solid #1e293b', marginBottom: '24px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '8px', backgroundColor: '#0284c7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: '#fff' }}>B420</div>
-          <div>
-            <h2 style={{ fontSize: '1rem', fontWeight: 'bold', margin: 0, color: '#fff' }}>Basecamp 420 Hub</h2>
-          </div>
+    <div style={{ color: '#f8fafc', fontFamily: 'Inter, sans-serif' }}>
+        <div style={{ marginBottom: '24px' }}>
+          <h1 style={{ fontSize: '1.4rem', fontWeight: 'bold', margin: 0 }}>Panel de Control Central</h1>
+          <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '6px 0 0' }}>
+            {sicar?.conectado ? sicar.fuente : 'Esperando SICAR. Las cifras anteriores de Tulio y ventas ya no se muestran.'}
+          </p>
         </div>
 
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {[
-            { id: 'overview', name: '📊 Panel General' },
-            { id: 'ai', name: '🤖 Piloto IA: Campañas' },
-            { id: 'csv', name: '📦 Carga Masiva SICAR' },
-            { id: 'products', name: '🛍️ Catálogo Productos' },
-            { id: 'social', name: '📲 Redes Sociales' },
-            { id: 'settings', name: '⚙️ Ajustes Globales' }
-          ].map(tab => (
-            <button 
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{ 
-                display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', borderRadius: '8px', border: 'none', 
-                backgroundColor: activeTab === tab.id ? '#0284c7' : 'transparent', 
-                color: activeTab === tab.id ? '#fff' : '#94a3b8', cursor: 'pointer', textAlign: 'left', fontWeight: 600, fontSize: '0.95rem'
-              }}
-            >
-              {tab.name}
-            </button>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main Content Area */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        
-        {/* Topbar */}
-        <header style={{ height: '70px', borderBottom: '1px solid #1e293b', backgroundColor: '#0f172a', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <h1 style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: 0 }}>Panel de Control Central</h1>
-            <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>Sincronización en vivo con sucursal física Papelería Madera &amp; The Trip Smokeshop</p>
-          </div>
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px', fontSize: '0.85rem', color: '#cbd5e1' }}>
-            🔌 <strong style={{ color: '#fff' }}>Servidor SICAR DUAL (3000):</strong> Activo
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#22c55e' }}></div>
-          </div>
-        </header>
-
-        {/* Dynamic Body */}
-        <main style={{ padding: '32px', flex: 1, overflowY: 'auto' }}>
+        <main>
+          {sicarError && (
+            <p style={{ color: '#fecaca', background: '#450a0a', border: '1px solid #7f1d1d', borderRadius: '10px', padding: '12px 14px', marginBottom: '16px' }}>
+              SICAR no está disponible: {sicarError}
+            </p>
+          )}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '20px', borderRadius: '12px' }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Consultas Atendidas Tulio AI</span>
-              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#38bdf8' }}>1,248</h3>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Artículos en SICAR</span>
+              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#38bdf8' }}>{sicar?.conectado ? sicar.total_articulos?.toLocaleString('es-MX') : '—'}</h3>
             </div>
             <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '20px', borderRadius: '12px' }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Ventas The Trip Smokeshop</span>
-              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#22c55e' }}>$24,500</h3>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>En venta</span>
+              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#22c55e' }}>{sicar?.conectado ? sicar.en_venta?.toLocaleString('es-MX') : '—'}</h3>
             </div>
             <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '20px', borderRadius: '12px' }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Items Papelería Madera</span>
-              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#f59e0b' }}>3,420</h3>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>En renta</span>
+              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#f59e0b' }}>{sicar?.conectado ? sicar.en_renta?.toLocaleString('es-MX') : '—'}</h3>
             </div>
             <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '20px', borderRadius: '12px' }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Expediciones Trepacerros</span>
-              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#e11d48' }}>Gentil</h3>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Valor de existencia a precio SICAR</span>
+              <h3 style={{ fontSize: '1.8rem', margin: '8px 0 0', color: '#e2e8f0' }}>{sicar?.conectado ? dinero(sicar.valor_inventario) : '—'}</h3>
             </div>
+          </div>
+          <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px', padding: '24px', marginBottom: '28px' }}>
+            <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#fff' }}>Hostinger</h3>
+            <p style={{ margin: '8px 0 0', color: '#cbd5e1', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              {sicar?.hostinger?.motivo || 'Hostinger no está conectado. Falta el token de API.'}
+            </p>
+            <p style={{ margin: '8px 0 0', color: '#94a3b8', fontSize: '0.8rem' }}>
+              Dominio configurado en la app: {sicar?.hostinger?.sitio_configurado || 'basecamp420.com'}. No hay visitas ni ventas medidas.
+            </p>
+            <p style={{ margin: '12px 0 0', color: '#64748b', fontSize: '0.8rem' }}>
+              Lectura de inteligencia artificial: {sicar?.hostinger?.lectura_ia || 'en espera del token. No se inventan métricas.'}
+            </p>
           </div>
 
           <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px', padding: '24px', marginBottom: '28px' }}>
@@ -1188,32 +1213,32 @@ export default function AdminDashboardPage() {
           </div>
 
           <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px', padding: '24px' }}>
-            <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Últimas Consultas de Inventario vía Tulio Local</h3>
+            <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#fff', marginBottom: '8px' }}>Existencias leídas de SICAR</h3>
+            <p style={{ margin: '0 0 16px', color: '#94a3b8', fontSize: '0.8rem' }}>
+              {sicar?.conectado ? `${sicar.piezas?.toLocaleString('es-MX')} piezas en existencia. Artículos con status activo o sin status: ${sicar.activos?.toLocaleString('es-MX')}.` : 'Sin lectura.'}
+            </p>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid #1e293b', color: '#64748b' }}>
                   <th style={{ padding: '12px' }}>Producto</th>
-                  <th style={{ padding: '12px' }}>Base SICAR</th>
+                  <th style={{ padding: '12px' }}>Departamento</th>
+                  <th style={{ padding: '12px' }}>Tipo</th>
                   <th style={{ padding: '12px' }}>Existencia</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td style={{ padding: '12px', color: '#fff' }}>Sábanas OCB Orgánicas</td>
-                  <td style={{ padding: '12px' }}>Tienda General (3307)</td>
-                  <td style={{ padding: '12px', color: '#22c55e', fontWeight: 'bold' }}>42 pzas</td>
-                </tr>
-                <tr>
-                  <td style={{ padding: '12px', color: '#fff' }}>Cuaderno Profesional SC</td>
-                  <td style={{ padding: '12px' }}>Papelería Madera (3306)</td>
-                  <td style={{ padding: '12px', color: '#22c55e', fontWeight: 'bold' }}>18 pzas</td>
-                </tr>
+                {(sicar?.productos || []).slice(0, 8).map((fila) => (
+                  <tr key={fila.art_id}>
+                    <td style={{ padding: '12px', color: '#fff' }}>{fila.descripcion}</td>
+                    <td style={{ padding: '12px' }}>{fila.depto}</td>
+                    <td style={{ padding: '12px' }}>{fila.tipo}</td>
+                    <td style={{ padding: '12px', color: '#22c55e', fontWeight: 'bold' }}>{fila.existencia}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </main>
-      </div>
-
     </div>
   )
 }

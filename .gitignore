@@ -20,3 +20,15 @@ token.pickle
 *.bak
 __pycache__/
 *.pyc
+data/admin-acceso.json
+patch_*.py
+venv/
+.venv/
+secrets/
+*.sql
+*.dump
+*.sqlite
+*.db
+data/ventana-admin/
+data/ventana-aplicacion/
+public/assets/products/

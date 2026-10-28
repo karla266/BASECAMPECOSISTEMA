@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 export default function AdminVoicePage() {
+  const [aviso, setAviso] = useState("");
   const [prompt, setPrompt] = useState(
     "Eres un agente de ventas experto para la marca Basecamp 420, The Trip Smokeshop y Papelería Madera. Respondes con amabilidad, consultas existencias en SICAR y agendas tours."
   );
@@ -43,11 +44,12 @@ export default function AdminVoicePage() {
           </div>
 
           <button 
-            onClick={() => alert("¡Prompt de Tulio actualizado con éxito!")}
+            onClick={() => setAviso("Prompt de Tulio guardado en esta sesión.")}
             style={{ backgroundColor: '#3b82f6', color: '#fff', padding: '10px 24px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer', alignSelf: 'flex-start' }}
           >
             Guardar Configuración
           </button>
+          {aviso && <p style={{ color: '#6ee7b7', margin: 0 }}>{aviso}</p>}
         </div>
       </div>
     </div>

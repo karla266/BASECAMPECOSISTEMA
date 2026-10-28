@@ -7,6 +7,11 @@ import {
   Package, 
   FileUp, 
   LayoutTemplate, 
+  Camera,
+  AppWindow,
+  KeyRound,
+  Fingerprint,
+  ClipboardCheck,
   Mic, 
   Share2, 
   Settings, 
@@ -35,10 +40,14 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
         <div className="px-4 py-6 overflow-y-auto flex-1">
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 block px-3">Gestión Matriz</span>
           <nav className="space-y-1 mb-8">
+            <NavItem href="/admin/multiservicios" icon={<AppWindow size={18} />} label="Multiservicios" active={pathname === '/admin/multiservicios'} />
             <NavItem href="/admin" icon={<LayoutDashboard size={18} />} label="Resumen General" active={pathname === '/admin'} />
+            <NavItem href="/admin/acceso-pos" icon={<KeyRound size={18} />} label="Acceso al POS" active={pathname === '/admin/acceso-pos'} />
             <NavItem href="/admin/products" icon={<Package size={18} />} label="Catálogo / Productos" active={pathname === '/admin/products'} />
+            <NavItem href="/admin/lote" icon={<ClipboardCheck size={18} />} label="Lote de 5" active={pathname === '/admin/lote'} />
             <NavItem href="/admin/csv" icon={<FileUp size={18} />} label="Carga CSV" active={pathname === '/admin/csv'} />
             <NavItem href="/admin/templates" icon={<LayoutTemplate size={18} />} label="Selector de Plantillas" active={pathname === '/admin/templates'} />
+            <NavItem href="/admin/camara" icon={<Camera size={18} />} label="Cámara web" active={pathname === '/admin/camara'} />
           </nav>
 
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 block px-3">Copiloto IA</span>
@@ -52,6 +61,8 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
         <div className="mt-auto px-4 py-4 border-t border-slate-800 bg-slate-900">
           <nav className="space-y-1 mb-4">
             <NavItem href="/admin/settings" icon={<Settings size={18} />} label="Ajustes" active={pathname === '/admin/settings'} />
+            <NavItem href="/admin/acceso" icon={<KeyRound size={18} />} label="Usuarios y contraseña" active={pathname === '/admin/acceso'} />
+            <NavItem href="/admin/lectores" icon={<Fingerprint size={18} />} label="Lectores de acceso" active={pathname === '/admin/lectores'} />
           </nav>
           
           <div className="flex items-center px-3 py-3 mt-2 rounded-xl bg-slate-950 border border-slate-800 group hover:border-slate-700 transition-colors cursor-pointer">

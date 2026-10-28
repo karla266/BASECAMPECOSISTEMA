@@ -29,12 +29,20 @@ https://www.basecamp420.com/cimadigital
 """
 
 def resolver_client_secret():
-    if os.path.exists("client_secret.json"):
+    configurada = os.environ.get("GOOGLE_SECRETS", "").strip().strip('"')
+    if configurada:
+        if os.path.isfile(configurada):
+            return configurada
+        raise FileNotFoundError("GOOGLE_SECRETS no apunta a un archivo de credenciales.")
+    raiz = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "secrets", "client_secret.json"))
+    if os.path.isfile(raiz):
+        return raiz
+    if os.path.isfile("client_secret.json"):
         return "client_secret.json"
     candidatos = glob.glob("client_secret_*.json")
     if candidatos:
         return candidatos[0]
-    raise FileNotFoundError("No se encontró client_secret.json ni client_secret_*.json en la raíz del proyecto.")
+    raise FileNotFoundError("Define GOOGLE_SECRETS con la ruta del archivo de credenciales de Google.")
 
 def autenticar_youtube():
     archivo_secret = resolver_client_secret()

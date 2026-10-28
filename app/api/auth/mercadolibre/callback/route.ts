@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
       grant_type: 'authorization_code',
-      client_id: process.env.MELI_APP_ID!,
+      client_id: process.env.MELI_CLIENT_ID || process.env.MELI_APP_ID!,
       client_secret: process.env.MELI_CLIENT_SECRET!,
       code,
       redirect_uri: process.env.MELI_REDIRECT_URI!,

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { posApiUrl } from '@/lib/apiBase'
 
 interface ConfigEmpresa {
   ofrece_renta_equipo?: boolean
@@ -49,7 +50,7 @@ export default function RentaPage() {
   const [habilitado, setHabilitado] = useState(true)
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/v1/config/empresa')
+    fetch(posApiUrl('/api/v1/config/empresa'))
       .then((res) => (res.ok ? res.json() : null))
       .then((data: ConfigEmpresa | null) => {
         if (data && typeof data.ofrece_renta_equipo === 'boolean') {

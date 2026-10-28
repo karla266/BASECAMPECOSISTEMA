@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { posApiUrl } from '@/lib/apiBase'
 
 interface CursoParapente {
   id: number
@@ -21,7 +22,7 @@ export default function Home() {
   const [servicios, setServicios] = useState({ ofrece_tours: true, ofrece_vuelos: true, ofrece_renta_equipo: true })
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/v1/config/empresa')
+    fetch(posApiUrl('/api/v1/config/empresa'))
       .then((res) => res.ok ? res.json() : null)
       .then((data) => {
         if (data) {
@@ -34,7 +35,7 @@ export default function Home() {
       })
       .catch(() => setServicios({ ofrece_tours: true, ofrece_vuelos: true, ofrece_renta_equipo: true }))
 
-    fetch('http://127.0.0.1:8000/api/v1/cursos/proximos')
+    fetch(posApiUrl('/api/v1/cursos/proximos'))
       .then((res) => res.ok ? res.json() : [])
       .then((data) => setCursos(Array.isArray(data) ? data : []))
       .catch(() => setCursos([]))
@@ -74,12 +75,10 @@ export default function Home() {
         header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
         .nav-links a { color: #cbd5e1; text-decoration: none; margin-left: 20px; font-weight: 600; transition: color 0.3s; }
         .nav-links a:hover { color: #38bdf8; }
-        
-        /* Banner de Evento Especial */
-        .event-banner { background: linear-gradient(90deg, #d97706, #dc2626); color: #fff; text-align: center; padding: 12px 20px; font-weight: bold; font-size: 0.95rem; letter-spacing: 0.5px; position: relative; z-index: 51; margin-top: 70px; }
+        .nav-links a[href="#aniversario"] { display: none; }
         
         /* Hero Video */
-        .hero { position: relative; height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; padding: 20px; }
+        .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; padding: 20px; }
         .hero-video { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; border: none; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1; }
         .hero-content { position: relative; z-index: 2; max-width: 900px; }
@@ -109,18 +108,13 @@ export default function Home() {
       <header>
           <h1>Basecamp 420</h1>
           <div className="nav-links">
-              <a href="#aniversario" style={{color: '#fbbf24'}}>🎉 Aniversario Cerro Gentil</a>
               <a href="#historia">Nuestra Historia</a>
               <a href="#ecosistema">Ecosistema</a>
+              <a href="/thetrip">The Trip Smoke Shop</a>
               {servicios.ofrece_renta_equipo && <a href="/renta">Renta de equipo</a>}
               <a href="#contacto">Local Físico</a>
           </div>
       </header>
-
-      {/* Banner de Aniversario / 15 de Septiembre */}
-      <div className="event-banner" id="aniversario">
-          🇲🇽 ¡PRÓXIMA SEMANA: Aniversario del Club Trepacerros en el Cerro del Gentil & Festejo del 15 de Septiembre! (Expedición Gratuita de la Comunidad)
-      </div>
 
       {/* Hero Video */}
       <section className="hero">
@@ -359,6 +353,11 @@ export default function Home() {
 
       <footer>
           <p>© 2026 Basecamp 420. Todos los derechos reservados. Impulsado por Cima Digital & Tulio AI Engine.</p>
+          <p style={{ marginTop: '10px' }}>
+            <a href="/thetrip" style={{ color: '#fbbf24', textDecoration: 'none', fontWeight: 700 }}>
+              The Trip Smoke Shop
+            </a>
+          </p>
       </footer>
     </>
   );
