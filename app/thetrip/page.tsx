@@ -10,9 +10,32 @@ interface ProductoSmoke {
   categoria: string
   descripcion: string
   precio: number
+  precio_cents?: number
   stock: number
   imagen_url: string
   link_cobro_mp: string
+  tipo_disponibilidad?: 'stock_fisico' | 'sobre_pedido' | string
+}
+
+type VistaCatalogo = 'stock_fisico' | 'sobre_pedido'
+
+function pesosDesdeCents(cents: number): string {
+  const abs = Math.abs(Math.trunc(cents))
+  const pesos = Math.floor(abs / 100)
+  const fraccion = String(abs % 100).padStart(2, '0')
+  return `${pesos}.${fraccion}`
+}
+
+function textoRestante(iso: string, ahora = Date.now()): string {
+  const destino = Date.parse(iso)
+  if (!Number.isFinite(destino)) return '--'
+  const delta = Math.max(0, destino - ahora)
+  const totalSeg = Math.floor(delta / 1000)
+  const dias = Math.floor(totalSeg / 86400)
+  const horas = Math.floor((totalSeg % 86400) / 3600)
+  const minutos = Math.floor((totalSeg % 3600) / 60)
+  const segundos = totalSeg % 60
+  return `${dias}d ${horas}h ${minutos}m ${segundos}s`
 }
 
 interface CartLine extends ProductoSmoke {
@@ -25,6 +48,11 @@ export default function TheTripSmokeShop() {
   const [mayorDeEdad, setMayorDeEdad] = useState<boolean | null>(null)
   const [productos, setProductos] = useState<ProductoSmoke[]>([])
   const [categoriaActiva, setCategoriaActiva] = useState('TODOS')
+  const [vista, setVista] = useState<VistaCatalogo>('stock_fisico')
+  const [proximoCorte, setProximoCorte] = useState('')
+  const [fondosCents, setFondosCents] = useState(0)
+  const [faltanteCents, setFaltanteCents] = useState(250000)
+  const [reloj, setReloj] = useState(Date.now())
   const [query, setQuery] = useState('')
   const [cart, setCart] = useState<CartLine[]>([])
   const [customerName, setCustomerName] = useState('')
@@ -47,7 +75,7 @@ export default function TheTripSmokeShop() {
     setMayorDeEdad(true)
   }
 
-  const cargarCatalogo = async () => {
+  const cargarCatalogoMostrador = async () => {
     const params = new URLSearchParams()
     params.set('categoria', categoriaActiva)
     params.set('only_in_stock', 'true')
@@ -61,13 +89,79 @@ export default function TheTripSmokeShop() {
     setProductos(Array.isArray(data.items) ? data.items : [])
   }
 
+  const cargarCatalogo = async () => {
+    const params = new URLSearchParams()
+    params.set('disponibilidad', vista)
+    params.set('categoria', categoriaActiva)
+    params.set('limit', '120')
+    if (query.trim()) params.set('q', query.trim())
+    const response = await fetch(`${posApiUrl('/api/v1/factory/catalog')}?${params.toString()}`, { cache: 'no-store' })
+    if (!response.ok) {
+      if (vista === 'stock_fisico') {
+        await cargarCatalogoMostrador()
+        return
+      }
+      throw new Error(`No se pudo cargar el catalogo (${response.status})`)
+    }
+    const data = await response.json()
+    setProductos(Array.isArray(data.items) ? data.items : [])
+  }
+
+  const cargarCorte = async () => {
+    const response = await fetch(posApiUrl('/api/v1/factory/preorders-status'), { cache: 'no-store' })
+    if (!response.ok) return
+    const data = await response.json()
+    setProximoCorte(typeof data.proximo_corte === 'string' ? data.proximo_corte : '')
+    setFondosCents(Number.isFinite(data.fondos_acumulados_cents) ? data.fondos_acumulados_cents : 0)
+    setFaltanteCents(Number.isFinite(data.faltante_cents) ? data.faltante_cents : 250000)
+  }
+
   useEffect(() => {
     if (!mayorDeEdad) return
     cargarCatalogo().catch((error) => {
       console.error('No se pudo consultar el catalogo de The Trip:', error)
       setProductos([])
     })
-  }, [mayorDeEdad, categoriaActiva, query])
+  }, [mayorDeEdad, categoriaActiva, query, vista])
+
+  useEffect(() => {
+    if (!mayorDeEdad || vista !== 'sobre_pedido') return
+    cargarCorte().catch(() => undefined)
+    const timer = window.setInterval(() => setReloj(Date.now()), 1000)
+    return () => window.clearInterval(timer)
+  }, [mayorDeEdad, vista])
+
+  const registrarAnticipo = async (producto: ProductoSmoke) => {
+    if (!customerPhone.trim()) {
+      setMensaje('Escribe el teléfono en el pedido para registrar el anticipo.')
+      return
+    }
+    setLoading(true)
+    setMensaje('')
+    try {
+      const response = await fetch(posApiUrl('/api/v1/factory/preorders'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_phone: customerPhone.trim(),
+          sku: producto.sku,
+        }),
+      })
+      const data = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        throw new Error(data.detail || 'No se pudo registrar el anticipo.')
+      }
+      setMensaje(
+        `Anticipo ${data.orden_id}: pagado $${pesosDesdeCents(data.anticipo_pagado_cents)} MXN, saldo $${pesosDesdeCents(data.saldo_pendiente_cents)} MXN.`,
+      )
+      await cargarCorte()
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : 'No se pudo registrar el anticipo.'
+      setMensaje(detail)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const addToCart = (producto: ProductoSmoke) => {
     setCart((prev) => {
@@ -215,6 +309,39 @@ export default function TheTripSmokeShop() {
 
       <section className="max-w-6xl mx-auto px-6 py-8 space-y-4">
         <div className="flex flex-wrap gap-2 justify-center">
+          <button
+            onClick={() => setVista('stock_fisico')}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition border ${
+              vista === 'stock_fisico'
+                ? 'bg-amber-500 text-black border-amber-400 font-bold'
+                : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+            }`}
+          >
+            Entrega Inmediata (Mostrador)
+          </button>
+          <button
+            onClick={() => setVista('sobre_pedido')}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition border ${
+              vista === 'sobre_pedido'
+                ? 'bg-amber-500 text-black border-amber-400 font-bold'
+                : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+            }`}
+          >
+            Sobre Pedido (Catálogo Extendido)
+          </button>
+        </div>
+        {vista === 'sobre_pedido' ? (
+          <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-center space-y-1">
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-300">Corte semanal</p>
+            <p className="text-sm text-amber-100">
+              Miércoles y domingos a las 20:00. Siguiente corte en {proximoCorte ? textoRestante(proximoCorte, reloj) : '--'}.
+            </p>
+            <p className="text-xs text-zinc-300">
+              Fondos para la orden consolidada: ${pesosDesdeCents(fondosCents)} MXN. Faltan ${pesosDesdeCents(faltanteCents)} MXN para el umbral de $2500.00 MXN.
+            </p>
+          </div>
+        ) : null}
+        <div className="flex flex-wrap gap-2 justify-center">
           {CATEGORIAS.map((cat) => (
             <button
               key={cat}
@@ -263,14 +390,26 @@ export default function TheTripSmokeShop() {
                 <div className="space-y-2">
                   <div className="flex justify-between items-baseline">
                     <span className="text-lg font-black text-white">${Number(item.precio).toLocaleString('es-MX')} MXN</span>
-                    <span className="text-[11px] text-emerald-400 font-semibold">{item.stock} en tienda</span>
+                    <span className="text-[11px] text-emerald-400 font-semibold">
+                      {vista === 'sobre_pedido' ? 'Siguiente corte semanal' : `${item.stock} en tienda`}
+                    </span>
                   </div>
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl transition uppercase tracking-wider"
-                  >
-                    Agregar al carrito
-                  </button>
+                  {vista === 'sobre_pedido' ? (
+                    <button
+                      onClick={() => registrarAnticipo(item)}
+                      disabled={loading}
+                      className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-60 text-black font-bold text-xs rounded-xl transition uppercase tracking-wider"
+                    >
+                      Registrar anticipo
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl transition uppercase tracking-wider"
+                    >
+                      Agregar al carrito
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -278,6 +417,7 @@ export default function TheTripSmokeShop() {
         )}
       </section>
 
+      {vista === 'stock_fisico' ? (
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-4">
           <h2 className="text-lg font-semibold">Checkout y preparación de pedido</h2>
@@ -351,6 +491,23 @@ export default function TheTripSmokeShop() {
           {mensaje ? <p className="text-sm text-red-300">{mensaje}</p> : null}
         </div>
       </section>
+      ) : (
+        <section className="max-w-6xl mx-auto px-6 pb-20">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-3">
+            <h2 className="text-lg font-semibold">Anticipo de sobre pedido</h2>
+            <p className="text-sm text-zinc-400">
+              El anticipo no pasa por la caja del mostrador. Deja el teléfono y usa el botón de cada producto. El saldo se liquida al corte de miércoles o domingo.
+            </p>
+            <input
+              value={customerPhone}
+              onChange={(event) => setCustomerPhone(event.target.value)}
+              placeholder="Teléfono para el anticipo"
+              className="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
+            />
+            {mensaje ? <p className="text-sm text-amber-200">{mensaje}</p> : null}
+          </div>
+        </section>
+      )}
     </div>
   )
 }
