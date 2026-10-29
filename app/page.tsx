@@ -110,6 +110,7 @@ export default function Home() {
           <div className="nav-links">
               <a href="#historia">Nuestra Historia</a>
               <a href="#ecosistema">Ecosistema</a>
+              <a href="/explore">Vuelos y Cursos</a>
               <a href="/thetrip">The Trip Smoke Shop</a>
               {servicios.ofrece_renta_equipo && <a href="/renta">Renta de equipo</a>}
               <a href="#contacto">Local Físico</a>
