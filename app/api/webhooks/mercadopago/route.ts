@@ -28,6 +28,12 @@ type MercadoPagoPayment = {
       last_name?: string;
       phone?: { number?: string };
     };
+    items?: Array<{
+      category_id?: string;
+      title?: string;
+      quantity?: number;
+      unit_price?: number;
+    }>;
   };
 };
 
@@ -125,6 +131,15 @@ function normalizeStatus(status?: string): OrderStatus {
   return status === "approved" ? "approved" : "pending";
 }
 
+function safeNumber(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return undefined;
+}
+
 export async function POST(request: Request) {
   try {
     const accessToken = token();
@@ -147,7 +162,8 @@ export async function POST(request: Request) {
     const payment = await fetchPayment(paymentId, accessToken);
     const { product, label } = inferProductFromPayment(payment);
     const status = normalizeStatus(payment.status);
-    const amount = typeof payment.transaction_amount === "number" ? payment.transaction_amount : 0;
+    const amount = safeNumber(payment.transaction_amount) ?? 0;
+    const reservationDate = payment.additional_info?.items?.[0]?.category_id || undefined;
 
     const order = await upsertOrder({
       transactionId: String(payment.id),
@@ -160,6 +176,7 @@ export async function POST(request: Request) {
       amount,
       status,
       externalReference: payment.external_reference,
+      reservationDate,
     });
 
     return NextResponse.json(

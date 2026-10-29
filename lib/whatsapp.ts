@@ -10,15 +10,21 @@ type PassengerConfirmationInput = {
   folio: string;
   activity: string;
   dateText?: string;
+  amount?: number;
+  comprobanteUrl?: string;
 };
 
 export function buildPassengerConfirmationLink(input: PassengerConfirmationInput): string {
   const dateLine = input.dateText ? `\nFecha confirmada: ${input.dateText}` : "";
+  const amountLine = typeof input.amount === "number" ? `\nMonto: $${input.amount.toLocaleString("es-MX")} MXN` : "";
+  const voucherLine = input.comprobanteUrl ? `\nComprobante: ${input.comprobanteUrl}` : "";
   const message =
     `Hola ${input.passengerName}, tu reserva en Basecamp 420 quedó confirmada.` +
     `\nFolio: ${input.folio}` +
     `\nActividad: ${input.activity}` +
     `${dateLine}` +
+    `${amountLine}` +
+    `${voucherLine}` +
     `\nConserva este mensaje para el check-in en pista.`;
   return buildWhatsAppLink(message);
 }
@@ -26,15 +32,19 @@ export function buildPassengerConfirmationLink(input: PassengerConfirmationInput
 type FortinCoordinatesInput = {
   folio: string;
   mapsUrl?: string;
+  passengerName?: string;
 };
 
 export function buildFortinCoordinatesLink(input: FortinCoordinatesInput): string {
   const mapsUrl = input.mapsUrl || "https://maps.google.com/?q=19.5330,-96.9368";
+  const nameLine = input.passengerName ? `\nPasajero: ${input.passengerName}` : "";
   const message =
     `Compartimos coordenadas para tu salida de vuelo Basecamp 420.` +
     `\nFolio: ${input.folio}` +
+    `${nameLine}` +
     `\nPunto de encuentro: Gasolinera / Pista de Fortín de las Flores.` +
-    `\nUbicación GPS: ${mapsUrl}`;
+    `\nUbicación GPS: ${mapsUrl}` +
+    `\nRecomendaciones: calzado cerrado, ropa cómoda y peso máximo 95 kg.`;
   return buildWhatsAppLink(message);
 }
 
@@ -48,6 +58,29 @@ export function buildWeatherAlertLink(input: WeatherAlertInput): string {
     `Alerta de condiciones de viento para folio ${input.folio}.` +
     `\nReporte: ${input.conditionSummary}` +
     `\nFavor de confirmar ventana operativa con Salvador Lara antes del traslado.`;
+  return buildWhatsAppLink(message);
+}
+
+type SalvadorAlertInput = {
+  folio: string;
+  customerName: string;
+  reservationDate?: string;
+  reservationSlot?: string;
+  amount?: number;
+  activity?: string;
+};
+
+export function buildSalvadorAlertLink(input: SalvadorAlertInput): string {
+  const scheduleLine = input.reservationDate ? `\nReserva: ${input.reservationDate}${input.reservationSlot ? ` ${input.reservationSlot}` : ""}` : "";
+  const amountLine = typeof input.amount === "number" ? `\nMonto: $${input.amount.toLocaleString("es-MX")} MXN` : "";
+  const message =
+    `Salvador, confirmación de reserva para Basecamp 420.` +
+    `\nFolio: ${input.folio}` +
+    `\nPasajero: ${input.customerName}` +
+    `\nActividad: ${input.activity || "Vuelo tándem Fortín"}` +
+    `${scheduleLine}` +
+    `${amountLine}` +
+    `\nNecesitamos validar horario y condiciones de viento antes del despegue.`;
   return buildWhatsAppLink(message);
 }
 

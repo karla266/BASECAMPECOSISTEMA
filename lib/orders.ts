@@ -2,7 +2,7 @@ import { randomBytes } from "crypto";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 
-export type OrderStatus = "approved" | "pending";
+export type OrderStatus = "approved" | "pending" | "CANJEADO";
 
 export type CommercialProduct =
   | "vuelo_tandem_fortin_web"
@@ -23,6 +23,11 @@ export interface OrderRecord {
   status: OrderStatus;
   redemptionCode: string;
   externalReference?: string;
+  reservationDate?: string;
+  reservationSlot?: string;
+  passengerWeightKg?: number;
+  redeemedAt?: string;
+  redeemedBy?: string;
 }
 
 type OrdersFile = {
@@ -41,6 +46,7 @@ function sanitizeOrders(input: unknown): OrderRecord[] {
   for (const item of input) {
     if (!item || typeof item !== "object") continue;
     const row = item as Record<string, unknown>;
+    const statusValue = row.status;
     if (
       typeof row.transactionId !== "string" ||
       typeof row.createdAt !== "string" ||
@@ -48,7 +54,7 @@ function sanitizeOrders(input: unknown): OrderRecord[] {
       typeof row.product !== "string" ||
       typeof row.productLabel !== "string" ||
       typeof row.amount !== "number" ||
-      (row.status !== "approved" && row.status !== "pending") ||
+      (statusValue !== "approved" && statusValue !== "pending" && statusValue !== "CANJEADO") ||
       typeof row.redemptionCode !== "string"
     ) {
       continue;
@@ -63,9 +69,14 @@ function sanitizeOrders(input: unknown): OrderRecord[] {
       product: row.product as CommercialProduct,
       productLabel: row.productLabel,
       amount: row.amount,
-      status: row.status,
+      status: statusValue as OrderStatus,
       redemptionCode: row.redemptionCode,
       externalReference: typeof row.externalReference === "string" ? row.externalReference : undefined,
+      reservationDate: typeof row.reservationDate === "string" ? row.reservationDate : undefined,
+      reservationSlot: typeof row.reservationSlot === "string" ? row.reservationSlot : undefined,
+      passengerWeightKg: typeof row.passengerWeightKg === "number" ? row.passengerWeightKg : undefined,
+      redeemedAt: typeof row.redeemedAt === "string" ? row.redeemedAt : undefined,
+      redeemedBy: typeof row.redeemedBy === "string" ? row.redeemedBy : undefined,
     });
   }
   return out;
@@ -116,6 +127,7 @@ export async function upsertOrder(
   const normalized: OrderRecord = {
     ...input,
     redemptionCode,
+    status: input.status === "CANJEADO" ? "CANJEADO" : input.status,
   };
 
   if (idx >= 0) {
@@ -125,6 +137,26 @@ export async function upsertOrder(
   }
   await writeOrders(current);
   return normalized;
+}
+
+export async function redeemOrder(idOrCode: string, operator?: string): Promise<OrderRecord | undefined> {
+  const order = await findOrderByIdOrCode(idOrCode);
+  if (!order) return undefined;
+
+  const updated: OrderRecord = {
+    ...order,
+    status: "CANJEADO",
+    redeemedAt: new Date().toISOString(),
+    redeemedBy: operator || "admin",
+  };
+
+  const current = await readOrders();
+  const idx = current.findIndex((item) => item.transactionId === order.transactionId);
+  if (idx >= 0) {
+    current[idx] = updated;
+    await writeOrders(current);
+  }
+  return updated;
 }
 
 export async function findOrderByIdOrCode(idOrCode: string): Promise<OrderRecord | undefined> {
