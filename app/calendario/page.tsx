@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 function CalendarioContent() {
   const searchParams = useSearchParams();
   const folioInicial = searchParams.get('folio') || '';
+  const statusPago = searchParams.get('status');
 
   const [folio, setFolio] = useState(folioInicial);
   const [esFolioValido, setEsFolioValido] = useState(false);
@@ -13,6 +14,7 @@ function CalendarioContent() {
   const [horarioSeleccionado, setHorarioSeleccionado] = useState('10:00 AM');
   const [nombreCliente, setNombreCliente] = useState('');
   const [telefonoCliente, setTelefonoCliente] = useState('');
+  const [procesandoPago, setProcesandoPago] = useState(false);
 
   const HORARIOS_OFICIALES = [
     { turno: '10:00 AM', desc: 'Apertura térmica (óptima principiantes)' },
@@ -29,17 +31,52 @@ function CalendarioContent() {
     }
   }, [folio]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mensaje = esFolioValido
-      ? `Hola Basecamp 420, solicito confirmar mi vuelo CANJEANDO MI CERTIFICADO FÍSICO con Folio: ${folio}. Nombre: ${nombreCliente}, Fecha: ${fechaSeleccionada}, Horario: ${horarioSeleccionado}.`
-      : `Hola Basecamp 420, solicito reservar y pagar Vuelo Tándem ($1,600 MXN) para el día ${fechaSeleccionada} a las ${horarioSeleccionado}. Nombre: ${nombreCliente}.`;
 
-    window.open(`https://wa.me/522727258748?text=${encodeURIComponent(mensaje)}`, '_blank');
+    // 1. Canje de folio físico de Mercado Libre -> Notifica por WhatsApp sin cobrar
+    if (esFolioValido) {
+      const mensaje = `Hola Basecamp 420, solicito confirmar mi vuelo CANJEANDO MI CERTIFICADO FÍSICO con Folio: ${folio}. Nombre: ${nombreCliente}, Fecha: ${fechaSeleccionada}, Horario: ${horarioSeleccionado}.`;
+      window.open(`https://wa.me/522727258748?text=${encodeURIComponent(mensaje)}`, '_blank');
+      return;
+    }
+
+    // 2. Compra Web Directa ($1,600 MXN) -> Redirige a pasarela Mercado Pago
+    setProcesandoPago(true);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre: nombreCliente,
+          telefono: telefonoCliente,
+          fecha: fechaSeleccionada,
+          horario: horarioSeleccionado,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        alert(data.error || 'Error al conectar con la pasarela de pagos');
+      }
+    } catch (err) {
+      console.error('Error al procesar cobro:', err);
+      alert('Error de conexión con el servidor');
+    } finally {
+      setProcesandoPago(false);
+    }
   };
 
   return (
     <div className="max-w-3xl mx-auto bg-neutral-900 border border-neutral-800 rounded-3xl p-6 md:p-10 text-white shadow-2xl">
+      {statusPago === 'approved' && (
+        <div className="mb-6 p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-center text-emerald-300 text-sm font-bold">
+          🎉 ¡Pago acreditado exitosamente! Tu vuelo quedó agendado.
+        </div>
+      )}
+
       <div className="text-center mb-8">
         <span className="text-xs uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20 font-bold">
           Agenda Oficial · Fortín de las Flores
@@ -70,7 +107,7 @@ function CalendarioContent() {
             )}
           </div>
           <p className="text-[11px] text-neutral-500 mt-2">
-            Si compraste en Mercado Libre, introduce el folio impreso en tu tarjeta física para exonerar el pago web.
+            Deja este campo vacío si vas a pagar los $1,600 MXN en línea con tarjeta o SPEI.
           </p>
         </div>
 
@@ -141,9 +178,14 @@ function CalendarioContent() {
 
           <button
             type="submit"
-            className="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-3.5 px-6 rounded-xl text-base transition shadow-lg"
+            disabled={procesandoPago}
+            className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-extrabold py-3.5 px-6 rounded-xl text-base transition shadow-lg"
           >
-            {esFolioValido ? 'Confirmar Turno con mi Folio' : 'Agendar Turno y Proceder al Pago'}
+            {procesandoPago
+              ? 'Conectando con Mercado Pago...'
+              : esFolioValido
+              ? 'Confirmar Turno con mi Folio'
+              : 'Pagar $1,600 MXN y Confirmar Vuelo'}
           </button>
         </div>
       </form>

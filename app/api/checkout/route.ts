@@ -1,48 +1,62 @@
-import { NextResponse } from 'next/server';
-import { MercadoPagoConfig, Preference } from 'mercadopago';
-
-// Configuración del SDK de Mercado Pago
-const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN || 'APP_USR-000000-000000-000000' });
+﻿import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const items = body.items;
+    const { nombre, telefono, fecha, horario } = await request.json();
+    const token = process.env.MP_ACCESS_TOKEN;
 
-    // Validación estricta y filtro legal de productos permitidos en The Trip Smokeshop
-    const allowedCategories = ['parafernalia', 'pipas_pyrex', 'bongs', 'grinders', 'accesorios'];
-    
-    for (const item of items) {
-        if (!allowedCategories.includes(item.category)) {
-            return NextResponse.json(
-                { error: 'El carrito contiene artículos no permitidos por las políticas estandarizadas de The Trip Smokeshop. Solo se permite venta de parafernalia legal.' },
-                { status: 403 }
-            );
-        }
+    if (!token) {
+      return NextResponse.json(
+        { error: 'Falta configurar MP_ACCESS_TOKEN en el archivo .env.local' },
+        { status: 500 }
+      );
     }
 
-    const preference = new Preference(client);
-    const response = await preference.create({
-      body: {
-        items: items.map((i: any) => ({
-            id: i.sku,
-            title: i.title,
-            quantity: i.quantity,
-            unit_price: i.price,
-            currency_id: 'MXN'
-        })),
-        back_urls: {
-            success: 'https://basecamp420.com/thetrip/success',
-            failure: 'https://basecamp420.com/thetrip/failure',
-            pending: 'https://basecamp420.com/thetrip/pending'
+    const payload = {
+      items: [
+        {
+          id: 'BC-VUELO-TANDEM',
+          title: `Vuelo Parapente Tándem Fortín (${fecha} - ${horario})`,
+          description: `Pasajero: ${nombre} · WhatsApp: ${telefono}`,
+          quantity: 1,
+          currency_id: 'MXN',
+          unit_price: 1600.0,
         },
-        auto_return: 'approved',
-      }
+      ],
+      payer: {
+        name: nombre,
+        phone: { number: telefono },
+      },
+      back_urls: {
+        success: 'https://www.basecamp420.com/calendario?status=approved',
+        failure: 'https://www.basecamp420.com/calendario?status=failure',
+        pending: 'https://www.basecamp420.com/calendario?status=pending',
+      },
+      auto_return: 'approved',
+      statement_descriptor: 'BASECAMP 420',
+      external_reference: `BC-VUELO-${Date.now()}`,
+    };
+
+    const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     });
 
-    return NextResponse.json({ init_point: response.init_point });
-  } catch (error) {
-    console.error('Error al crear preferencia en Mercado Pago:', error);
-    return NextResponse.json({ error: 'Fallo interno al orquestar el checkout.' }, { status: 500 });
+    const data = await mpRes.json();
+
+    if (!mpRes.ok) {
+      return NextResponse.json(
+        { error: data.message || 'Error al comunicarse con Mercado Pago' },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json({ checkoutUrl: data.init_point });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message || 'Error interno del servidor' }, { status: 500 });
   }
 }
