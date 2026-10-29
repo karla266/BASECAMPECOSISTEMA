@@ -1,8 +1,9 @@
 ﻿import { NextResponse } from 'next/server';
+import { getActivePointDeviceId } from '@/lib/point-devices';
 
 export async function POST(request: Request) {
   try {
-    const { nombre, telefono, fecha, horario } = await request.json();
+    const { nombre, telefono, fecha, horario, pesoKg, tipo, productLabel } = await request.json();
     const token = process.env.MP_ACCESS_TOKEN;
 
     if (!token) {
@@ -12,6 +13,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const activePointDeviceId = getActivePointDeviceId();
     const payload = {
       items: [
         {
@@ -35,6 +37,14 @@ export async function POST(request: Request) {
       auto_return: 'approved',
       statement_descriptor: 'BASECAMP 420',
       external_reference: `BC-VUELO-${Date.now()}`,
+      metadata: {
+        reservation_date: fecha,
+        reservation_slot: horario,
+        passenger_weight_kg: pesoKg,
+        product_type: tipo,
+        product_label: productLabel,
+        point_device_id: activePointDeviceId,
+      },
     };
 
     const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {

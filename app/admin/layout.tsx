@@ -22,6 +22,7 @@ import {
   Check
 } from 'lucide-react';
 import { useState, Suspense } from 'react';
+import PointTerminalSelector from '@/components/PointTerminalSelector';
 
 function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -116,6 +117,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-4">
+            <PointTerminalSelector />
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
               <Activity className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-bold text-emerald-400 tracking-wide">Sistema Operativo</span>

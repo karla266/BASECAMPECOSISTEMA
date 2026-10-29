@@ -61,6 +61,7 @@ const PAQUETES: Record<string, { tomas: string[]; video: string[] }> = {
 };
 
 const ROLES = ["frente", "detalle", "lifestyle", "ml"] as const;
+const SKU_PHOTO_MAP_PATH = path.join(process.cwd(), "..", "data", "sku-photo-map.json");
 
 function redondear(valor: number) {
   return Math.round(valor * 100) / 100;
@@ -104,12 +105,32 @@ async function conectar() {
   });
 }
 
-function imagenesDe(artId: string) {
+function leerMapaSkuFotos(): Record<string, string> {
+  try {
+    const raw = fs.readFileSync(SKU_PHOTO_MAP_PATH, "utf8");
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== "object") return {};
+    const out: Record<string, string> = {};
+    for (const [key, value] of Object.entries(parsed as Record<string, unknown>)) {
+      if (typeof value === "string" && value.trim()) out[key.toUpperCase()] = value.trim();
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+function imagenesDe(artId: string, clave: string, mapaSkuFotos: Record<string, string>) {
   const carpeta = path.join(process.cwd(), "public", "lote");
   const salida: Record<string, string | null> = {};
   for (const rol of ROLES) {
     const archivo = path.join(carpeta, `lote-${artId}-${rol}.jpg`);
     salida[rol] = fs.existsSync(archivo) ? `/lote/lote-${artId}-${rol}.jpg` : null;
+  }
+  const fotoSku =
+    mapaSkuFotos[String(clave || "").toUpperCase()] || mapaSkuFotos[String(artId || "").toUpperCase()];
+  if (fotoSku && !salida.frente) {
+    salida.frente = `/api/webcam/${encodeURIComponent(fotoSku)}`;
   }
   return salida;
 }
@@ -167,17 +188,19 @@ export async function GET(request: Request) {
       PILOTO
     );
 
+    const mapaSkuFotos = leerMapaSkuFotos();
     const mapear = (fila: Record<string, unknown>) => {
       const descripcion = String(fila.descripcion || "");
       const depto = String(fila.depto || "");
       const categoria = String(fila.categoria || "");
       const artId = String(fila.art_id);
+      const clave = String(fila.clave || "");
       const paquete = PAQUETES[artId];
       const tipo = esRenta(depto, categoria, descripcion) ? "renta" : "venta";
       const textos = fichaTexto(descripcion, depto, categoria, tipo);
       return {
         art_id: artId,
-        clave: String(fila.clave || ""),
+        clave,
         descripcion,
         depto,
         categoria,
@@ -186,7 +209,7 @@ export async function GET(request: Request) {
         descripcion_generada: textos.descripcion_generada,
         textos: textos.textos,
         ...precios(Number(fila.precio1 || 0)),
-        imagenes: imagenesDe(artId),
+        imagenes: imagenesDe(artId, clave, mapaSkuFotos),
         tomas: paquete?.tomas || [],
         video: paquete?.video || [],
         mercado_libre: "no_publicado",

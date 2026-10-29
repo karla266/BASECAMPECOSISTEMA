@@ -1,6 +1,7 @@
 'use client'
 
 import { Bell, Search, Sparkles } from 'lucide-react'
+import PointTerminalSelector from '@/components/PointTerminalSelector'
 
 export function Topbar() {
   return (
@@ -23,6 +24,7 @@ export function Topbar() {
       </div>
 
       <div className="ml-auto flex items-center gap-3">
+        <PointTerminalSelector />
         {/* AI status badge */}
         <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
           <span className="relative flex size-2">

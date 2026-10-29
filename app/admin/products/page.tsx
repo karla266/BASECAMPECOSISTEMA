@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import PosPhotoCaptureModal from "@/components/PosPhotoCaptureModal";
 
 type Producto = {
   art_id: string;
@@ -32,6 +33,32 @@ export default function AdminProductsPage() {
   const [cargando, setCargando] = useState(true);
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
   const [fotoRota, setFotoRota] = useState(false);
+  const [showCaptureModal, setShowCaptureModal] = useState(false);
+  const [dismissedSkus, setDismissedSkus] = useState<string[]>([]);
+  const [capturedBySku, setCapturedBySku] = useState<Record<string, string>>({});
+
+  function skuDe(item: Producto): string {
+    return String(item.clave || item.art_id).trim().toUpperCase();
+  }
+
+  function fotoEfectiva(item: Producto): string {
+    const sku = skuDe(item);
+    return capturedBySku[sku] || fotoDe(item);
+  }
+
+  useEffect(() => {
+    if (!seleccionado) {
+      setShowCaptureModal(false);
+      return;
+    }
+    const sku = skuDe(seleccionado);
+    const sinFoto = !fotoEfectiva(seleccionado) || fotoRota;
+    if (sinFoto && !dismissedSkus.includes(sku)) {
+      setShowCaptureModal(true);
+    } else {
+      setShowCaptureModal(false);
+    }
+  }, [seleccionado, fotoRota, capturedBySku, dismissedSkus]);
 
   useEffect(() => {
     const control = new AbortController();
@@ -91,7 +118,7 @@ export default function AdminProductsPage() {
             <tbody>
               {productos.map((item) => {
                 const activo = seleccionado?.art_id === item.art_id;
-                const conFoto = Boolean(fotoDe(item));
+                const conFoto = Boolean(fotoEfectiva(item));
                 return (
                   <tr
                     key={item.art_id}
@@ -105,7 +132,9 @@ export default function AdminProductsPage() {
                       <strong>{item.descripcion}</strong>
                       <div style={{ color: "#94a3b8", fontSize: "0.75rem" }}>{item.clave} · {item.depto}</div>
                     </td>
-                    <td style={{ padding: "12px", color: conFoto ? "#6ee7b7" : "#fca5a5", fontWeight: 700 }}>{conFoto ? "Con foto" : "Sin foto"}</td>
+                    <td style={{ padding: "12px", color: conFoto ? "#6ee7b7" : "#fca5a5", fontWeight: 700 }}>
+                      {conFoto ? "Con foto" : "Sin foto"}
+                    </td>
                     <td style={{ padding: "12px" }}>{item.tipo}</td>
                     <td style={{ padding: "12px" }}>{item.existencia}</td>
                     <td style={{ padding: "12px" }}>{dinero(item.precio_sicar)}</td>
@@ -122,9 +151,9 @@ export default function AdminProductsPage() {
           {seleccionado ? (
             <>
               <div style={{ height: "220px", borderRadius: "12px", overflow: "hidden", background: "#020617", border: "1px solid #1e293b", display: "grid", placeItems: "center" }}>
-                {fotoDe(seleccionado) && !fotoRota ? (
+                {fotoEfectiva(seleccionado) && !fotoRota ? (
                   <img
-                    src={fotoDe(seleccionado)}
+                    src={fotoEfectiva(seleccionado)}
                     alt={seleccionado.descripcion}
                     onError={() => setFotoRota(true)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -135,21 +164,39 @@ export default function AdminProductsPage() {
               </div>
               <p style={{ margin: "12px 0 4px", fontWeight: 800 }}>{seleccionado.descripcion}</p>
               <p style={{ margin: 0, color: "#94a3b8", fontSize: "0.8rem" }}>{seleccionado.clave} · {seleccionado.depto}</p>
-              <p style={{ margin: "10px 0", color: fotoDe(seleccionado) && !fotoRota ? "#6ee7b7" : "#fca5a5", fontWeight: 700 }}>
-                {fotoDe(seleccionado) && !fotoRota ? "Ya tiene foto" : "Falta sacarle foto"}
+              <p style={{ margin: "10px 0", color: fotoEfectiva(seleccionado) && !fotoRota ? "#6ee7b7" : "#fca5a5", fontWeight: 700 }}>
+                {fotoEfectiva(seleccionado) && !fotoRota ? "Ya tiene foto" : "Falta sacarle foto"}
               </p>
-              <a
-                href="http://127.0.0.1:8000/static/microtarea.html"
-                style={{ display: "inline-block", background: "#10b981", color: "#022c22", borderRadius: "8px", padding: "8px 12px", fontWeight: 800, textDecoration: "none" }}
+              <button
+                type="button"
+                onClick={() => setShowCaptureModal(true)}
+                style={{ display: "inline-block", background: "#10b981", color: "#022c22", borderRadius: "8px", padding: "8px 12px", fontWeight: 800, textDecoration: "none", border: "none", cursor: "pointer" }}
               >
-                Ir a sacar la foto
-              </a>
+                Abrir captura en mostrador
+              </button>
             </>
           ) : (
             <p style={{ margin: 0, color: "#94a3b8", fontSize: "0.85rem" }}>Selecciona un producto para ver si ya tiene foto y cuál falta por tomar.</p>
           )}
         </aside>
       </div>
+      {showCaptureModal && seleccionado ? (
+        <PosPhotoCaptureModal
+          sku={skuDe(seleccionado)}
+          productName={seleccionado.descripcion}
+          onClose={() => {
+            const sku = skuDe(seleccionado);
+            setDismissedSkus((current) => [...new Set([...current, sku])]);
+            setShowCaptureModal(false);
+          }}
+          onSaved={(url) => {
+            const sku = skuDe(seleccionado);
+            setCapturedBySku((current) => ({ ...current, [sku]: url }));
+            setFotoRota(false);
+            setShowCaptureModal(false);
+          }}
+        />
+      ) : null}
     </div>
   );
 }
