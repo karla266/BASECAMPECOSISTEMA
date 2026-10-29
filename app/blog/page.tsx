@@ -1,78 +1,60 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: 'Blog & Recursos Comunitarios | Basecamp 420 & Movimiento Canábico Orizaba',
+  title: 'Blog de Vuelos y Cursos | Basecamp 420',
   description:
-    'Recursos, guías legales y publicaciones sobre amparo canábico, derechos, ciudadanía y comunidad en Orizaba y México.',
+    'Artículos de Basecamp 420 sobre vuelos en parapente, alianza con Salvador Lara y progresión técnica APPI.',
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
-const posts = [
-  {
-    title: 'Manual Completo: Cómo Tramitar tu Amparo Canábico en México (Presencial y en Línea)',
-    summary:
-      'Guía práctica para entender el fundamento legal, preparar trámite presencial, completar DIGIPRIS y actuar si necesitas un amparo indirecto.',
-    href: '/blog/amparo-canabico',
-    category: 'Amparo canábico',
-    date: '28 de octubre de 2026',
-  },
-];
-
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
+    <main className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-6xl px-6 py-16 md:px-10">
-        <header className="mb-10 flex flex-col gap-6 border-b border-slate-800 pb-8 md:flex-row md:items-end md:justify-between">
+        <header className="mb-10 flex flex-col gap-6 border-b border-neutral-800 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-400">Basecamp 420</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Basecamp 420</p>
             <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
-              Blog &amp; Recursos Comunitarios
+              Blog de Vuelos y Cursos
             </h1>
-            <p className="mt-3 max-w-2xl text-sm text-slate-300 md:text-base">
-              Basecamp 420 &amp; Movimiento Canábico Orizaba — información útil, herramientas legales y recursos para la comunidad.
+            <p className="mt-3 max-w-2xl text-sm text-neutral-300 md:text-base">
+              Contenido oficial sobre costos de vuelo, formación APPI, alianzas estratégicas y evolución técnica en parapente.
             </p>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400 hover:text-emerald-300"
+            className="inline-flex items-center justify-center rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-sm font-semibold text-neutral-100 transition hover:border-cyan-400 hover:text-cyan-200"
           >
             Regresar a Basecamp 420
           </Link>
         </header>
 
-        <section className="grid gap-8 md:grid-cols-[1.3fr_0.7fr]">
-          <Link href={posts[0].href} className="group block overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-[0_0_40px_rgba(16,185,129,0.12)] transition hover:-translate-y-1 hover:border-emerald-500/60">
-            <div className="bg-gradient-to-br from-emerald-500/15 via-slate-900 to-slate-950 p-7 md:p-8">
-              <div className="mb-4 inline-flex rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-emerald-300">
-                {posts[0].category}
+        <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group block overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900/70 p-6 shadow-[0_0_35px_rgba(8,145,178,0.10)] transition hover:-translate-y-1 hover:border-cyan-500/60"
+            >
+              <p className="inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-cyan-200">
+                {post.category}
+              </p>
+              <h2 className="mt-4 text-xl font-bold text-white">{post.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-neutral-300">{post.summary}</p>
+              <div className="mt-5 border-t border-neutral-800 pt-4 text-sm text-neutral-400">
+                {new Date(post.publishedAt).toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' })}
               </div>
-              <h2 className="text-2xl font-bold text-white md:text-4xl">{posts[0].title}</h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">{posts[0].summary}</p>
-
-              <div className="mt-6 flex items-center justify-between gap-4 border-t border-slate-800 pt-4">
-                <span className="text-sm text-slate-400">{posts[0].date}</span>
-                <span className="text-sm font-semibold text-emerald-300 transition group-hover:text-emerald-200">Leer artículo →</span>
-              </div>
-            </div>
-          </Link>
-
-          <aside className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Recursos</p>
-            <ul className="mt-6 space-y-4 text-sm text-slate-300">
-              <li className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                <strong className="block text-white">Guía legal</strong>
-                Fundamentos constitucionales y jurisprudenciales para el amparo canábico.
-              </li>
-              <li className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                <strong className="block text-white">Trámite</strong>
-                Procedimientos presenciales y digitales, desde la solicitud hasta la respuesta.
-              </li>
-              <li className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                <strong className="block text-white">Community</strong>
-                Información, apoyo y acompañamiento en la región de Orizaba y Veracruz.
-              </li>
-            </ul>
-          </aside>
+              <p className="mt-2 text-sm font-semibold text-cyan-300 transition group-hover:text-cyan-100">
+                Leer artículo →
+              </p>
+            </Link>
+          ))}
         </section>
       </div>
     </main>
