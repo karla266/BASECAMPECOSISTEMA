@@ -1,5 +1,8 @@
-const BASE_PHONE = "522727258748";
+import { getTenantConfig } from "@/lib/tenant";
+
+const BASE_PHONE = getTenantConfig().supportPhone;
 const BASE_URL = `https://wa.me/${BASE_PHONE}`;
+const BRAND_NAME = getTenantConfig().brandName;
 
 function buildWhatsAppLink(message: string): string {
   return `${BASE_URL}?text=${encodeURIComponent(message)}`;
@@ -19,7 +22,7 @@ export function buildPassengerConfirmationLink(input: PassengerConfirmationInput
   const amountLine = typeof input.amount === "number" ? `\nMonto: $${input.amount.toLocaleString("es-MX")} MXN` : "";
   const voucherLine = input.comprobanteUrl ? `\nComprobante: ${input.comprobanteUrl}` : "";
   const message =
-    `Hola ${input.passengerName}, tu reserva en Basecamp 420 quedó confirmada.` +
+    `Hola ${input.passengerName}, tu reserva en ${BRAND_NAME} quedó confirmada.` +
     `\nFolio: ${input.folio}` +
     `\nActividad: ${input.activity}` +
     `${dateLine}` +
@@ -39,7 +42,7 @@ export function buildFortinCoordinatesLink(input: FortinCoordinatesInput): strin
   const mapsUrl = input.mapsUrl || "https://maps.google.com/?q=19.5330,-96.9368";
   const nameLine = input.passengerName ? `\nPasajero: ${input.passengerName}` : "";
   const message =
-    `Compartimos coordenadas para tu salida de vuelo Basecamp 420.` +
+    `Compartimos coordenadas para tu salida de vuelo ${BRAND_NAME}.` +
     `\nFolio: ${input.folio}` +
     `${nameLine}` +
     `\nPunto de encuentro: Gasolinera / Pista de Fortín de las Flores.` +
@@ -74,7 +77,7 @@ export function buildSalvadorAlertLink(input: SalvadorAlertInput): string {
   const scheduleLine = input.reservationDate ? `\nReserva: ${input.reservationDate}${input.reservationSlot ? ` ${input.reservationSlot}` : ""}` : "";
   const amountLine = typeof input.amount === "number" ? `\nMonto: $${input.amount.toLocaleString("es-MX")} MXN` : "";
   const message =
-    `Salvador, confirmación de reserva para Basecamp 420.` +
+    `Salvador, confirmación de reserva para ${BRAND_NAME}.` +
     `\nFolio: ${input.folio}` +
     `\nPasajero: ${input.customerName}` +
     `\nActividad: ${input.activity || "Vuelo tándem Fortín"}` +

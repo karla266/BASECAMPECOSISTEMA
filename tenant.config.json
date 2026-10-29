@@ -1,0 +1,19 @@
+{
+  "tenantId": "basecamp-420",
+  "brandName": "Basecamp 420",
+  "domain": "www.Basecamp420.com",
+  "supportPhone": "522727258748",
+  "currency": "MXN",
+  "secondaryCurrency": "USD",
+  "pricing": {
+    "flightDepositCents": 160000,
+    "flightTotalCents": 280000
+  },
+  "modules": {
+    "flights": true,
+    "gearRental": true,
+    "ecommerce": true,
+    "smokeShopGate18": true,
+    "cimaDigitalB2B": true
+  }
+}

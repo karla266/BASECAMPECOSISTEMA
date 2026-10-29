@@ -1,9 +1,11 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { getTenantConfig } from "@/lib/tenant";
 
 const SLOT_OPTIONS = ["10:00", "12:00", "14:00", "16:00"];
-const FLIGHT_PRICE = 1600;
+const tenantConfig = getTenantConfig();
+const FLIGHT_PRICE = tenantConfig.pricing.flightDepositCents / 100;
 
 export default function ReservarPage() {
   const [selectedDate, setSelectedDate] = useState("");
@@ -53,9 +55,12 @@ export default function ReservarPage() {
     <main className="min-h-screen bg-neutral-950 px-4 py-10 text-neutral-50">
       <div className="mx-auto max-w-4xl rounded-[28px] border border-neutral-800 bg-neutral-900 p-6 shadow-2xl md:p-10">
         <div className="mb-8 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-300">Basecamp 420</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-300">{tenantConfig.brandName}</p>
           <h1 className="mt-3 text-3xl font-black md:text-4xl">Reservar vuelo tándem</h1>
-          <p className="mt-2 text-sm text-neutral-400">Pago anticipado desde $1,600 MXN o canje con folio Mercado Libre por $2,800 MXN.</p>
+          <p className="mt-2 text-sm text-neutral-400">
+            Pago anticipado desde {new Intl.NumberFormat("es-MX", { style: "currency", currency: tenantConfig.currency, maximumFractionDigits: 0 }).format(FLIGHT_PRICE)} o canje con folio Mercado Libre por{" "}
+            {new Intl.NumberFormat("es-MX", { style: "currency", currency: tenantConfig.currency, maximumFractionDigits: 0 }).format(tenantConfig.pricing.flightTotalCents / 100)}.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="grid gap-6 md:grid-cols-2">

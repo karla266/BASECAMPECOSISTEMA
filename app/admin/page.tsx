@@ -1061,6 +1061,60 @@ export default function AdminDashboardPage() {
             {sicar?.conectado ? sicar.fuente : 'Esperando SICAR. Las cifras anteriores de Tulio y ventas ya no se muestran.'}
           </p>
         </div>
+        <div
+          style={{
+            marginBottom: '24px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '10px',
+          }}
+        >
+          <a
+            href="/admin/pedidos"
+            style={{
+              textDecoration: 'none',
+              border: '1px solid #334155',
+              borderRadius: '12px',
+              padding: '12px 14px',
+              backgroundColor: '#0f172a',
+              color: '#bae6fd',
+              fontWeight: 700,
+              fontSize: '0.8rem',
+            }}
+          >
+            Pedidos y Notificaciones
+          </a>
+          <a
+            href="/admin/checkin"
+            style={{
+              textDecoration: 'none',
+              border: '1px solid #14532d',
+              borderRadius: '12px',
+              padding: '12px 14px',
+              backgroundColor: '#052e16',
+              color: '#86efac',
+              fontWeight: 700,
+              fontSize: '0.8rem',
+            }}
+          >
+            Escáner QR de Pista
+          </a>
+          <a
+            href="/admin/autopilot"
+            style={{
+              textDecoration: 'none',
+              border: '1px solid #78350f',
+              borderRadius: '12px',
+              padding: '12px 14px',
+              backgroundColor: '#451a03',
+              color: '#fcd34d',
+              fontWeight: 700,
+              fontSize: '0.8rem',
+            }}
+          >
+            Autopilot Studio
+          </a>
+        </div>
 
         <main>
           {sicarError && (
