@@ -33,6 +33,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.rewrite(new URL(`/_tenants/${tenant}${url.pathname}${url.search}`, req.url));
   }
 
+  if (url.pathname === '/') {
+    const accept = (req.headers.get('accept') || '').toLowerCase();
+    const respuesta = accept.includes('text/markdown')
+      ? NextResponse.rewrite(new URL('/llms.txt', req.url))
+      : NextResponse.next();
+    respuesta.headers.set('Link', '</llms.txt>; rel="alternate"; type="text/markdown"');
+    return respuesta;
+  }
+
   if (esLoginDelPanel(url.pathname) || esRutaDelPanel(url.pathname)) {
     const sesion = await verificarSesionAdmin(req.cookies.get('bc_admin_sesion')?.value);
     if (esLoginDelPanel(url.pathname)) {
