@@ -1,0 +1,21 @@
+# Excluir binarios y configuración de desarrollo de Next.js
+node_modules/
+.next/
+out/
+.env.local
+.env.development
+*.db
+
+# Runtimes locales de SICAR y copias de servidor. No son código fuente.
+02_RUNTIME_SERVIDORES/
+
+# Secretos y credenciales. .env.example sí puede versionarse.
+.env
+.env.*
+!.env.example
+secrets/
+**/credentials.json
+**/client_secret.json
+**/CLIENT_SECRET.Json
+**/*.pem
+**/*.key
