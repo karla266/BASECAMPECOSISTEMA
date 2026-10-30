@@ -12,7 +12,7 @@ export default function AdminVoicePage() {
     <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', width: '100%', minHeight: '100vh', backgroundColor: '#090d16', color: '#fff', fontFamily: 'sans-serif' }}>
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '1.875rem', fontWeight: '800', color: '#fff', letterSpacing: '-0.025em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span>🎙️</span> Agente de Voz IA (Tulio)
+          <span>🎙️</span> Agente de Voz IA
         </h1>
         <p style={{ color: '#94a3b8', fontSize: '0.875rem', margin: 0 }}>
           Configuración de respuestas automatizadas y manejo de leads.
@@ -44,7 +44,7 @@ export default function AdminVoicePage() {
           </div>
 
           <button 
-            onClick={() => setAviso("Prompt de Tulio guardado en esta sesión.")}
+            onClick={() => setAviso("Prompt guardado en esta sesión.")}
             style={{ backgroundColor: '#3b82f6', color: '#fff', padding: '10px 24px', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.875rem', border: 'none', cursor: 'pointer', alignSelf: 'flex-start' }}
           >
             Guardar Configuración

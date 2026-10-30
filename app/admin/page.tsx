@@ -1058,7 +1058,7 @@ export default function AdminDashboardPage() {
         <div style={{ marginBottom: '24px' }}>
           <h1 style={{ fontSize: '1.4rem', fontWeight: 'bold', margin: 0 }}>Panel de Control Central</h1>
           <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '6px 0 0' }}>
-            {sicar?.conectado ? sicar.fuente : 'Esperando SICAR. Las cifras anteriores de Tulio y ventas ya no se muestran.'}
+            {sicar?.conectado ? sicar.fuente : 'Esperando SICAR. Las cifras anteriores de ventas ya no se muestran.'}
           </p>
         </div>
         <div

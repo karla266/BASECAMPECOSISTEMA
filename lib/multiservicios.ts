@@ -108,13 +108,13 @@ export const MULTISERVICIOS: Multiservicio[] = [
   {
     id: "atencion_whatsapp",
     titulo: "Atención WhatsApp (2727258748)",
-    texto: "Tulio contesta por WhatsApp y manda el cobro al mostrador.",
+    texto: "El WhatsApp contesta y manda el cobro al mostrador.",
     config: config(
       "atencion_whatsapp",
       "comercial",
-      "Eres Tulio en el WhatsApp 2727258748 de Basecamp 420. Respondes corto, en español, y ofreces pasar al local o al mostrador para cobrar.",
+      "Atiendes el WhatsApp 2727258748 de Basecamp 420. Respondes corto, en español, y ofreces pasar al local o al mostrador para cobrar.",
       [
-        "Responde en español, corto, como Tulio de Basecamp 420.",
+        "Responde en español, corto, como Basecamp 420.",
         "El WhatsApp de contacto es 2727258748.",
         "No inventes existencias.",
         "No cobres desde el chat: ofrece pasar al local o al mostrador.",

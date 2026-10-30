@@ -131,8 +131,8 @@ export default function Home() {
               <p>Experiencias de montaña, vuelos en parapente, Smokeshop, renta de equipo e innovación digital. Nacidos en la cima, respaldados por la tradición.</p>
               
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <a href="https://wa.me/522727258748?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20los%20tours,%20Smokeshop,%20equipo%20o%20vuelos." target="_blank" rel="noopener noreferrer" className="btn-primary">
-                      Habla con Tulio por WhatsApp
+                  <a href="https://wa.me/522727258748?text=Hola%20Basecamp%20420,%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                      CONTACTAR POR WHATSAPP
                   </a>
                   {servicios.ofrece_renta_equipo && (
                     <a href="/renta" className="btn-primary" style={{ background: 'transparent', borderColor: '#38bdf8', color: '#e0f2fe' }}>
@@ -343,7 +343,7 @@ export default function Home() {
               
               <div style={{margin: '30px 0', padding: '20px', background: '#0f172a', borderRadius: '12px', textAlign: 'left'}}>
                   <p style={{margin: '8px 0', color: '#fff'}}>📍 <strong>Local Físico:</strong> Papelería Madera / The Trip Smokeshop / Basecamp 420 Hub.</p>
-                  <p style={{margin: '8px 0', color: '#fff'}}>📞 <strong>WhatsApp / Teléfono:</strong> 272 725 8748 (Atención automatizada con Tulio AI)</p>
+                  <p style={{margin: '8px 0', color: '#fff'}}>📞 <strong>WhatsApp / Teléfono:</strong> 272 725 8748</p>
                   <p style={{margin: '8px 0', color: '#fff'}}>📺 <strong>YouTube Oficial:</strong> basecamp420trepacerros</p>
               </div>
 
@@ -354,7 +354,7 @@ export default function Home() {
       </section>
 
       <footer>
-          <p>© 2026 Basecamp 420. Todos los derechos reservados. Impulsado por Cima Digital & Tulio AI Engine.</p>
+          <p>© 2026 Basecamp 420. Todos los derechos reservados. Impulsado por Cima Digital.</p>
           <p style={{ marginTop: '10px' }}>
             <a href="/thetrip" style={{ color: '#fbbf24', textDecoration: 'none', fontWeight: 700 }}>
               The Trip Smoke Shop
