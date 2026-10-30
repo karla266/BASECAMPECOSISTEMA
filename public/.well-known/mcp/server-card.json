@@ -1,0 +1,10 @@
+{
+  "name": "Basecamp 420 MCP Server",
+  "version": "1.0.0",
+  "endpoint": "https://www.basecamp420.com/api/mcp",
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  }
+}

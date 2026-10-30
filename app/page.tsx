@@ -355,10 +355,20 @@ export default function Home() {
 
       <footer>
           <p>© 2026 Basecamp 420. Todos los derechos reservados. Impulsado por Cima Digital.</p>
+          <p>Oriente 27 y Norte 10, Orizaba</p>
+          <p style={{ marginTop: '10px' }}>
+            <a href="tel:+522727258748">+52 272 725 8748</a>
+            {' · '}
+            <a href="mailto:contacto@basecamp420.com">contacto@basecamp420.com</a>
+          </p>
           <p style={{ marginTop: '10px' }}>
             <a href="/thetrip" style={{ color: '#fbbf24', textDecoration: 'none', fontWeight: 700 }}>
               The Trip Smoke Shop
             </a>
+            {' · '}
+            <a href="/convenio">Convenio</a>
+            {' · '}
+            <a href="/amparos">Amparos</a>
           </p>
       </footer>
     </>
