@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cima-digital",
     "/cimadigital",
     "/blog",
+    "/movimiento-canabico/podcasts",
   ];
 
   return routes.map((route) => ({

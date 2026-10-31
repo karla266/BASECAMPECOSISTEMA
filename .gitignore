@@ -31,4 +31,16 @@ secrets/
 *.db
 data/ventana-admin/
 data/ventana-aplicacion/
+data/podcast/audio/
+data/podcast/episodios.json
+public/uploads/podcasts/*
+public/uploads/covers/*
+!public/uploads/podcasts/.gitkeep
+!public/uploads/covers/.gitkeep
 public/assets/products/
+
+# Multimedia uploads (excluidos del control de versiones)
+public/uploads/podcasts/*
+!public/uploads/podcasts/.gitkeep
+public/uploads/covers/*
+!public/uploads/covers/.gitkeep

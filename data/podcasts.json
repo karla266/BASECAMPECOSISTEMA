@@ -1,0 +1,31 @@
+[
+  {
+    "id": "mco-001",
+    "title": "Episodio 1: Del Asfalto al Amparo: Gentrificación, Derecho y Resistencia en las Altas Montañas",
+    "slug": "del-asfalto-al-amparo-resistencia-altas-montanas",
+    "season": 1,
+    "episodeNumber": 1,
+    "publishedAt": "2026-10-31T01:30:00Z",
+    "summary": "Análisis exhaustivo sobre la contradicción entre las resoluciones de la SCJN y las detenciones policiales, el cierre de refugios históricos por gentrificación corporativa y las herramientas jurídicas de autodefensa comunitaria desarrolladas en Orizaba.",
+    "description": "Contenido y marcas de tiempo del episodio:\n00:00 - Introducción: La contradicción entre la ley y el asfalto\n00:58 - Refugios históricos: El Sacas (Tijuana 1975) y la gentrificación corporativa\n02:08 - Desplazamiento forzado a la vía pública y estigma social\n02:40 - Caso Veracruz: Profesionistas, medicina tradicional en Zongolica y reconversión agrícola\n03:45 - Resistencia institucional: La postura de la Arquidiócesis de Xalapa\n04:25 - Tácticas de reapropiación: Rodadas ciclistas y el Plantón 420 frente al Senado\n05:35 - El laberinto burocrático: COFEPRIS y la 'caseta de peaje' de los amparos\n06:40 - Modelos de resistencia: Tetecala agraria y los bandos municipales de Oaxaca\n07:20 - Orizaba: Manuales PDF, generador libre de amparos y asesoría directa por WhatsApp (2727258748)\n08:10 - Reflexión final: ¿Quién escribirá las reglas del mercado regulado?",
+    "audioUrl": "/uploads/podcasts/Gentrificación_y_resistencia_cannábica_en_México.m4a",
+    "audioSizeBytes": 9450000,
+    "durationSeconds": 530,
+    "coverImageUrl": "/uploads/covers/mco_cover.jpg",
+    "tags": ["Movimiento Canabico", "Orizaba", "Altas Montañas", "Gentrificación", "Amparos", "COFEPRIS", "Zongolica"],
+    "hosts": ["Movimiento Canabico Orizaba", "Basecamp 420"],
+    "status": "published",
+    "chapters": [
+      { "time": 0, "title": "Introducción y marco legal" },
+      { "time": 58, "title": "El Sacas y gentrificación" },
+      { "time": 128, "title": "Espacio público y estigma" },
+      { "time": 160, "title": "Medicina tradicional en Zongolica" },
+      { "time": 225, "title": "Postura institucional en Veracruz" },
+      { "time": 265, "title": "Rodadas y Plantón 420" },
+      { "time": 335, "title": "Laberinto burocrático COFEPRIS" },
+      { "time": 400, "title": "Modelos Tetecala y Oaxaca" },
+      { "time": 440, "title": "Orizaba: PDFs y Amparos libres" },
+      { "time": 490, "title": "Reflexión final" }
+    ]
+  }
+]
