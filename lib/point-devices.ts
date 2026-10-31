@@ -122,3 +122,7 @@ export function setActivePointDevice(deviceId: string): PointDevicesState {
 export function getActivePointDeviceId(): string {
   return readPointDevicesState().activeDeviceId;
 }
+
+export async function getActivePointTerminal(): Promise<string> {
+  return getActivePointDeviceId();
+}

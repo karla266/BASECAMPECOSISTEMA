@@ -112,6 +112,7 @@ export default function Home() {
               <a href="#ecosistema">Ecosistema</a>
               <a href="/explore">Vuelos y Cursos</a>
               <a href="/blog">Blog</a>
+              <a href="/movimiento-canabico/podcasts">Podcast</a>
               <a href="/thetrip">The Trip Smoke Shop</a>
               {servicios.ofrece_renta_equipo && <a href="/renta">Renta de equipo</a>}
               <a href="#contacto">Local Físico</a>

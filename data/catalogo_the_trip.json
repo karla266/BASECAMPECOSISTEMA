@@ -1,0 +1,90 @@
+[
+  {
+    "sku": "BW-TR-001",
+    "nombre": "Pipa de cráneo de toro decorativa",
+    "precio": 369.00,
+    "stock": 20,
+    "categoria": "Accesorios para fumar",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-TR-002",
+    "nombre": "Filtro metálico para pipas de acero inoxidable",
+    "precio": 189.00,
+    "stock": 14,
+    "categoria": "Accesorios para fumar",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-TR-003",
+    "nombre": "Bong de acrílico de 20 cm modelos y colores surtidos",
+    "precio": 529.00,
+    "stock": 0,
+    "categoria": "Accesorios para fumar",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-2X-001",
+    "nombre": "BluntWrap Hemp Grape",
+    "precio": 280.00,
+    "stock": 20,
+    "categoria": "Hemp CBD",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-2X-002",
+    "nombre": "BluntWrap Hemp Strawberry",
+    "precio": 280.00,
+    "stock": 18,
+    "categoria": "Hemp CBD",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-2X-003",
+    "nombre": "BluntWrap Hemp Chocolate",
+    "precio": 280.00,
+    "stock": 12,
+    "categoria": "Hemp CBD",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-2X-004",
+    "nombre": "BluntWrap 2X Grape",
+    "precio": 260.00,
+    "stock": 20,
+    "categoria": "Rolling Paper",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  },
+  {
+    "sku": "BW-2X-005",
+    "nombre": "BluntWrap 2X Strawberry",
+    "precio": 260.00,
+    "stock": 0,
+    "categoria": "Rolling Paper",
+    "media": {
+      "images": ["", "", "", ""],
+      "video": ""
+    }
+  }
+]

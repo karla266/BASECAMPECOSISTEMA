@@ -1,9 +1,40 @@
 ﻿import { NextResponse } from 'next/server';
 import { getActivePointDeviceId } from '@/lib/point-devices';
+import { descontarStockCatalogoLocal } from '@/lib/catalogo-pos';
+
+async function validarYDescontarStock(itemsVendidos: Array<{ sku?: string; barcode?: string; cantidad?: number | string }>) {
+  try {
+    const result = await descontarStockCatalogoLocal(itemsVendidos);
+    return result;
+  } catch {
+    return { updated: 0, skipped: itemsVendidos.length };
+  }
+}
 
 export async function POST(request: Request) {
   try {
-    const { nombre, telefono, fecha, horario, pesoKg, tipo, productLabel } = await request.json();
+    const payload = await request.json();
+    const {
+      nombre,
+      telefono,
+      fecha,
+      horario,
+      pesoKg,
+      tipo,
+      productLabel,
+      items,
+      metadata,
+    } = payload as {
+      nombre?: string;
+      telefono?: string;
+      fecha?: string;
+      horario?: string;
+      pesoKg?: number;
+      tipo?: string;
+      productLabel?: string;
+      items?: Array<{ sku?: string; barcode?: string; cantidad?: number | string; price?: number; title?: string; quantity?: number }>;
+      metadata?: Record<string, unknown>;
+    };
     const token = process.env.MP_ACCESS_TOKEN;
 
     if (!token) {
@@ -14,20 +45,31 @@ export async function POST(request: Request) {
     }
 
     const activePointDeviceId = getActivePointDeviceId();
-    const payload = {
+
+    if (Array.isArray(items) && items.length > 0) {
+      const itemsToSync = items.map((item) => ({
+        sku: item.sku,
+        barcode: item.barcode,
+        cantidad: Number(item.cantidad ?? item.quantity ?? 1),
+      }));
+
+      await validarYDescontarStock(itemsToSync);
+    }
+
+    const payloadMp = {
       items: [
         {
           id: 'BC-VUELO-TANDEM',
-          title: `Vuelo Parapente Tándem Fortín (${fecha} - ${horario})`,
-          description: `Pasajero: ${nombre} · WhatsApp: ${telefono}`,
+          title: `Vuelo Parapente Tándem Fortín (${fecha || 'fecha por confirmar'} - ${horario || 'horario por confirmar'})`,
+          description: `Pasajero: ${nombre || 'Cliente'} · WhatsApp: ${telefono || 'sin número'}`,
           quantity: 1,
           currency_id: 'MXN',
           unit_price: 1600.0,
         },
       ],
       payer: {
-        name: nombre,
-        phone: { number: telefono },
+        name: nombre || 'Cliente',
+        phone: { number: telefono || '0000000000' },
       },
       back_urls: {
         success: 'https://www.basecamp420.com/calendario?status=approved',
@@ -44,6 +86,7 @@ export async function POST(request: Request) {
         product_type: tipo,
         product_label: productLabel,
         point_device_id: activePointDeviceId,
+        ...(metadata ?? {}),
       },
     };
 
@@ -53,7 +96,7 @@ export async function POST(request: Request) {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payloadMp),
     });
 
     const data = await mpRes.json();
@@ -66,7 +109,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ checkoutUrl: data.init_point });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Error interno del servidor' }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Error interno del servidor';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
