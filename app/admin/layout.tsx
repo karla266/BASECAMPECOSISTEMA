@@ -21,18 +21,23 @@ import {
   LogOut,
   Check
 } from 'lucide-react';
-import { useState, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import PointTerminalSelector from '@/components/PointTerminalSelector';
 
 function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isTenantMenuOpen, setIsTenantMenuOpen] = useState(false);
+  const [menuMovil, setMenuMovil] = useState(false);
+
+  useEffect(() => {
+    setMenuMovil(false);
+  }, [pathname]);
   const [activeTenant, setActiveTenant] = useState('Grupo Basecamp');
 
   return (
     <div className="flex min-h-screen bg-slate-950 text-slate-200 font-sans">
       {/* SIDEBAR LATERAL */}
-      <aside className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-screen sticky top-0 shrink-0">
+      <aside className={`${menuMovil ? "flex" : "hidden"} md:flex w-72 bg-slate-900 border-r border-slate-800 flex-col h-screen fixed md:sticky inset-y-0 z-40 shrink-0`}>
         <div className="h-20 flex items-center px-6 border-b border-slate-800 bg-slate-900/50">
           <MountainSnow className="w-6 h-6 text-emerald-400 mr-3" />
           <span className="font-extrabold text-base text-white tracking-widest uppercase">Basecamp 420</span>
@@ -43,6 +48,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
           <nav className="space-y-1 mb-8">
             <NavItem href="/admin/multiservicios" icon={<AppWindow size={18} />} label="Multiservicios" active={pathname === '/admin/multiservicios'} />
             <NavItem href="/admin" icon={<LayoutDashboard size={18} />} label="Resumen General" active={pathname === '/admin'} />
+            <NavItem href="/admin/vuelos" icon={<MountainSnow size={18} />} label="Hoja de ruta" active={pathname === '/admin/vuelos'} />
             <NavItem href="/admin/acceso-pos" icon={<KeyRound size={18} />} label="Acceso al POS" active={pathname === '/admin/acceso-pos'} />
             <NavItem href="/admin/products" icon={<Package size={18} />} label="Catálogo / Productos" active={pathname === '/admin/products'} />
             <NavItem href="/admin/lote" icon={<ClipboardCheck size={18} />} label="Lote de 5" active={pathname === '/admin/lote'} />
@@ -82,7 +88,10 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
       {/* MAIN CONTENT AREA */}
       <div className="flex-1 flex flex-col min-w-0 bg-slate-950">
         {/* HEADER SUPERIOR */}
-        <header className="h-20 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-8 sticky top-0 z-20">
+        <header className="h-20 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between gap-3 px-4 md:px-8 sticky top-0 z-20">
+          <button type="button" onClick={() => setMenuMovil((abierto) => !abierto)} className="md:hidden min-h-12 rounded-xl border border-slate-700 px-3 text-sm font-semibold text-white">
+            Menú
+          </button>
           
           {/* Tenant Switcher */}
           <div className="relative">
@@ -118,7 +127,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center gap-4">
             <PointTerminalSelector />
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
               <Activity className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-bold text-emerald-400 tracking-wide">Sistema Operativo</span>
             </div>
@@ -126,7 +135,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* CONTENT */}
-        <main className="flex-1 p-8 overflow-auto">
+        <main className="flex-1 overflow-auto p-4 pb-28 md:p-8">
           {children}
         </main>
       </div>

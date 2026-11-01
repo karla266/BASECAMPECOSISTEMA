@@ -1,0 +1,29 @@
+[
+  {
+    "id": "piloto_001",
+    "nombre": "Salvador Lara",
+    "telefono": "520000000000",
+    "prioridad": 1,
+    "capacidad_por_slot": 1,
+    "certificacion_tandem": true,
+    "estado": "activo"
+  },
+  {
+    "id": "piloto_002",
+    "nombre": "Farid (Muestra)",
+    "telefono": "520000000000",
+    "prioridad": 2,
+    "capacidad_por_slot": 1,
+    "certificacion_tandem": false,
+    "estado": "demo_presentacion"
+  },
+  {
+    "id": "piloto_003",
+    "nombre": "Karla Guzman (Muestra)",
+    "telefono": "522727258748",
+    "prioridad": 3,
+    "capacidad_por_slot": 1,
+    "certificacion_tandem": false,
+    "estado": "demo_presentacion"
+  }
+]

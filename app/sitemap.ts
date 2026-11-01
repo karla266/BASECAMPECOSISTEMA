@@ -13,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/explore",
     "/cima-digital",
     "/cimadigital",
+    "/parapente",
+    "/pilotos/alta",
+    "/tienda",
     "/blog",
     "/movimiento-canabico/podcasts",
   ];

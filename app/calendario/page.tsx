@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import BotonWhatsappVuelo from '@/components/vuelos/BotonWhatsappVuelo';
 
 function CalendarioContent() {
   const searchParams = useSearchParams();
@@ -11,16 +12,30 @@ function CalendarioContent() {
   const [folio, setFolio] = useState(folioInicial);
   const [esFolioValido, setEsFolioValido] = useState(false);
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
-  const [horarioSeleccionado, setHorarioSeleccionado] = useState('10:00 AM');
+  const [horarioSeleccionado, setHorarioSeleccionado] = useState('10:00');
   const [nombreCliente, setNombreCliente] = useState('');
   const [telefonoCliente, setTelefonoCliente] = useState('');
+  const [pesoKg, setPesoKg] = useState(75);
+  const [cupos, setCupos] = useState<Record<string, { disponible: boolean; piloto: string }>>({});
+
+  useEffect(() => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fechaSeleccionada)) return;
+    void fetch(`/api/vuelos/disponibilidad?fecha=${fechaSeleccionada}`)
+      .then((respuesta) => respuesta.json())
+      .then((datos: { slots?: Array<{ horario: string; disponible: boolean; piloto: string }> }) => {
+        const mapa: Record<string, { disponible: boolean; piloto: string }> = {};
+        for (const slot of datos.slots || []) mapa[slot.horario] = { disponible: slot.disponible, piloto: slot.piloto };
+        setCupos(mapa);
+      })
+      .catch(() => setCupos({}));
+  }, [fechaSeleccionada]);
   const [procesandoPago, setProcesandoPago] = useState(false);
 
   const HORARIOS_OFICIALES = [
-    { turno: '10:00 AM', desc: 'Apertura térmica (óptima principiantes)' },
-    { turno: '12:00 PM', desc: 'Térmica activa panorámica' },
-    { turno: '02:00 PM', desc: 'Vuelo dinámico sobre el valle' },
-    { turno: '04:00 PM', desc: 'Última ventana diurna / Atardecer' },
+    { turno: '10:00', desc: 'Apertura térmica' },
+    { turno: '12:00', desc: 'Térmica activa' },
+    { turno: '14:00', desc: 'Vuelo sobre el valle' },
+    { turno: '16:00', desc: 'Última ventana del día' },
   ];
 
   useEffect(() => {
@@ -52,6 +67,7 @@ function CalendarioContent() {
           telefono: telefonoCliente,
           fecha: fechaSeleccionada,
           horario: horarioSeleccionado,
+          pesoKg,
         }),
       });
 
@@ -137,6 +153,19 @@ function CalendarioContent() {
         </div>
 
         <div>
+          <label className="block text-xs font-semibold text-neutral-400 mb-1">Peso aproximado (kg)</label>
+          <input
+            type="number"
+            min={40}
+            max={120}
+            required
+            value={pesoKg}
+            onChange={(e) => setPesoKg(Number(e.target.value || 0))}
+            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
+          />
+        </div>
+
+        <div>
           <label className="block text-xs font-semibold text-neutral-400 mb-1">Fecha Deseada de Vuelo</label>
           <input
             type="date"
@@ -149,20 +178,23 @@ function CalendarioContent() {
 
         <div>
           <label className="block text-xs font-semibold text-neutral-400 mb-2">Horario de Despegue (Slots Oficiales)</label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {HORARIOS_OFICIALES.map((h) => (
               <button
                 type="button"
                 key={h.turno}
                 onClick={() => setHorarioSeleccionado(h.turno)}
-                className={`p-3 rounded-xl border text-left transition ${
+                disabled={fechaSeleccionada !== '' && cupos[h.turno]?.disponible === false}
+                className={`min-h-12 rounded-xl border p-4 text-left transition disabled:cursor-not-allowed disabled:opacity-40 ${
                   horarioSeleccionado === h.turno
                     ? 'border-amber-400 bg-amber-400/10 text-white'
                     : 'border-neutral-800 bg-neutral-950 text-neutral-400 hover:border-neutral-700'
                 }`}
               >
                 <div className="font-bold text-sm text-amber-400">{h.turno}</div>
-                <div className="text-xs text-neutral-400 mt-0.5">{h.desc}</div>
+                <div className="text-xs text-neutral-400 mt-0.5">
+                  {cupos[h.turno]?.disponible === false ? 'Slot saturado' : cupos[h.turno]?.piloto || h.desc}
+                </div>
               </button>
             ))}
           </div>
@@ -178,7 +210,7 @@ function CalendarioContent() {
 
           <button
             type="submit"
-            disabled={procesandoPago}
+            disabled={procesandoPago || (fechaSeleccionada !== '' && cupos[horarioSeleccionado]?.disponible === false)}
             className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-extrabold py-3.5 px-6 rounded-xl text-base transition shadow-lg"
           >
             {procesandoPago
@@ -195,10 +227,11 @@ function CalendarioContent() {
 
 export default function CalendarioPage() {
   return (
-    <main className="min-h-screen bg-neutral-950 py-12 px-4">
+    <main className="min-h-screen overflow-x-hidden bg-neutral-950 px-4 pb-28 pt-8">
       <Suspense fallback={<div className="text-center text-white">Cargando agenda...</div>}>
         <CalendarioContent />
       </Suspense>
+      <BotonWhatsappVuelo />
     </main>
   );
 }
