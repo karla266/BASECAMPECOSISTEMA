@@ -9,10 +9,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Berries / Moras. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_berries_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-BERRIES-BOX",
@@ -22,12 +25,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Berries / Moras.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-BERRIES-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_berries_box.webp"
+      ]
     },
     {
       "sku": "BW2X-CHERRY-PZ",
@@ -37,10 +43,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Wet Cherry / Cereza. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cherry_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-CHERRY-BOX",
@@ -50,12 +59,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Wet Cherry / Cereza.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-CHERRY-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cherry_box.webp"
+      ]
     },
     {
       "sku": "BW2X-PURPLE-PZ",
@@ -65,10 +77,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Purple / Uva. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_purple_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-PURPLE-BOX",
@@ -78,12 +93,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Purple / Uva.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-PURPLE-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_purple_box.webp"
+      ]
     },
     {
       "sku": "BW2X-MANGO-PZ",
@@ -93,10 +111,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Mango Dulce. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mango_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-MANGO-BOX",
@@ -106,12 +127,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Mango Dulce.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-MANGO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mango_box.webp"
+      ]
     },
     {
       "sku": "BW2X-VANILLA-PZ",
@@ -121,10 +145,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor French Vanilla. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_vanilla_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-VANILLA-BOX",
@@ -134,12 +161,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor French Vanilla.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-VANILLA-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_vanilla_box.webp"
+      ]
     },
     {
       "sku": "BW2X-CHOCO-PZ",
@@ -149,10 +179,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Chocolate Suave. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_choco_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-CHOCO-BOX",
@@ -162,12 +195,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Chocolate Suave.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-CHOCO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_choco_box.webp"
+      ]
     },
     {
       "sku": "BW2X-WATERMELON-PZ",
@@ -177,10 +213,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Watermelon / Sandía. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_watermelon_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-WATERMELON-BOX",
@@ -190,12 +229,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Watermelon / Sandía.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-WATERMELON-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_watermelon_box.webp"
+      ]
     },
     {
       "sku": "BW2X-BLUEBERRY-PZ",
@@ -205,10 +247,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Blueberry / Arándano. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_blueberry_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-BLUEBERRY-BOX",
@@ -218,12 +263,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Blueberry / Arándano.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-BLUEBERRY-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_blueberry_box.webp"
+      ]
     },
     {
       "sku": "BW2X-STRAWBERRY-PZ",
@@ -233,10 +281,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Strawberry / Fresa. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_strawberry_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-STRAWBERRY-BOX",
@@ -246,12 +297,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Strawberry / Fresa.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-STRAWBERRY-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_strawberry_box.webp"
+      ]
     },
     {
       "sku": "BW2X-PEACH-PZ",
@@ -261,10 +315,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Peach / Durazno. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_peach_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-PEACH-BOX",
@@ -274,12 +331,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Peach / Durazno.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-PEACH-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_peach_box.webp"
+      ]
     },
     {
       "sku": "BW2X-APPLE-PZ",
@@ -289,10 +349,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Apple Martini. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_apple_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-APPLE-BOX",
@@ -302,12 +365,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Apple Martini.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-APPLE-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_apple_box.webp"
+      ]
     },
     {
       "sku": "BW2X-BUBBLE-PZ",
@@ -317,10 +383,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Bubble Gum / Chicle. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_bubble_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-BUBBLE-BOX",
@@ -330,12 +399,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Bubble Gum / Chicle.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-BUBBLE-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_bubble_box.webp"
+      ]
     },
     {
       "sku": "BW2X-PINACOLADA-PZ",
@@ -345,10 +417,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Piña Colada. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_pinacolada_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-PINACOLADA-BOX",
@@ -358,12 +433,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Piña Colada.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-PINACOLADA-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_pinacolada_box.webp"
+      ]
     },
     {
       "sku": "BW2X-MOJITO-PZ",
@@ -373,10 +451,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Mojito Menta. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mojito_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-MOJITO-BOX",
@@ -386,12 +467,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Mojito Menta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-MOJITO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mojito_box.webp"
+      ]
     },
     {
       "sku": "BW2X-GINJUICE-PZ",
@@ -401,10 +485,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Gin & Juice. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_ginjuice_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-GINJUICE-BOX",
@@ -414,12 +501,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Gin & Juice.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-GINJUICE-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_ginjuice_box.webp"
+      ]
     },
     {
       "sku": "BW2X-COSMO-PZ",
@@ -429,10 +519,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Cosmopolitan. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cosmo_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-COSMO-BOX",
@@ -442,12 +535,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Cosmopolitan.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-COSMO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cosmo_box.webp"
+      ]
     },
     {
       "sku": "BW2X-RUSSIAN-PZ",
@@ -457,10 +553,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Russian Cream. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_russian_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-RUSSIAN-BOX",
@@ -470,12 +569,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Russian Cream.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-RUSSIAN-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_russian_box.webp"
+      ]
     },
     {
       "sku": "BW2X-KUSH-PZ",
@@ -485,10 +587,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Kush Herbal. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_kush_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-KUSH-BOX",
@@ -498,12 +603,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Kush Herbal.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-KUSH-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_kush_box.webp"
+      ]
     },
     {
       "sku": "BW2X-ZERO-PZ",
@@ -513,10 +621,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Zero / Natural. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_zero_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-ZERO-BOX",
@@ -526,12 +637,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Zero / Natural.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-ZERO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_zero_box.webp"
+      ]
     },
     {
       "sku": "BW2X-DIAMOND-PZ",
@@ -541,10 +655,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Diamond Clásico. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_diamond_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-DIAMOND-BOX",
@@ -554,12 +671,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Diamond Clásico.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-DIAMOND-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_diamond_box.webp"
+      ]
     },
     {
       "sku": "BW2X-COGNAC-PZ",
@@ -569,10 +689,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Cognac / Cacao. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cognac_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-COGNAC-BOX",
@@ -582,12 +705,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Cognac / Cacao.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-COGNAC-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_cognac_box.webp"
+      ]
     },
     {
       "sku": "BW2X-TROPICAL-PZ",
@@ -597,10 +723,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Tropical Passion. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_tropical_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-TROPICAL-BOX",
@@ -610,12 +739,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Tropical Passion.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-TROPICAL-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_tropical_box.webp"
+      ]
     },
     {
       "sku": "BW2X-MELLO-PZ",
@@ -625,10 +757,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Mello Mango. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mello_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-MELLO-BOX",
@@ -638,12 +773,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Mello Mango.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-MELLO-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_mello_box.webp"
+      ]
     },
     {
       "sku": "BW2X-BANANA-PZ",
@@ -653,10 +791,13 @@
       "descripcion": "Sobre individual con 2 sábanas de blunt aromatizadas sabor Banana Cream. Combustión lenta.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 10.75,
-      "precio_mxn": 30,
+      "precio_mxn": 32.25,
       "stock_disponible": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_banana_pz.webp"
+      ]
     },
     {
       "sku": "BW2X-BANANA-BOX",
@@ -666,12 +807,15 @@
       "descripcion": "Caja display cerrada con 25 sobres sellados (50 sábanas en total) sabor Banana Cream.",
       "categoria": "Blunts y Enrolado",
       "costo_interno": 268.75,
-      "precio_mxn": 650,
+      "precio_mxn": 806.25,
       "stock_disponible": 1,
       "descuenta_sku_piezas": "BW2X-BANANA-PZ",
       "descuenta_cantidad": 25,
       "disponibilidad": "PRE-VENTA",
-      "fecha_llegada": "Jueves"
+      "fecha_llegada": "Jueves",
+      "imagenes": [
+        "/uploads/bw2x_banana_box.webp"
+      ]
     },
     {
       "id": "prod_pipa-de-craneo-de-toro-decorativa",
@@ -680,13 +824,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa de cráneo de toro decorativa — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 22,
+      "precio_mxn": 36.3,
       "costo_interno": 12.1,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-de-craneo-de-toro-decorativa.jpg"
+        "/uploads/te_otros_pipa_de_craneo_de_toro_decorati.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -702,13 +846,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Filtro metálico para pipas de acero inoxidable — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 100,
+      "precio_mxn": 165.0,
       "costo_interno": 55,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-filtro-metalico-para-pipas-de-acero-inoxidable.jpg"
+        "/uploads/te_otros_filtro_metalico_para_pipas_de_a.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -724,13 +868,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong de Acrílico de 20 cm – Modelos y Colores Surtidos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 45,
+      "precio_mxn": 74.25,
       "costo_interno": 24.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-de-acrilico-de-20-cm-modelos-y-colores-surtidos.jpg"
+        "/uploads/te_otros_bong_de_acrilico_de_20_cm_model.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -746,13 +890,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong de vidrio de calavera, 25 cm x 8.5 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 42,
+      "precio_mxn": 69.3,
       "costo_interno": 23.1,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-de-vidrio-de-calavera-25-cm-x-8-5-cm.jpg"
+        "/uploads/te_otros_bong_de_vidrio_de_calavera_25_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -768,13 +912,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa de tagua con boquilla de madera artesanal — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 12,
+      "precio_mxn": 19.8,
       "costo_interno": 6.6,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-de-tagua-con-boquilla-de-madera-artesanal.jpg"
+        "/uploads/te_otros_pipa_de_tagua_con_boquilla_de_m.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -790,13 +934,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Líquido elixir para vape – sabores intensos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 15,
+      "precio_mxn": 24.75,
       "costo_interno": 8.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-liquido-elixir-para-vape-sabores-intensos.jpg"
+        "/uploads/te_otros_liquido_elixir_para_vape_sabore.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -812,13 +956,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong de acrílico opaco de 16 cm – resistente y fácil de limpiar — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 37,
+      "precio_mxn": 61.05,
       "costo_interno": 20.35,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-de-acrilico-opaco-de-16-cm-resistente-y-facil-de-limpiar.jpg"
+        "/uploads/te_otros_bong_de_acrilico_opaco_de_16_cm.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -834,13 +978,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora acrílico sencilla de 2 piezas en varios colores — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 12,
+      "precio_mxn": 19.8,
       "costo_interno": 6.6,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-acrilico-sencilla-de-2-piezas-en-varios-colores.jpg"
+        "/uploads/te_otros_moledora_acrilico_sencilla_de_2.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -856,13 +1000,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora metálica 3 niveles, grinder para tabaco — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 85,
+      "precio_mxn": 140.25,
       "costo_interno": 46.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-metalica-3-niveles-grinder-para-tabaco.jpg"
+        "/uploads/te_otros_moledora_metalica_3_niveles_gri.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -878,13 +1022,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora mediana de cuatro piezas de metal — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 85,
+      "precio_mxn": 140.25,
       "costo_interno": 46.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-mediana-de-cuatro-piezas-de-metal.jpg"
+        "/uploads/te_otros_moledora_mediana_de_cuatro_piez.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -900,13 +1044,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de metal de cuatro piezas con diseño — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 125,
+      "precio_mxn": 206.25,
       "costo_interno": 68.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-metal-de-cuatro-piezas-con-diseno.jpg"
+        "/uploads/te_otros_moledora_de_metal_de_cuatro_pie.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -922,13 +1066,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de metal 3 niveles mediana con estampados — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 80,
+      "precio_mxn": 132.0,
       "costo_interno": 44,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-metal-3-niveles-mediana-con-estampados.jpg"
+        "/uploads/te_otros_moledora_de_metal_3_niveles_med.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -944,13 +1088,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora balón de fútbol sencilla de dos partes — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 20,
+      "precio_mxn": 33.0,
       "costo_interno": 11,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-balon-de-futbol-sencilla-de-dos-partes.jpg"
+        "/uploads/te_otros_moledora_balon_de_futbol_sencil.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -966,13 +1110,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa artesanal para tabaco chica — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 16,
+      "precio_mxn": 26.4,
       "costo_interno": 8.8,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-artesanal-para-tabaco-chica.jpg"
+        "/uploads/te_otros_pipa_artesanal_para_tabaco_chic.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -988,13 +1132,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa erótica de 12 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 22,
+      "precio_mxn": 36.3,
       "costo_interno": 12.1,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-erotica-de-12-cm.jpg"
+        "/uploads/te_otros_pipa_erotica_de_12_cm.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1010,13 +1154,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de metal de 2 piezas en forma de galleta con imán — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 45,
+      "precio_mxn": 74.25,
       "costo_interno": 24.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-metal-de-2-piezas-en-forma-de-galleta-con-iman.jpg"
+        "/uploads/te_otros_moledora_de_metal_de_2_piezas_e.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1032,13 +1176,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de acrílico sencilla con cierre magnético — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 15,
+      "precio_mxn": 24.75,
       "costo_interno": 8.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-acrilico-sencilla-con-cierre-magnetico.jpg"
+        "/uploads/te_otros_moledora_de_acrilico_sencilla_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1054,13 +1198,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Enrolladora de metal para cigarrillos portátil de 8×3 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 22,
+      "precio_mxn": 36.3,
       "costo_interno": 12.1,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-enrolladora-de-metal-para-cigarrillos-portatil-de-8-3-cm.jpg"
+        "/uploads/te_otros_enrolladora_de_metal_para_cigar.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1076,13 +1220,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa de resina artesanal – Disponible en diferentes modelos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 20,
+      "precio_mxn": 33.0,
       "costo_interno": 11,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-de-resina-artesanal-disponible-en-diferentes-modelos.jpg"
+        "/uploads/te_otros_pipa_de_resina_artesanal_dispon.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1098,13 +1242,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de acrílico para tabaco de 3 compartimientos 5 x 4.5 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 13,
+      "precio_mxn": 21.45,
       "costo_interno": 7.15,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-acrilico-para-tabaco-de-3-compartimientos-5-x-4-5-cm.jpg"
+        "/uploads/te_otros_moledora_de_acrilico_para_tabac.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1120,13 +1264,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora extra grande acrílico para tabaco — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 25,
+      "precio_mxn": 41.25,
       "costo_interno": 13.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-extra-grande-acrilico-para-tabaco.jpg"
+        "/uploads/te_otros_moledora_extra_grande_acrilico_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1142,13 +1286,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bandeja de metal chica estampada, práctica y resistente — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 25,
+      "precio_mxn": 41.25,
       "costo_interno": 13.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bandeja-de-metal-chica-estampada-practica-y-resistente.jpg"
+        "/uploads/te_otros_bandeja_de_metal_chica_estampad.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1164,13 +1308,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Máquina enrolladora de cigarrillos por docena — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-maquina-enrolladora-de-cigarrillos-por-docena.jpg"
+        "/uploads/te_otros_maquina_enrolladora_de_cigarril.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1186,13 +1330,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bandeja para tabaco Hornet de plástico con dosificador — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 13,
+      "precio_mxn": 21.45,
       "costo_interno": 7.15,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bandeja-para-tabaco-hornet-de-plastico-con-dosificador.jpg"
+        "/uploads/te_otros_bandeja_para_tabaco_hornet_de_p.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1208,13 +1352,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa de resina diseños diversos para uso personal — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 25,
+      "precio_mxn": 41.25,
       "costo_interno": 13.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-de-resina-disenos-diversos-para-uso-personal.png"
+        "/uploads/te_otros_pipa_de_resina_disenos_diversos.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1230,13 +1374,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de acrílico 6 cm con imán — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 10,
+      "precio_mxn": 16.5,
       "costo_interno": 5.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-acrilico-6-cm-con-iman.jpg"
+        "/uploads/te_otros_moledora_de_acrilico_6_cm_con_i.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1252,13 +1396,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bandeja de plástico Hornet para tabaco, práctica y resistente — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 12,
+      "precio_mxn": 19.8,
       "costo_interno": 6.6,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bandeja-de-plastico-hornet-para-tabaco-practica-y-resistente.jpg"
+        "/uploads/te_otros_bandeja_de_plastico_hornet_para.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1274,13 +1418,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bandeja Hornet para tabaco de plástico en colores surtidos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 12,
+      "precio_mxn": 19.8,
       "costo_interno": 6.6,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bandeja-hornet-para-tabaco-de-plastico-en-colores-surtidos.jpg"
+        "/uploads/te_otros_bandeja_hornet_para_tabaco_de_p.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1296,13 +1440,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de Plástico Esférica – Práctica y divertida — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 25,
+      "precio_mxn": 41.25,
       "costo_interno": 13.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-plastico-esferica-practica-y-divertida.jpg"
+        "/uploads/te_otros_moledora_de_plastico_esferica_p.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1318,13 +1462,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder de Metal Tornasol con Tapa Cóncava — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 90,
+      "precio_mxn": 148.5,
       "costo_interno": 49.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-de-metal-tornasol-con-tapa-concava.jpg"
+        "/uploads/te_otros_grinder_de_metal_tornasol_con_t.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1340,13 +1484,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora tornasol 3 compartimentos 5 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 84,
+      "precio_mxn": 138.6,
       "costo_interno": 46.2,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-tornasol-3-compartimentos-5-cm.jpg"
+        "/uploads/te_otros_moledora_tornasol_3_compartimen.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1362,13 +1506,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora tornasol 3 compartimentos 6 cm — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 84,
+      "precio_mxn": 138.6,
       "costo_interno": 46.2,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-tornasol-3-compartimentos-6-cm.jpg"
+        "/uploads/te_otros_moledora_tornasol_3_compartimen.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1384,13 +1528,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de metal mediana con grabado — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 70,
+      "precio_mxn": 115.5,
       "costo_interno": 38.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-metal-mediana-con-grabado.jpg"
+        "/uploads/te_otros_moledora_de_metal_mediana_con_g.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1406,13 +1550,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora de metal de 2 compartimientos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 80,
+      "precio_mxn": 132.0,
       "costo_interno": 44,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-de-metal-de-2-compartimientos.jpg"
+        "/uploads/te_otros_moledora_de_metal_de_2_comparti.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1428,13 +1572,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora Hornet mini 3 compartimientos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 75,
+      "precio_mxn": 123.75,
       "costo_interno": 41.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-hornet-mini-3-compartimientos.jpg"
+        "/uploads/te_otros_moledora_hornet_mini_3_comparti.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1450,13 +1594,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "moledora grande de plástico con 3 compartimentos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 18,
+      "precio_mxn": 29.7,
       "costo_interno": 9.9,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-grande-de-plastico-con-3-compartimentos.jpg"
+        "/uploads/te_otros_moledora_grande_de_plastico_con.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1472,13 +1616,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para Fumar Sabor Cappuccino Hornet — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-cappuccino-hornet.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_cappucci.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1494,13 +1638,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor fresas — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-fresas.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_fresas.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1516,13 +1660,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor natural de 1 1/4 — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 170,
+      "precio_mxn": 280.5,
       "costo_interno": 93.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-natural-de-1-1-4.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_natural_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1538,13 +1682,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Charola Lady con dispensador. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 12,
+      "precio_mxn": 19.8,
       "costo_interno": 6.6,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-charola-lady-con-dispensador.jpg"
+        "/uploads/te_otros_charola_lady_con_dispensador.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1560,13 +1704,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder fluorescente. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 16,
+      "precio_mxn": 26.4,
       "costo_interno": 8.8,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-fluorescente.jpg"
+        "/uploads/te_otros_grinder_fluorescente.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1582,13 +1726,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Lady Hornet 1. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 190,
+      "precio_mxn": 313.5,
       "costo_interno": 104.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-lady-hornet-1.jpg"
+        "/uploads/te_otros_lady_hornet_1.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1604,13 +1748,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Lady Hornet. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 190,
+      "precio_mxn": 313.5,
       "costo_interno": 104.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-lady-hornet.jpg"
+        "/uploads/te_otros_lady_hornet.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1626,13 +1770,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Encendedor tipo soplete. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 53,
+      "precio_mxn": 87.45,
       "costo_interno": 29.15,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-encendedor-tipo-soplete.jpg"
+        "/uploads/te_otros_encendedor_tipo_soplete.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1648,13 +1792,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Big size Hornet. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 70,
+      "precio_mxn": 115.5,
       "costo_interno": 38.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-big-size-hornet.jpg"
+        "/uploads/te_otros_big_size_hornet.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1670,13 +1814,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para Fumar Sabor Chicle y menta Hornet — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-chicle-y-menta-hornet.png"
+        "/uploads/te_otros_papel_para_fumar_sabor_chicle_y.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1692,13 +1836,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Hornet blanco slim. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 160,
+      "precio_mxn": 264.0,
       "costo_interno": 88,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-hornet-blanco-slim.jpg"
+        "/uploads/te_otros_hornet_blanco_slim.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1714,13 +1858,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Hornet blak slim. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 160,
+      "precio_mxn": 264.0,
       "costo_interno": 88,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-hornet-blak-slim.jpg"
+        "/uploads/te_otros_hornet_blak_slim.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1736,13 +1880,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Mini size Hornet — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 150,
+      "precio_mxn": 247.5,
       "costo_interno": 82.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-mini-size-hornet.jpg"
+        "/uploads/te_otros_mini_size_hornet.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1758,13 +1902,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "King size hornet — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 165,
+      "precio_mxn": 272.25,
       "costo_interno": 90.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-king-size-hornet.png"
+        "/uploads/te_otros_king_size_hornet.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1780,13 +1924,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "The red bulldog. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 180,
+      "precio_mxn": 297.0,
       "costo_interno": 99,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-the-red-bulldog.jpg"
+        "/uploads/te_otros_the_red_bulldog.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1802,13 +1946,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Blunt master “Berries” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 238,
+      "precio_mxn": 392.7,
       "costo_interno": 130.9,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-blunt-master-berries.jpg"
+        "/uploads/te_otros_blunt_master_berries.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1824,13 +1968,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Blunt master “GRAPE” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 238,
+      "precio_mxn": 392.7,
       "costo_interno": 130.9,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-blunt-master-grape.jpg"
+        "/uploads/te_otros_blunt_master_grape.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1846,13 +1990,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Show blunt cone “ZERO” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-zero.jpg"
+        "/uploads/te_otros_show_blunt_cone_zero.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1868,13 +2012,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Show blunt cone “WHITE GRAPE” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-white-grape.jpg"
+        "/uploads/te_otros_show_blunt_cone_white_grape.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1890,13 +2034,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Show blunt cone “MANGO” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-mango.jpg"
+        "/uploads/te_otros_show_blunt_cone_mango.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1912,13 +2056,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Show blunt cone “KUSH” — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-kush.jpg"
+        "/uploads/te_otros_show_blunt_cone_kush.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1934,13 +2078,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel HIGH HEMP — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 300,
+      "precio_mxn": 495.0,
       "costo_interno": 165,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-high-hemp.jpg"
+        "/uploads/te_otros_papel_high_hemp.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1956,13 +2100,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel LION ROLLING CIRCUS — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 300,
+      "precio_mxn": 495.0,
       "costo_interno": 165,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-lion-rolling-circus.jpg"
+        "/uploads/te_otros_papel_lion_rolling_circus.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -1978,13 +2122,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel Hornet orgánico caja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 180,
+      "precio_mxn": 297.0,
       "costo_interno": 99,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-hornet-organico-caja.jpg"
+        "/uploads/te_otros_papel_hornet_organico_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2000,13 +2144,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Green harvest. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 510,
+      "precio_mxn": 841.5,
       "costo_interno": 280.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-green-harvest.jpg"
+        "/uploads/te_otros_green_harvest.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2022,13 +2166,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Cono de papel natural king size — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 560,
+      "precio_mxn": 924.0,
       "costo_interno": 308,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-cono-de-papel-natural-king-size.jpg"
+        "/uploads/te_otros_cono_de_papel_natural_king_size.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2044,13 +2188,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora diseño de yoyo. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 25,
+      "precio_mxn": 41.25,
       "costo_interno": 13.75,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-diseno-de-yoyo.jpg"
+        "/uploads/te_otros_moledora_diseno_de_yoyo.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2066,13 +2210,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong mask en colores. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-mask-en-colores.jpg"
+        "/uploads/te_otros_bong_mask_en_colores.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2088,13 +2232,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong mask multicolor. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-mask-multicolor.jpg"
+        "/uploads/te_otros_bong_mask_multicolor.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2110,13 +2254,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora Grande de acrílico — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 20,
+      "precio_mxn": 33.0,
       "costo_interno": 11,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-grande-de-acrilico.jpg"
+        "/uploads/te_otros_moledora_grande_de_acrilico.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2132,13 +2276,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora rosa de tres niveles. (Pieza) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 95,
+      "precio_mxn": 156.75,
       "costo_interno": 52.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-rosa-de-tres-niveles-pieza.jpg"
+        "/uploads/te_otros_moledora_rosa_de_tres_niveles_p.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2154,13 +2298,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Cono Hornet blanco caja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 560,
+      "precio_mxn": 924.0,
       "costo_interno": 308,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-cono-hornet-blanco-caja.jpg"
+        "/uploads/te_otros_cono_hornet_blanco_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2182,7 +2326,7 @@
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-natural-hornet.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_natural_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2198,13 +2342,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel jugo de ginebra caja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-jugo-de-ginebra-caja.jpg"
+        "/uploads/te_otros_papel_jugo_de_ginebra_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2220,13 +2364,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel lady relax caja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 190,
+      "precio_mxn": 313.5,
       "costo_interno": 104.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-lady-relax-caja.jpg"
+        "/uploads/te_otros_papel_lady_relax_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2242,13 +2386,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Hornet piña colada caja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-hornet-pina-colada-caja.png"
+        "/uploads/te_otros_hornet_pina_colada_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2264,13 +2408,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Boquillas de papel natural.(caja) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 140,
+      "precio_mxn": 231.0,
       "costo_interno": 77,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-boquillas-de-papel-natural-caja.jpg"
+        "/uploads/te_otros_boquillas_de_papel_natural_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2286,13 +2430,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Cono de papel natural (caja) 1 1/4 — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 640,
+      "precio_mxn": 1056.0,
       "costo_interno": 352,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-cono-de-papel-natural-caja-1-1-4.jpg"
+        "/uploads/te_otros_cono_de_papel_natural_caja_1_1_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2308,13 +2452,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel OCB (caja) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 1000,
+      "precio_mxn": 1650.0,
       "costo_interno": 550,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-ocb-caja.jpg"
+        "/uploads/te_otros_papel_ocb_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2330,13 +2474,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Charola Weed metálica para enrolar Hornet clasic. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 35,
+      "precio_mxn": 57.75,
       "costo_interno": 19.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-charola-weed-metalica-para-enrolar-hornet-clasic.jpg"
+        "/uploads/te_otros_charola_weed_metalica_para_enro.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2352,13 +2496,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Lion rolling circus (caja) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 300,
+      "precio_mxn": 495.0,
       "costo_interno": 165,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-lion-rolling-circus-caja.jpg"
+        "/uploads/te_otros_lion_rolling_circus_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2374,13 +2518,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Cono de papel natural (caja) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 210,
+      "precio_mxn": 346.5,
       "costo_interno": 115.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-cono-de-papel-natural-caja.jpg"
+        "/uploads/te_otros_cono_de_papel_natural_caja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2396,13 +2540,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder de metal. — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 140,
+      "precio_mxn": 231.0,
       "costo_interno": 77,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-de-metal.jpg"
+        "/uploads/te_otros_grinder_de_metal.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2418,13 +2562,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder rey cráneo — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 53,
+      "precio_mxn": 87.45,
       "costo_interno": 29.15,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-rey-craneo.jpg"
+        "/uploads/te_otros_grinder_rey_craneo.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2440,13 +2584,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder hamburguesa — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 56,
+      "precio_mxn": 92.4,
       "costo_interno": 30.8,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-hamburguesa.jpg"
+        "/uploads/te_otros_grinder_hamburguesa.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2462,13 +2606,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor mentol — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-mentol.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_m.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2484,13 +2628,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel natural King size — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 150,
+      "precio_mxn": 247.5,
       "costo_interno": 82.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-natural-king-size.jpg"
+        "/uploads/te_otros_papel_natural_king_size.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2506,13 +2650,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Bong mask — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-bong-mask.jpg"
+        "/uploads/te_otros_bong_mask.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2528,13 +2672,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Porta estuches de plástico para cigarro — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 10,
+      "precio_mxn": 16.5,
       "costo_interno": 5.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-porta-estuches-de-plastico-para-cigarro.jpg"
+        "/uploads/te_otros_porta_estuches_de_plastico_para.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2550,13 +2694,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora mini — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 22,
+      "precio_mxn": 36.3,
       "costo_interno": 12.1,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-mini.jpg"
+        "/uploads/te_otros_moledora_mini.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2572,13 +2716,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledor en forma de granada — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 100,
+      "precio_mxn": 165.0,
       "costo_interno": 55,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledor-en-forma-de-granada.jpg"
+        "/uploads/te_otros_moledor_en_forma_de_granada.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2594,13 +2738,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor durazno — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-durazno.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_d.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2616,13 +2760,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor chicle — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-chicle.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2638,13 +2782,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor choco coco — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-choco-coco.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2660,13 +2804,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor sandía — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-sandia.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_s.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2682,13 +2826,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel Hornet sabor miel — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-hornet-sabor-miel.jpg"
+        "/uploads/te_otros_papel_hornet_sabor_miel.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2704,13 +2848,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Mámáquina para enrollar papel fumar (box) — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 190,
+      "precio_mxn": 313.5,
       "costo_interno": 104.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-mamaquina-para-enrollar-papel-fumar-box.jpg"
+        "/uploads/te_otros_mamaquina_para_enrollar_papel_f.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2726,13 +2870,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Maquina Enrolladora — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 190,
+      "precio_mxn": 313.5,
       "costo_interno": 104.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-maquina-enrolladora.jpg"
+        "/uploads/te_otros_maquina_enrolladora.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2748,13 +2892,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Pipa plástica para fumar — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 20,
+      "precio_mxn": 33.0,
       "costo_interno": 11,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-pipa-plastica-para-fumar.jpg"
+        "/uploads/te_otros_pipa_plastica_para_fumar.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2770,13 +2914,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora Hornet figura de fichas de casino — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 50,
+      "precio_mxn": 82.5,
       "costo_interno": 27.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-hornet-figura-de-fichas-de-casino.jpg"
+        "/uploads/te_otros_moledora_hornet_figura_de_ficha.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2792,13 +2936,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "moledora grande de plástico con 4 compartimentos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 20,
+      "precio_mxn": 33.0,
       "costo_interno": 11,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-grande-de-plastico-con-4-compartimentos.jpg"
+        "/uploads/te_otros_moledora_grande_de_plastico_con.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2814,13 +2958,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora plástica con calcomanía — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 10,
+      "precio_mxn": 16.5,
       "costo_interno": 5.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-plastica-con-calcomania.jpg"
+        "/uploads/te_otros_moledora_plastica_con_calcomani.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2836,13 +2980,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora y enrolladora 2 en 1 — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 18,
+      "precio_mxn": 29.7,
       "costo_interno": 9.9,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-y-enrolladora-2-en-1.jpg"
+        "/uploads/te_otros_moledora_y_enrolladora_2_en_1.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2858,13 +3002,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora Hornet — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 130,
+      "precio_mxn": 214.5,
       "costo_interno": 71.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-hornet.jpg"
+        "/uploads/te_otros_moledora_hornet.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2880,13 +3024,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Máquina para enrollar — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 23,
+      "precio_mxn": 37.95,
       "costo_interno": 12.65,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-maquina-para-enrollar.jpg"
+        "/uploads/te_otros_maquina_para_enrollar.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2902,13 +3046,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel arroz sabor mojito — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-arroz-sabor-mojito.jpg"
+        "/uploads/te_otros_papel_arroz_sabor_mojito.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2924,13 +3068,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel arroz sabor coñac — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-arroz-sabor-conac.jpg"
+        "/uploads/te_otros_papel_arroz_sabor_conac.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2946,13 +3090,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel arroz natural caja tricolor — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 80,
+      "precio_mxn": 132.0,
       "costo_interno": 44,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-arroz-natural-caja-tricolor.jpg"
+        "/uploads/te_otros_papel_arroz_natural_caja_tricol.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2968,13 +3112,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel arroz natural — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 70,
+      "precio_mxn": 115.5,
       "costo_interno": 38.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-arroz-natural.jpg"
+        "/uploads/te_otros_papel_arroz_natural.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -2990,13 +3134,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel natural — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 160,
+      "precio_mxn": 264.0,
       "costo_interno": 88,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-natural.jpg"
+        "/uploads/te_otros_papel_natural.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3012,13 +3156,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel natural diseño dólar — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 200,
+      "precio_mxn": 330.0,
       "costo_interno": 110,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-natural-diseno-dolar.jpg"
+        "/uploads/te_otros_papel_natural_diseno_dolar.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3034,13 +3178,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel natural hem — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 160,
+      "precio_mxn": 264.0,
       "costo_interno": 88,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-natural-hem.jpg"
+        "/uploads/te_otros_papel_natural_hem.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3056,13 +3200,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel arroz mecha — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 220,
+      "precio_mxn": 363.0,
       "costo_interno": 121,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-arroz-mecha.jpg"
+        "/uploads/te_otros_papel_arroz_mecha.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3078,13 +3222,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor energy drink — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-energy-drink.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_e.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3100,13 +3244,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Box de carbón para Shisha caja con 10 tubos — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 55,
+      "precio_mxn": 90.75,
       "costo_interno": 30.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-box-de-carbon-para-shisha-caja-con-10-tubos.jpg"
+        "/uploads/te_otros_box_de_carbon_para_shisha_caja_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3122,13 +3266,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel Hornet sabor zero — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-hornet-sabor-zero.jpg"
+        "/uploads/te_otros_papel_hornet_sabor_zero.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3144,13 +3288,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor frambuesa — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-frambuesa.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_frambues.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3166,13 +3310,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor mandarina — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-mandarina.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_mandarin.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3188,13 +3332,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor Champagne — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-champagne.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3210,13 +3354,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor refresco de cola — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-refresco-de-cola.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_refresco.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3232,13 +3376,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor Martini de manzana — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-martini-de-manzana.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_martini_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3254,13 +3398,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor ron de Jamaica — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-ron-de-jamaica.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_r.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3276,13 +3420,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor whisky con coca — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-whisky-con-coca.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_whisky_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3298,13 +3442,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor mango papaya — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-mango-papaya.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_m.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3320,13 +3464,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor vainilla — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-vainilla.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_vainilla.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3342,13 +3486,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor uva y menta — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-uva-y-menta.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_u.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3364,13 +3508,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor uva y kiwi — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-uva-y-kiwi.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_u.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3386,13 +3530,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor fresas con crema — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-fresas-con-crema.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_fresas_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3408,13 +3552,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor choco-coco — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 170,
+      "precio_mxn": 280.5,
       "costo_interno": 93.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-choco-coco.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_choco_co.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3430,13 +3574,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor uva — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-uva.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_uva.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3452,13 +3596,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor coco — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-coco.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3474,13 +3618,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor cereza — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-cereza.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_cereza.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3496,13 +3640,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor melón — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-melon.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_melon.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3518,13 +3662,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor mango mello — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-mango-mello.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_mango_me.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3540,13 +3684,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor café — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-cafe.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_c.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3562,13 +3706,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor naranja — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-naranja.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_naranja.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3584,13 +3728,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor blueberry — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-blueberry.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_blueberr.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3606,13 +3750,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor manzana verde — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-manzana-verde.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_manzana_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3628,13 +3772,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor plátano — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-platano.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_platano.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3650,13 +3794,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor chocolate — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-chocolate.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_chocolat.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3672,13 +3816,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar sabor miel — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-sabor-miel.jpg"
+        "/uploads/te_otros_papel_para_fumar_sabor_miel.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3694,13 +3838,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor limón — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-limon.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_l.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3716,13 +3860,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar Hornet sabor piña — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 155,
+      "precio_mxn": 255.75,
       "costo_interno": 85.25,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-hornet-sabor-pina.jpg"
+        "/uploads/te_otros_papel_para_fumar_hornet_sabor_p.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3738,13 +3882,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Moledora Hornet figura de revolver — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 56,
+      "precio_mxn": 92.4,
       "costo_interno": 30.8,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-moledora-hornet-figura-de-revolver.jpg"
+        "/uploads/te_otros_moledora_hornet_figura_de_revol.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3760,13 +3904,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Rollo de papel natural hemp orgánico King size — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 160,
+      "precio_mxn": 264.0,
       "costo_interno": 88,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-rollo-de-papel-natural-hemp-organico-king-size.jpg"
+        "/uploads/te_otros_rollo_de_papel_natural_hemp_org.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3782,13 +3926,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Rollo de papel de arroz sabor natural — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 70,
+      "precio_mxn": 115.5,
       "costo_interno": 38.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-rollo-de-papel-de-arroz-sabor-natural.jpg"
+        "/uploads/te_otros_rollo_de_papel_de_arroz_sabor_n.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3804,13 +3948,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Filtro procesado para fumar sabor natural — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 130,
+      "precio_mxn": 214.5,
       "costo_interno": 71.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-filtro-procesado-para-fumar-sabor-natural.jpg"
+        "/uploads/te_otros_filtro_procesado_para_fumar_sab.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3826,13 +3970,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel natural King size Slim — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 150,
+      "precio_mxn": 247.5,
       "costo_interno": 82.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-natural-king-size-slim.jpg"
+        "/uploads/te_otros_papel_natural_king_size_slim.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3848,13 +3992,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Cono papel cáñamo natural King size — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 150,
+      "precio_mxn": 247.5,
       "costo_interno": 82.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-cono-papel-canamo-natural-king-size.jpg"
+        "/uploads/te_otros_cono_papel_canamo_natural_king_.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3870,13 +4014,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Papel para fumar en rollo sabor natural — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 70,
+      "precio_mxn": 115.5,
       "costo_interno": 38.5,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-papel-para-fumar-en-rollo-sabor-natural.jpg"
+        "/uploads/te_otros_papel_para_fumar_en_rollo_sabor.webp"
       ],
       "tags": [
         "Tiara Express",
@@ -3892,13 +4036,13 @@
       "categoria": "Otros Productos",
       "subcategoria": "Tiara Express",
       "descripcion": "Grinder tornasol — Producto oficial importado por Tiara Express. Disponible bajo esquema de pre-venta exclusiva con despacho a partir del 1 de Diciembre.",
-      "precio_mxn": 120,
+      "precio_mxn": 198.0,
       "costo_interno": 66,
       "stock_disponible": 15,
       "disponibilidad": "PRE-VENTA",
       "fecha_llegada": "1 de Diciembre",
       "imagenes": [
-        "/assets/productos/tiaraexpress/te-otros-grinder-tornasol.png"
+        "/uploads/te_otros_grinder_tornasol.webp"
       ],
       "tags": [
         "Tiara Express",
