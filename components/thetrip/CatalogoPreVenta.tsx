@@ -3,8 +3,6 @@
 import { useMemo, useState } from "react";
 import inventario from "@/data/inventario_thetrip.json";
 import BotonCompraProducto from "@/components/thetrip/BotonCompraProducto";
-import { faseComercial } from "@/lib/ctaProducto";
-import { useCart, type DisponibilidadCarrito } from "@/context/CartContext";
 
 const FALLBACK = "/assets/productos/watermarked_img_4565543973787279676.jpg";
 
@@ -85,9 +83,6 @@ function Tarjeta({ producto }: { producto: Producto }) {
     tags?: string[];
     proveedor?: string;
   };
-  const fase = faseComercial(extra.fase_comercial || producto.disponibilidad);
-  const { addItem } = useCart();
-
   return (
     <article className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3 text-zinc-100">
       <FotoProducto key={foto} src={foto} alt={producto.nombre} />
@@ -108,26 +103,10 @@ function Tarjeta({ producto }: { producto: Producto }) {
         subcategoria={producto.subcategoria}
         proveedor={extra.proveedor}
         tags={extra.tags}
-        mercadolibre_url={extra.mercadolibre_url}
-        link_cobro={extra.link_cobro}
+        precio={producto.precio_mxn}
+        imagen_url={foto}
         className="mt-3"
       />
-      <button
-        type="button"
-        onClick={() =>
-          addItem({
-            sku: producto.sku,
-            nombre: producto.nombre,
-            precio: Number(producto.precio_mxn || 0),
-            imagen_url: foto,
-            disponibilidad: (fase || "PREVENTA") as DisponibilidadCarrito,
-            mercadolibre_url: extra.mercadolibre_url || "",
-          })
-        }
-        className="mt-2 flex min-h-12 w-full items-center justify-center rounded-xl border border-zinc-700 text-sm font-bold text-white"
-      >
-        Agregar al Carrito
-      </button>
     </article>
   );
 }

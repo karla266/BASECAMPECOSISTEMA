@@ -1,6 +1,3 @@
-export const TIENDA_MERCADOLIBRE =
-  process.env.NEXT_PUBLIC_ML_TIENDA_URL || "https://www.mercadolibre.com.mx/pagina/thetripsmokeshop";
-
 const CARPETAS = ["otros productos", "otros smoke shop"];
 const PROTEGIDAS = ["bong", "pipa", "cristaler", "sabana", "seda", "filtro", "cono", "outdoor", "montana", "camping", "blunt"];
 
@@ -18,6 +15,10 @@ export type ProductoCta = {
   mercadolibre_url?: string | null;
   link_cobro?: string | null;
   cantidad?: number;
+  precio?: number | null;
+  costo?: number | null;
+  fase?: string | null;
+  disponibilidad?: string | null;
 };
 
 export function normalizarCarpeta(valor?: string | null): string {
@@ -56,25 +57,19 @@ export function faseComercial(valor?: string | null): FaseComercial | null {
   return null;
 }
 
-function enlaceHttps(valor?: string | null): string {
-  const texto = (valor || "").trim();
-  return texto.startsWith("https://") ? texto : "";
+function dinero(valor: number): number {
+  return Math.round((valor + Number.EPSILON) * 100) / 100;
 }
 
-export function urlCobroMercadoLibre(producto: ProductoCta): string {
-  const directa = enlaceHttps(producto.mercadolibre_url);
-  if (directa) return directa;
-  const cobro = enlaceHttps(producto.link_cobro);
-  if (cobro) return cobro;
-  const sku = producto.sku || "";
-  try {
-    const url = new URL(TIENDA_MERCADOLIBRE);
-    url.searchParams.set("sku", sku);
-    if ((producto.cantidad || 1) > 1) url.searchParams.set("cantidad", String(producto.cantidad));
-    return url.toString();
-  } catch {
-    return `https://www.mercadolibre.com.mx/pagina/thetripsmokeshop?sku=${encodeURIComponent(sku)}`;
+export function precioActivo(producto: ProductoCta): number {
+  const lista = Number(producto.precio);
+  const costo = Number(producto.costo);
+  const fase = faseComercial(producto.fase || producto.disponibilidad);
+  if (admiteReglaPrecio(producto) && Number.isFinite(costo) && costo > 0) {
+    if (fase === "PREVENTA") return dinero(costo * 2);
+    if (fase === "EN_STOCK") return dinero(costo * 3);
   }
+  return Number.isFinite(lista) && lista > 0 ? dinero(lista) : 0;
 }
 
-export const BADGE_PREVENTA = "⏳ PREVENTA • Precio Especial 2x (Sube a 3x al llegar a tienda)";
+export const BADGE_PREVENTA = "⏳ PREVENTA • Aparta con precio especial (Envío diferido al arribar)";

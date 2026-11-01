@@ -70,8 +70,8 @@ export default function PaginaProducto({ params }: { params: Params }) {
             categoria={producto.categoria}
             departamento={producto.departamento}
             subcategoria={producto.subcategoria}
-            mercadolibre_url={producto.mercadolibre_url}
-            link_cobro={producto.link_cobro}
+            precio={precio}
+            imagen_url={foto}
             className="mt-6"
           />
           <a href="/thetrip" className="mt-3 inline-flex min-h-12 items-center text-sm font-semibold text-amber-300">

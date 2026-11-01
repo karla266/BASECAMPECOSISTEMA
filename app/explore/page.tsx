@@ -7,8 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default function ExplorePage() {
-  const linkMercadoLibre = "https://www.mercadolibre.com.mx/certificado-vuelo-parapente-fortin-basecamp/up/MLMU5683656443?pdp_filters=item_id:MLM3722124139";
-
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100 px-4 py-12 md:py-16">
       <section className="bg-neutral-900 border border-amber-500/30 rounded-3xl p-6 md:p-10 my-12 text-white max-w-4xl mx-auto">
@@ -44,7 +42,7 @@ export default function ExplorePage() {
               </a>
             </div>
 
-            {/* Mercado Libre */}
+            {/* Certificado en el sitio */}
             <div className="bg-neutral-950 border border-neutral-800 hover:border-yellow-400/70 rounded-2xl p-6 flex flex-col justify-between shadow-lg transition duration-300">
               <div>
                 <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-wider bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20">
@@ -52,16 +50,14 @@ export default function ExplorePage() {
                 </span>
                 <h3 className="text-2xl font-black text-white mt-3 mb-1">$2,800 MXN</h3>
                 <p className="text-neutral-400 text-xs mb-6 leading-relaxed">
-                  Paga a plazos. Te enviamos a domicilio el <strong>Certificado de Vuelo Físico</strong> foliado en empaque de lujo para regalar.
+                  Aparta el certificado de vuelo en el sitio. El equipo confirma el folio y la entrega del empaque de regalo.
                 </p>
               </div>
               <a
-                href={linkMercadoLibre}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/reservar"
                 className="w-full text-center bg-yellow-400 hover:bg-yellow-300 text-neutral-950 font-extrabold py-3 px-4 rounded-xl text-sm transition"
               >
-                Comprar Certificado Físico
+                Apartar certificado en el sitio
               </a>
             </div>
           </div>
@@ -87,13 +83,13 @@ export default function ExplorePage() {
             </a>
           </div>
 
-          {/* Canje de Folio Mercado Libre */}
+          {/* Canje de folio */}
           <div className="bg-neutral-950/80 border border-neutral-800 rounded-2xl p-6 text-center shadow-inner">
             <h4 className="text-white font-bold text-lg mb-2">
               🎟️ ¿Recibiste un Certificado de Regalo?
             </h4>
             <p className="text-neutral-400 text-xs mb-5 max-w-lg mx-auto">
-              Si compraste en Mercado Libre o te regalaron un Certificado Físico, ingresa tu número de folio para elegir fecha sin volver a pagar:
+              Si ya tienes un certificado de regalo, ingresa tu número de folio para elegir fecha sin volver a pagar:
             </p>
             <form action="/calendario" method="GET" className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input 

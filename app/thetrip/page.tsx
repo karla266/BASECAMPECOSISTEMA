@@ -1,13 +1,11 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
 import BannerDropCountdown from '@/components/thetrip/BannerDropCountdown'
 import BluntWrapSelector from '@/components/thetrip/BluntWrapSelector'
 import CatalogoPreVenta from '@/components/thetrip/CatalogoPreVenta'
 import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
-import { faseComercial } from '@/lib/ctaProducto'
-import { useCart } from '@/context/CartContext'
 
 interface ProductoSmoke {
   id: number
@@ -23,6 +21,9 @@ interface ProductoSmoke {
   tipo_disponibilidad?: 'stock_fisico' | 'sobre_pedido' | string
   fase_comercial?: string
   mercadolibre_url?: string
+  costo?: number
+  departamento?: string
+  subcategoria?: string
 }
 
 type VistaCatalogo = 'stock_fisico' | 'sobre_pedido'
@@ -46,10 +47,6 @@ function textoRestante(iso: string, ahora = Date.now()): string {
   return `${dias}d ${horas}h ${minutos}m ${segundos}s`
 }
 
-interface CartLine extends ProductoSmoke {
-  quantity: number
-}
-
 const CATEGORIAS = ['TODOS', 'CRISTALERIA', 'ROLADO', 'GRINDERS', 'VAPORIZADORES', 'ACCESORIOS']
 
 export default function TheTripSmokeShop() {
@@ -62,17 +59,6 @@ export default function TheTripSmokeShop() {
   const [faltanteCents, setFaltanteCents] = useState(250000)
   const [reloj, setReloj] = useState(Date.now())
   const [query, setQuery] = useState('')
-  const [cart, setCart] = useState<CartLine[]>([])
-  const { addItem } = useCart()
-  const [customerName, setCustomerName] = useState('')
-  const [customerPhone, setCustomerPhone] = useState('')
-  const [customerEmail, setCustomerEmail] = useState('')
-  const [deliveryType, setDeliveryType] = useState<'pickup' | 'local_delivery'>('pickup')
-  const [notes, setNotes] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [mensaje, setMensaje] = useState('')
-
-  const cartTotal = useMemo(() => cart.reduce((sum, line) => sum + Number(line.precio) * line.quantity, 0), [cart])
 
   useEffect(() => {
     const verificado = localStorage.getItem('thetrip_adult_verified')
@@ -139,125 +125,6 @@ export default function TheTripSmokeShop() {
     const timer = window.setInterval(() => setReloj(Date.now()), 1000)
     return () => window.clearInterval(timer)
   }, [mayorDeEdad, vista])
-
-  const registrarAnticipo = async (producto: ProductoSmoke) => {
-    if (!customerPhone.trim()) {
-      setMensaje('Escribe el teléfono en el pedido para registrar el anticipo.')
-      return
-    }
-    setLoading(true)
-    setMensaje('')
-    try {
-      const response = await fetch(posApiUrl('/api/v1/factory/preorders'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customer_phone: customerPhone.trim(),
-          sku: producto.sku,
-        }),
-      })
-      const data = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        throw new Error(data.detail || 'No se pudo registrar el anticipo.')
-      }
-      setMensaje(
-        `Anticipo ${data.orden_id}: pagado $${pesosDesdeCents(data.anticipo_pagado_cents)} MXN, saldo $${pesosDesdeCents(data.saldo_pendiente_cents)} MXN.`,
-      )
-      await cargarCorte()
-    } catch (error) {
-      const detail = error instanceof Error ? error.message : 'No se pudo registrar el anticipo.'
-      setMensaje(detail)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const addToCart = (producto: ProductoSmoke) => {
-    setCart((prev) => {
-      const found = prev.find((item) => item.sku === producto.sku)
-      if (found) {
-        return prev.map((item) => (item.sku === producto.sku ? { ...item, quantity: item.quantity + 1 } : item))
-      }
-      return [...prev, { ...producto, quantity: 1 }]
-    })
-  }
-
-  const updateQty = (sku: string, delta: number) => {
-    setCart((prev) =>
-      prev
-        .map((item) => (item.sku === sku ? { ...item, quantity: Math.max(0, item.quantity + delta) } : item))
-        .filter((item) => item.quantity > 0),
-    )
-  }
-
-  const finalizarCompra = async () => {
-    if (!cart.length) {
-      setMensaje('Agrega productos al carrito para continuar.')
-      return
-    }
-    if (!customerName.trim() || !customerPhone.trim()) {
-      setMensaje('Nombre y teléfono son obligatorios para procesar el pedido.')
-      return
-    }
-
-    setLoading(true)
-    setMensaje('')
-    try {
-      await fetch(posApiUrl('/api/v1/web/users/register'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre: customerName.trim(),
-          email: customerEmail.trim() || `${customerPhone.replace(/\D/g, '')}@thetrip.local`,
-          telefono: customerPhone.trim(),
-          rfc: '',
-          tenant_id: 'basecamp_420',
-        }),
-      })
-
-      const items = cart.map((item) => ({
-        sku: item.sku,
-        title: item.nombre,
-        quantity: item.quantity,
-        price: Number(item.precio),
-        category: 'parafernalia',
-      }))
-
-      const orderResponse = await fetch(posApiUrl('/api/v1/thetrip/orders'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customer_name: customerName.trim(),
-          customer_phone: customerPhone.trim(),
-          customer_email: customerEmail.trim(),
-          delivery_type: deliveryType,
-          notes: notes.trim(),
-          items,
-        }),
-      })
-      if (!orderResponse.ok) {
-        const errorData = await orderResponse.json().catch(() => ({}))
-        throw new Error(errorData.detail || 'No se pudo registrar el pedido para preparación.')
-      }
-
-      const mpResponse = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
-      })
-      const mpData = await mpResponse.json()
-      if (!mpResponse.ok || !mpData.init_point) {
-        throw new Error(mpData.error || 'No se pudo iniciar checkout de Mercado Pago.')
-      }
-
-      window.location.href = mpData.init_point
-    } catch (error) {
-      const detail = error instanceof Error ? error.message : 'No se pudo completar la compra.'
-      setMensaje(detail)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   if (mayorDeEdad === null) {
     return (
@@ -407,68 +274,18 @@ export default function TheTripSmokeShop() {
                       {vista === 'sobre_pedido' ? 'Siguiente corte semanal' : `${item.stock} en tienda`}
                     </span>
                   </div>
-                  {faseComercial(item.fase_comercial) === 'PREVENTA' ? (
-                    <>
-                      <BotonCompraProducto
-                        nombre={item.nombre}
-                        sku={item.sku}
-                        fase={item.fase_comercial}
-                        categoria={item.categoria}
-                        mercadolibre_url={item.mercadolibre_url}
-                        link_cobro={item.link_cobro_mp}
-                        className="mt-0"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => addItem({
-                          sku: item.sku,
-                          nombre: item.nombre,
-                          precio: Number(item.precio) || 0,
-                          imagen_url: item.imagen_url || '',
-                          disponibilidad: 'PREVENTA',
-                          mercadolibre_url: item.mercadolibre_url || item.link_cobro_mp || '',
-                        })}
-                        className="w-full block text-center py-2.5 border border-zinc-600 text-white font-bold text-xs rounded-xl"
-                      >
-                        Agregar al Carrito
-                      </button>
-                    </>
-                  ) : faseComercial(item.fase_comercial) === 'EN_STOCK' ? (
-                    <>
-                      <a href="/thetrip#checkout" className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl">
-                        Comprar / Retiro en tienda
-                      </a>
-                      <button
-                        type="button"
-                        onClick={() => addItem({
-                          sku: item.sku,
-                          nombre: item.nombre,
-                          precio: Number(item.precio) || 0,
-                          imagen_url: item.imagen_url || '',
-                          disponibilidad: 'EN_STOCK',
-                          mercadolibre_url: item.mercadolibre_url || '',
-                        })}
-                        className="w-full block text-center py-2.5 border border-zinc-600 text-white font-bold text-xs rounded-xl"
-                      >
-                        Agregar al Carrito
-                      </button>
-                    </>
-                  ) : vista === 'sobre_pedido' ? (
-                    <button
-                      onClick={() => registrarAnticipo(item)}
-                      disabled={loading}
-                      className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-60 text-black font-bold text-xs rounded-xl transition uppercase tracking-wider"
-                    >
-                      Registrar anticipo
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => addToCart(item)}
-                      className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl transition uppercase tracking-wider"
-                    >
-                      Agregar al carrito
-                    </button>
-                  )}
+                  <BotonCompraProducto
+                    nombre={item.nombre}
+                    sku={item.sku}
+                    fase={item.fase_comercial || (vista === 'sobre_pedido' ? 'PREVENTA' : 'EN_STOCK')}
+                    categoria={item.categoria}
+                    departamento={item.departamento}
+                    subcategoria={item.subcategoria}
+                    precio={Number(item.precio) || 0}
+                    costo={item.costo}
+                    imagen_url={item.imagen_url}
+                    className="mt-0"
+                  />
                 </div>
               </div>
             ))}
@@ -476,97 +293,17 @@ export default function TheTripSmokeShop() {
         )}
       </section>
 
-      {vista === 'stock_fisico' ? (
-      <section id="checkout" className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-4">
-          <h2 className="text-lg font-semibold">Checkout y preparación de pedido</h2>
-          <div className="space-y-2 text-sm">
-            {cart.length === 0 ? (
-              <p className="text-zinc-500">Tu carrito está vacío.</p>
-            ) : (
-              cart.map((line) => (
-                <div key={line.sku} className="flex items-center justify-between gap-3">
-                  <div>
-                    <span className="font-semibold">{line.nombre}</span>
-                    <span className="ml-2 text-zinc-400 text-xs">{line.sku}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => updateQty(line.sku, -1)} className="rounded bg-zinc-800 px-2 py-1 text-xs">
-                      -
-                    </button>
-                    <span className="font-mono">{line.quantity}</span>
-                    <button onClick={() => updateQty(line.sku, 1)} className="rounded bg-zinc-800 px-2 py-1 text-xs">
-                      +
-                    </button>
-                    <span className="font-mono">${(line.quantity * Number(line.precio)).toFixed(2)}</span>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-          <div className="text-right font-bold text-amber-400">Total: ${cartTotal.toFixed(2)} MXN</div>
-
-          <div className="grid gap-3 md:grid-cols-2">
-            <input
-              value={customerName}
-              onChange={(event) => setCustomerName(event.target.value)}
-              placeholder="Nombre completo"
-              className="rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
-            />
-            <input
-              value={customerPhone}
-              onChange={(event) => setCustomerPhone(event.target.value)}
-              placeholder="Teléfono"
-              className="rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
-            />
-            <input
-              value={customerEmail}
-              onChange={(event) => setCustomerEmail(event.target.value)}
-              placeholder="Correo (opcional)"
-              className="rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm md:col-span-2"
-            />
-            <select
-              value={deliveryType}
-              onChange={(event) => setDeliveryType(event.target.value as 'pickup' | 'local_delivery')}
-              className="rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
-            >
-              <option value="pickup">Recolección en tienda</option>
-              <option value="local_delivery">Envío local discreto</option>
-            </select>
-            <input
-              value={notes}
-              onChange={(event) => setNotes(event.target.value)}
-              placeholder="Notas de preparación o envío"
-              className="rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
-            />
-          </div>
-          <button
-            disabled={loading}
-            onClick={finalizarCompra}
-            className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-zinc-950 font-bold rounded-xl text-xs uppercase tracking-wider transition"
-          >
-            {loading ? 'Procesando...' : 'Pagar con Mercado Pago'}
-          </button>
-          {mensaje ? <p className="text-sm text-red-300">{mensaje}</p> : null}
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-3">
+          <h2 className="text-lg font-semibold">Checkout interno</h2>
+          <p className="text-sm text-zinc-400">
+            Agrega el producto al carrito y termina la compra en el checkout de Basecamp. La pre-venta se aparta aquí y el envío sale cuando llega a tienda.
+          </p>
+          <a href="/checkout" className="flex min-h-12 items-center justify-center rounded-2xl bg-amber-500 text-sm font-black text-zinc-950">
+            Proceder al Pago
+          </a>
         </div>
       </section>
-      ) : (
-        <section className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-3">
-            <h2 className="text-lg font-semibold">Anticipo de sobre pedido</h2>
-            <p className="text-sm text-zinc-400">
-              El anticipo no pasa por la caja del mostrador. Deja el teléfono y usa el botón de cada producto. El saldo se liquida al corte de miércoles o domingo.
-            </p>
-            <input
-              value={customerPhone}
-              onChange={(event) => setCustomerPhone(event.target.value)}
-              placeholder="Teléfono para el anticipo"
-              className="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm"
-            />
-            {mensaje ? <p className="text-sm text-amber-200">{mensaje}</p> : null}
-          </div>
-        </section>
-      )}
     </div>
   )
 }

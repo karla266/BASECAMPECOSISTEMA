@@ -1,9 +1,7 @@
+import FormularioAliados from "@/components/aliados/FormularioAliados";
 import NavegacionSitio from "@/components/sitio/NavegacionSitio";
 import PieSitio from "@/components/sitio/PieSitio";
 import aliados from "@/data/aliados.json";
-import { enlaceWhatsapp } from "@/lib/experiencias";
-
-const whatsapp = enlaceWhatsapp(aliados.mensajeWhatsapp);
 
 export const metadata = {
   title: aliados.seo.titulo,
@@ -50,9 +48,7 @@ export default function AliadosPage() {
             </li>
           ))}
         </ol>
-        <a href={whatsapp} className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-emerald-500 px-4 text-center text-base font-black text-zinc-950">
-          Probar 30 días por WhatsApp
-        </a>
+        <FormularioAliados />
       </div>
       <div className="mt-12">
         <PieSitio />

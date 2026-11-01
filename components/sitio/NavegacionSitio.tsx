@@ -7,19 +7,17 @@ import { useCart } from "@/context/CartContext";
 
 const ENLACES = [
   { href: "/", label: "Inicio" },
-  { href: "/ecosistema", label: "Ecosistema" },
+  { href: "/thetrip", label: "The Trip Smoke Shop" },
+  { href: "/adventure", label: "Vuelos y Parapente" },
+  { href: "/reservar", label: "Reservaciones" },
+  { href: "/pilotos/alta", label: "Registro de Pilotos" },
+  { href: "/aliados", label: "Alianzas / Empresas" },
+  { href: "/amparos", label: "Amparo Cannábico" },
   { href: "/experiencia-completa", label: "Día Cumbre" },
-  { href: "/anturios", label: "Restaurante Campestre Anturios" },
-  { href: "/el-paraiso", label: "Palapa El Paraíso" },
-  { href: "/aliados", label: "Aliados" },
-  { href: "/parapente", label: "Vuelos" },
-  { href: "/reservar", label: "Reservar" },
-  { href: "/ordenar", label: "Ordenar" },
+  { href: "/ecosistema", label: "Ecosistema" },
   { href: "/explore", label: "Cursos" },
-  { href: "/thetrip", label: "The Trip" },
-  { href: "/blog", label: "Blog" },
   { href: "/renta", label: "Renta" },
-  { href: "/#contacto", label: "Local" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function NavegacionSitio() {

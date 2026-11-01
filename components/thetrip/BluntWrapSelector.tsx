@@ -179,6 +179,8 @@ export default function BluntWrapSelector() {
             sku={elegido.sku}
             fase={elegido.disponibilidad}
             categoria={elegido.categoria}
+            precio={elegido.precio_mxn}
+            imagen_url={GALERIA[foto]?.src}
             cantidad={cantidad}
           />
         ) : (

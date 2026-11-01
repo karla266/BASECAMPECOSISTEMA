@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import path from "path";
+import FormularioAliados from "@/components/aliados/FormularioAliados";
 import PrintConvenioButton from "./PrintConvenioButton";
 
 export const runtime = "nodejs";
@@ -43,6 +44,9 @@ export default async function ConvenioPage() {
 
   return (
     <main className="min-h-screen bg-neutral-950 px-4 py-10 text-neutral-100 print:bg-white print:text-black">
+      <div className="mx-auto mb-8 max-w-4xl print:hidden">
+        <FormularioAliados />
+      </div>
       <PrintConvenioButton />
       <article className="mx-auto max-w-4xl rounded-2xl border border-neutral-800 bg-neutral-900 p-8 shadow-2xl print:rounded-none print:border-black print:bg-white print:shadow-none">
         {nodes.map((node, idx) => {
