@@ -12,13 +12,25 @@ CRITICAL_FILES = [
 ]
 SCAN_DIRS = ["app/thetrip", "components/thetrip", "components/chat", "app/checkout"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CANONICAL_CONFIG = "next.config.js"
+
+
+def retirar_configs_residuales():
+    for nombre in os.listdir(ROOT):
+        if nombre == CANONICAL_CONFIG or not nombre.endswith("next.config.js"):
+            continue
+        ruta = os.path.join(ROOT, nombre)
+        if os.path.isfile(ruta):
+            os.remove(ruta)
+            print(f"[BOT ANALIZADOR] Eliminado config residual: {nombre}")
 
 
 def check_file_integrity():
     errors = 0
     print("[BOT ANALIZADOR] Iniciando auditoria de integridad y contexto...")
-    config = os.path.join(ROOT, "next.config.js")
-    if not os.path.exists(config):
+    retirar_configs_residuales()
+    config = os.path.join(ROOT, CANONICAL_CONFIG)
+    if not os.path.isfile(config):
         print("ERROR: Falta next.config.js")
         errors += 1
     else:
