@@ -2,6 +2,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
+import BannerDropCountdown from '@/components/thetrip/BannerDropCountdown'
+import BluntWrapSelector from '@/components/thetrip/BluntWrapSelector'
+import CatalogoPreVenta from '@/components/thetrip/CatalogoPreVenta'
 
 interface ProductoSmoke {
   id: number
@@ -293,6 +296,7 @@ export default function TheTripSmokeShop() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-amber-500 selection:text-black">
+      <BannerDropCountdown />
       <section className="py-16 px-6 border-b border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-bold tracking-widest uppercase rounded-full">
@@ -306,6 +310,9 @@ export default function TheTripSmokeShop() {
           </p>
         </div>
       </section>
+
+      <BluntWrapSelector />
+      <CatalogoPreVenta />
 
       <section className="max-w-6xl mx-auto px-6 py-8 space-y-4">
         <div className="flex flex-wrap gap-2 justify-center">

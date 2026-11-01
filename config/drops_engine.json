@@ -1,0 +1,77 @@
+{
+  "zona": "America/Mexico_City",
+  "anticipo_minimo_porcentaje": 100,
+  "descuento_preventa_porcentaje": 15,
+  "drop_activo": {
+    "id": "DROP-2026-12A",
+    "nombre": "Ola Diciembre: Tiara Express & Importaciones",
+    "fecha_apertura": "2026-11-15T00:00:00",
+    "fecha_cierre_preventa": "2026-11-28T23:59:59",
+    "fecha_entrega_oficial": "1 de Diciembre",
+    "fecha_entrega_iso": "2026-12-01",
+    "categoria_hero": "Otros Productos",
+    "anticipo_minimo_porcentaje": 100,
+    "descuento_preventa_porcentaje": 15,
+    "mensaje_whatsapp_tag": "TIARA_DIC1",
+    "activo": true
+  },
+  "calendario": [
+    {
+      "id": "DROP-2026-11A",
+      "nombre": "Blunt Wrap 2X Double Platinum",
+      "fecha_apertura": "2026-10-22T00:00:00",
+      "fecha_cierre_preventa": "2026-11-04T23:59:59",
+      "fecha_entrega_oficial": "Jueves",
+      "fecha_entrega_iso": "2026-11-05",
+      "categoria_hero": "Blunts y Enrolado",
+      "mensaje_whatsapp_tag": "BLUNT_JUEVES",
+      "activo": true
+    },
+    {
+      "id": "DROP-2026-12A",
+      "nombre": "Ola Diciembre: Tiara Express & Importaciones",
+      "fecha_apertura": "2026-11-15T00:00:00",
+      "fecha_cierre_preventa": "2026-11-28T23:59:59",
+      "fecha_entrega_oficial": "1 de Diciembre",
+      "fecha_entrega_iso": "2026-12-01",
+      "categoria_hero": "Otros Productos",
+      "anticipo_minimo_porcentaje": 100,
+      "descuento_preventa_porcentaje": 15,
+      "mensaje_whatsapp_tag": "TIARA_DIC1",
+      "activo": true
+    },
+    {
+      "id": "DROP-2026-12B",
+      "nombre": "Cristalería Navideña",
+      "fecha_apertura": "2026-12-03T00:00:00",
+      "fecha_cierre_preventa": "2026-12-13T23:59:59",
+      "fecha_entrega_oficial": "15 de Diciembre",
+      "fecha_entrega_iso": "2026-12-15",
+      "categoria_hero": "Cristalería",
+      "mensaje_whatsapp_tag": "CRISTAL_NAVIDAD",
+      "activo": true
+    },
+    {
+      "id": "DROP-2027-01A",
+      "nombre": "Vaporizadores",
+      "fecha_apertura": "2026-12-18T00:00:00",
+      "fecha_cierre_preventa": "2026-12-30T23:59:59",
+      "fecha_entrega_oficial": "1 de Enero",
+      "fecha_entrega_iso": "2027-01-01",
+      "categoria_hero": "Vaporizadores",
+      "mensaje_whatsapp_tag": "VAPES_ENE1",
+      "activo": true
+    },
+    {
+      "id": "DROP-2027-01B",
+      "nombre": "Kits de Inicio",
+      "fecha_apertura": "2027-01-03T00:00:00",
+      "fecha_cierre_preventa": "2027-01-13T23:59:59",
+      "fecha_entrega_oficial": "15 de Enero",
+      "fecha_entrega_iso": "2027-01-15",
+      "categoria_hero": "Kits",
+      "mensaje_whatsapp_tag": "KITS_ENE15",
+      "activo": true
+    }
+  ]
+}
