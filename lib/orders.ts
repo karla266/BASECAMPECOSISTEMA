@@ -9,6 +9,7 @@ export type CommercialProduct =
   | "canje_folio_mercado_libre"
   | "curso_appi_anticipo"
   | "curso_appi_mensualidad"
+  | "pedido_palapa"
   | "otro";
 
 export interface OrderRecord {

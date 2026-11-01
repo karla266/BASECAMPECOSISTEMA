@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { confirmarPagoPalapa } from "@/lib/palapa";
 import {
   classifyCommercialProduct,
   upsertOrder,
@@ -16,6 +17,7 @@ type MercadoPagoPayment = {
   date_created?: string;
   external_reference?: string;
   description?: string;
+  metadata?: { product_type?: string };
   payer?: {
     first_name?: string;
     last_name?: string;
@@ -98,6 +100,10 @@ function inferProductFromPayment(payment: MercadoPagoPayment): {
   product: CommercialProduct;
   label: string;
 } {
+  const referencia = payment.external_reference || "";
+  if (referencia.startsWith("PALAPA-") || payment.metadata?.product_type === "pedido_palapa") {
+    return { product: "pedido_palapa", label: "Pedido de palapa" };
+  }
   const amount = typeof payment.transaction_amount === "number" ? payment.transaction_amount : 0;
   const fromAmount = classifyCommercialProduct(amount);
   if (fromAmount.product !== "otro") return fromAmount;
@@ -164,6 +170,10 @@ export async function POST(request: Request) {
     const status = normalizeStatus(payment.status);
     const amount = safeNumber(payment.transaction_amount) ?? 0;
     const reservationDate = payment.additional_info?.items?.[0]?.category_id || undefined;
+
+    if (payment.status === "approved" && String(payment.external_reference || "").startsWith("PALAPA-")) {
+      await confirmarPagoPalapa(String(payment.external_reference), String(payment.id));
+    }
 
     const order = await upsertOrder({
       transactionId: String(payment.id),

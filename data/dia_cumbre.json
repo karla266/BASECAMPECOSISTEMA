@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "titulo": "Día Cumbre | Desayuno, vuelo y aterrizaje | Basecamp 420",
+    "descripcion": "Paquete Día Cumbre de Basecamp 420: Sprinter desde Orizaba, desayuno en Restaurante Anturios, vuelo tándem y banquete de aterrizaje en Palapa El Paraíso."
+  },
+  "titulo": "Día Cumbre",
+  "subtitulo": "De la fondita al despegue y de ahí a la palapa. Un solo día, con hora fija.",
+  "paradas": [
+    {
+      "hora": "08:30",
+      "titulo": "Salida de la Sprinter en Orizaba",
+      "texto": "El grupo aborda en Basecamp 420, Oriente 27 y Norte 10."
+    },
+    {
+      "hora": "09:00",
+      "titulo": "Desayuno tradicional de bienvenida en Restaurante Anturios",
+      "texto": "Picaditas calientes, café de olla con canela, huevos al gusto y pan dulce de horno. Aquí es el check-in de pilotos y pasajeros.",
+      "href": "/anturios"
+    },
+    {
+      "hora": "10:15",
+      "titulo": "Salida hacia el despegue en la montaña",
+      "texto": "Se deja la fondita y se sube al punto de despegue."
+    },
+    {
+      "hora": "10:45 – 12:00",
+      "titulo": "Vuelos tándem con Salvador Lara y pilotos",
+      "texto": "Cada horario del tablero sigue su cupo. Salvador Lara toma el primer lugar.",
+      "href": "/reservar"
+    },
+    {
+      "hora": "12:15",
+      "titulo": "Aterrizaje directo en Palapa El Paraíso",
+      "texto": "Se toca tierra en la palapa. No hay otra parada antes de comer.",
+      "href": "/el-paraiso"
+    },
+    {
+      "hora": "12:30",
+      "titulo": "Banquete de aterrizaje",
+      "texto": "Tacos de birria, consomé y caguamas micheladas. Se pueden pedir antes para que estén listos.",
+      "href": "/ordenar"
+    },
+    {
+      "hora": "15:30",
+      "titulo": "Retorno en Sprinter a Orizaba",
+      "texto": "Regreso al punto de salida, Oriente 27 y Norte 10."
+    }
+  ]
+}

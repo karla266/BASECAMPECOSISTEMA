@@ -1,6 +1,7 @@
 ﻿import { NextResponse } from 'next/server';
 import { getActivePointDeviceId } from '@/lib/point-devices';
 import { descontarStockCatalogoLocal } from '@/lib/catalogo-pos';
+import { cancelarOrdenPalapa, crearOrdenPalapa, preferenciaMercadoPago } from '@/lib/palapa';
 import { crearReserva, esSlotVuelo, quitarReserva } from '@/lib/vuelos';
 
 async function validarYDescontarStock(itemsVendidos: Array<{ sku?: string; barcode?: string; cantidad?: number | string }>) {
@@ -14,6 +15,7 @@ async function validarYDescontarStock(itemsVendidos: Array<{ sku?: string; barco
 
 export async function POST(request: Request) {
   let reservaId = '';
+  let ordenPalapaId = '';
   try {
     const payload = await request.json();
     const {
@@ -25,8 +27,12 @@ export async function POST(request: Request) {
       tipo,
       productLabel,
       items,
+      punto,
+      notas,
       metadata,
     } = payload as {
+      punto?: string;
+      notas?: string;
       nombre?: string;
       telefono?: string;
       fecha?: string;
@@ -34,7 +40,7 @@ export async function POST(request: Request) {
       pesoKg?: number;
       tipo?: string;
       productLabel?: string;
-      items?: Array<{ sku?: string; barcode?: string; cantidad?: number | string; price?: number; title?: string; quantity?: number }>;
+      items?: Array<{ id?: string; sku?: string; barcode?: string; cantidad?: number | string; price?: number; title?: string; quantity?: number }>;
       metadata?: Record<string, unknown>;
     };
     const token = process.env.MP_ACCESS_TOKEN;
@@ -44,6 +50,31 @@ export async function POST(request: Request) {
         { error: 'Falta configurar MP_ACCESS_TOKEN en el archivo .env.local' },
         { status: 500 }
       );
+    }
+
+    if (tipo === 'pedido_palapa') {
+      const alta = await crearOrdenPalapa({
+        nombre: String(nombre || ''),
+        telefono: String(telefono || ''),
+        punto: String(punto || ''),
+        notas: String(notas || ''),
+        items: Array.isArray(items) ? items.map((item) => ({ id: item.sku || item.id, cantidad: Number(item.cantidad ?? item.quantity ?? 0) })) : [],
+      });
+      if ('error' in alta) return NextResponse.json({ error: alta.error }, { status: 400 });
+      ordenPalapaId = alta.orden.id;
+      const sitio = (process.env.APP_URL || 'https://www.basecamp420.com').replace(/\/$/, '');
+      const preferencia = preferenciaMercadoPago(alta.orden, sitio);
+      const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(preferencia),
+      });
+      const data = await mpRes.json();
+      if (!mpRes.ok) {
+        await cancelarOrdenPalapa(ordenPalapaId);
+        return NextResponse.json({ error: data.message || 'Error al comunicarse con Mercado Pago' }, { status: 400 });
+      }
+      return NextResponse.json({ checkoutUrl: data.init_point, ordenId: ordenPalapaId });
     }
 
     const esVuelo = !Array.isArray(items) && Boolean(fecha && horario);
@@ -133,6 +164,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ checkoutUrl: data.init_point });
   } catch (error: unknown) {
     if (reservaId) await quitarReserva(reservaId);
+    if (ordenPalapaId) await cancelarOrdenPalapa(ordenPalapaId);
     const message = error instanceof Error ? error.message : 'Error interno del servidor';
     return NextResponse.json({ error: message }, { status: 500 });
   }

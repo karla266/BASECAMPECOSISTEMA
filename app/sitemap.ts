@@ -5,6 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getTenantSiteBaseUrl();
   const routes = [
     "/",
+    "/ecosistema",
     "/reservar",
     "/calendario",
     "/convenio",
@@ -14,6 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cima-digital",
     "/cimadigital",
     "/parapente",
+    "/anturios",
+    "/el-paraiso",
+    "/experiencia-completa",
+    "/aliados",
+    "/ordenar",
     "/pilotos/alta",
     "/tienda",
     "/blog",

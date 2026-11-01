@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "titulo": "Palapa El Paraíso | Aterrizaje y comida | Basecamp 420",
+    "descripcion": "Zona de aterrizaje de Basecamp 420. Al mediodía se toca tierra en Palapa El Paraíso para tacos de birria, consomé y caguamas micheladas. WhatsApp 2727258748."
+  },
+  "hero": {
+    "imagen": "/paraiso-hero.svg",
+    "kicker": "Basecamp 420 · Veracruz",
+    "titulo": "Palapa El Paraíso",
+    "subtitulo": "Zona de aterrizaje. Al mediodía se toca tierra aquí para comer tacos de birria, consomé y caguamas micheladas."
+  },
+  "mensajeWhatsapp": "Hola Basecamp 420, quiero información y reserva de la experiencia El Paraíso",
+  "punto": {
+    "nombre": "Punto de salida Basecamp 420",
+    "direccion": "Oriente 27 y Norte 10, Orizaba, Veracruz",
+    "latitud": 18.8506,
+    "longitud": -97.1036
+  },
+  "amenidades": [
+    "Cita en el local de Basecamp 420 antes de salir al campo",
+    "Ruta del día confirmada por WhatsApp",
+    "Pausa de sombra y agua durante el recorrido",
+    "Opción de sumar un slot de vuelo tándem el mismo día"
+  ],
+  "acceso": [
+    {
+      "desde": "Orizaba",
+      "texto": "El grupo se junta en Oriente 27 y Norte 10. De ahí se sale hacia Fortín de las Flores. El punto de campo exacto se manda por WhatsApp el día anterior."
+    },
+    {
+      "desde": "Fortín de las Flores",
+      "texto": "Si ya estás en Fortín, la hora de encuentro se acuerda al reservar para no cruzar dos veces la misma carretera."
+    }
+  ],
+  "actividades": [
+    "Aterrizaje del vuelo tándem, directo en la palapa",
+    "Lectura de paisaje del valle de Orizaba",
+    "Día de campo con el grupo de la reserva",
+    "Vuelo en parapente opcional, sujeto a clima y cupo de piloto"
+  ],
+  "equipo": [
+    "Calzado cerrado",
+    "Agua para la caminata",
+    "Gorra y protector solar",
+    "Capa ligera por si baja la temperatura en la tarde"
+  ],
+  "politicas": [
+    "La visita queda confirmada cuando respondes por WhatsApp al 2727258748.",
+    "Si el clima no permite la actividad al aire libre o el vuelo, se reprograma sin inventar un horario nuevo.",
+    "Los vuelos del mismo día usan solo los slots 10:00, 12:00, 14:00 y 16:00.",
+    "En vuelo tándem, el aviso de peso sigue el tablero de reservas: por encima de 95 kg se muestra la advertencia antes de confirmar."
+  ],
+  "visitas": [
+    { "id": "recorrido", "nombre": "Recorrido de día" },
+    { "id": "vuelo", "nombre": "Vuelo en parapente" },
+    { "id": "estancia", "nombre": "Estancia" }
+  ],
+  "faq": [
+    {
+      "pregunta": "¿Dónde nos vemos?",
+      "respuesta": "El punto fijo es Basecamp 420, Oriente 27 y Norte 10, Orizaba. El acceso al campo se confirma por WhatsApp."
+    },
+    {
+      "pregunta": "¿Puedo volar el mismo día?",
+      "respuesta": "Sí, si hay cupo. Elige la visita Vuelo en parapente y continúa en el tablero de reservas con la fecha seleccionada."
+    },
+    {
+      "pregunta": "¿Qué pasa si llueve?",
+      "respuesta": "Se reprograma. No se fuerza caminata ni despegue con clima adverso."
+    },
+    {
+      "pregunta": "¿El precio está cerrado en esta ficha?",
+      "respuesta": "La ficha es de experiencia. El monto se cotiza por WhatsApp según el tipo de visita y el tamaño del grupo."
+    }
+  ]
+}

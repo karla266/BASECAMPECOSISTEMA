@@ -20,6 +20,14 @@ export default function ReservarPage() {
   const [exito, setExito] = useState<{ horario: string; piloto: string } | null>(null);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fecha = params.get("fecha") || "";
+    const horario = params.get("horario") || "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(fecha)) setSelectedDate(fecha);
+    if (SLOT_OPTIONS.includes(horario)) setSelectedSlot(horario);
+  }, []);
+
+  useEffect(() => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate)) return;
     void fetch(`/api/vuelos/disponibilidad?fecha=${selectedDate}`)
       .then((respuesta) => respuesta.json())
@@ -91,6 +99,9 @@ export default function ReservarPage() {
               className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-emerald-500 px-4 text-base font-black text-zinc-950"
             >
               Confirmar vía WhatsApp al 2727258748
+            </a>
+            <a href="/ordenar" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-emerald-400/40 px-4 text-sm font-semibold text-emerald-100">
+              Pide tus micheladas y tacos para cuando toques tierra
             </a>
             <button type="button" onClick={() => setExito(null)} className="mt-3 min-h-12 w-full rounded-xl border border-neutral-700 text-sm">
               Hacer otra reserva

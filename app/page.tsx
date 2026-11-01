@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
+import NavegacionSitio from '@/components/sitio/NavegacionSitio'
 
 interface CursoParapente {
   id: number
@@ -104,20 +105,7 @@ export default function Home() {
         footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; text-align: center; color: #64748b; font-size: 0.9rem; background: #0b0f19; }
       `}} />
       
-      {/* Header */}
-      <header>
-          <h1>Basecamp 420</h1>
-          <div className="nav-links">
-              <a href="#historia">Nuestra Historia</a>
-              <a href="#ecosistema">Ecosistema</a>
-              <a href="/explore">Vuelos y Cursos</a>
-              <a href="/blog">Blog</a>
-              <a href="/movimiento-canabico/podcasts">Podcast</a>
-              <a href="/thetrip">The Trip Smoke Shop</a>
-              {servicios.ofrece_renta_equipo && <a href="/renta">Renta de equipo</a>}
-              <a href="#contacto">Local Físico</a>
-          </div>
-      </header>
+      <NavegacionSitio />
 
       {/* Hero Video */}
       <section className="hero">
@@ -363,6 +351,12 @@ export default function Home() {
             <a href="mailto:contacto@basecamp420.com">contacto@basecamp420.com</a>
           </p>
           <p style={{ marginTop: '10px' }}>
+            <a href="/ecosistema" style={{ color: '#6ee7b7', textDecoration: 'none', fontWeight: 700 }}>Ecosistema</a>
+            {' · '}
+            <a href="/anturios" style={{ color: '#6ee7b7', textDecoration: 'none', fontWeight: 700 }}>Restaurante Campestre Anturios</a>
+            {' · '}
+            <a href="/el-paraiso" style={{ color: '#6ee7b7', textDecoration: 'none', fontWeight: 700 }}>Palapa El Paraíso</a>
+            {' · '}
             <a href="/thetrip" style={{ color: '#fbbf24', textDecoration: 'none', fontWeight: 700 }}>
               The Trip Smoke Shop
             </a>

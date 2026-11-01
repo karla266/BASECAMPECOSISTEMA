@@ -1,0 +1,45 @@
+{
+  "seo": {
+    "titulo": "Restaurante Campestre Anturios | Desayuno montañero | Basecamp 420",
+    "descripcion": "Fondita tradicional donde pilotos y pasajeros desayunan antes de subir a volar. Picaditas, café de olla, huevos al gusto y pan dulce. Check-in matutino de Basecamp 420 en la región de Orizaba y Fortín. WhatsApp 2727258748."
+  },
+  "hero": {
+    "imagen": "/anturios-hero.svg",
+    "kicker": "Check-in matutino · Basecamp 420",
+    "titulo": "Restaurante Campestre Anturios",
+    "subtitulo": "El punto de encuentro y desayuno montañero. Aquí se reúnen pilotos y pasajeros por la mañana, antes de subir a la montaña."
+  },
+  "mensajeWhatsapp": "Hola Basecamp 420, quiero ordenar el desayuno de Anturios antes del vuelo",
+  "mensajeMesa": "Hola Basecamp 420, quiero reservar mesa para un grupo en Restaurante Anturios",
+  "checkin": "Punto de check-in oficial de la mañana para los vuelos de Basecamp 420. La Sprinter sale de Orizaba a las 08:30 y el desayuno en Anturios es a las 09:00.",
+  "menu": [
+    {
+      "id": "picaditas",
+      "nombre": "Orden de 3 picaditas preparadas",
+      "descripcion": "Verde, roja y mole, con queso de hebra y crema.",
+      "detalle": "El plato de la fondita para arrancar el día de vuelo.",
+      "precioCentavos": null
+    },
+    {
+      "id": "cafe-olla",
+      "nombre": "Café de olla en jarrito de barro",
+      "descripcion": "Café de olla con canela, servido en jarrito de barro.",
+      "detalle": "Se sirve con el desayuno, en la mesa del grupo.",
+      "precioCentavos": null
+    },
+    {
+      "id": "huevos",
+      "nombre": "Huevos al gusto",
+      "descripcion": "Huevos preparados al gusto de quien va a volar.",
+      "detalle": "Se piden al sentarse o se adelantan por WhatsApp.",
+      "precioCentavos": null
+    },
+    {
+      "id": "pan-dulce",
+      "nombre": "Pan dulce de horno",
+      "descripcion": "Pan dulce de horno para acompañar el café.",
+      "detalle": "Sale en la mañana, junto con las picaditas.",
+      "precioCentavos": null
+    }
+  ]
+}

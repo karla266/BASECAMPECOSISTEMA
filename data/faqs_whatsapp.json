@@ -1,0 +1,336 @@
+{
+  "version": 1,
+  "canal": "whatsapp",
+  "telefonoVisible": "2727258748",
+  "telefonoWa": "522727258748",
+  "generadoEn": "2026-11-01T02:36:14.391Z",
+  "integracion": [
+    "twilio",
+    "baileys",
+    "meta_cloud_api"
+  ],
+  "respuestas": [
+    {
+      "id": "diacumbre",
+      "atajo": "/diacumbre",
+      "intent": "consultar_dia_cumbre",
+      "keywords": [
+        "dia cumbre",
+        "día cumbre",
+        "all inclusive",
+        "all-inclusive",
+        "2950",
+        "paquete completo",
+        "sprinter"
+      ],
+      "respuesta": "Día Cumbre All-Inclusive: $2950 MXN por persona.\n08:30 salida de la Sprinter en Orizaba (Oriente 27 y Norte 10).\n09:00 picaditas en Restaurante Campestre Anturios.\n10:45 vuelo tándem.\n12:30 birria y caguama en Palapa El Paraíso.\n15:30 retorno en Sprinter a Orizaba.\nReservas por este WhatsApp, 2727258748."
+    },
+    {
+      "id": "vuelo",
+      "atajo": "/vuelo",
+      "intent": "consultar_vuelo",
+      "keywords": [
+        "vuelo",
+        "parapente",
+        "tandem",
+        "tándem",
+        "horario",
+        "slot",
+        "salvador",
+        "anticipo",
+        "10:00",
+        "12:00",
+        "14:00",
+        "16:00"
+      ],
+      "respuesta": "Vuelo tándem. Anticipo por Mercado Pago: $1600 MXN. Referencia de canje o total: $2800 MXN.\nSlots: 10:00, 12:00, 14:00, 16:00.\nPiloto líder: Salvador Lara, certificación tándem APPI, prioridad 1.\nSi su lugar ya está tomado, la cascada sigue así: 1. Salvador Lara; 2. Farid (Muestra); 3. Karla Guzman (Muestra). El cuarto pasajero del mismo slot queda saturado.\nReserva en https://www.basecamp420.com/reservar o por este WhatsApp."
+    },
+    {
+      "id": "paraiso",
+      "atajo": "/paraiso",
+      "intent": "consultar_paraiso",
+      "keywords": [
+        "paraiso",
+        "paraíso",
+        "palapa",
+        "aterrizaje",
+        "michelada",
+        "birria",
+        "taco",
+        "hot dog",
+        "acompanante",
+        "acompañante"
+      ],
+      "respuesta": "Palapa El Paraíso es la zona de aterrizaje. Los acompañantes esperan ahí el mediodía, con micheladas y tacos.\nEl aterrizaje del Día Cumbre es a las 12:15 y el banquete a las 12:30: tacos de birria, consomé y Michelada Caguama.\nPrecios de prueba: Michelada Caguama $100 MXN, Hot Dog Clásico $30 MXN, Taco Tradicional $15 MXN.\nEl punto exacto del día se confirma por este WhatsApp. Pedido anticipado: https://www.basecamp420.com/ordenar"
+    },
+    {
+      "id": "anturios",
+      "atajo": "/anturios",
+      "intent": "consultar_anturios",
+      "keywords": [
+        "anturios",
+        "desayuno",
+        "picaditas",
+        "cafe de olla",
+        "café de olla",
+        "pan dulce",
+        "check-in",
+        "09:00"
+      ],
+      "respuesta": "Restaurante Campestre Anturios: desayuno montañero y check-in de la mañana.\nPunto de check-in oficial de la mañana para los vuelos de Basecamp 420. La Sprinter sale de Orizaba a las 08:30 y el desayuno en Anturios es a las 09:00.\nMenú: Orden de 3 picaditas preparadas, Café de olla en jarrito de barro, Huevos al gusto, Pan dulce de horno.\nPara ordenar el desayuno o reservar mesa de grupo, escribe por este WhatsApp."
+    },
+    {
+      "id": "aliados",
+      "atajo": "/aliados",
+      "intent": "consultar_aliados",
+      "keywords": [
+        "aliados",
+        "afiliate",
+        "afiliación",
+        "30 dias",
+        "30 días",
+        "terminal",
+        "point",
+        "comision",
+        "comisión",
+        "b2b"
+      ],
+      "respuesta": "Red de comercios Basecamp 420: 30 días de prueba gratuita.\nComisión de Basecamp en ese periodo: $0 MXN. No hay comisión oculta.\nRequisito: comprar y activar tu propia terminal Mercado Pago Point. La terminal es tuya y el dinero entra a tu cuenta.\nAl día 30 decides. Si no renuevas, te quedas con la terminal y te desconectamos sin penalización.\nAlta: https://www.basecamp420.com/aliados"
+    },
+    {
+      "id": "pagos",
+      "atajo": "/pagos",
+      "intent": "consultar_pagos",
+      "keywords": [
+        "pago",
+        "pagos",
+        "mercadopago",
+        "mercado pago",
+        "anticipo",
+        "tarjeta",
+        "transferencia"
+      ],
+      "respuesta": "El anticipo del vuelo se cobra en Mercado Pago: $1600 MXN. La referencia de total o canje es $2800 MXN.\nDía Cumbre: $2950 MXN por persona.\nPalapa, precios de prueba: michelada $100, hot dog $30, taco $15.\nCuando Mercado Pago marca el pedido de comida como aprobado, el aviso llega al WhatsApp que dejaste en el checkout.\nDudas de pago: 2727258748."
+    },
+    {
+      "id": "thetrip",
+      "atajo": "/thetrip",
+      "intent": "consultar_the_trip",
+      "keywords": [
+        "the trip",
+        "smoke shop",
+        "cristaleria",
+        "cristalería",
+        "vaporizador",
+        "lifestyle"
+      ],
+      "respuesta": "🌿 *The Trip Smoke Shop*\n\nEleva tu experiencia. Somos la smoke shop oficial del ecosistema Basecamp 420.\nContamos con catálogo completo de cristalería, vaporizadores, accesorios y lifestyle cannábico.\n👉 Conoce nuestro catálogo o pide existencias por este chat."
+    },
+    {
+      "id": "cimadigital",
+      "atajo": "/cimadigital",
+      "intent": "consultar_cima_digital",
+      "keywords": [
+        "cima digital",
+        "software",
+        "inteligencia artificial",
+        "automatizacion",
+        "automatización",
+        "factoria",
+        "factoría"
+      ],
+      "respuesta": "💻 *Cima Digital — Factoría de Software e Inteligencia Artificial*\n\n¿Te gusta cómo opera la automatización, conmutadores y reservas de Basecamp 420? Cima Digital lo diseñó y construyó.\nDesarrollamos soluciones de software a la medida, automatización con agentes de IA y e-commerce de alta conversión para escalar empresas.\n👉 Agenda una consultoría con nuestro equipo técnico."
+    }
+  ],
+  "porAtajo": {
+    "/diacumbre": "diacumbre",
+    "/vuelo": "vuelo",
+    "/paraiso": "paraiso",
+    "/anturios": "anturios",
+    "/aliados": "aliados",
+    "/pagos": "pagos",
+    "/thetrip": "thetrip",
+    "/cimadigital": "cimadigital"
+  },
+  "porIntent": {
+    "consultar_dia_cumbre": "diacumbre",
+    "consultar_vuelo": "vuelo",
+    "consultar_paraiso": "paraiso",
+    "consultar_anturios": "anturios",
+    "consultar_aliados": "aliados",
+    "consultar_pagos": "pagos",
+    "consultar_the_trip": "thetrip",
+    "consultar_cima_digital": "cimadigital"
+  },
+  "porKeyword": {
+    "2950": [
+      "diacumbre"
+    ],
+    "dia cumbre": [
+      "diacumbre"
+    ],
+    "all inclusive": [
+      "diacumbre"
+    ],
+    "all-inclusive": [
+      "diacumbre"
+    ],
+    "paquete completo": [
+      "diacumbre"
+    ],
+    "sprinter": [
+      "diacumbre"
+    ],
+    "vuelo": [
+      "vuelo"
+    ],
+    "parapente": [
+      "vuelo"
+    ],
+    "tandem": [
+      "vuelo"
+    ],
+    "horario": [
+      "vuelo"
+    ],
+    "slot": [
+      "vuelo"
+    ],
+    "salvador": [
+      "vuelo"
+    ],
+    "anticipo": [
+      "vuelo",
+      "pagos"
+    ],
+    "10:00": [
+      "vuelo"
+    ],
+    "12:00": [
+      "vuelo"
+    ],
+    "14:00": [
+      "vuelo"
+    ],
+    "16:00": [
+      "vuelo"
+    ],
+    "paraiso": [
+      "paraiso"
+    ],
+    "palapa": [
+      "paraiso"
+    ],
+    "aterrizaje": [
+      "paraiso"
+    ],
+    "michelada": [
+      "paraiso"
+    ],
+    "birria": [
+      "paraiso"
+    ],
+    "taco": [
+      "paraiso"
+    ],
+    "hot dog": [
+      "paraiso"
+    ],
+    "acompanante": [
+      "paraiso"
+    ],
+    "anturios": [
+      "anturios"
+    ],
+    "desayuno": [
+      "anturios"
+    ],
+    "picaditas": [
+      "anturios"
+    ],
+    "cafe de olla": [
+      "anturios"
+    ],
+    "pan dulce": [
+      "anturios"
+    ],
+    "check-in": [
+      "anturios"
+    ],
+    "09:00": [
+      "anturios"
+    ],
+    "aliados": [
+      "aliados"
+    ],
+    "afiliate": [
+      "aliados"
+    ],
+    "afiliacion": [
+      "aliados"
+    ],
+    "30 dias": [
+      "aliados"
+    ],
+    "terminal": [
+      "aliados"
+    ],
+    "point": [
+      "aliados"
+    ],
+    "comision": [
+      "aliados"
+    ],
+    "b2b": [
+      "aliados"
+    ],
+    "pago": [
+      "pagos"
+    ],
+    "pagos": [
+      "pagos"
+    ],
+    "mercadopago": [
+      "pagos"
+    ],
+    "mercado pago": [
+      "pagos"
+    ],
+    "tarjeta": [
+      "pagos"
+    ],
+    "transferencia": [
+      "pagos"
+    ],
+    "the trip": [
+      "thetrip"
+    ],
+    "smoke shop": [
+      "thetrip"
+    ],
+    "cristaleria": [
+      "thetrip"
+    ],
+    "vaporizador": [
+      "thetrip"
+    ],
+    "lifestyle": [
+      "thetrip"
+    ],
+    "cima digital": [
+      "cimadigital"
+    ],
+    "software": [
+      "cimadigital"
+    ],
+    "inteligencia artificial": [
+      "cimadigital"
+    ],
+    "automatizacion": [
+      "cimadigital"
+    ],
+    "factoria": [
+      "cimadigital"
+    ]
+  }
+}

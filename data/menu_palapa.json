@@ -1,0 +1,26 @@
+[
+  {
+    "id": "prod_michelada_caguama",
+    "nombre": "Michelada Caguama",
+    "descripcion": "Caguama bien fría preparada con escarchado clásico, salsas negras, limón y clamato.",
+    "precio": 100,
+    "categoria": "bebidas",
+    "disponible": true
+  },
+  {
+    "id": "prod_hot_dog",
+    "nombre": "Hot Dog Clásico",
+    "descripcion": "Con tocino, cebolla caramelizada, jitomate picado y aderezos.",
+    "precio": 30,
+    "categoria": "comida",
+    "disponible": true
+  },
+  {
+    "id": "prod_taco",
+    "nombre": "Taco Tradicional",
+    "descripcion": "Taco de birria o guisado campestre con cebolla, cilantro y salsa de la casa.",
+    "precio": 15,
+    "categoria": "comida",
+    "disponible": true
+  }
+]

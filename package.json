@@ -6,7 +6,9 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export:brain": "node scripts/export_notebooklm.js",
+    "build:faqs": "node scripts/generar_faqs_whatsapp.js"
   },
   "dependencies": {
     "@types/node": "^20.12.7",
