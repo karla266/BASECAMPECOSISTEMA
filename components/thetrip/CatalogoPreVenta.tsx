@@ -43,7 +43,7 @@ export default function CatalogoPreVenta() {
     <section className="max-w-6xl mx-auto px-6 py-8">
       <h2 className="text-2xl font-black text-white">Pre-venta The Trip</h2>
       <p className="mt-2 text-sm text-zinc-300">
-        Blunt Wrap llega el jueves. Los artículos de Tiara Express salen el 1 de diciembre.
+        Blunt Wrap llega el jueves. El resto del catálogo se aparta en el checkout de la tienda.
       </p>
       <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Categorías">
         {categorias.map((nombre) => (

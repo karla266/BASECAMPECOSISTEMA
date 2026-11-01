@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import './globals.css';
 import type { Metadata } from 'next';
+import SalesChatbot from '../components/chat/SalesChatbot';
 import WebMcpProvider from '../components/WebMcpProvider';
 import ProveedorCarrito from '../components/ProveedorCarrito';
 
@@ -68,7 +69,10 @@ export default function RootLayout({
       </head>
       <body className="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-emerald-500/30">
         <WebMcpProvider />
-        <ProveedorCarrito>{children}</ProveedorCarrito>
+        <ProveedorCarrito>
+          {children}
+          <SalesChatbot />
+        </ProveedorCarrito>
       </body>
     </html>
   );

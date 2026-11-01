@@ -106,6 +106,40 @@ export async function POST(request: Request) {
       }));
 
       await validarYDescontarStock(itemsToSync);
+
+      const lineas = items
+        .map((item) => ({
+          id: String(item.sku || item.id || "SKU"),
+          title: String(item.title || item.sku || "Producto The Trip").slice(0, 120),
+          quantity: Math.max(1, Number(item.cantidad ?? item.quantity ?? 1)),
+          currency_id: "MXN",
+          unit_price: Math.round(Number(item.price ?? 0) * 100) / 100,
+        }))
+        .filter((item) => item.unit_price > 0);
+      if (lineas.length > 0) {
+        const sitio = (process.env.APP_URL || "https://www.basecamp420.com").replace(/\/$/, "");
+        const mpRes = await fetch("https://api.mercadopago.com/checkout/preferences", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: lineas,
+            payer: { name: nombre || "Cliente", phone: { number: telefono || "0000000000" } },
+            back_urls: {
+              success: `${sitio}/checkout?status=approved`,
+              failure: `${sitio}/checkout?status=failure`,
+              pending: `${sitio}/checkout?status=pending`,
+            },
+            auto_return: "approved",
+            statement_descriptor: "BASECAMP 420",
+            external_reference: `BC-TRIP-${Date.now()}`,
+          }),
+        });
+        const data = await mpRes.json();
+        if (!mpRes.ok) {
+          return NextResponse.json({ error: data.message || "Error al comunicarse con Mercado Pago" }, { status: 400 });
+        }
+        return NextResponse.json({ checkoutUrl: data.init_point });
+      }
     }
 
     const payloadMp = {

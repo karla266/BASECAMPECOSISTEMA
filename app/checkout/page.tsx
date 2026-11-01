@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 function pesos(valor: number): string {
@@ -9,6 +10,42 @@ function pesos(valor: number): string {
 
 export default function PaginaCheckout() {
   const { items, subtotal, hasPreorderItems, updateQuantity, removeItem } = useCart();
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [aviso, setAviso] = useState("");
+  const [enviando, setEnviando] = useState(false);
+
+  async function pagar() {
+    if (!items.length || enviando) return;
+    setEnviando(true);
+    setAviso("");
+    try {
+      const respuesta = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre,
+          telefono,
+          items: items.map((item) => ({
+            sku: item.sku,
+            title: item.nombre,
+            quantity: item.cantidad,
+            price: item.precio,
+          })),
+        }),
+      });
+      const cuerpo = (await respuesta.json().catch(() => null)) as { checkoutUrl?: string; error?: string } | null;
+      if (!respuesta.ok || !cuerpo?.checkoutUrl) {
+        setAviso(cuerpo?.error || "No se pudo abrir Mercado Pago.");
+        setEnviando(false);
+        return;
+      }
+      window.location.assign(cuerpo.checkoutUrl);
+    } catch {
+      setAviso("No se pudo abrir Mercado Pago.");
+      setEnviando(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-12 text-zinc-100">
@@ -47,7 +84,15 @@ export default function PaginaCheckout() {
           <span>Subtotal</span>
           <span>${pesos(subtotal)} MXN</span>
         </p>
-        <Link href="/thetrip" className="mt-6 flex min-h-12 items-center justify-center rounded-2xl border border-zinc-700 text-sm font-bold text-white">
+        <div className="mt-4 grid gap-3">
+          <input value={nombre} onChange={(evento) => setNombre(evento.target.value)} placeholder="Nombre" className="min-h-12 rounded-xl border border-zinc-700 bg-zinc-950 px-4" />
+          <input value={telefono} onChange={(evento) => setTelefono(evento.target.value)} placeholder="Teléfono" inputMode="tel" className="min-h-12 rounded-xl border border-zinc-700 bg-zinc-950 px-4" />
+        </div>
+        {aviso ? <p className="mt-3 text-sm text-amber-200">{aviso}</p> : null}
+        <button type="button" onClick={() => void pagar()} disabled={!items.length || enviando} className="mt-4 flex min-h-12 w-full items-center justify-center rounded-2xl bg-amber-500 text-sm font-black text-zinc-950 disabled:opacity-40">
+          {enviando ? "Abriendo Mercado Pago..." : "Pagar con Mercado Pago"}
+        </button>
+        <Link href="/thetrip" className="mt-3 flex min-h-12 items-center justify-center rounded-2xl border border-zinc-700 text-sm font-bold text-white">
           Seguir en The Trip
         </Link>
       </div>

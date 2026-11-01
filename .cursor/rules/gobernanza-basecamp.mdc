@@ -1,0 +1,15 @@
+---
+description: Gobernanza permanente de precios, embudo y Hostinger
+alwaysApply: true
+---
+
+# Gobernanza Basecamp 420
+
+Lee también `.cursorrules` y `ARCHITECTURE_LOCK.md` antes de editar.
+
+- No agregues productos ni colecciones de papelería, juguetes o novedades ajenas a la tienda.
+- Bongs, Pipas, Cristalería Pyrex, Conos y Outdoor conservan el precio de lista SICAR.
+- 2x en preventa y 3x en stock solo aplican a Otros Productos / Otros Smoke Shop, y solo si hay costo.
+- La compra de The Trip termina en `/checkout` y Mercado Pago Checkout Pro. No enlaces de compra a Mercado Libre ni WhatsApp.
+- No cambies `output: 'standalone'` en `next.config.js` ni el puerto 3000/65002 de PM2.
+- No fusiones `feat/ai-factory` con `main`.

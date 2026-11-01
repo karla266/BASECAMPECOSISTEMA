@@ -1,0 +1,9 @@
+# REGLAS PERMANENTES DE GOBERNANZA - BASECAMP 420 (LEER EN CADA INTERACCIÓN)
+
+1. PROHIBICIÓN ABSOLUTA DE TIARA: Queda estrictamente vetado incorporar productos, colecciones o dependencias de Tiara (papelería, juguetes, novedades).
+2. CATEGORÍAS PROTEGIDAS: Bongs, Pipas, Cristalería Pyrex, Conos y Outdoor mantienen precios de lista originales de SICAR. No alterar márgenes.
+3. REGLA 2X / 3X EXCLUSIVA: Aplica ÚNICAMENTE a "Otros Productos" (Accesorios para fumar):
+   - Preventa: Costo * 2x (disponibilidad = 'PREVENTA').
+   - Stock Físico: Costo * 3x (disponibilidad = 'EN_STOCK').
+4. EMBUDO CERRADO: 100% de las ventas deben culminar en /checkout con Mercado Pago. Cero enlaces de compra salientes a Mercado Libre o WhatsApp.
+5. INFRAESTRUCTURA: Next.js 14 standalone sobre Hostinger (puerto 65002/3000 con PM2). La rama 'feat/ai-factory' (Micro-POS) JAMÁS debe fusionarse con 'main'.

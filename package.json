@@ -4,6 +4,7 @@
   "description": "GRUPO BASECAMP 420 - Hub Central Matriz y SaaS",
   "scripts": {
     "dev": "next dev -p 3000",
+    "prebuild": "python scripts/guard_integrity.py",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
