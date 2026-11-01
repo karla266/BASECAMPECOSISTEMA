@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { NOMBRE_COOKIE_SESION, verificarSesionAdmin } from "./adminSession";
+import { NOMBRE_COOKIE_ROL, NOMBRE_COOKIE_SESION, verificarSesionAdmin } from "./adminSession";
 import { listarUsuarios, type UsuarioPublico } from "./adminUsuarios";
 
 export function jsonPrivado(body: unknown, status = 200) {
@@ -11,7 +11,8 @@ export function jsonPrivado(body: unknown, status = 200) {
 }
 
 export async function usuarioDeLaSesion(): Promise<UsuarioPublico | null> {
-  const token = cookies().get(NOMBRE_COOKIE_SESION)?.value;
+  const jar = cookies();
+  const token = jar.get(NOMBRE_COOKIE_ROL)?.value || jar.get(NOMBRE_COOKIE_SESION)?.value;
   const sesion = await verificarSesionAdmin(token);
   if (!sesion) return null;
   const usuarios = await listarUsuarios();

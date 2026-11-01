@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { jsonPrivado } from "@/lib/adminGuard";
-import { crearTokenSesion, NOMBRE_COOKIE_SESION, opcionesCookieSesion } from "@/lib/adminSession";
+import { aplicarCookiesSesion, crearTokenSesion, normalizarRol } from "@/lib/adminSession";
 import { verificarNfc } from "@/lib/adminUsuarios";
 
 export const runtime = "nodejs";
@@ -19,12 +19,12 @@ export async function POST(request: Request) {
   try {
     const resultado = await verificarNfc(cuerpo.uid, "admin");
     if (!resultado.ok) return jsonPrivado({ error: resultado.error }, resultado.status);
-    const token = await crearTokenSesion(resultado.usuario.usuario);
+    const token = await crearTokenSesion(resultado.usuario.usuario, normalizarRol(resultado.usuario.rol));
     const respuesta = NextResponse.json(
-      { ok: true, usuario: resultado.usuario.usuario, nombre: resultado.usuario.nombre },
+      { ok: true, usuario: resultado.usuario.usuario, nombre: resultado.usuario.nombre, rol: normalizarRol(resultado.usuario.rol) },
       { headers: { "Cache-Control": "no-store" } }
     );
-    respuesta.cookies.set(NOMBRE_COOKIE_SESION, token, opcionesCookieSesion());
+    aplicarCookiesSesion(respuesta, token);
     return respuesta;
   } catch {
     return jsonPrivado({ error: "No se pudo comprobar la tarjeta." }, 500);

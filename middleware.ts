@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verificarSesionAdmin } from './lib/adminSession';
+import { NOMBRE_COOKIE_ROL, NOMBRE_COOKIE_SESION, verificarSesionAdmin } from './lib/adminSession';
 
 function esLoginDelPanel(pathname: string) {
   return pathname === '/admin/login' || pathname.startsWith('/admin/login/');
@@ -8,6 +8,18 @@ function esLoginDelPanel(pathname: string) {
 
 function esRutaDelPanel(pathname: string) {
   return pathname === '/admin' || pathname.startsWith('/admin/');
+}
+
+function esIngresoPin(pathname: string) {
+  return pathname === '/admin/acceso' || pathname.startsWith('/admin/acceso/');
+}
+
+function esCamara(pathname: string) {
+  return pathname === '/admin/camara' || pathname.startsWith('/admin/camara/');
+}
+
+function inicioDelRol(rol: string) {
+  return rol === 'operador_foto' ? '/admin/camara' : '/admin';
 }
 
 export async function middleware(req: NextRequest) {
@@ -42,18 +54,37 @@ export async function middleware(req: NextRequest) {
     return respuesta;
   }
 
+  if (url.pathname.startsWith('/api/admin')) {
+    if (url.pathname.startsWith('/api/admin/login') || url.pathname === '/api/admin/salir') {
+      return NextResponse.next();
+    }
+    const tokenApi = req.cookies.get(NOMBRE_COOKIE_ROL)?.value || req.cookies.get(NOMBRE_COOKIE_SESION)?.value;
+    const sesionApi = await verificarSesionAdmin(tokenApi);
+    if (sesionApi?.rol === 'operador_foto' && !url.pathname.startsWith('/api/admin/catalogo/foto')) {
+      return NextResponse.json({ error: 'Este acceso solo abre la cámara.' }, { status: 403 });
+    }
+    return NextResponse.next();
+  }
+
   if (esLoginDelPanel(url.pathname) || esRutaDelPanel(url.pathname)) {
-    const sesion = await verificarSesionAdmin(req.cookies.get('bc_admin_sesion')?.value);
+    const token = req.cookies.get(NOMBRE_COOKIE_ROL)?.value || req.cookies.get(NOMBRE_COOKIE_SESION)?.value;
+    const sesion = await verificarSesionAdmin(token);
+    if (esIngresoPin(url.pathname) && !sesion) {
+      return NextResponse.next();
+    }
     if (esLoginDelPanel(url.pathname)) {
       if (sesion) {
-        return NextResponse.redirect(new URL('/admin', req.url));
+        return NextResponse.redirect(new URL(inicioDelRol(sesion.rol), req.url));
       }
       return NextResponse.rewrite(new URL(`/ingreso-admin${url.search}`, req.url));
     }
     if (!sesion) {
-      const destino = new URL('/admin/login', req.url);
+      const destino = new URL('/admin/acceso', req.url);
       destino.searchParams.set('siguiente', url.pathname);
       return NextResponse.redirect(destino);
+    }
+    if (sesion.rol === 'operador_foto' && !esCamara(url.pathname)) {
+      return NextResponse.redirect(new URL('/admin/camara', req.url));
     }
   }
 
@@ -63,5 +94,6 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/api/admin/:path*',
   ],
 };

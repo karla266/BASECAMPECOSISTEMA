@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { jsonPrivado } from "@/lib/adminGuard";
-import { crearTokenSesion, NOMBRE_COOKIE_SESION, opcionesCookieSesion } from "@/lib/adminSession";
+import { aplicarCookiesSesion, crearTokenSesion, normalizarRol } from "@/lib/adminSession";
 import { verificarHuella } from "@/lib/adminUsuarios";
 import { crearTicketMostrador } from "@/lib/lectorTickets";
 
@@ -28,12 +28,12 @@ export async function POST(request: Request) {
       const ticket = await crearTicketMostrador(resultado.usuario.usuario);
       return jsonPrivado({ ok: true, ticket, usuario: resultado.usuario.usuario });
     }
-    const token = await crearTokenSesion(resultado.usuario.usuario);
+    const token = await crearTokenSesion(resultado.usuario.usuario, normalizarRol(resultado.usuario.rol));
     const respuesta = NextResponse.json(
       { ok: true, usuario: resultado.usuario.usuario, nombre: resultado.usuario.nombre },
       { headers: { "Cache-Control": "no-store" } }
     );
-    respuesta.cookies.set(NOMBRE_COOKIE_SESION, token, opcionesCookieSesion());
+    aplicarCookiesSesion(respuesta, token);
     return respuesta;
   } catch {
     return jsonPrivado({ error: "No se pudo comprobar la huella." }, 500);

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { verificarSesionAdmin } from "@/lib/adminSession";
+import { NOMBRE_COOKIE_ROL, NOMBRE_COOKIE_SESION, verificarSesionAdmin } from "@/lib/adminSession";
 import {
   asignarImagenCatalogo,
   buscarProductoFoto,
@@ -12,17 +12,21 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-async function exigirAdmin() {
-  const token = cookies().get("bc_admin_sesion")?.value;
+async function exigirFoto() {
+  const jar = cookies();
+  const token = jar.get(NOMBRE_COOKIE_ROL)?.value || jar.get(NOMBRE_COOKIE_SESION)?.value;
   const sesion = await verificarSesionAdmin(token);
   if (!sesion) {
     return NextResponse.json({ success: false, detail: "La sesión de administración no es válida." }, { status: 401 });
+  }
+  if (sesion.rol !== "admin" && sesion.rol !== "cajero" && sesion.rol !== "operador_foto") {
+    return NextResponse.json({ success: false, detail: "Este rol no puede cargar fotos." }, { status: 403 });
   }
   return null;
 }
 
 export async function GET(request: Request) {
-  const rechazo = await exigirAdmin();
+  const rechazo = await exigirFoto();
   if (rechazo) return rechazo;
   const url = new URL(request.url);
   const consulta = (url.searchParams.get("q") || "").trim().toLowerCase();
@@ -38,7 +42,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const rechazo = await exigirAdmin();
+  const rechazo = await exigirFoto();
   if (rechazo) return rechazo;
   const contenido = request.headers.get("content-type") || "";
   let sku = "";

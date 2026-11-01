@@ -1,5 +1,10 @@
+import { NextResponse } from "next/server";
+
 const NOMBRE_COOKIE_SESION = "bc_admin_sesion";
+const NOMBRE_COOKIE_ROL = "b420_admin_session";
 const DURACION_COOKIE = 60 * 60 * 12;
+
+export type RolSesion = "admin" | "cajero" | "operador_foto";
 
 function secretoSesion(): string {
   return process.env.ADMIN_SESSION_SECRET || "bc420-panel-admin-sesion-local-v1";
@@ -46,16 +51,22 @@ function firmasIguales(a: string, b: string): boolean {
   return diferencia === 0;
 }
 
-export async function crearTokenSesion(usuario: string): Promise<string> {
+export function normalizarRol(rol: unknown): RolSesion {
+  if (rol === "operador_foto") return "operador_foto";
+  if (rol === "cajero" || rol === "mostrador" || rol === "trabajador") return "cajero";
+  return "admin";
+}
+
+export async function crearTokenSesion(usuario: string, rol: RolSesion = "admin"): Promise<string> {
   const exp = Math.floor(Date.now() / 1000) + DURACION_COOKIE;
-  const payload = bytesABase64Url(new TextEncoder().encode(JSON.stringify({ usuario, exp })));
+  const payload = bytesABase64Url(new TextEncoder().encode(JSON.stringify({ usuario, rol, exp })));
   const firma = await firmar(payload);
   return `${payload}.${firma}`;
 }
 
 export async function verificarSesionAdmin(
   token: string | undefined | null
-): Promise<{ usuario: string } | null> {
+): Promise<{ usuario: string; rol: RolSesion } | null> {
   if (!token) return null;
   const partes = token.split(".");
   if (partes.length !== 2) return null;
@@ -66,11 +77,12 @@ export async function verificarSesionAdmin(
   try {
     const json = JSON.parse(new TextDecoder().decode(base64UrlABytes(payload))) as {
       usuario?: unknown;
+      rol?: unknown;
       exp?: unknown;
     };
     if (typeof json.usuario !== "string" || typeof json.exp !== "number") return null;
     if (!json.usuario || json.exp < Math.floor(Date.now() / 1000)) return null;
-    return { usuario: json.usuario };
+    return { usuario: json.usuario, rol: normalizarRol(json.rol) };
   } catch {
     return null;
   }
@@ -86,4 +98,16 @@ export function opcionesCookieSesion(maxAge = DURACION_COOKIE) {
   };
 }
 
-export { NOMBRE_COOKIE_SESION };
+export function aplicarCookiesSesion(respuesta: NextResponse, token: string) {
+  const opciones = opcionesCookieSesion();
+  respuesta.cookies.set(NOMBRE_COOKIE_SESION, token, opciones);
+  respuesta.cookies.set(NOMBRE_COOKIE_ROL, token, opciones);
+}
+
+export function limpiarCookiesSesion(respuesta: NextResponse) {
+  const opciones = opcionesCookieSesion(0);
+  respuesta.cookies.set(NOMBRE_COOKIE_SESION, "", opciones);
+  respuesta.cookies.set(NOMBRE_COOKIE_ROL, "", opciones);
+}
+
+export { NOMBRE_COOKIE_SESION, NOMBRE_COOKIE_ROL };
