@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 FORBIDDEN_WORDS = ["tiara", "juguetes", "papeleria madera"]
@@ -22,8 +23,8 @@ def check_file_integrity():
         errors += 1
     else:
         with open(config, "r", encoding="utf-8", errors="ignore") as handle:
-            contenido = handle.read().replace(" ", "")
-            if "output:'standalone'" not in contenido and 'output:"standalone"' not in contenido:
+            config_content = handle.read()
+            if not re.search(r"output\s*:\s*['\"]standalone['\"]", config_content):
                 print("ERROR: next.config.js perdio output standalone.")
                 errors += 1
 
