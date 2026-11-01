@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/aliados",
     "/ordenar",
     "/pilotos/alta",
+    "/transporte/operacion",
     "/tienda",
     "/blog",
     "/movimiento-canabico/podcasts",
