@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import PhotoCaptureModal from "@/components/admin/PhotoCaptureModal";
 
 type Producto = {
   sku: string;
@@ -48,6 +49,7 @@ export default function CatalogoOtrosProductos() {
   const [sugerencia, setSugerencia] = useState<Sugerencia | null>(null);
   const [aviso, setAviso] = useState("");
   const [ocupado, setOcupado] = useState(false);
+  const [fotoSku, setFotoSku] = useState<string | null>(null);
 
   async function cargar() {
     const respuesta = await fetch("/api/v1/products", { headers: HEADERS, cache: "no-store" });
@@ -167,9 +169,14 @@ export default function CatalogoOtrosProductos() {
             Preventa a 2x el costo. Al llegar, 3x. E-commerce lleva 10% y Mercado Libre 25% sobre el mostrador. Tiara, blunts, conos, cristalería, bongs, pipas, sedas y outdoor no entran.
           </p>
         </div>
-        <button type="button" onClick={scrapear} disabled={ocupado} className="min-h-12 rounded-xl bg-slate-800 px-4 text-sm font-bold text-white disabled:opacity-50">
-          🔄 Scraping Fotos Blunt Wrap
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => setFotoSku("")} className="min-h-12 rounded-xl bg-amber-500 px-4 text-sm font-bold text-zinc-950">
+            📸 Tomar Foto
+          </button>
+          <button type="button" onClick={scrapear} disabled={ocupado} className="min-h-12 rounded-xl bg-slate-800 px-4 text-sm font-bold text-white disabled:opacity-50">
+            🔄 Scraping Fotos Blunt Wrap
+          </button>
+        </div>
       </header>
 
       <div className="flex flex-wrap gap-3">
@@ -207,6 +214,7 @@ export default function CatalogoOtrosProductos() {
                 <th className="px-3 py-3">E-commerce</th>
                 <th className="px-3 py-3">ML</th>
                 <th className="px-3 py-3">Fase</th>
+                <th className="px-3 py-3">Foto</th>
               </tr>
             </thead>
             <tbody>
@@ -219,6 +227,32 @@ export default function CatalogoOtrosProductos() {
                   <td className="px-3 py-3">${Number(producto.precio_ecommerce || 0).toFixed(2)}</td>
                   <td className="px-3 py-3">${Number(producto.precio_mercadolibre || 0).toFixed(2)}</td>
                   <td className="px-3 py-3">{producto.fase_comercial || "—"}</td>
+                  <td className="px-3 py-3">
+                    {producto.imagen_url ? (
+                      <button
+                        type="button"
+                        onClick={(evento) => {
+                          evento.stopPropagation();
+                          setFotoSku(producto.sku);
+                        }}
+                        className="flex items-center gap-2 text-left"
+                      >
+                        <img src={producto.imagen_url} alt="" className="h-12 w-12 rounded-lg object-cover" />
+                        <span className="text-xs font-bold text-emerald-300">Reemplazar foto</span>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={(evento) => {
+                          evento.stopPropagation();
+                          setFotoSku(producto.sku);
+                        }}
+                        className="min-h-12 rounded-xl bg-amber-500 px-3 text-xs font-bold text-zinc-950"
+                      >
+                        📸 Tomar Foto
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -252,6 +286,17 @@ export default function CatalogoOtrosProductos() {
           ) : null}
         </form>
       </div>
+      {fotoSku !== null ? (
+        <PhotoCaptureModal
+          skuInicial={fotoSku}
+          onClose={() => setFotoSku(null)}
+          onSaved={(sku, imagenUrl) => {
+            setProductos((lista) => lista.map((item) => (item.sku === sku ? { ...item, imagen_url: imagenUrl } : item)));
+            setForm((prev) => (prev.sku === sku ? { ...prev, imagen_url: imagenUrl } : prev));
+            setAviso(`Foto asignada a ${sku}. El precio no cambió.`);
+          }}
+        />
+      ) : null}
     </div>
   );
 }

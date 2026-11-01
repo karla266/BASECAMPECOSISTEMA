@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import PhotoCaptureModal from '@/components/admin/PhotoCaptureModal'
 
 interface WebcamImage {
   name: string
@@ -18,6 +19,7 @@ export default function CamaraWebPage() {
   const [saving, setSaving] = useState(false)
   const [borrando, setBorrando] = useState<string | null>(null)
   const [selected, setSelected] = useState<string | null>(null)
+  const [estudio, setEstudio] = useState(false)
 
   const cargar = async () => {
     try {
@@ -142,6 +144,16 @@ export default function CamaraWebPage() {
             >
               {saving ? 'Guardando...' : 'Guardar foto'}
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                cerrarCamara()
+                setEstudio(true)
+              }}
+              className="px-4 py-2 rounded-lg bg-amber-500 text-zinc-950 text-sm font-bold"
+            >
+              📸 Tomar foto de producto
+            </button>
           </div>
         </div>
         <div className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden min-h-[240px] flex items-center justify-center">
@@ -182,6 +194,16 @@ export default function CamaraWebPage() {
           </div>
         )}
       </section>
+
+      {estudio ? (
+        <PhotoCaptureModal
+          onClose={() => setEstudio(false)}
+          onSaved={(sku) => {
+            setMessage(`Foto WebP asignada a ${sku}.`)
+            setEstudio(false)
+          }}
+        />
+      ) : null}
 
       {selected && (
         <button
