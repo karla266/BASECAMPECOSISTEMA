@@ -5,6 +5,9 @@ import { posApiUrl } from '@/lib/apiBase'
 import BannerDropCountdown from '@/components/thetrip/BannerDropCountdown'
 import BluntWrapSelector from '@/components/thetrip/BluntWrapSelector'
 import CatalogoPreVenta from '@/components/thetrip/CatalogoPreVenta'
+import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
+import { faseComercial } from '@/lib/ctaProducto'
+import { useCart } from '@/context/CartContext'
 
 interface ProductoSmoke {
   id: number
@@ -18,6 +21,8 @@ interface ProductoSmoke {
   imagen_url: string
   link_cobro_mp: string
   tipo_disponibilidad?: 'stock_fisico' | 'sobre_pedido' | string
+  fase_comercial?: string
+  mercadolibre_url?: string
 }
 
 type VistaCatalogo = 'stock_fisico' | 'sobre_pedido'
@@ -58,6 +63,7 @@ export default function TheTripSmokeShop() {
   const [reloj, setReloj] = useState(Date.now())
   const [query, setQuery] = useState('')
   const [cart, setCart] = useState<CartLine[]>([])
+  const { addItem } = useCart()
   const [customerName, setCustomerName] = useState('')
   const [customerPhone, setCustomerPhone] = useState('')
   const [customerEmail, setCustomerEmail] = useState('')
@@ -401,7 +407,53 @@ export default function TheTripSmokeShop() {
                       {vista === 'sobre_pedido' ? 'Siguiente corte semanal' : `${item.stock} en tienda`}
                     </span>
                   </div>
-                  {vista === 'sobre_pedido' ? (
+                  {faseComercial(item.fase_comercial) === 'PREVENTA' ? (
+                    <>
+                      <BotonCompraProducto
+                        nombre={item.nombre}
+                        sku={item.sku}
+                        fase={item.fase_comercial}
+                        categoria={item.categoria}
+                        mercadolibre_url={item.mercadolibre_url}
+                        link_cobro={item.link_cobro_mp}
+                        className="mt-0"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => addItem({
+                          sku: item.sku,
+                          nombre: item.nombre,
+                          precio: Number(item.precio) || 0,
+                          imagen_url: item.imagen_url || '',
+                          disponibilidad: 'PREVENTA',
+                          mercadolibre_url: item.mercadolibre_url || item.link_cobro_mp || '',
+                        })}
+                        className="w-full block text-center py-2.5 border border-zinc-600 text-white font-bold text-xs rounded-xl"
+                      >
+                        Agregar al Carrito
+                      </button>
+                    </>
+                  ) : faseComercial(item.fase_comercial) === 'EN_STOCK' ? (
+                    <>
+                      <a href="/thetrip#checkout" className="w-full block text-center py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl">
+                        Comprar / Retiro en tienda
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => addItem({
+                          sku: item.sku,
+                          nombre: item.nombre,
+                          precio: Number(item.precio) || 0,
+                          imagen_url: item.imagen_url || '',
+                          disponibilidad: 'EN_STOCK',
+                          mercadolibre_url: item.mercadolibre_url || '',
+                        })}
+                        className="w-full block text-center py-2.5 border border-zinc-600 text-white font-bold text-xs rounded-xl"
+                      >
+                        Agregar al Carrito
+                      </button>
+                    </>
+                  ) : vista === 'sobre_pedido' ? (
                     <button
                       onClick={() => registrarAnticipo(item)}
                       disabled={loading}
@@ -425,7 +477,7 @@ export default function TheTripSmokeShop() {
       </section>
 
       {vista === 'stock_fisico' ? (
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section id="checkout" className="max-w-6xl mx-auto px-6 pb-20">
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-4">
           <h2 className="text-lg font-semibold">Checkout y preparación de pedido</h2>
           <div className="space-y-2 text-sm">

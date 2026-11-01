@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import inventario from "@/data/inventario_thetrip.json";
+import BotonCompraProducto from "@/components/thetrip/BotonCompraProducto";
+import { faseComercial } from "@/lib/ctaProducto";
+import { useCart, type DisponibilidadCarrito } from "@/context/CartContext";
 
 const FALLBACK = "/assets/productos/watermarked_img_4565543973787279676.jpg";
-const TELEFONO = "522727258748";
 
 type Producto = (typeof inventario.productos)[number];
 
@@ -75,8 +77,16 @@ export default function CatalogoPreVenta() {
 function Tarjeta({ producto }: { producto: Producto }) {
   const aviso = avisoLlegada(producto.fecha_llegada);
   const foto = producto.imagenes?.[0] || FALLBACK;
-  const mensaje = `Hola The Trip Smoke Shop, quiero apartar ${producto.nombre}. ${aviso ?? "Pre-venta"}`;
-  const whatsapp = `https://wa.me/${TELEFONO}?text=${encodeURIComponent(mensaje)}`;
+  const extra = producto as Producto & {
+    fase_comercial?: string;
+    mercadolibre_url?: string;
+    link_cobro?: string;
+    departamento?: string;
+    tags?: string[];
+    proveedor?: string;
+  };
+  const fase = faseComercial(extra.fase_comercial || producto.disponibilidad);
+  const { addItem } = useCart();
 
   return (
     <article className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3 text-zinc-100">
@@ -89,14 +99,35 @@ function Tarjeta({ producto }: { producto: Producto }) {
       <h3 className="mt-3 text-sm font-bold text-white">{producto.nombre}</h3>
       <p className="mt-1 text-sm text-amber-300">${producto.precio_mxn.toFixed(2)} MXN</p>
       <p className="text-xs text-zinc-400">{producto.stock_disponible} disponibles · {producto.disponibilidad}</p>
-      <a
-        href={whatsapp}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-3 flex min-h-12 items-center justify-center rounded-xl bg-emerald-500 px-3 text-center text-sm font-bold text-zinc-950"
+      <BotonCompraProducto
+        nombre={producto.nombre}
+        sku={producto.sku}
+        fase={extra.fase_comercial || producto.disponibilidad}
+        categoria={producto.categoria}
+        departamento={extra.departamento}
+        subcategoria={producto.subcategoria}
+        proveedor={extra.proveedor}
+        tags={extra.tags}
+        mercadolibre_url={extra.mercadolibre_url}
+        link_cobro={extra.link_cobro}
+        className="mt-3"
+      />
+      <button
+        type="button"
+        onClick={() =>
+          addItem({
+            sku: producto.sku,
+            nombre: producto.nombre,
+            precio: Number(producto.precio_mxn || 0),
+            imagen_url: foto,
+            disponibilidad: (fase || "PREVENTA") as DisponibilidadCarrito,
+            mercadolibre_url: extra.mercadolibre_url || "",
+          })
+        }
+        className="mt-2 flex min-h-12 w-full items-center justify-center rounded-xl border border-zinc-700 text-sm font-bold text-white"
       >
-        Apartar por WhatsApp
-      </a>
+        Agregar al Carrito
+      </button>
     </article>
   );
 }

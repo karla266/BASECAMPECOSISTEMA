@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import './globals.css';
 import type { Metadata } from 'next';
 import WebMcpProvider from '../components/WebMcpProvider';
+import ProveedorCarrito from '../components/ProveedorCarrito';
 
 const grafoEntidad = {
   '@context': 'https://schema.org',
@@ -67,7 +68,7 @@ export default function RootLayout({
       </head>
       <body className="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-emerald-500/30">
         <WebMcpProvider />
-        {children}
+        <ProveedorCarrito>{children}</ProveedorCarrito>
       </body>
     </html>
   );

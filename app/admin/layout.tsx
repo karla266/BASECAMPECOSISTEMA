@@ -51,6 +51,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
             <NavItem href="/admin/vuelos" icon={<MountainSnow size={18} />} label="Hoja de ruta" active={pathname === '/admin/vuelos'} />
             <NavItem href="/admin/acceso-pos" icon={<KeyRound size={18} />} label="Acceso al POS" active={pathname === '/admin/acceso-pos'} />
             <NavItem href="/admin/products" icon={<Package size={18} />} label="Catálogo / Productos" active={pathname === '/admin/products'} />
+            <NavItem href="/admin/catalogo" icon={<Package size={18} />} label="Otros Productos" active={pathname === '/admin/catalogo'} />
             <NavItem href="/admin/lote" icon={<ClipboardCheck size={18} />} label="Lote de 5" active={pathname === '/admin/lote'} />
             <NavItem href="/admin/csv" icon={<FileUp size={18} />} label="Carga CSV" active={pathname === '/admin/csv'} />
             <NavItem href="/admin/templates" icon={<LayoutTemplate size={18} />} label="Selector de Plantillas" active={pathname === '/admin/templates'} />

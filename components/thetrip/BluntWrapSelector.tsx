@@ -2,11 +2,10 @@
 
 import { useMemo, useState } from "react";
 import inventario from "@/data/inventario_thetrip.json";
+import BotonCompraProducto from "@/components/thetrip/BotonCompraProducto";
 
 type Variante = (typeof inventario.productos)[number];
 type Modo = "PIEZA" | "DISPLAY";
-
-const TELEFONO = "522727258748";
 
 const GALERIA = [
   { src: "/thetrip/blunt-hero.jpg", alt: "Empaque premium de Blunt Wrap 2X en toma vertical", pie: "Portada" },
@@ -28,11 +27,6 @@ export default function BluntWrapSelector() {
   const lista = useMemo(() => variantesDe(modo), [modo]);
   const elegido = lista.find((item) => item.sabor === sabor) ?? lista[0];
   const stock = elegido?.stock_disponible ?? 0;
-  const unidad = modo === "PIEZA" ? "PIEZAS" : "CAJA";
-  const mensaje = elegido
-    ? `Hola The Trip Smoke Shop, quiero apartar ${cantidad} ${unidad} de Blunt Wrap sabor ${elegido.sabor}`
-    : "";
-  const whatsapp = `https://wa.me/${TELEFONO}?text=${encodeURIComponent(mensaje)}`;
 
   function cambiarModo(siguiente: Modo) {
     setModo(siguiente);
@@ -179,19 +173,19 @@ export default function BluntWrapSelector() {
           </button>
         </div>
 
-        <a
-          href={stock > 0 ? whatsapp : undefined}
-          target="_blank"
-          rel="noreferrer"
-          aria-disabled={stock <= 0}
-          className={
-            stock > 0
-              ? "mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-emerald-500 px-4 text-center text-sm font-bold text-zinc-950"
-              : "mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-zinc-800 px-4 text-center text-sm font-bold text-zinc-500"
-          }
-        >
-          Apartar por WhatsApp 2727258748
-        </a>
+        {stock > 0 ? (
+          <BotonCompraProducto
+            nombre={elegido.nombre}
+            sku={elegido.sku}
+            fase={elegido.disponibilidad}
+            categoria={elegido.categoria}
+            cantidad={cantidad}
+          />
+        ) : (
+          <p className="mt-5 flex min-h-12 items-center justify-center rounded-2xl bg-zinc-800 px-4 text-center text-sm font-bold text-zinc-500">
+            Sin piezas para apartar
+          </p>
+        )}
       </article>
     </section>
   );

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 const ENLACES = [
   { href: "/", label: "Inicio" },
@@ -24,6 +25,7 @@ const ENLACES = [
 export default function NavegacionSitio() {
   const pathname = usePathname();
   const [abierto, setAbierto] = useState(false);
+  const { openCart, totalItems } = useCart();
 
   useEffect(() => {
     setAbierto(false);
@@ -42,6 +44,16 @@ export default function NavegacionSitio() {
             </Link>
           ))}
         </nav>
+        <button
+          type="button"
+          onClick={openCart}
+          className="relative inline-flex min-h-12 items-center justify-center rounded-xl border border-zinc-700 px-3 text-sm font-semibold text-white"
+        >
+          Carrito
+          <span className="ml-2 inline-flex min-h-6 min-w-6 items-center justify-center rounded-full bg-amber-500 px-1 text-xs font-black text-zinc-950">
+            {totalItems}
+          </span>
+        </button>
         <button
           type="button"
           aria-expanded={abierto}
