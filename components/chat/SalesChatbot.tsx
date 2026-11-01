@@ -20,6 +20,14 @@ type Mensaje = {
   pagar?: boolean;
 };
 
+type Dictado = {
+  lang: string;
+  onresult: ((evento: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+};
+
 function normalizar(valor: string) {
   return valor.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
@@ -89,8 +97,8 @@ export default function SalesChatbot() {
 
   function dictar() {
     const ventana = window as Window & {
-      SpeechRecognition?: new () => SpeechRecognition;
-      webkitSpeechRecognition?: new () => SpeechRecognition;
+      SpeechRecognition?: new () => Dictado;
+      webkitSpeechRecognition?: new () => Dictado;
     };
     const Constructor = ventana.SpeechRecognition || ventana.webkitSpeechRecognition;
     if (!Constructor) {
