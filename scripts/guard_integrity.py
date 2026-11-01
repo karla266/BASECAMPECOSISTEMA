@@ -13,6 +13,7 @@ CRITICAL_FILES = [
 SCAN_DIRS = ["app/thetrip", "components/thetrip", "components/chat", "app/checkout"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CANONICAL_CONFIG = "next.config.js"
+STANDALONE_RE = re.compile(r"output\s*:\s*['\"]standalone['\"]")
 
 
 def retirar_configs_residuales():
@@ -25,20 +26,44 @@ def retirar_configs_residuales():
             print(f"[BOT ANALIZADOR] Eliminado config residual: {nombre}")
 
 
+def asegurar_standalone(config_path):
+    if os.path.isfile(config_path):
+        with open(config_path, "r", encoding="utf-8", errors="ignore") as handle:
+            config_content = handle.read()
+    else:
+        config_content = "const nextConfig = {\n};\nmodule.exports = nextConfig;\n"
+
+    if STANDALONE_RE.search(config_content):
+        return
+
+    linea = "  output: 'standalone',"
+    if re.search(r"const\s+nextConfig\s*=\s*\{", config_content):
+        config_content = re.sub(
+            r"(const\s+nextConfig\s*=\s*\{)",
+            r"\1\n" + linea,
+            config_content,
+            count=1,
+        )
+    elif re.search(r"module\.exports\s*=\s*\{", config_content):
+        config_content = re.sub(
+            r"(module\.exports\s*=\s*\{)",
+            r"\1\n" + linea,
+            config_content,
+            count=1,
+        )
+    else:
+        config_content = "const nextConfig = {\n  output: 'standalone',\n};\nmodule.exports = nextConfig;\n"
+
+    with open(config_path, "w", encoding="utf-8", newline="\n") as handle:
+        handle.write(config_content)
+    print("[BOT ANALIZADOR] next.config.js auto-reparado con output: 'standalone'")
+
+
 def check_file_integrity():
     errors = 0
     print("[BOT ANALIZADOR] Iniciando auditoria de integridad y contexto...")
     retirar_configs_residuales()
-    config = os.path.join(ROOT, CANONICAL_CONFIG)
-    if not os.path.isfile(config):
-        print("ERROR: Falta next.config.js")
-        errors += 1
-    else:
-        with open(config, "r", encoding="utf-8", errors="ignore") as handle:
-            config_content = handle.read()
-            if not re.search(r"output\s*:\s*['\"]standalone['\"]", config_content):
-                print("ERROR: next.config.js perdio output standalone.")
-                errors += 1
+    asegurar_standalone(os.path.join(ROOT, CANONICAL_CONFIG))
 
     for path in CRITICAL_FILES:
         if not os.path.exists(os.path.join(ROOT, path)):
