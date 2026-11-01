@@ -1,0 +1,748 @@
+{
+  "fotos_blunts": [
+    {
+      "sku": "BW-2X-001",
+      "nombre": "BluntWrap Hemp Grape",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW-2X-001.webp"
+    },
+    {
+      "sku": "BW-2X-002",
+      "nombre": "BluntWrap Hemp Strawberry",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW-2X-002.webp"
+    },
+    {
+      "sku": "BW-2X-003",
+      "nombre": "BluntWrap Hemp Chocolate",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW-2X-003.webp"
+    },
+    {
+      "sku": "BW-2X-004",
+      "nombre": "BluntWrap 2X Grape",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW-2X-004.webp"
+    },
+    {
+      "sku": "BW-2X-005",
+      "nombre": "BluntWrap 2X Strawberry",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW-2X-005.webp"
+    },
+    {
+      "sku": "BW2X-APPLE-BOX",
+      "nombre": "Display Blunt Wrap 2X — Apple Martini (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-APPLE-BOX.webp"
+    },
+    {
+      "sku": "BW2X-APPLE-PZ",
+      "nombre": "Blunt Wrap 2X — Apple Martini (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-APPLE-PZ.webp"
+    },
+    {
+      "sku": "BW2X-BANANA-BOX",
+      "nombre": "Display Blunt Wrap 2X — Banana Cream (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BANANA-BOX.webp"
+    },
+    {
+      "sku": "BW2X-BANANA-PZ",
+      "nombre": "Blunt Wrap 2X — Banana Cream (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BANANA-PZ.webp"
+    },
+    {
+      "sku": "BW2X-BERRIES-BOX",
+      "nombre": "Display Blunt Wrap 2X — Berries / Moras (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BERRIES-BOX.webp"
+    },
+    {
+      "sku": "BW2X-BERRIES-PZ",
+      "nombre": "Blunt Wrap 2X — Berries / Moras (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BERRIES-PZ.webp"
+    },
+    {
+      "sku": "BW2X-BLUEBERRY-BOX",
+      "nombre": "Display Blunt Wrap 2X — Blueberry / Arándano (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BLUEBERRY-BOX.webp"
+    },
+    {
+      "sku": "BW2X-BLUEBERRY-PZ",
+      "nombre": "Blunt Wrap 2X — Blueberry / Arándano (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BLUEBERRY-PZ.webp"
+    },
+    {
+      "sku": "BW2X-BUBBLE-BOX",
+      "nombre": "Display Blunt Wrap 2X — Bubble Gum / Chicle (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BUBBLE-BOX.webp"
+    },
+    {
+      "sku": "BW2X-BUBBLE-PZ",
+      "nombre": "Blunt Wrap 2X — Bubble Gum / Chicle (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-BUBBLE-PZ.webp"
+    },
+    {
+      "sku": "BW2X-CHERRY-BOX",
+      "nombre": "Display Blunt Wrap 2X — Wet Cherry / Cereza (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-CHERRY-BOX.webp"
+    },
+    {
+      "sku": "BW2X-CHERRY-PZ",
+      "nombre": "Blunt Wrap 2X — Wet Cherry / Cereza (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-CHERRY-PZ.webp"
+    },
+    {
+      "sku": "BW2X-CHOCO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Chocolate Suave (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-CHOCO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-CHOCO-PZ",
+      "nombre": "Blunt Wrap 2X — Chocolate Suave (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-CHOCO-PZ.webp"
+    },
+    {
+      "sku": "BW2X-COGNAC-BOX",
+      "nombre": "Display Blunt Wrap 2X — Cognac / Cacao (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-COGNAC-BOX.webp"
+    },
+    {
+      "sku": "BW2X-COGNAC-PZ",
+      "nombre": "Blunt Wrap 2X — Cognac / Cacao (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-COGNAC-PZ.webp"
+    },
+    {
+      "sku": "BW2X-COSMO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Cosmopolitan (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-COSMO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-COSMO-PZ",
+      "nombre": "Blunt Wrap 2X — Cosmopolitan (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-COSMO-PZ.webp"
+    },
+    {
+      "sku": "BW2X-DIAMOND-BOX",
+      "nombre": "Display Blunt Wrap 2X — Diamond Clásico (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-DIAMOND-BOX.webp"
+    },
+    {
+      "sku": "BW2X-DIAMOND-PZ",
+      "nombre": "Blunt Wrap 2X — Diamond Clásico (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-DIAMOND-PZ.webp"
+    },
+    {
+      "sku": "BW2X-GINJUICE-BOX",
+      "nombre": "Display Blunt Wrap 2X — Gin & Juice (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-GINJUICE-BOX.webp"
+    },
+    {
+      "sku": "BW2X-GINJUICE-PZ",
+      "nombre": "Blunt Wrap 2X — Gin & Juice (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-GINJUICE-PZ.webp"
+    },
+    {
+      "sku": "BW2X-KUSH-BOX",
+      "nombre": "Display Blunt Wrap 2X — Kush Herbal (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-KUSH-BOX.webp"
+    },
+    {
+      "sku": "BW2X-KUSH-PZ",
+      "nombre": "Blunt Wrap 2X — Kush Herbal (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-KUSH-PZ.webp"
+    },
+    {
+      "sku": "BW2X-MANGO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Mango Dulce (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MANGO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-MANGO-PZ",
+      "nombre": "Blunt Wrap 2X — Mango Dulce (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MANGO-PZ.webp"
+    },
+    {
+      "sku": "BW2X-MELLO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Mello Mango (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MELLO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-MELLO-PZ",
+      "nombre": "Blunt Wrap 2X — Mello Mango (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MELLO-PZ.webp"
+    },
+    {
+      "sku": "BW2X-MOJITO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Mojito Menta (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MOJITO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-MOJITO-PZ",
+      "nombre": "Blunt Wrap 2X — Mojito Menta (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-MOJITO-PZ.webp"
+    },
+    {
+      "sku": "BW2X-PEACH-BOX",
+      "nombre": "Display Blunt Wrap 2X — Peach / Durazno (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PEACH-BOX.webp"
+    },
+    {
+      "sku": "BW2X-PEACH-PZ",
+      "nombre": "Blunt Wrap 2X — Peach / Durazno (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PEACH-PZ.webp"
+    },
+    {
+      "sku": "BW2X-PINACOLADA-BOX",
+      "nombre": "Display Blunt Wrap 2X — Piña Colada (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PINACOLADA-BOX.webp"
+    },
+    {
+      "sku": "BW2X-PINACOLADA-PZ",
+      "nombre": "Blunt Wrap 2X — Piña Colada (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PINACOLADA-PZ.webp"
+    },
+    {
+      "sku": "BW2X-PURPLE-BOX",
+      "nombre": "Display Blunt Wrap 2X — Purple / Uva (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PURPLE-BOX.webp"
+    },
+    {
+      "sku": "BW2X-PURPLE-PZ",
+      "nombre": "Blunt Wrap 2X — Purple / Uva (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-PURPLE-PZ.webp"
+    },
+    {
+      "sku": "BW2X-RUSSIAN-BOX",
+      "nombre": "Display Blunt Wrap 2X — Russian Cream (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-RUSSIAN-BOX.webp"
+    },
+    {
+      "sku": "BW2X-RUSSIAN-PZ",
+      "nombre": "Blunt Wrap 2X — Russian Cream (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-RUSSIAN-PZ.webp"
+    },
+    {
+      "sku": "BW2X-STRAWBERRY-BOX",
+      "nombre": "Display Blunt Wrap 2X — Strawberry / Fresa (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-STRAWBERRY-BOX.webp"
+    },
+    {
+      "sku": "BW2X-STRAWBERRY-PZ",
+      "nombre": "Blunt Wrap 2X — Strawberry / Fresa (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-STRAWBERRY-PZ.webp"
+    },
+    {
+      "sku": "BW2X-TROPICAL-BOX",
+      "nombre": "Display Blunt Wrap 2X — Tropical Passion (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-TROPICAL-BOX.webp"
+    },
+    {
+      "sku": "BW2X-TROPICAL-PZ",
+      "nombre": "Blunt Wrap 2X — Tropical Passion (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-TROPICAL-PZ.webp"
+    },
+    {
+      "sku": "BW2X-VANILLA-BOX",
+      "nombre": "Display Blunt Wrap 2X — French Vanilla (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-VANILLA-BOX.webp"
+    },
+    {
+      "sku": "BW2X-VANILLA-PZ",
+      "nombre": "Blunt Wrap 2X — French Vanilla (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-VANILLA-PZ.webp"
+    },
+    {
+      "sku": "BW2X-WATERMELON-BOX",
+      "nombre": "Display Blunt Wrap 2X — Watermelon / Sandía (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-WATERMELON-BOX.webp"
+    },
+    {
+      "sku": "BW2X-WATERMELON-PZ",
+      "nombre": "Blunt Wrap 2X — Watermelon / Sandía (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-WATERMELON-PZ.webp"
+    },
+    {
+      "sku": "BW2X-ZERO-BOX",
+      "nombre": "Display Blunt Wrap 2X — Zero / Natural (Caja 25 sobres)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-ZERO-BOX.webp"
+    },
+    {
+      "sku": "BW2X-ZERO-PZ",
+      "nombre": "Blunt Wrap 2X — Zero / Natural (Sobre Individual)",
+      "foto_actual": "",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/BW2X-ZERO-PZ.webp"
+    },
+    {
+      "sku": "TE-OTROS-BLUNT-MASTER-BERRIES",
+      "nombre": "Blunt master “Berries”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-blunt-master-berries.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-BLUNT-MASTER-BERRIES.webp"
+    },
+    {
+      "sku": "TE-OTROS-BLUNT-MASTER-GRAPE",
+      "nombre": "Blunt master “GRAPE”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-blunt-master-grape.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-BLUNT-MASTER-GRAPE.webp"
+    },
+    {
+      "sku": "TE-OTROS-SHOW-BLUNT-CONE-KUSH",
+      "nombre": "Show blunt cone “KUSH”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-kush.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-SHOW-BLUNT-CONE-KUSH.webp"
+    },
+    {
+      "sku": "TE-OTROS-SHOW-BLUNT-CONE-MANGO",
+      "nombre": "Show blunt cone “MANGO”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-mango.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-SHOW-BLUNT-CONE-MANGO.webp"
+    },
+    {
+      "sku": "TE-OTROS-SHOW-BLUNT-CONE-WHITE-GRAPE",
+      "nombre": "Show blunt cone “WHITE GRAPE”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-white-grape.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-SHOW-BLUNT-CONE-WHITE-GRAPE.webp"
+    },
+    {
+      "sku": "TE-OTROS-SHOW-BLUNT-CONE-ZERO",
+      "nombre": "Show blunt cone “ZERO”",
+      "foto_actual": "/assets/productos/tiaraexpress/te-otros-show-blunt-cone-zero.jpg",
+      "problema": "Sin fotografía .webp con fondo transparente",
+      "foto_sugerida": "/assets/productos/blunts/TE-OTROS-SHOW-BLUNT-CONE-ZERO.webp"
+    }
+  ],
+  "precios_3x": [
+    {
+      "sku": "TE-OTROS-BONG-DE-ACRILICO-DE-20-CM-MODEL",
+      "nombre": "Bong de Acrílico de 20 cm – Modelos y Colores Surtidos",
+      "costo": 24.75,
+      "precio_actual": 45.0,
+      "precio_sugerido": 74.25
+    },
+    {
+      "sku": "TE-OTROS-BONG-DE-ACRILICO-OPACO-DE-16-CM",
+      "nombre": "Bong de acrílico opaco de 16 cm – resistente y fácil de limpiar",
+      "costo": 20.35,
+      "precio_actual": 37.0,
+      "precio_sugerido": 61.05
+    },
+    {
+      "sku": "TE-OTROS-BONG-DE-VIDRIO-DE-CALAVERA-25-C",
+      "nombre": "Bong de vidrio de calavera, 25 cm x 8.5 cm",
+      "costo": 23.1,
+      "precio_actual": 42.0,
+      "precio_sugerido": 69.3
+    },
+    {
+      "sku": "TE-OTROS-BONG-MASK",
+      "nombre": "Bong mask",
+      "costo": 110.0,
+      "precio_actual": 200.0,
+      "precio_sugerido": 330.0
+    },
+    {
+      "sku": "TE-OTROS-BONG-MASK-EN-COLORES",
+      "nombre": "Bong mask en colores.",
+      "costo": 110.0,
+      "precio_actual": 200.0,
+      "precio_sugerido": 330.0
+    },
+    {
+      "sku": "TE-OTROS-BONG-MASK-MULTICOLOR",
+      "nombre": "Bong mask multicolor.",
+      "costo": 110.0,
+      "precio_actual": 200.0,
+      "precio_sugerido": 330.0
+    },
+    {
+      "sku": "TE-OTROS-FILTRO-METALICO-PARA-PIPAS-DE-A",
+      "nombre": "Filtro metálico para pipas de acero inoxidable",
+      "costo": 55.0,
+      "precio_actual": 100.0,
+      "precio_sugerido": 165.0
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-DE-METAL",
+      "nombre": "Grinder de metal.",
+      "costo": 77.0,
+      "precio_actual": 140.0,
+      "precio_sugerido": 231.0
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-DE-METAL-TORNASOL-CON-T",
+      "nombre": "Grinder de Metal Tornasol con Tapa Cóncava",
+      "costo": 49.5,
+      "precio_actual": 90.0,
+      "precio_sugerido": 148.5
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-FLUORESCENTE",
+      "nombre": "Grinder fluorescente.",
+      "costo": 8.8,
+      "precio_actual": 16.0,
+      "precio_sugerido": 26.4
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-HAMBURGUESA",
+      "nombre": "Grinder hamburguesa",
+      "costo": 30.8,
+      "precio_actual": 56.0,
+      "precio_sugerido": 92.4
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-REY-CRANEO",
+      "nombre": "Grinder rey cráneo",
+      "costo": 29.15,
+      "precio_actual": 53.0,
+      "precio_sugerido": 87.45
+    },
+    {
+      "sku": "TE-OTROS-GRINDER-TORNASOL",
+      "nombre": "Grinder tornasol",
+      "costo": 66.0,
+      "precio_actual": 120.0,
+      "precio_sugerido": 198.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDOR-EN-FORMA-DE-GRANADA",
+      "nombre": "Moledor en forma de granada",
+      "costo": 55.0,
+      "precio_actual": 100.0,
+      "precio_sugerido": 165.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-ACRILICO-SENCILLA-DE-2",
+      "nombre": "Moledora acrílico sencilla de 2 piezas en varios colores",
+      "costo": 6.6,
+      "precio_actual": 12.0,
+      "precio_sugerido": 19.8
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-BALON-DE-FUTBOL-SENCIL",
+      "nombre": "Moledora balón de fútbol sencilla de dos partes",
+      "costo": 11.0,
+      "precio_actual": 20.0,
+      "precio_sugerido": 33.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-ACRILICO-6-CM-CON-I",
+      "nombre": "Moledora de acrílico 6 cm con imán",
+      "costo": 5.5,
+      "precio_actual": 10.0,
+      "precio_sugerido": 16.5
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-ACRILICO-PARA-TABAC",
+      "nombre": "Moledora de acrílico para tabaco de 3 compartimientos 5 x 4.5 cm",
+      "costo": 7.15,
+      "precio_actual": 13.0,
+      "precio_sugerido": 21.45
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-ACRILICO-SENCILLA-C",
+      "nombre": "Moledora de acrílico sencilla con cierre magnético",
+      "costo": 8.25,
+      "precio_actual": 15.0,
+      "precio_sugerido": 24.75
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-METAL-3-NIVELES-MED",
+      "nombre": "Moledora de metal 3 niveles mediana con estampados",
+      "costo": 44.0,
+      "precio_actual": 80.0,
+      "precio_sugerido": 132.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-METAL-DE-2-COMPARTI",
+      "nombre": "Moledora de metal de 2 compartimientos",
+      "costo": 44.0,
+      "precio_actual": 80.0,
+      "precio_sugerido": 132.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-METAL-DE-2-PIEZAS-E",
+      "nombre": "Moledora de metal de 2 piezas en forma de galleta con imán",
+      "costo": 24.75,
+      "precio_actual": 45.0,
+      "precio_sugerido": 74.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-METAL-DE-CUATRO-PIE",
+      "nombre": "Moledora de metal de cuatro piezas con diseño",
+      "costo": 68.75,
+      "precio_actual": 125.0,
+      "precio_sugerido": 206.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-METAL-MEDIANA-CON-G",
+      "nombre": "Moledora de metal mediana con grabado",
+      "costo": 38.5,
+      "precio_actual": 70.0,
+      "precio_sugerido": 115.5
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DE-PLASTICO-ESFERICA-P",
+      "nombre": "Moledora de Plástico Esférica – Práctica y divertida",
+      "costo": 13.75,
+      "precio_actual": 25.0,
+      "precio_sugerido": 41.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-DISENO-DE-YOYO",
+      "nombre": "Moledora diseño de yoyo.",
+      "costo": 13.75,
+      "precio_actual": 25.0,
+      "precio_sugerido": 41.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-EXTRA-GRANDE-ACRILICO-",
+      "nombre": "Moledora extra grande acrílico para tabaco",
+      "costo": 13.75,
+      "precio_actual": 25.0,
+      "precio_sugerido": 41.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-GRANDE-DE-ACRILICO",
+      "nombre": "Moledora Grande de acrílico",
+      "costo": 11.0,
+      "precio_actual": 20.0,
+      "precio_sugerido": 33.0
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-GRANDE-DE-PLASTICO-CON",
+      "nombre": "moledora grande de plástico con 3 compartimentos",
+      "costo": 9.9,
+      "precio_actual": 18.0,
+      "precio_sugerido": 29.7
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-HORNET",
+      "nombre": "Moledora Hornet",
+      "costo": 71.5,
+      "precio_actual": 130.0,
+      "precio_sugerido": 214.5
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-HORNET-FIGURA-DE-FICHA",
+      "nombre": "Moledora Hornet figura de fichas de casino",
+      "costo": 27.5,
+      "precio_actual": 50.0,
+      "precio_sugerido": 82.5
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-HORNET-FIGURA-DE-REVOL",
+      "nombre": "Moledora Hornet figura de revolver",
+      "costo": 30.8,
+      "precio_actual": 56.0,
+      "precio_sugerido": 92.4
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-HORNET-MINI-3-COMPARTI",
+      "nombre": "Moledora Hornet mini 3 compartimientos",
+      "costo": 41.25,
+      "precio_actual": 75.0,
+      "precio_sugerido": 123.75
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-MEDIANA-DE-CUATRO-PIEZ",
+      "nombre": "Moledora mediana de cuatro piezas de metal",
+      "costo": 46.75,
+      "precio_actual": 85.0,
+      "precio_sugerido": 140.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-METALICA-3-NIVELES-GRI",
+      "nombre": "Moledora metálica 3 niveles, grinder para tabaco",
+      "costo": 46.75,
+      "precio_actual": 85.0,
+      "precio_sugerido": 140.25
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-MINI",
+      "nombre": "Moledora mini",
+      "costo": 12.1,
+      "precio_actual": 22.0,
+      "precio_sugerido": 36.3
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-PLASTICA-CON-CALCOMANI",
+      "nombre": "Moledora plástica con calcomanía",
+      "costo": 5.5,
+      "precio_actual": 10.0,
+      "precio_sugerido": 16.5
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-ROSA-DE-TRES-NIVELES-P",
+      "nombre": "Moledora rosa de tres niveles. (Pieza)",
+      "costo": 52.25,
+      "precio_actual": 95.0,
+      "precio_sugerido": 156.75
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-TORNASOL-3-COMPARTIMEN",
+      "nombre": "Moledora tornasol 3 compartimentos 5 cm",
+      "costo": 46.2,
+      "precio_actual": 84.0,
+      "precio_sugerido": 138.6
+    },
+    {
+      "sku": "TE-OTROS-MOLEDORA-Y-ENROLLADORA-2-EN-1",
+      "nombre": "Moledora y enrolladora 2 en 1",
+      "costo": 9.9,
+      "precio_actual": 18.0,
+      "precio_sugerido": 29.7
+    },
+    {
+      "sku": "TE-OTROS-PIPA-ARTESANAL-PARA-TABACO-CHIC",
+      "nombre": "Pipa artesanal para tabaco chica",
+      "costo": 8.8,
+      "precio_actual": 16.0,
+      "precio_sugerido": 26.4
+    },
+    {
+      "sku": "TE-OTROS-PIPA-DE-CRANEO-DE-TORO-DECORATI",
+      "nombre": "Pipa de cráneo de toro decorativa",
+      "costo": 12.1,
+      "precio_actual": 22.0,
+      "precio_sugerido": 36.3
+    },
+    {
+      "sku": "TE-OTROS-PIPA-DE-RESINA-ARTESANAL-DISPON",
+      "nombre": "Pipa de resina artesanal – Disponible en diferentes modelos",
+      "costo": 11.0,
+      "precio_actual": 20.0,
+      "precio_sugerido": 33.0
+    },
+    {
+      "sku": "TE-OTROS-PIPA-DE-RESINA-DISENOS-DIVERSOS",
+      "nombre": "Pipa de resina diseños diversos para uso personal",
+      "costo": 13.75,
+      "precio_actual": 25.0,
+      "precio_sugerido": 41.25
+    },
+    {
+      "sku": "TE-OTROS-PIPA-DE-TAGUA-CON-BOQUILLA-DE-M",
+      "nombre": "Pipa de tagua con boquilla de madera artesanal",
+      "costo": 6.6,
+      "precio_actual": 12.0,
+      "precio_sugerido": 19.8
+    },
+    {
+      "sku": "TE-OTROS-PIPA-EROTICA-DE-12-CM",
+      "nombre": "Pipa erótica de 12 cm",
+      "costo": 12.1,
+      "precio_actual": 22.0,
+      "precio_sugerido": 36.3
+    },
+    {
+      "sku": "TE-OTROS-PIPA-PLASTICA-PARA-FUMAR",
+      "nombre": "Pipa plástica para fumar",
+      "costo": 11.0,
+      "precio_actual": 20.0,
+      "precio_sugerido": 33.0
+    }
+  ]
+}

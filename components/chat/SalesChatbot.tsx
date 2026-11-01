@@ -20,14 +20,6 @@ type Mensaje = {
   pagar?: boolean;
 };
 
-type Dictado = {
-  lang: string;
-  onresult: ((evento: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
-  onerror: (() => void) | null;
-  onend: (() => void) | null;
-  start: () => void;
-};
-
 function normalizar(valor: string) {
   return valor.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
@@ -96,10 +88,7 @@ export default function SalesChatbot() {
   }
 
   function dictar() {
-    const ventana = window as Window & {
-      SpeechRecognition?: new () => Dictado;
-      webkitSpeechRecognition?: new () => Dictado;
-    };
+    const ventana = typeof window !== "undefined" ? (window as any) : {};
     const Constructor = ventana.SpeechRecognition || ventana.webkitSpeechRecognition;
     if (!Constructor) {
       setMensajes((actual) => [...actual, { id: `${Date.now()}-v`, autor: "asistente", texto: "Este navegador no tiene dictado. Escribe el producto." }]);
@@ -107,8 +96,8 @@ export default function SalesChatbot() {
     }
     const reconocimiento = new Constructor();
     reconocimiento.lang = "es-MX";
-    reconocimiento.onresult = (evento) => {
-      const dicho = evento.results[0]?.[0]?.transcript || "";
+    reconocimiento.onresult = (evento: any) => {
+      const dicho = evento.results?.[0]?.[0]?.transcript || "";
       setTexto(dicho);
       setEscuchando(false);
       void responder(dicho);
