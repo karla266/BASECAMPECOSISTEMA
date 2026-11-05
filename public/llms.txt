@@ -1,25 +1,25 @@
 # Basecamp 420
 
-Basecamp 420 es el hub de experiencias, aventura y comercio especializado en Orizaba, Veracruz.
+> Basecamp 420 es un hub en Orizaba, Veracruz, con servicios de aventura, parapente, renta de equipo y The Trip Smoke Shop.
 
 ## Contacto oficial
-- Dirección: Oriente 27 y Norte 10, Orizaba, Veracruz.
-- Teléfono: +52 272 725 8748
-- Correo: contacto@basecamp420.com
-- WhatsApp: https://wa.me/522727258748
+- [Dirección: Oriente 27 y Norte 10, Orizaba, Veracruz](https://www.basecamp420.com/contacto)
+- [Teléfono: +52 272 725 8748](tel:+522727258748)
+- [Correo: contacto@basecamp420.com](mailto:contacto@basecamp420.com)
+- [WhatsApp oficial](https://wa.me/522727258748)
 
 ## Servicios y productos
-- Parapente tándem y experiencias de vuelo: https://www.basecamp420.com/adventure
-- Cursos y formación: https://www.basecamp420.com/explore
-- The Trip Smoke Shop: https://www.basecamp420.com/thetrip
-- Renta de equipo de montaña/camping: https://www.basecamp420.com/renta
-- Ecosistema de marcas: https://www.basecamp420.com/ecosistema
-- Podcast / contenido: https://www.basecamp420.com/movimiento-canabico/podcasts
+- [Parapente tándem y aventura](https://www.basecamp420.com/adventure)
+- [Cursos y formación](https://www.basecamp420.com/explore)
+- [The Trip Smoke Shop](https://www.basecamp420.com/thetrip)
+- [Renta de equipo](https://www.basecamp420.com/renta)
+- [Ecosistema de marcas](https://www.basecamp420.com/ecosistema)
+- [Podcast y contenido](https://www.basecamp420.com/movimiento-canabico/podcasts)
 
 ## Enlaces clave
-- Inicio: https://www.basecamp420.com/
-- About: https://www.basecamp420.com/about
-- Contacto: https://www.basecamp420.com/contacto
-- Legal: https://www.basecamp420.com/legal
-- Términos: https://www.basecamp420.com/terminos
-- Sitemap: https://www.basecamp420.com/sitemap.xml
+- [Inicio](https://www.basecamp420.com/)
+- [Acerca de / About](https://www.basecamp420.com/about)
+- [Contacto](https://www.basecamp420.com/contacto)
+- [Legal](https://www.basecamp420.com/legal)
+- [Términos](https://www.basecamp420.com/terminos)
+- [Sitemap](https://www.basecamp420.com/sitemap.xml)

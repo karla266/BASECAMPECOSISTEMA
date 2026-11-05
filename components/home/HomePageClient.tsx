@@ -152,7 +152,7 @@ export default function Home() {
           <div className="hero-overlay"></div>
           
           <div className="hero-content">
-              <h2>BASECAMP 420</h2>
+              <h1>BASECAMP 420</h1>
               <p>Experiencias de montaña, vuelos en parapente, Smokeshop, renta de equipo e innovación digital. Nacidos en la cima, respaldados por la tradición.</p>
               
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="grid-2" style={{ alignItems: 'stretch' }}>
           <div className="card" style={{ background: 'linear-gradient(135deg, #0f172a, #082f49)', border: '1px solid rgba(125,211,252,0.4)', boxShadow: '0 25px 45px rgba(14,116,144,0.25)' }}>
             <span className="tag" style={{ color: '#7dd3fc' }}>Experiencia Destacada · Salidas desde Basecamp 420</span>
-            <h3 style={{ marginBottom: '18px' }}>Vuelo en Parapente Tándem sobre el Valle de Orizaba y Fortín</h3>
+            <h2 style={{ marginBottom: '18px' }}>Vuelo en Parapente Tándem sobre el Valle de Orizaba y Fortín</h2>
             <p style={{ color: '#dbeafe', marginBottom: '18px' }}>
               Vive una experiencia de alto impacto con despegue en Cerro de las Antenas (Fortín) y aterrizaje en Coapichapa, con vistas panorámicas del Valle de Orizaba y la región montañosa más emblemática del Estado.
             </p>
@@ -202,7 +202,7 @@ export default function Home() {
               <div style={{ textAlign: 'center', maxWidth: '440px' }}>
                 <div style={{ fontSize: '4rem', marginBottom: '12px' }}>⛰️</div>
                 <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '3px', color: '#7dd3fc', textTransform: 'uppercase', marginBottom: '12px' }}>Basecamp 420 Adventure</div>
-                <h4 style={{ margin: '0 0 12px', fontSize: '2rem', color: '#fff' }}>Coapichapa & Valle de Orizaba</h4>
+                <h3 style={{ margin: '0 0 12px', fontSize: '2rem', color: '#fff' }}>Coapichapa & Valle de Orizaba</h3>
                 <p style={{ color: '#dbeafe', lineHeight: 1.8 }}>
                   Vuelo tándem con seguridad, acompañamiento local y una panorámica única del valle de Orizaba, Fortín y sus alrededores. Ideal para parejas, amigos o viajeros que buscan una experiencia inolvidable.
                 </p>
@@ -218,7 +218,7 @@ export default function Home() {
       <section className="section-padding" style={{ background: 'linear-gradient(135deg, rgba(20,83,45,0.2), rgba(15,23,42,0.8))' }}>
         <div className="card" style={{ background: 'linear-gradient(135deg, rgba(22,163,74,0.15), rgba(15,23,42,0.96))', border: '1px solid rgba(134,239,172,0.25)' }}>
           <span className="tag" style={{ color: '#86efac' }}>Renta de equipo</span>
-          <h3 style={{ marginBottom: '12px' }}>Alquiler de equipo para alta montaña y camping</h3>
+          <h2 style={{ marginBottom: '12px' }}>Alquiler de equipo para alta montaña y camping</h2>
           <p style={{ color: '#d1fae5', marginBottom: '18px' }}>
             Tenemos equipo para excursionistas, campistas y montañistas: tiendas de campaña, mochilas, cascos, bastones, impermeables, sleeping bags y accesorios para recorridos ligeros o expediciones serias.
           </p>
@@ -235,7 +235,7 @@ export default function Home() {
         <div className="grid-2" style={{ alignItems: 'stretch' }}>
           <div className="card" style={{ background: 'linear-gradient(135deg, rgba(14,116,144,0.15), rgba(15,23,42,0.95))', border: '1px solid rgba(56,189,248,0.35)' }}>
             <span className="tag" style={{ color: '#7dd3fc' }}>APPI School · Formación y pago seguro</span>
-            <h3 style={{ marginBottom: '18px' }}>Próximos cursos de parapente con instructor certificado</h3>
+            <h2 style={{ marginBottom: '18px' }}>Próximos cursos de parapente con instructor certificado</h2>
             <p style={{ color: '#dbeafe', marginBottom: '18px' }}>
               Encuentra fechas disponibles para cursos, entrenamientos y certificación con Salvador Lara / Parapentitis. El pago se puede realizar por anticipo o total del curso según la fecha elegida.
             </p>
@@ -275,7 +275,7 @@ export default function Home() {
 
           <div className="card" style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.94), rgba(8,47,73,0.9))', border: '1px solid rgba(125,211,252,0.2)' }}>
             <span className="tag" style={{ color: '#fbbf24' }}>Ámbito institucional · Basecamp 420</span>
-            <h3 style={{ marginBottom: '18px' }}>Tu experiencia tándem sigue siendo una reserva directa por WhatsApp</h3>
+            <h2 style={{ marginBottom: '18px' }}>Tu experiencia tándem sigue siendo una reserva directa por WhatsApp</h2>
             <p style={{ color: '#dbeafe' }}>
               La experiencia de vuelo tándem continúa siendo una reserva inmediata con atención directa por WhatsApp, mientras los cursos APPI y la formación especializada se gestionan con fechas y enlaces de pago públicos.
             </p>
@@ -293,7 +293,7 @@ export default function Home() {
           <div className="grid-2">
               <div>
                   <span className="tag">Tradición, Derechos & Libertad</span>
-                  <h3>De una vitrina en la papelería a un ecosistema de aventura</h3>
+                  <h2>De una vitrina en la papelería a un ecosistema de aventura</h2>
                   <p>
                       <strong>Basecamp 420</strong> es el resultado de una trayectoria de lucha, trabajo y pasión. Nuestras raíces comerciales nacen en <strong>Papelería Madera</strong>, negocio familiar de 40 años que ha sido el sustento de nuestro hogar.
                   </p>
@@ -303,7 +303,7 @@ export default function Home() {
               </div>
               <div className="card">
                   <span className="tag">5 Años en las Cumbres</span>
-                  <h4 style={{fontSize: '1.3rem', color: '#fff', marginTop: 0}}>Comunidad & Vuelo Libre</h4>
+                  <h3 style={{fontSize: '1.3rem', color: '#fff', marginTop: 0}}>Comunidad & Vuelo Libre</h3>
                   <p>
                       Con el <strong>Club Trepacerros</strong> guiamos expediciones gratuitas para compartir la montaña. En el aire, volamos junto a <strong>Parapentitis</strong> y su instructor pionero con 33 años de experiencia en Fortín, APPI y USPA, mientras concluyo mi certificación profesional.
                   </p>
@@ -315,43 +315,43 @@ export default function Home() {
       <section id="ecosistema" style={{background: '#1e293b'}} className="section-padding">
           <div style={{textAlign: 'center', marginBottom: '40px'}}>
               <span className="tag">Ecosistema Integrado</span>
-              <h3>Nuestras Marcas & Aliados</h3>
+              <h2>Nuestras Marcas & Aliados</h2>
           </div>
 
           <div className="grid-3">
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Marca Propia & Sustento</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>The Trip Smokeshop</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>The Trip Smokeshop</h3>
                   <p>Nuestra tienda de artículos de fumar de uso legal. Nacida tras el amparo legal de 2020 en una vitrina y convertida hoy en el motor de Basecamp 420.</p>
               </div>
 
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Aventura & Renta</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Basecamp 420 Adventure</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Basecamp 420 Adventure</h3>
                   <p>Tours de aventura, expediciones, venta y renta de equipo especializado. Síguenos en nuestro canal de YouTube <em>basecamp420trepacerros</em>.</p>
               </div>
 
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Comunidad Libre</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Club Trepacerros</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Club Trepacerros</h3>
                   <p>5 años liderando expediciones de montaña comunitarias. Compartimos el aprendizaje y la naturaleza sin costo por guiada.</p>
               </div>
 
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Fisioterapia Aliada</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Fisiozoom</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Fisiozoom</h3>
                   <p>Clínica de fisioterapia, rehabilitación y compañera de ruta en Trepacerros para la preparación y recuperación de nuestros deportistas.</p>
               </div>
 
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Evolución Digital</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Cima Digital</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Cima Digital</h3>
                   <p>La evolución tecnológica de Ciber Madera. Desarrollo web SaaS, inteligencia artificial y servicios de impresión en nuestro local.</p>
               </div>
 
               <div className="card" style={{background: '#0f172a'}}>
                   <span className="tag">Tradición Familiar</span>
-                  <h4 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Papelería Madera</h4>
+                  <h3 style={{color: '#fff', fontSize: '1.2rem', marginTop: 0}}>Papelería Madera</h3>
                   <p>40 años de trayectoria comercial. Tradición, atención personalizada y la herencia familiar que dio origen a todo este proyecto.</p>
               </div>
           </div>
@@ -361,7 +361,7 @@ export default function Home() {
       <section id="contacto" className="section-padding">
           <div className="card" style={{textAlign: 'center', maxWidth: '850px', margin: '0 auto'}}>
               <span className="tag">Atención en Mostrador</span>
-              <h3>Visítanos en Nuestro Local Físico</h3>
+              <h2>Visítanos en Nuestro Local Físico</h2>
               <p style={{fontSize: '1.1rem', color: '#e2e8f0'}}>
                   Atendemos consultas de The Trip Smokeshop, renta de equipo, impresiones y contrataciones directamente en nuestro punto de venta.
               </p>
