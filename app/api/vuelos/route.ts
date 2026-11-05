@@ -7,7 +7,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const sesion = await verificarSesionAdmin(cookies().get(NOMBRE_COOKIE_SESION)?.value);
+  const jar = await cookies();
+  const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (!sesion) return NextResponse.json({ error: "Se requiere la sesión del panel." }, { status: 401 });
   const [reservas, pilotos] = await Promise.all([leerReservas(), leerPilotos()]);
   return NextResponse.json({ reservas, pilotos });
@@ -44,7 +45,8 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const sesion = await verificarSesionAdmin(cookies().get(NOMBRE_COOKIE_SESION)?.value);
+  const jar = await cookies();
+  const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (!sesion) return NextResponse.json({ error: "Se requiere la sesión del panel." }, { status: 401 });
   const cuerpo = (await request.json()) as {
     id?: string;
@@ -71,7 +73,8 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE() {
-  const sesion = await verificarSesionAdmin(cookies().get(NOMBRE_COOKIE_SESION)?.value);
+  const jar = await cookies();
+  const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (!sesion) return NextResponse.json({ error: "Se requiere la sesión del panel." }, { status: 401 });
   await vaciarReservas();
   return NextResponse.json({ ok: true, reservas: [] });

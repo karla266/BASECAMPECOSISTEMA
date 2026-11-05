@@ -16,7 +16,8 @@ function error(mensaje: string, estado: number) {
 }
 
 export async function POST(request: Request) {
-  const sesion = await verificarSesionAdmin(cookies().get(NOMBRE_COOKIE_SESION)?.value);
+  const jar = await cookies();
+  const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (!sesion) return error("Se requiere la sesión del panel.", 401);
 
   const cuerpo = (await request.json()) as {

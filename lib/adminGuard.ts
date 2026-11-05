@@ -11,7 +11,7 @@ export function jsonPrivado(body: unknown, status = 200) {
 }
 
 export async function usuarioDeLaSesion(): Promise<UsuarioPublico | null> {
-  const jar = cookies();
+  const jar = await cookies();
   const token = jar.get(NOMBRE_COOKIE_ROL)?.value || jar.get(NOMBRE_COOKIE_SESION)?.value;
   const sesion = await verificarSesionAdmin(token);
   if (!sesion) return null;

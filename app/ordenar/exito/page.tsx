@@ -16,10 +16,11 @@ function textoParam(valor: string | string[] | undefined) {
 export default async function ExitoPedidoPage({
   searchParams,
 }: {
-  searchParams: { orden?: string | string[]; estado?: string | string[]; status?: string | string[] };
+  searchParams: Promise<{ orden?: string | string[]; estado?: string | string[]; status?: string | string[] }>;
 }) {
-  const orden = await buscarOrdenPalapa(textoParam(searchParams.orden));
-  const estado = textoParam(searchParams.estado) || textoParam(searchParams.status);
+  const resolvedSearchParams = await searchParams;
+  const orden = await buscarOrdenPalapa(textoParam(resolvedSearchParams.orden));
+  const estado = textoParam(resolvedSearchParams.estado) || textoParam(resolvedSearchParams.status);
   const mensaje = orden
     ? `Hola Basecamp 420, ya pagué mi pedido ${orden.id} por $${pesosDesdeCentavos(orden.totalCentavos)} MXN para ${orden.puntoEtiqueta}.`
     : "Hola Basecamp 420, ya pagué mi pedido de la palapa y quiero confirmar la entrega.";

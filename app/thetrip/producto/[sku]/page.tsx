@@ -14,8 +14,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const producto = buscarProductoPorSku(params.sku);
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { sku } = await params;
+  const producto = buscarProductoPorSku(sku);
   if (!producto) return { title: "Producto | The Trip Smoke Shop" };
   const canonica = `${BASE}/thetrip/producto/${producto.sku.toLowerCase()}`;
   return {
@@ -39,8 +40,9 @@ function aviso(fecha: string | undefined) {
   return fecha ? `Llega ${fecha}` : null;
 }
 
-export default function PaginaProducto({ params }: { params: Params }) {
-  const producto = buscarProductoPorSku(params.sku);
+export default async function PaginaProducto({ params }: { params: Promise<Params> }) {
+  const { sku } = await params;
+  const producto = buscarProductoPorSku(sku);
   if (!producto) notFound();
   const etiqueta = aviso(producto.fecha_llegada);
   const precio = Number(producto.precio_mxn || 0);

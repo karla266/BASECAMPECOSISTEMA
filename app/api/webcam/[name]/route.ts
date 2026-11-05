@@ -15,11 +15,12 @@ const TYPES: Record<string, string> = {
 
 export async function GET(
   _request: Request,
-  { params }: { params: { name: string } },
+  { params }: { params: Promise<{ name: string }> },
 ) {
+  const { name: rawName } = await params
   let decoded = ''
   try {
-    decoded = decodeURIComponent(params.name || '')
+    decoded = decodeURIComponent(rawName || '')
   } catch {
     return NextResponse.json({ error: 'Archivo no permitido.' }, { status: 400 })
   }
@@ -58,14 +59,15 @@ function nombreDeFoto(raw: string): string | null {
 
 export async function DELETE(
   _request: Request,
-  { params }: { params: { name: string } },
+  { params }: { params: Promise<{ name: string }> },
 ) {
+  const { name: rawName } = await params
   const sesion = await usuarioDeLaSesion()
   if (!sesion) {
     return NextResponse.json({ error: 'Inicia sesión para continuar.' }, { status: 401 })
   }
 
-  const name = nombreDeFoto(params.name || '')
+  const name = nombreDeFoto(rawName || '')
   if (!name) {
     return NextResponse.json({ error: 'Archivo no permitido.' }, { status: 400 })
   }

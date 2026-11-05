@@ -4,14 +4,12 @@ import { findOrderByIdOrCode } from "@/lib/orders";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-interface ValidateRouteProps {
-  params: {
-    id: string;
-  };
-}
-
-export async function GET(_request: Request, { params }: ValidateRouteProps) {
-  const order = await findOrderByIdOrCode(params.id);
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const order = await findOrderByIdOrCode(id);
   if (!order) {
     return NextResponse.json(
       {

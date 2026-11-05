@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
 
@@ -83,10 +84,10 @@ export default function RentaPage() {
     <main style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #020817 0%, #0f172a 100%)', color: '#f8fafc' }}>
       <header style={{ padding: '20px 24px', borderBottom: '1px solid rgba(148,163,184,0.2)', background: 'rgba(15,23,42,0.85)', backdropFilter: 'blur(12px)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <a href="/" style={{ color: '#f8fafc', textDecoration: 'none', fontWeight: 800, letterSpacing: '1px' }}>BASECAMP 420</a>
+          <Link href="/" style={{ color: '#f8fafc', textDecoration: 'none', fontWeight: 800, letterSpacing: '1px' }}>BASECAMP 420</Link>
           <nav style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', color: '#cbd5e1', fontSize: '0.82rem' }}>
-            <a href="/" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Inicio</a>
-            <a href="/#parapente" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Parapente</a>
+            <Link href="/" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Inicio</Link>
+            <Link href="/#parapente" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Parapente</Link>
             <a href="https://wa.me/522727258748?text=Hola,%20quiero%20rentar%20equipo%20para%20monta%C3%B1a%20o%20camping" target="_blank" rel="noreferrer" style={{ color: '#86efac', textDecoration: 'none', fontWeight: 700 }}>Solicitar cotización</a>
           </nav>
         </div>
@@ -102,7 +103,7 @@ export default function RentaPage() {
             </p>
             <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
               <a href="https://wa.me/522727258748?text=Hola,%20me%20gustar%C3%ADa%20rentar%20equipo%20de%20alta%20monta%C3%B1a%20y%20camping" target="_blank" rel="noreferrer" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar por WhatsApp</a>
-              <a href="/" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 700 }}>Volver al inicio</a>
+              <Link href="/" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 700 }}>Volver al inicio</Link>
             </div>
           </div>
 

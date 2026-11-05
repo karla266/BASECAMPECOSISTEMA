@@ -1,9 +1,11 @@
 "use client";
 
 import { Server, Shield, Globe } from 'lucide-react';
+import { useParams } from "next/navigation";
 
-export default function TenantPage({ params }: { params: { tenant: string } }) {
-  const { tenant } = params;
+export default function TenantPage() {
+  const params = useParams<{ tenant: string }>();
+  const tenant = params?.tenant || "tenant";
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 p-6 text-slate-200">

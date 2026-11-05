@@ -4,15 +4,13 @@ import { findOrderByIdOrCode, redeemOrder } from "@/lib/orders";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-interface RedeemRouteProps {
-  params: {
-    id: string;
-  };
-}
-
-export async function POST(_request: Request, { params }: RedeemRouteProps) {
+export async function POST(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    const order = await findOrderByIdOrCode(params.id);
+    const { id } = await params;
+    const order = await findOrderByIdOrCode(id);
     if (!order) {
       return NextResponse.json({ ok: false, message: "Folio o transacción no encontrada." }, { status: 404 });
     }

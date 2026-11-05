@@ -9,7 +9,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const sesion = await verificarSesionAdmin(cookies().get(NOMBRE_COOKIE_SESION)?.value);
+  const jar = await cookies();
+  const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (!sesion) return NextResponse.json({ error: "Se requiere la sesión del panel." }, { status: 401 });
 
   const cuerpo = (await request.json()) as { id?: string };

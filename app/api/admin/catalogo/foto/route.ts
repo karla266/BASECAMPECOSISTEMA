@@ -13,7 +13,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 async function exigirFoto() {
-  const jar = cookies();
+  const jar = await cookies();
   const token = jar.get(NOMBRE_COOKIE_ROL)?.value || jar.get(NOMBRE_COOKIE_SESION)?.value;
   const sesion = await verificarSesionAdmin(token);
   if (!sesion) {

@@ -4,14 +4,12 @@ import { approveQueueItem } from "@/lib/autopilot";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-interface ApproveRouteProps {
-  params: {
-    id: string;
-  };
-}
-
-export async function POST(request: Request, { params }: ApproveRouteProps) {
+export async function POST(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
+    const { id } = await params;
     const body = (await request.json().catch(() => ({}))) as {
       action?: "APROBAR" | "DESCARTAR";
       proposedTitle?: string;
@@ -20,7 +18,7 @@ export async function POST(request: Request, { params }: ApproveRouteProps) {
       tags?: string[];
     };
 
-    const item = await approveQueueItem(params.id, body);
+    const item = await approveQueueItem(id, body);
     if (!item) {
       return NextResponse.json({ ok: false, error: "Elemento no encontrado." }, { status: 404 });
     }

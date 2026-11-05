@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 async function sesionValida() {
-  const token = cookies().get(NOMBRE_COOKIE_SESION)?.value;
+  const token = (await cookies()).get(NOMBRE_COOKIE_SESION)?.value;
   return verificarSesionAdmin(token);
 }
 

@@ -4,9 +4,9 @@ import { findOrderByIdOrCode } from "@/lib/orders";
 import PrintButton from "./PrintButton";
 
 interface ComprobantePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 function formatMoney(amount: number): string {
@@ -23,7 +23,8 @@ function activityDescription(productLabel: string): string {
 }
 
 export default async function ComprobantePage({ params }: ComprobantePageProps) {
-  const order = await findOrderByIdOrCode(params.id);
+  const { id } = await params;
+  const order = await findOrderByIdOrCode(id);
   if (!order) notFound();
 
   const statusClass = order.status === "approved" ? "text-emerald-400" : "text-amber-400";

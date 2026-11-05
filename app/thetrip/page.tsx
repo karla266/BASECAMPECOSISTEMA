@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { posApiUrl } from '@/lib/apiBase'
 import BannerDropCountdown from '@/components/thetrip/BannerDropCountdown'
 import BluntWrapSelector from '@/components/thetrip/BluntWrapSelector'
@@ -155,12 +156,12 @@ export default function TheTripSmokeShop() {
             >
               Soy mayor de 18 anos - Entrar
             </button>
-            <a
+            <Link
               href="/"
               className="block w-full py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 font-semibold rounded-xl text-xs transition"
             >
               Salir hacia Basecamp 420
-            </a>
+            </Link>
           </div>
         </div>
       </div>

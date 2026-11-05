@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AccesoAdminPage() {
-  const jar = cookies();
+  const jar = await cookies();
   const sesion = await verificarSesionAdmin(jar.get(NOMBRE_COOKIE_ROL)?.value || jar.get(NOMBRE_COOKIE_SESION)?.value);
   if (sesion?.rol === "operador_foto") redirect("/admin/camara");
   if (sesion?.rol === "admin") return <PantallaAcceso />;
