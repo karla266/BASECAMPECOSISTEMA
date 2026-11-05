@@ -35,5 +35,8 @@
   },
   "devDependencies": {
 "@types/jest": "^30.0.0"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
   }
 }
