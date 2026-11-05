@@ -23,6 +23,10 @@ const rutasEstaticas: MetadataRoute.Sitemap = [
   { url: `${baseUrl}/tienda`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 },
   { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 },
   { url: `${baseUrl}/movimiento-canabico/podcasts`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 },
+  { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+  { url: `${baseUrl}/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+  { url: `${baseUrl}/legal`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
+  { url: `${baseUrl}/terminos`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
 ];
 
 function rutasDeProductos(): MetadataRoute.Sitemap {

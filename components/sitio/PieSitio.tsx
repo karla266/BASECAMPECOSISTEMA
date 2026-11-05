@@ -10,6 +10,10 @@ const ENLACES = [
   { href: "/amparos", label: "Amparo Cannábico" },
   { href: "/experiencia-completa", label: "Día Cumbre" },
   { href: "/renta", label: "Renta" },
+  { href: "/about", label: "Acerca de" },
+  { href: "/contacto", label: "Contacto" },
+  { href: "/legal", label: "Legal" },
+  { href: "/terminos", label: "Términos" },
 ];
 
 export default function PieSitio() {
@@ -18,6 +22,8 @@ export default function PieSitio() {
       <p>© 2026 Basecamp 420. Oriente 27 y Norte 10, Orizaba, Veracruz.</p>
       <p className="mt-2">
         <a href="tel:+522727258748" className="text-zinc-300">272 725 8748</a>
+        {" · "}
+        <a href="mailto:contacto@basecamp420.com" className="text-zinc-300">contacto@basecamp420.com</a>
       </p>
       <nav aria-label="Pie de página" className="mx-auto mt-4 flex max-w-lg flex-wrap justify-center gap-3">
         {ENLACES.map((enlace) => (

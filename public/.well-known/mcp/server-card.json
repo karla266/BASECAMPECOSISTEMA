@@ -1,10 +1,26 @@
 {
   "name": "Basecamp 420 MCP Server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "endpoint": "https://www.basecamp420.com/api/mcp",
+  "homepage": "https://www.basecamp420.com",
+  "llms": "https://www.basecamp420.com/llms.txt",
+  "contact": {
+    "email": "contacto@basecamp420.com",
+    "phone": "+522727258748"
+  },
   "capabilities": {
     "tools": true,
     "resources": false,
     "prompts": false
-  }
+  },
+  "tools": [
+    {
+      "name": "contacto_basecamp_420",
+      "description": "Devuelve teléfono, dirección y WhatsApp oficiales de Basecamp 420.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
 }

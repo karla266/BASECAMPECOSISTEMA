@@ -22,6 +22,9 @@ type ModelContext = {
 };
 
 function contextoModelo(): ModelContext | undefined {
+  if (typeof navigator !== 'undefined' && 'modelContext' in navigator) {
+    return (navigator as Navigator & { modelContext?: ModelContext }).modelContext;
+  }
   if (typeof document !== 'undefined' && 'modelContext' in document) {
     return (document as Document & { modelContext?: ModelContext }).modelContext;
   }

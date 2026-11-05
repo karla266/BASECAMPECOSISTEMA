@@ -22,9 +22,28 @@ function inicioDelRol(rol: string) {
   return rol === 'operador_foto' ? '/admin/camara' : '/admin';
 }
 
+function esRutaPublica(pathname: string) {
+  return !pathname.startsWith('/admin') && !pathname.startsWith('/api') && !pathname.startsWith('/_next');
+}
+
+function permiteMarkdown(pathname: string) {
+  return esRutaPublica(pathname) && !pathname.includes('.') && pathname !== '/favicon.ico';
+}
+
+function linkAgentHeader(pathAndQuery: string) {
+  const safePath = encodeURIComponent(pathAndQuery || '/');
+  return `</llms.txt>; rel="alternate"; type="text/plain", </api/markdown?path=${safePath}>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service"; type="application/json"`;
+}
+
+function adjuntarLinksAgent(respuesta: NextResponse, pathAndQuery: string) {
+  respuesta.headers.set('Link', linkAgentHeader(pathAndQuery));
+  return respuesta;
+}
+
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl;
   const hostname = req.headers.get('host') || '';
+  const pathAndQuery = `${url.pathname}${url.search || ''}`;
 
   // Remove port if present
   const currentHost = hostname.split(':')[0].replace('www.', '');
@@ -42,16 +61,20 @@ export async function middleware(req: NextRequest) {
       : currentHost;
 
     // Rewrite to the dynamic tenant route preserving the visible URL
-    return NextResponse.rewrite(new URL(`/_tenants/${tenant}${url.pathname}${url.search}`, req.url));
+    return adjuntarLinksAgent(
+      NextResponse.rewrite(new URL(`/_tenants/${tenant}${url.pathname}${url.search}`, req.url)),
+      pathAndQuery
+    );
   }
 
-  if (url.pathname === '/') {
+  if (req.method === 'GET' && permiteMarkdown(url.pathname)) {
     const accept = (req.headers.get('accept') || '').toLowerCase();
-    const respuesta = accept.includes('text/markdown')
-      ? NextResponse.rewrite(new URL('/llms.txt', req.url))
-      : NextResponse.next();
-    respuesta.headers.set('Link', '</llms.txt>; rel="alternate"; type="text/markdown"');
-    return respuesta;
+    if (accept.includes('text/markdown')) {
+      return adjuntarLinksAgent(
+        NextResponse.rewrite(new URL(`/api/markdown?path=${encodeURIComponent(pathAndQuery)}`, req.url)),
+        pathAndQuery
+      );
+    }
   }
 
   if (url.pathname.startsWith('/api/admin')) {
@@ -74,21 +97,25 @@ export async function middleware(req: NextRequest) {
     }
     if (esLoginDelPanel(url.pathname)) {
       if (sesion) {
-        return NextResponse.redirect(new URL(inicioDelRol(sesion.rol), req.url));
+        return adjuntarLinksAgent(NextResponse.redirect(new URL(inicioDelRol(sesion.rol), req.url)), pathAndQuery);
       }
-      return NextResponse.rewrite(new URL(`/ingreso-admin${url.search}`, req.url));
+      return adjuntarLinksAgent(NextResponse.rewrite(new URL(`/ingreso-admin${url.search}`, req.url)), pathAndQuery);
     }
     if (!sesion) {
       const destino = new URL('/admin/acceso', req.url);
       destino.searchParams.set('siguiente', url.pathname);
-      return NextResponse.redirect(destino);
+      return adjuntarLinksAgent(NextResponse.redirect(destino), pathAndQuery);
     }
     if (sesion.rol === 'operador_foto' && !esCamara(url.pathname)) {
-      return NextResponse.redirect(new URL('/admin/camara', req.url));
+      return adjuntarLinksAgent(NextResponse.redirect(new URL('/admin/camara', req.url)), pathAndQuery);
     }
   }
 
-  return NextResponse.next();
+  const respuesta = NextResponse.next();
+  if (esRutaPublica(url.pathname)) {
+    return adjuntarLinksAgent(respuesta, pathAndQuery);
+  }
+  return respuesta;
 }
 
 export const config = {
