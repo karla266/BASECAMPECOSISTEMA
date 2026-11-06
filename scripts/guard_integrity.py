@@ -4,6 +4,7 @@ import sys
 
 FORBIDDEN_WORDS = ["tiara", "juguetes", "papeleria madera"]
 FORBIDDEN_EXTERNAL_LINKS = ["mercadolibre.com", "articulo.mercadolibre", "wa.me"]
+FORBIDDEN_WHATSAPP_LINKS = ["wa.me", "api.whatsapp.com"]
 CRITICAL_FILES = [
     "context/CartContext.tsx",
     "components/CartDrawer.tsx",
@@ -11,6 +12,7 @@ CRITICAL_FILES = [
     "app/api/checkout/route.ts",
 ]
 SCAN_DIRS = ["app/thetrip", "components/thetrip", "components/chat", "app/checkout"]
+WEB_FIRST_DIRS = ["app", "components"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CANONICAL_CONFIG = "next.config.js"
 STANDALONE_RE = re.compile(r"output\s*:\s*['\"]standalone['\"]")
@@ -89,6 +91,24 @@ def check_file_integrity():
                 for word in FORBIDDEN_WORDS:
                     if word in content:
                         print(f"CONTAMINACION DETECTADA: Palabra prohibida '{word}' en {relativo}.")
+                        errors += 1
+
+    # Regla Web-First: bloquear enlaces de WhatsApp en todo app/ y components/
+    for scan_dir in WEB_FIRST_DIRS:
+        base = os.path.join(ROOT, scan_dir)
+        if not os.path.isdir(base):
+            continue
+        for root, _, files in os.walk(base):
+            for file in files:
+                if not file.endswith((".tsx", ".ts", ".js", ".jsx")):
+                    continue
+                full_path = os.path.join(root, file)
+                with open(full_path, "r", encoding="utf-8", errors="ignore") as handle:
+                    content = handle.read().lower()
+                relativo = os.path.relpath(full_path, ROOT)
+                for link in FORBIDDEN_WHATSAPP_LINKS:
+                    if link in content:
+                        print(f"FUGA WEB-FIRST: Enlace de WhatsApp '{link}' detectado en {relativo}.")
                         errors += 1
 
     if errors > 0:

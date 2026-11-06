@@ -155,8 +155,18 @@ export default function SalesChatbot() {
           </form>
         </section>
       ) : null}
-      <button type="button" onClick={() => setAbierto((valor) => !valor)} className="ml-auto flex min-h-12 items-center rounded-full bg-amber-500 px-5 text-sm font-black text-zinc-950">
-        {abierto ? "Ocultar chat" : "Chat de ventas"}
+      <button
+        type="button"
+        onClick={() => {
+          if (abierto) {
+            setAbierto(false);
+            return;
+          }
+          router.push("/checkout");
+        }}
+        className="ml-auto flex min-h-12 items-center rounded-full bg-amber-500 px-5 text-sm font-black text-zinc-950"
+      >
+        {abierto ? "Ocultar asistente" : "Ir al checkout"}
       </button>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
 import NavegacionSitio from '@/components/sitio/NavegacionSitio'
@@ -156,9 +157,9 @@ export default function Home() {
               <p>Experiencias de montaña, vuelos en parapente, Smokeshop, renta de equipo e innovación digital. Nacidos en la cima, respaldados por la tradición.</p>
               
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <a href="/reservar" className="btn-primary">
-                      RESERVAR VUELO
-                  </a>
+                  <Link href="/reservar" className="btn-primary">
+                    RESERVAR EXPERIENCIA
+                  </Link>
                   {servicios.ofrece_renta_equipo && (
                     <a href="/renta" className="btn-primary" style={{ background: 'transparent', borderColor: '#38bdf8', color: '#e0f2fe' }}>
                         Ver renta de equipo

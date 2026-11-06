@@ -4,9 +4,7 @@ import { Html5Qrcode } from "html5-qrcode";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 const CLAVE_SESION = "bc420-cabina-sprinter";
-const WHATSAPP =
-  "/checkout" +
-  encodeURIComponent("Hola Basecamp 420, reporte de la Sprinter: emergencia o tráfico en ruta.");
+const CHECKOUT_EMERGENCIA = "/checkout";
 
 const PUNTOS = [
   { clave: "diesel", texto: "Diesel ≥ 50%" },
@@ -495,13 +493,8 @@ export default function CabinaTransportePage() {
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zinc-800 bg-zinc-950 px-3 pb-3 pt-2">
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noreferrer"
-          className="flex min-h-12 items-center justify-center rounded-2xl bg-red-600 text-sm font-bold text-white"
-        >
-          Emergencia o tráfico · WhatsApp 2727258748
+        <a href={CHECKOUT_EMERGENCIA} className="flex min-h-12 items-center justify-center rounded-2xl bg-red-600 text-sm font-bold text-white">
+          Emergencia o tráfico · Ir al checkout
         </a>
         <nav className="mt-2 grid grid-cols-3 gap-2" aria-label="Operación de la Sprinter">
           {(
