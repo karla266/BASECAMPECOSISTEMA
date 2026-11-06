@@ -4,7 +4,7 @@
   "descuento_preventa_porcentaje": 15,
   "drop_activo": {
     "id": "DROP-2026-12A",
-    "nombre": "Ola Diciembre: Tiara Express & Importaciones",
+    "nombre": "Ola Diciembre: Importaciones Especiales",
     "fecha_apertura": "2026-11-15T00:00:00",
     "fecha_cierre_preventa": "2026-11-28T23:59:59",
     "fecha_entrega_oficial": "1 de Diciembre",
@@ -29,7 +29,7 @@
     },
     {
       "id": "DROP-2026-12A",
-      "nombre": "Ola Diciembre: Tiara Express & Importaciones",
+      "nombre": "Ola Diciembre: Importaciones Especiales",
       "fecha_apertura": "2026-11-15T00:00:00",
       "fecha_cierre_preventa": "2026-11-28T23:59:59",
       "fecha_entrega_oficial": "1 de Diciembre",
