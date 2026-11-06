@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "fs/promises";
+﻿import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { spawn } from "child_process";
 import { getTenantConfig, getTenantSiteBaseUrl, getTenantWhatsAppPhoneIntl } from "@/lib/tenant";
@@ -88,7 +88,7 @@ async function writePipelineQueue(items: PipelineQueueItem[]): Promise<void> {
 function buildConversionAssets() {
   const tenant = getTenantConfig();
   const reserveUrl = `${getTenantSiteBaseUrl()}/reservar?utm_source=youtube&utm_medium=organic&utm_campaign=foreign_tourists`;
-  const whatsappUrl = `https://wa.me/${getTenantWhatsAppPhoneIntl()}?text=${encodeURIComponent(
+  const whatsappUrl = `/checkout${getTenantWhatsAppPhoneIntl()}?text=${encodeURIComponent(
     `Hi ${tenant.brandName}, I want to book a tandem paragliding flight in Fortin.`
   )}`;
   return { tenant, reserveUrl, whatsappUrl };
@@ -246,3 +246,4 @@ export async function approveQueueItem(
     throw error;
   }
 }
+

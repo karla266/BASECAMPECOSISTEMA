@@ -1,11 +1,11 @@
-import { promises as fs } from "fs";
+﻿import { promises as fs } from "fs";
 import path from "path";
 
 export const SLOTS_VUELO = ["10:00", "12:00", "14:00", "16:00"] as const;
 export type SlotVuelo = (typeof SLOTS_VUELO)[number];
 
 export const WHATSAPP_VUELO =
-  "https://wa.me/522727258748?text=Hola%20Basecamp%20420,%20deseo%20validar%20disponibilidad%20para%20vuelo%20en%20parapente.";
+  "/checkout,%20deseo%20validar%20disponibilidad%20para%20vuelo%20en%20parapente.";
 
 const ARCHIVO_PILOTOS = path.join(process.cwd(), "data", "directorio_pilotos.json");
 const ARCHIVO_RESERVAS = path.join(process.cwd(), "data", "reservas_vuelo.json");
@@ -205,3 +205,4 @@ export async function disponibilidad(fecha: string) {
     };
   });
 }
+

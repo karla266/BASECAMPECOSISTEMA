@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect } from 'react';
 
@@ -45,7 +45,7 @@ export default function WebMcpProvider() {
           nombre: 'Basecamp 420',
           telefono: '+522727258748',
           direccion: 'Oriente 27 y Norte 10, Orizaba, Veracruz',
-          whatsapp: 'https://wa.me/522727258748?text=Hola%20Basecamp%20420,%20deseo%20m%C3%A1s%20informaci%C3%B3n',
+          whatsapp: '/checkout,%20deseo%20m%C3%A1s%20informaci%C3%B3n',
         }),
       });
     } catch {
@@ -55,3 +55,4 @@ export default function WebMcpProvider() {
 
   return null;
 }
+

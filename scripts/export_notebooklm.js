@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 
 const raiz = path.join(__dirname, "..");
@@ -114,7 +114,7 @@ Aviso de peso en la reserva: por encima de 95 kg se muestra advertencia. El API 
 ## WhatsApp
 
 Número oficial: 2727258748.
-URL: https://wa.me/522727258748.
+URL: /checkout.
 Tras confirmar en /reservar, el botón abre el texto: "Hola Basecamp 420, confirmé mi reserva para el slot de las [HORA] con el piloto [PILOTO]."
 Disponibilidad general: "Hola Basecamp 420, deseo validar disponibilidad para vuelo en parapente."
 `;

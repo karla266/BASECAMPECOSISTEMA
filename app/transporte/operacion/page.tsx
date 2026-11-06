@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { Html5Qrcode } from "html5-qrcode";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 const CLAVE_SESION = "bc420-cabina-sprinter";
 const WHATSAPP =
-  "https://wa.me/522727258748?text=" +
+  "/checkout" +
   encodeURIComponent("Hola Basecamp 420, reporte de la Sprinter: emergencia o tráfico en ruta.");
 
 const PUNTOS = [
@@ -533,3 +533,4 @@ export default function CabinaTransportePage() {
     </main>
   );
 }
+

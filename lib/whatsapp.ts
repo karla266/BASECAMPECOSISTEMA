@@ -1,7 +1,7 @@
-import { getTenantConfig } from "@/lib/tenant";
+﻿import { getTenantConfig } from "@/lib/tenant";
 
 const BASE_PHONE = getTenantConfig().supportPhone;
-const BASE_URL = `https://wa.me/${BASE_PHONE}`;
+const BASE_URL = `/checkout${BASE_PHONE}`;
 const BRAND_NAME = getTenantConfig().brandName;
 
 function buildWhatsAppLink(message: string): string {
@@ -93,3 +93,4 @@ export function buildSalvadorWindConfirmationLink(folio: string): string {
     `\nNecesitamos validación final para despegue seguro en Fortín.`;
   return buildWhatsAppLink(message);
 }
+

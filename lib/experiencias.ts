@@ -1,10 +1,10 @@
-import anturios from "@/data/anturios.json";
+﻿import anturios from "@/data/anturios.json";
 import paraiso from "@/data/el_paraiso.json";
 
 export const TELEFONO_WHATSAPP = "522727258748";
 
 export function enlaceWhatsapp(texto: string) {
-  return `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
+  return `/checkout${TELEFONO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
 }
 
 export function etiquetaPrecio(centavos: number | null) {
@@ -23,3 +23,4 @@ export function datosAnturios() {
 export function datosParaiso() {
   return paraiso;
 }
+

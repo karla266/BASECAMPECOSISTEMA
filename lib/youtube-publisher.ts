@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+﻿import { spawn } from "child_process";
 import { promises as fs } from "fs";
 import path from "path";
 import type { PodcastEpisode } from "@/types/podcast";
@@ -71,7 +71,7 @@ export async function renderizarAudiograma(audioLocal: string, portadaLocal: str
 }
 
 function descripcion(episodio: PodcastEpisode) {
-  return [episodio.summary, "", episodio.description, "", "Sitio: https://www.basecamp420.com/movimiento-canabico/podcasts", "WhatsApp: https://wa.me/522727258748"]
+  return [episodio.summary, "", episodio.description, "", "Sitio: https://www.basecamp420.com/movimiento-canabico/podcasts", "WhatsApp: /checkout"]
     .filter(Boolean)
     .join("\n");
 }
@@ -120,3 +120,4 @@ export async function publicarEnYouTube(episodio: PodcastEpisode, videoLocal: st
   }
   return { videoId: video.id, url: `https://www.youtube.com/watch?v=${video.id}` };
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { posApiUrl } from "@/lib/apiBase";
@@ -231,7 +231,7 @@ export default function AdminRentasPage() {
                 <td className="px-3 py-2 font-mono text-xs">{contrato.id}</td>
                 <td className="px-3 py-2">
                   <div>{contrato.cliente_nombre}</div>
-                  <a className="text-cyan-400 hover:underline" href={`https://wa.me/${numeroWhatsApp(contrato.cliente_telefono)}`} target="_blank" rel="noreferrer">
+                  <a className="text-cyan-400 hover:underline" href={`/checkout${numeroWhatsApp(contrato.cliente_telefono)}`} target="_blank" rel="noreferrer">
                     WhatsApp
                   </a>
                 </td>
@@ -318,3 +318,4 @@ export default function AdminRentasPage() {
     </main>
   );
 }
+

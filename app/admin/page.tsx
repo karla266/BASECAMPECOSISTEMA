@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useEffect, useState } from 'react'
 import { posApiUrl } from '@/lib/apiBase'
@@ -585,7 +585,7 @@ function DirectorioOperadoresAdmin() {
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', paddingTop: '8px', borderTop: '1px solid #1e293b' }}>
               <a
-                href={`https://wa.me/52${String(op.telefono).replace(/\D/g, '')}?text=${encodeURIComponent(`Hola ${op.nombre}, te contacto desde Basecamp 420 para coordinar una salida de vuelo o tour.`)}`}
+                href={`/checkout${String(op.telefono).replace(/\D/g, '')}?text=${encodeURIComponent(`Hola ${op.nombre}, te contacto desde Basecamp 420 para coordinar una salida de vuelo o tour.`)}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: '#34d399', fontSize: '0.7rem', fontWeight: 700, textDecoration: 'none' }}
@@ -1296,3 +1296,4 @@ export default function AdminDashboardPage() {
     </div>
   )
 }
+

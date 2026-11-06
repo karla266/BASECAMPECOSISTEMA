@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 
 const raiz = path.join(__dirname, "..");
@@ -115,7 +115,7 @@ En la hoja de ruta del piloto, el checklist es arnés de copiloto, casco, radio 
 
 ## Confirmación por WhatsApp
 
-El número oficial es 2727258748 (\`https://wa.me/522727258748\`).
+El número oficial es 2727258748 (\`/checkout\`).
 
 Al confirmar una reserva en \`/reservar\`, la pantalla de éxito abre WhatsApp con: "Hola Basecamp 420, confirmé mi reserva para el slot de las [HORA] con el piloto [PILOTO]."
 
