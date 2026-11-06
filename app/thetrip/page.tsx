@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { posApiUrl } from '@/lib/apiBase'
-import BannerDropCountdown from '@/components/thetrip/BannerDropCountdown'
 import BluntWrapSelector from '@/components/thetrip/BluntWrapSelector'
 import CatalogoPreVenta from '@/components/thetrip/CatalogoPreVenta'
 import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
+import { useDropStatus } from '@/hooks/useDropStatus'
 
 interface ProductoSmoke {
   id: number
@@ -51,6 +51,7 @@ function textoRestante(iso: string, ahora = Date.now()): string {
 const CATEGORIAS = ['TODOS', 'CRISTALERIA', 'ROLADO', 'GRINDERS', 'VAPORIZADORES', 'ACCESORIOS']
 
 export default function TheTripSmokeShop() {
+  const drop = useDropStatus()
   const [mayorDeEdad, setMayorDeEdad] = useState<boolean | null>(null)
   const [productos, setProductos] = useState<ProductoSmoke[]>([])
   const [categoriaActiva, setCategoriaActiva] = useState('TODOS')
@@ -60,6 +61,12 @@ export default function TheTripSmokeShop() {
   const [faltanteCents, setFaltanteCents] = useState(250000)
   const [reloj, setReloj] = useState(Date.now())
   const [query, setQuery] = useState('')
+
+  const nombreDropLimpio = (drop.nombre || '').trim()
+
+  const textoBanner = drop.esPreVenta
+    ? `🔥 DROP QUINCENAL EN CURSO: Pre-ordena hoy. Cierre en ${drop.diasRestantes <= 0 ? 'hoy' : `${drop.diasRestantes} día${drop.diasRestantes === 1 ? '' : 's'}`}. Entrega garantizada: ${drop.fechaEntrega}`
+    : `${drop.badgeTexto}. ${nombreDropLimpio || drop.nombre}`
 
   useEffect(() => {
     const verificado = localStorage.getItem('thetrip_adult_verified')
@@ -170,7 +177,13 @@ export default function TheTripSmokeShop() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-amber-500 selection:text-black">
-      <BannerDropCountdown />
+      <aside className="sticky top-0 z-30 border-b border-emerald-500/50 bg-zinc-950 px-4 py-3 text-center" role="status" aria-live="polite">
+        <p className="text-sm font-semibold leading-6 text-amber-300 md:text-base">
+          <span className="text-emerald-400">{drop.esPreVenta ? 'Pre-venta abierta' : 'Calendario de drops'}</span>
+          <span className="mx-2 text-zinc-600">·</span>
+          {textoBanner}
+        </p>
+      </aside>
       <section className="py-16 px-6 border-b border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-bold tracking-widest uppercase rounded-full">
@@ -189,26 +202,28 @@ export default function TheTripSmokeShop() {
       <CatalogoPreVenta />
 
       <section className="max-w-6xl mx-auto px-6 py-8 space-y-4">
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="grid gap-3 sm:grid-cols-2">
           <button
             onClick={() => setVista('stock_fisico')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition border ${
+            className={`min-h-16 rounded-2xl border px-4 py-3 text-left text-xs font-semibold tracking-wider transition ${
               vista === 'stock_fisico'
-                ? 'bg-amber-500 text-black border-amber-400 font-bold'
-                : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                ? 'bg-amber-500/15 text-amber-200 border-amber-400/60 font-bold'
+                : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-700'
             }`}
           >
-            Entrega Inmediata (Mostrador)
+            <span className="block text-[10px] uppercase tracking-[0.2em]">Modo Web-First</span>
+            <span className="mt-1 block text-sm">Entrega Inmediata (Mostrador)</span>
           </button>
           <button
             onClick={() => setVista('sobre_pedido')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition border ${
+            className={`min-h-16 rounded-2xl border px-4 py-3 text-left text-xs font-semibold tracking-wider transition ${
               vista === 'sobre_pedido'
-                ? 'bg-amber-500 text-black border-amber-400 font-bold'
-                : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                ? 'bg-amber-500/15 text-amber-200 border-amber-400/60 font-bold'
+                : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-700'
             }`}
           >
-            Sobre Pedido (Catálogo Extendido)
+            <span className="block text-[10px] uppercase tracking-[0.2em]">Modo Web-First</span>
+            <span className="mt-1 block text-sm">Sobre Pedido (Catálogo Extendido)</span>
           </button>
         </div>
         {vista === 'sobre_pedido' ? (

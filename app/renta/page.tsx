@@ -102,7 +102,7 @@ export default function RentaPage() {
               Alquila equipo confiable para senderismo, camping, montaña y excursiones ligeras. Todo para salir a la aventura con una preparación más segura y funcional.
             </p>
             <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <Link href="/checkout" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar en sitio</Link>
+              <Link href="/reservar" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar en sitio</Link>
               <Link href="/" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 700 }}>Volver al inicio</Link>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function RentaPage() {
             Mándanos el tipo de actividad, número de personas y días requeridos para preparar un presupuesto con equipos confiables para montaña, camping y trekking.
           </p>
           <div style={{ marginTop: '20px' }}>
-            <Link href="/checkout" style={{ display: 'inline-block', background: '#14b8a6', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Solicitar presupuesto</Link>
+            <Link href="/reservar" style={{ display: 'inline-block', background: '#14b8a6', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Solicitar presupuesto</Link>
           </div>
         </div>
       </section>

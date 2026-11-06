@@ -13,24 +13,6 @@ export default function AdventurePage() {
       location: 'Orizaba / Citlaltépetl',
       price: '$4,500 MXN',
       badgeColor: '#e11d48'
-    },
-    {
-      id: 'valle-bravo',
-      title: 'Vuelo en Parapente Valle de Bravo',
-      nivel: 'Intermedio',
-      duration: 'Medio Día',
-      location: 'Valle de Bravo',
-      price: '$1,800 MXN',
-      badgeColor: '#0284c7'
-    },
-    {
-      id: 'mtb-volcanes',
-      title: 'Ruta de los Volcanes (MTB)',
-      nivel: 'Principiante',
-      duration: '1 Día',
-      location: 'Paso de Cortés',
-      price: '$1,200 MXN',
-      badgeColor: '#22c55e'
     }
   ];
 
