@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  const posts = getAllPosts().sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+  const actividadReciente = posts.slice(0, 3);
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
@@ -36,6 +37,27 @@ export default function BlogPage() {
         </header>
 
         <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {actividadReciente.map((post) => (
+            <article
+              key={`actividad-${post.slug}`}
+              className="rounded-3xl border border-emerald-500/35 bg-emerald-500/10 p-6 shadow-[0_0_25px_rgba(16,185,129,0.12)]"
+            >
+              <p className="inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-emerald-200">
+                Actividad reciente
+              </p>
+              <h2 className="mt-4 text-lg font-bold text-white">{post.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-neutral-200">{post.summary}</p>
+              <div className="mt-5 border-t border-emerald-500/20 pt-4 text-sm text-emerald-100/90">
+                {new Date(post.publishedAt).toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' })}
+              </div>
+              <Link href={`/blog/${post.slug}`} className="mt-2 inline-flex text-sm font-semibold text-emerald-200 hover:text-white">
+                Ver actualización →
+              </Link>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.slug}
