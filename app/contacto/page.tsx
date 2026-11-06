@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contacto Basecamp 420",
-  description: "Canales oficiales de contacto de Basecamp 420: teléfono, correo y WhatsApp.",
+  description: "Canales oficiales de contacto de Basecamp 420: teléfono y correo.",
   alternates: {
     canonical: "https://www.basecamp420.com/contacto",
   },
@@ -21,15 +21,7 @@ export default function ContactoPage() {
           Correo: <a className="text-emerald-300" href="mailto:contacto@basecamp420.com">contacto@basecamp420.com</a>
         </li>
         <li>
-          WhatsApp:{" "}
-          <a
-            className="text-emerald-300"
-            href="https://wa.me/522727258748?text=Hola%20Basecamp%20420,%20deseo%20m%C3%A1s%20informaci%C3%B3n"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://wa.me/522727258748
-          </a>
+          Atención comercial: consulta disponibilidad, horarios y cierres de compra dentro del sitio web con checkout oficial.
         </li>
       </ul>
     </main>

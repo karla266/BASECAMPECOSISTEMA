@@ -94,11 +94,8 @@ export default function ReservarPage() {
             <p className="mt-2 text-sm text-emerald-100">
               Slot de las {exito.horario} con {exito.piloto}.
             </p>
-            <a
-              href={`https://wa.me/522727258748?text=${encodeURIComponent(`Hola Basecamp 420, confirmé mi reserva para el slot de las ${exito.horario} con el piloto ${exito.piloto}.`)}`}
-              className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-emerald-500 px-4 text-base font-black text-zinc-950"
-            >
-              Confirmar vía WhatsApp al 2727258748
+            <a href="/checkout" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-emerald-500 px-4 text-base font-black text-zinc-950">
+              Continuar al checkout de pago
             </a>
             <a href="/ordenar" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-emerald-400/40 px-4 text-sm font-semibold text-emerald-100">
               Pide tus micheladas y tacos para cuando toques tierra

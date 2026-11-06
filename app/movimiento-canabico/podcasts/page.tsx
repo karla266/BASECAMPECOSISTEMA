@@ -64,8 +64,8 @@ export default async function PodcastPublicPage() {
           <a href="/api/podcasts/feed.xml" className="rounded-full border border-emerald-500/30 px-4 py-2 text-emerald-400 hover:bg-emerald-500/10">
             Feed RSS público
           </a>
-          <a href="https://wa.me/522727258748" target="_blank" rel="noreferrer" className="rounded-full bg-emerald-600 px-4 py-2 font-bold text-zinc-950 hover:bg-emerald-500">
-            Contactar por WhatsApp (2727258748)
+          <a href="/reservar" className="rounded-full bg-emerald-600 px-4 py-2 font-bold text-zinc-950 hover:bg-emerald-500">
+            Reservar experiencia en línea
           </a>
         </div>
       </section>

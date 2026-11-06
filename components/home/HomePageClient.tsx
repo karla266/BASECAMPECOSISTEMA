@@ -81,7 +81,7 @@ export default function Home() {
             "name": "¿Cómo reservo un vuelo en parapente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Puedes reservar por WhatsApp en https://wa.me/522727258748 con atención directa de Basecamp 420."
+              "text": "Puedes reservar directamente desde la plataforma web de Basecamp 420, seleccionando la fecha y el horario disponibles dentro de la sección de reservas del sitio."
             }
           },
           {
@@ -156,8 +156,8 @@ export default function Home() {
               <p>Experiencias de montaña, vuelos en parapente, Smokeshop, renta de equipo e innovación digital. Nacidos en la cima, respaldados por la tradición.</p>
               
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <a href="https://wa.me/522727258748?text=Hola%20Basecamp%20420,%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                      CONTACTAR POR WHATSAPP
+                  <a href="/reservar" className="btn-primary">
+                      RESERVAR VUELO
                   </a>
                   {servicios.ofrece_renta_equipo && (
                     <a href="/renta" className="btn-primary" style={{ background: 'transparent', borderColor: '#38bdf8', color: '#e0f2fe' }}>
@@ -186,13 +186,11 @@ export default function Home() {
             </ul>
             <div style={{ marginTop: '28px' }}>
               <a
-                href="https://wa.me/522727258748?text=Hola,%20quiero%20reservar%20mi%20vuelo%20en%20parapente%20en%20Coapichapa%20con%20Basecamp%20420"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/reservar"
                 className="btn-primary"
-                style={{ width: '100%', textAlign: 'center', background: '#25d366', borderColor: '#25d366', color: '#062b12' }}
+                style={{ width: '100%', textAlign: 'center', background: '#fbbf24', borderColor: '#fbbf24', color: '#111827' }}
               >
-                RESERVAR VUELO POR WHATSAPP
+                RESERVAR VUELO EN SITIO
               </a>
             </div>
           </div>
@@ -224,7 +222,7 @@ export default function Home() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
             <a href="/renta" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '10px', padding: '10px 16px', textDecoration: 'none', fontWeight: 700 }}>Ver catálogo de renta</a>
-            <a href="https://wa.me/522727258748?text=Hola,%20quiero%20alquilar%20equipo%20para%20alta%20monta%C3%B1a%20o%20camping" target="_blank" rel="noreferrer" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '10px', padding: '10px 16px', textDecoration: 'none', fontWeight: 700 }}>Solicitar cotización por WhatsApp</a>
+            <a href="/checkout" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '10px', padding: '10px 16px', textDecoration: 'none', fontWeight: 700 }}>Ir al checkout</a>
           </div>
         </div>
       </section>
@@ -275,13 +273,13 @@ export default function Home() {
 
           <div className="card" style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.94), rgba(8,47,73,0.9))', border: '1px solid rgba(125,211,252,0.2)' }}>
             <span className="tag" style={{ color: '#fbbf24' }}>Ámbito institucional · Basecamp 420</span>
-            <h2 style={{ marginBottom: '18px' }}>Tu experiencia tándem sigue siendo una reserva directa por WhatsApp</h2>
+            <h2 style={{ marginBottom: '18px' }}>Reserva tu experiencia 100% digital desde la web</h2>
             <p style={{ color: '#dbeafe' }}>
-              La experiencia de vuelo tándem continúa siendo una reserva inmediata con atención directa por WhatsApp, mientras los cursos APPI y la formación especializada se gestionan con fechas y enlaces de pago públicos.
+              El proceso de vuelo tándem, cursos APPI y pago de servicios se completa dentro de la plataforma: revisas disponibilidad, eliges tu fecha y finalizas el proceso de reserva o compra sin salir del sitio.
             </p>
             <div style={{ marginTop: '22px', display: 'grid', gap: '12px' }}>
-              <a href="https://wa.me/522727258748?text=Hola,%20quiero%20reservar%20mi%20vuelo%20t%C3%A1ndem%20en%20Coapichapa" target="_blank" rel="noreferrer" style={{ display: 'inline-block', textAlign: 'center', background: '#25d366', color: '#062b12', fontWeight: 800, padding: '14px 18px', borderRadius: '12px', textDecoration: 'none' }}>Reservar vuelo tándem</a>
-              <a href="#contacto" style={{ display: 'inline-block', textAlign: 'center', background: 'transparent', border: '1px solid rgba(125,211,252,0.4)', color: '#e0f2fe', fontWeight: 700, padding: '14px 18px', borderRadius: '12px', textDecoration: 'none' }}>Consultar cursos APPI</a>
+              <a href="/reservar" style={{ display: 'inline-block', textAlign: 'center', background: '#fbbf24', color: '#111827', fontWeight: 800, padding: '14px 18px', borderRadius: '12px', textDecoration: 'none' }}>Reservar vuelo tándem</a>
+              <a href="/checkout" style={{ display: 'inline-block', textAlign: 'center', background: 'transparent', border: '1px solid rgba(125,211,252,0.4)', color: '#e0f2fe', fontWeight: 700, padding: '14px 18px', borderRadius: '12px', textDecoration: 'none' }}>Ir al checkout</a>
             </div>
           </div>
         </div>
@@ -377,8 +375,8 @@ export default function Home() {
                  <p style={{margin: '8px 0', color: '#fff'}}>📺 <strong>YouTube Oficial:</strong> basecamp420trepacerros</p>
               </div>
 
-              <a href="https://wa.me/522727258748?text=Hola,%20me%20gustar%C3%ADa%20visitar%20el%20local%20f%C3%ADsico,%20%C2%BFme%20puedes%20compartir%20la%20ubicaci%C3%B3n%20exacta?" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Ubicación de la Tienda por Google Maps
+              <a href="/contacto" className="btn-primary">
+                  Ver ubicación y contacto
               </a>
           </div>
       </section>

@@ -3,8 +3,6 @@
 import { useRef, useState } from "react";
 import type { PodcastChapter, PodcastEpisode } from "@/types/podcast";
 
-const WHATSAPP_EPISODIO =
-  "https://wa.me/522727258748?text=Hola,%20escuché%20el%20Episodio%201%20del%20podcast%20sobre%20amparos";
 
 function marca(segundos: number) {
   const minutos = Math.floor(segundos / 60);
@@ -73,10 +71,6 @@ export default function ListaPodcasts({ episodes }: { episodes: PodcastEpisode[]
           <div className="grid gap-6">
             {episodes.map((episodio) => {
               const capitulos = capitulosDe(episodio);
-              const whatsapp =
-                episodio.id === "mco-001"
-                  ? WHATSAPP_EPISODIO
-                  : `https://wa.me/522727258748?text=${encodeURIComponent(`Hola, escuché ${episodio.title}`)}`;
               return (
                 <article key={episodio.id} id={episodio.slug} className="flex flex-col items-start gap-5 rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 md:flex-row">
                   <Portada src={episodio.coverImageUrl} alt={episodio.title} />
@@ -111,8 +105,8 @@ export default function ListaPodcasts({ episodes }: { episodes: PodcastEpisode[]
                       <a href={episodio.audioUrl} download className="rounded-lg border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200">
                         Descargar audio
                       </a>
-                      <a href={whatsapp} target="_blank" rel="noreferrer" className="rounded-lg border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200">
-                        WhatsApp
+                      <a href="/reservar" className="rounded-lg border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200">
+                        Reservar experiencia
                       </a>
                       {episodio.spotifyUrl ? (
                         <a href={episodio.spotifyUrl} target="_blank" rel="noreferrer" className="rounded-lg bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300">

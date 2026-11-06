@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { enlaceWhatsapp } from "@/lib/experiencias";
 import visitas from "@/data/el_paraiso.json";
 
 export default function SelectorVisitaParaiso() {
@@ -25,8 +24,7 @@ export default function SelectorVisitaParaiso() {
       window.location.href = `/reservar?fecha=${fecha}`;
       return;
     }
-    const url = enlaceWhatsapp(`Hola Basecamp 420, quiero reservar ${nombre} en El Paraíso para el ${fecha}.`);
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.location.href = `/reservar?fecha=${fecha}&visita=${encodeURIComponent(nombre)}`;
   }
 
   return (
@@ -52,7 +50,7 @@ export default function SelectorVisitaParaiso() {
         ))}
       </fieldset>
       <button type="submit" className="min-h-12 rounded-xl bg-emerald-500 text-base font-black text-zinc-950">
-        {visita === "vuelo" ? "Continuar en reservas" : "Pedir esta visita por WhatsApp"}
+        {visita === "vuelo" ? "Continuar en reservas" : "Reservar esta visita"}
       </button>
     </form>
   );

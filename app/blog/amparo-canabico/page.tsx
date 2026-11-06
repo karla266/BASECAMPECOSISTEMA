@@ -93,12 +93,10 @@ export default function AmparoCanabicoPage() {
         <footer className="text-center pt-8 border-t border-neutral-800">
           <p className="text-neutral-400 text-sm mb-4">¿Tienes dudas con el llenado de los formatos o tu e.firma?</p>
           <a
-            href="https://wa.me/522727258748?text=Hola%2C%20descargu%C3%A9%20los%20manuales%20del%20amparo%20y%20necesito%20orientaci%C3%B3n"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/reservar"
             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-full text-sm transition"
           >
-            💬 Contactar por WhatsApp: 272 725 8748
+            🛒 Reservar o completar el trámite en línea
           </a>
         </footer>
       </article>

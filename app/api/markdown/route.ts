@@ -14,7 +14,7 @@ const PAGE_INDEX: Record<string, PageEntry> = {
     description:
       "Basecamp 420 integra parapente tándem, cursos APPI, The Trip Smoke Shop y renta de equipo en Orizaba, Veracruz.",
     highlights: [
-      "Reservas por WhatsApp: https://wa.me/522727258748",
+      "Reservas y compras en checkout interno del sitio",
       "Teléfono: +52 272 725 8748",
       "Correo: contacto@basecamp420.com",
     ],
@@ -41,7 +41,7 @@ const PAGE_INDEX: Record<string, PageEntry> = {
     title: "Renta de equipo",
     description: "Renta de equipo para montaña y camping: mochilas, cascos, tiendas y accesorios.",
     highlights: [
-      "Cotización por WhatsApp",
+      "Cotización y contratación dentro del sitio",
       "Cobertura local Orizaba/Fortín",
       "Equipo para actividades al aire libre",
     ],
@@ -70,7 +70,7 @@ const PAGE_INDEX: Record<string, PageEntry> = {
     highlights: [
       "Teléfono: +52 272 725 8748",
       "Correo: contacto@basecamp420.com",
-      "WhatsApp: https://wa.me/522727258748",
+      "Canal de ventas: checkout interno del sitio",
     ],
   },
   "/legal": {
@@ -107,7 +107,7 @@ function markdownFor(pathname: string) {
     "Contacto:",
     "- Teléfono: +52 272 725 8748",
     "- Correo: contacto@basecamp420.com",
-    "- WhatsApp: https://wa.me/522727258748",
+    "- Venta digital: checkout interno del sitio",
     "",
     "Puntos clave:",
     ...entry.highlights.map((item) => `- ${item}`),

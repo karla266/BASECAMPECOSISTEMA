@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 import './globals.css';
 import type { Metadata } from 'next';
-import SalesChatbot from '../components/chat/SalesChatbot';
+import FloatingSalesAssistant from '../components/chat/FloatingSalesAssistant';
 import WebMcpProvider from '../components/WebMcpProvider';
 import ProveedorCarrito from '../components/ProveedorCarrito';
 
@@ -49,9 +49,8 @@ const grafoEntidad = {
         },
       ],
       sameAs: [
-        'https://wa.me/522727258748',
-        'https://github.com/karla266/BASECAMP-420-sas-visual',
         'https://www.youtube.com/@basecamp420trepacerros',
+        'https://github.com/karla266/BASECAMP-420-sas-visual',
         'https://www.basecamp420.com/ecosistema',
       ],
     },
@@ -64,7 +63,6 @@ const grafoEntidad = {
       telephone: '+522727258748',
       email: 'contacto@basecamp420.com',
       sameAs: [
-        'https://wa.me/522727258748',
         'https://www.youtube.com/@basecamp420trepacerros',
         'https://github.com/karla266/BASECAMP-420-sas-visual',
       ],
@@ -146,7 +144,7 @@ export default function RootLayout({
         <WebMcpProvider />
         <ProveedorCarrito>
           {children}
-          <SalesChatbot />
+          <FloatingSalesAssistant />
         </ProveedorCarrito>
       </body>
     </html>

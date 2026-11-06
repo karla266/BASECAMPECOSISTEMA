@@ -50,10 +50,10 @@ export default function CimaDigitalPage() {
           Inteligencia artificial, automatización y software a la medida para empresas que quieren delegar la operación tecnológica.
         </p>
         <a
-          href="https://wa.me/522727258748?text=Hola,%20quiero%20conocer%20las%20soluciones%20de%20Cima%20Digital"
+          href="/contacto"
           className="mt-8 inline-flex w-fit rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-zinc-950"
         >
-          Hablar por WhatsApp
+          Solicitar diagnóstico digital
         </a>
       </section>
       <section className="mx-auto grid max-w-5xl gap-4 px-6 pb-16 md:grid-cols-3">

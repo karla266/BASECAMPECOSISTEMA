@@ -68,12 +68,12 @@ export default function RentaPage() {
           <div style={{ fontSize: '3rem', marginBottom: '12px' }}>⛺</div>
           <h1 style={{ margin: '0 0 12px', fontSize: '2rem' }}>Renta de equipo temporalmente no disponible</h1>
           <p style={{ margin: 0, color: '#cbd5e1', lineHeight: 1.7 }}>
-            El servicio de alquiler de equipo para alta montaña y camping está desactivado en este momento. Puedes consultar otros servicios de Basecamp 420 o pedir información por WhatsApp.
+            El servicio de alquiler de equipo para alta montaña y camping está desactivado en este momento. Puedes consultar otros servicios de Basecamp 420 o volver a la experiencia de reserva web del sitio.
           </p>
           <div style={{ marginTop: '24px' }}>
-            <a href="https://wa.me/522727258748?text=Hola,%20quiero%20consultar%20sobre%20la%20renta%20de%20equipo%20de%20alta%20monta%C3%B1a%20y%20camping" target="_blank" rel="noreferrer" style={{ display: 'inline-block', background: '#25d366', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>
-              Consultar por WhatsApp
-            </a>
+            <Link href="/" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>
+              Volver al inicio
+            </Link>
           </div>
         </div>
       </main>
@@ -88,7 +88,7 @@ export default function RentaPage() {
           <nav style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', color: '#cbd5e1', fontSize: '0.82rem' }}>
             <Link href="/" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Inicio</Link>
             <Link href="/#parapente" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Parapente</Link>
-            <a href="https://wa.me/522727258748?text=Hola,%20quiero%20rentar%20equipo%20para%20monta%C3%B1a%20o%20camping" target="_blank" rel="noreferrer" style={{ color: '#86efac', textDecoration: 'none', fontWeight: 700 }}>Solicitar cotización</a>
+            <Link href="/checkout" style={{ color: '#86efac', textDecoration: 'none', fontWeight: 700 }}>Ir al checkout</Link>
           </nav>
         </div>
       </header>
@@ -102,7 +102,7 @@ export default function RentaPage() {
               Alquila equipo confiable para senderismo, camping, montaña y excursiones ligeras. Todo para salir a la aventura con una preparación más segura y funcional.
             </p>
             <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <a href="https://wa.me/522727258748?text=Hola,%20me%20gustar%C3%ADa%20rentar%20equipo%20de%20alta%20monta%C3%B1a%20y%20camping" target="_blank" rel="noreferrer" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar por WhatsApp</a>
+              <Link href="/checkout" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar en sitio</Link>
               <Link href="/" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 700 }}>Volver al inicio</Link>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function RentaPage() {
             Mándanos el tipo de actividad, número de personas y días requeridos para preparar un presupuesto con equipos confiables para montaña, camping y trekking.
           </p>
           <div style={{ marginTop: '20px' }}>
-            <a href="https://wa.me/522727258748?text=Hola,%20quiero%20cotizar%20equipo%20de%20alta%20monta%C3%B1a%20o%20camping" target="_blank" rel="noreferrer" style={{ background: '#14b8a6', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Solicitar presupuesto</a>
+            <Link href="/checkout" style={{ display: 'inline-block', background: '#14b8a6', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Solicitar presupuesto</Link>
           </div>
         </div>
       </section>

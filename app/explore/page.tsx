@@ -74,12 +74,10 @@ export default function ExplorePage() {
               </p>
             </div>
             <a
-              href="https://wa.me/522727258748?text=Hola,%20me%20interesa%20inscribirme%20al%20Curso%20de%20Piloto%20de%20Parapente%20APPI"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/reservar"
               className="whitespace-nowrap bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-3 px-6 rounded-xl text-sm transition shadow-md w-full md:w-auto text-center"
             >
-              ¿O quieres un curso? Ver Info APPI →
+              ¿O quieres un curso? Reserva tu plaza →
             </a>
           </div>
 

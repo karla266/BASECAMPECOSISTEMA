@@ -1,13 +1,10 @@
 import BannerPalapa from "@/components/palapa/BannerPalapa";
-import BotonWhatsappFlotante from "@/components/sitio/BotonWhatsappFlotante";
 import NavegacionSitio from "@/components/sitio/NavegacionSitio";
 import PieSitio from "@/components/sitio/PieSitio";
-import { datosAnturios, enlaceWhatsapp, etiquetaPrecio } from "@/lib/experiencias";
+import { datosAnturios, etiquetaPrecio } from "@/lib/experiencias";
 import Link from "next/link";
 
 const datos = datosAnturios();
-const whatsapp = enlaceWhatsapp(datos.mensajeWhatsapp);
-const mesa = enlaceWhatsapp(datos.mensajeMesa);
 
 export const metadata = {
   title: datos.seo.titulo,
@@ -71,10 +68,10 @@ export default function AnturiosPage() {
           <p className="mt-3 text-lg font-semibold text-emerald-100">El Punto de Encuentro y Desayuno Montañero</p>
           <p className="mt-4 max-w-lg text-sm leading-6 text-zinc-100 sm:text-base">{datos.hero.subtitulo}</p>
           <div className="mt-6 grid gap-3 sm:max-w-md">
-            <a href={whatsapp} className="inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-semibold text-zinc-950">
+            <a href="/reservar" className="inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-semibold text-zinc-950">
               Ordenar desayuno previo
             </a>
-            <a href={mesa} className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 px-5 text-sm font-semibold text-white">
+            <a href="/reservar" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 px-5 text-sm font-semibold text-white">
               Reservar mesa para grupos
             </a>
           </div>
@@ -100,7 +97,9 @@ export default function AnturiosPage() {
       </section>
       <BannerPalapa />
       <PieSitio />
-      <BotonWhatsappFlotante href={whatsapp} etiqueta="Desayuno por WhatsApp" />
+      <a href="/reservar" className="fixed bottom-5 right-5 z-50 inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-bold text-zinc-950 shadow-lg shadow-emerald-500/25">
+        Reservar ahora
+      </a>
     </main>
   );
 }

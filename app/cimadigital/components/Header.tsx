@@ -5,8 +5,7 @@ const NAV = [
   { href: "#ingenieria-multimedia", label: "Ingeniería Multimedia" },
 ] as const;
 
-const AUDITORIA =
-  "https://wa.me/522727258748?text=Hola%2C%20quiero%20agendar%20una%20auditor%C3%ADa%20t%C3%A9cnica%20con%20Cima%20Digital.";
+const AUDITORIA = "/contacto";
 
 export default function Header() {
   return (

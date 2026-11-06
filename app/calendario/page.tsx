@@ -51,8 +51,8 @@ function CalendarioContent() {
 
     // 1. Canje de folio físico de Mercado Libre -> Notifica por WhatsApp sin cobrar
     if (esFolioValido) {
-      const mensaje = `Hola Basecamp 420, solicito confirmar mi vuelo CANJEANDO MI CERTIFICADO FÍSICO con Folio: ${folio}. Nombre: ${nombreCliente}, Fecha: ${fechaSeleccionada}, Horario: ${horarioSeleccionado}.`;
-      window.open(`https://wa.me/522727258748?text=${encodeURIComponent(mensaje)}`, '_blank');
+      const folioParam = encodeURIComponent(folio.trim());
+      window.location.href = `/reservar?folio=${folioParam}`;
       return;
     }
 

@@ -1,12 +1,10 @@
 import SelectorVisitaParaiso from "@/components/experiencias/SelectorVisitaParaiso";
 import BannerPalapa from "@/components/palapa/BannerPalapa";
-import BotonWhatsappFlotante from "@/components/sitio/BotonWhatsappFlotante";
 import NavegacionSitio from "@/components/sitio/NavegacionSitio";
 import PieSitio from "@/components/sitio/PieSitio";
-import { datosParaiso, enlaceWhatsapp } from "@/lib/experiencias";
+import { datosParaiso } from "@/lib/experiencias";
 
 const datos = datosParaiso();
-const whatsapp = enlaceWhatsapp(datos.mensajeWhatsapp);
 const mapa = `https://www.openstreetmap.org/export/embed.html?bbox=-97.13%2C18.83%2C-97.07%2C18.87&layer=mapnik&marker=${datos.punto.latitud}%2C${datos.punto.longitud}`;
 
 export const metadata = {
@@ -125,7 +123,9 @@ export default function ElParaisoPage() {
         </a>
       </section>
       <PieSitio />
-      <BotonWhatsappFlotante href={whatsapp} etiqueta="WhatsApp El Paraíso" />
+      <a href="/reservar" className="fixed bottom-5 right-5 z-50 inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-bold text-zinc-950 shadow-lg shadow-emerald-500/25">
+        Reservar visita
+      </a>
     </main>
   );
 }
