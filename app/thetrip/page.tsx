@@ -2,29 +2,29 @@
 
 import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
-import { posApiUrl } from '@/lib/apiBase'
+import inventarioData from '@/data/inventario_thetrip.json'
 import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
 
 interface ProductoSmoke {
-  id: number
+  id?: number
   sku: string
   nombre: string
-  categoria: string
-  descripcion: string
-  precio: number
-  precio_cents?: number
-  stock: number
-  imagen_url: string
-  link_cobro_mp: string
+  categoria?: string
   departamento?: string
   subcategoria?: string
+  descripcion?: string
+  precio_mxn?: number
+  precio?: number
+  stock_disponible?: number
+  stock?: number
+  imagenes?: string[]
+  imagen_url?: string
 }
 
 const CATEGORIAS = ['TODOS', 'CRISTALERIA', 'ROLADO', 'GRINDERS', 'VAPORIZADORES', 'ACCESORIOS']
 
 export default function TheTripSmokeShop() {
   const [mayorDeEdad, setMayorDeEdad] = useState<boolean | null>(null)
-  const [productos, setProductos] = useState<ProductoSmoke[]>([])
   const [categoriaActiva, setCategoriaActiva] = useState('TODOS')
   const [query, setQuery] = useState('')
 
@@ -38,36 +38,25 @@ export default function TheTripSmokeShop() {
     setMayorDeEdad(true)
   }
 
-  // Cargar catálogo completo una sola vez al iniciar
-  useEffect(() => {
-    if (!mayorDeEdad) return
-    async function fetchCatalogo() {
-      try {
-        const response = await fetch(posApiUrl('/api/v1/thetrip/productos/search?limit=500'), { cache: 'no-store' })
-        if (response.ok) {
-          const data = await response.json()
-          setProductos(Array.isArray(data.items) ? data.items : [])
-        }
-      } catch (error) {
-        console.error('Error al cargar catálogo:', error)
-      }
-    }
-    fetchCatalogo()
-  }, [mayorDeEdad])
+  // Lista completa de productos desde el JSON sincronizado localmente
+  const productosBase: ProductoSmoke[] = inventarioData.productos || []
 
   // Filtrado local en tiempo real por categoría y texto de búsqueda
   const productosFiltrados = useMemo(() => {
-    return productos.filter((item) => {
-      const cumpleCategoria = categoriaActiva === 'TODOS' || item.categoria?.toUpperCase() === categoriaActiva.toUpperCase()
+    return productosBase.filter((item) => {
+      const catItem = (item.categoria || item.departamento || '').toUpperCase()
+      const cumpleCategoria = categoriaActiva === 'TODOS' || catItem.includes(categoriaActiva)
+      
       const q = query.toLowerCase().trim()
-      const cumpleQuery =
-        !q ||
-        item.nombre?.toLowerCase().includes(q) ||
-        item.sku?.toLowerCase().includes(q) ||
-        item.descripcion?.toLowerCase().includes(q)
+      const nombre = (item.nombre || '').toLowerCase()
+      const sku = (item.sku || '').toLowerCase()
+      const desc = (item.descripcion || '').toLowerCase()
+
+      const cumpleQuery = !q || nombre.includes(q) || sku.includes(q) || desc.includes(q)
+
       return cumpleCategoria && cumpleQuery
     })
-  }, [productos, categoriaActiva, query])
+  }, [productosBase, categoriaActiva, query])
 
   if (mayorDeEdad === null) {
     return (
@@ -165,45 +154,53 @@ export default function TheTripSmokeShop() {
           <div className="text-center py-20 text-zinc-500 text-xs">No se encontraron productos para el filtro actual.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {productosFiltrados.map((item) => (
-              <div
-                key={item.id}
-                className="bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 rounded-2xl p-5 flex flex-col justify-between transition space-y-4"
-              >
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-[10px] font-mono text-zinc-400">{item.sku}</span>
-                    <span className="text-[10px] font-bold px-2 py-0.5 bg-zinc-800 text-zinc-300 rounded">{item.categoria}</span>
+            {productosFiltrados.map((item) => {
+              const precioVal = item.precio_mxn ?? item.precio ?? 0
+              const stockVal = item.stock_disponible ?? item.stock ?? 0
+              const fotoVal = (item.imagenes && item.imagenes.length > 0) ? item.imagenes[0] : item.imagen_url
+
+              return (
+                <div
+                  key={item.sku}
+                  className="bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 rounded-2xl p-5 flex flex-col justify-between transition space-y-4"
+                >
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-[10px] font-mono text-zinc-400">{item.sku}</span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 bg-zinc-800 text-zinc-300 rounded">
+                        {item.categoria || item.departamento || 'General'}
+                      </span>
+                    </div>
+                    <div className="h-44 w-full bg-zinc-950 rounded-xl border border-zinc-800/80 flex items-center justify-center mb-4 overflow-hidden relative">
+                      {fotoVal ? (
+                        <img src={fotoVal} alt={item.nombre} className="object-cover w-full h-full" />
+                      ) : (
+                        <span className="text-xs text-zinc-600 font-mono">Sin imagen</span>
+                      )}
+                    </div>
+                    <h3 className="text-sm font-bold text-white mb-1">{item.nombre}</h3>
+                    <p className="text-xs text-zinc-400 line-clamp-2">{item.descripcion || 'Sin descripción adicional'}</p>
                   </div>
-                  <div className="h-44 w-full bg-zinc-950 rounded-xl border border-zinc-800/80 flex items-center justify-center mb-4 overflow-hidden relative">
-                    {item.imagen_url ? (
-                      <img src={item.imagen_url} alt={item.nombre} className="object-cover w-full h-full" />
-                    ) : (
-                      <span className="text-xs text-zinc-600 font-mono">Sin imagen</span>
-                    )}
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-lg font-black text-white">${Number(precioVal).toLocaleString('es-MX')} MXN</span>
+                      <span className="text-[11px] text-emerald-400 font-semibold">{stockVal} en tienda</span>
+                    </div>
+                    <BotonCompraProducto
+                      nombre={item.nombre}
+                      sku={item.sku}
+                      fase="EN_STOCK"
+                      categoria={item.categoria || item.departamento || 'General'}
+                      departamento={item.departamento}
+                      subcategoria={item.subcategoria}
+                      precio={Number(precioVal) || 0}
+                      imagen_url={fotoVal}
+                      className="mt-0"
+                    />
                   </div>
-                  <h3 className="text-sm font-bold text-white mb-1">{item.nombre}</h3>
-                  <p className="text-xs text-zinc-400 line-clamp-2">{item.descripcion}</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-baseline">
-                    <span className="text-lg font-black text-white">${Number(item.precio).toLocaleString('es-MX')} MXN</span>
-                    <span className="text-[11px] text-emerald-400 font-semibold">{item.stock} en tienda</span>
-                  </div>
-                  <BotonCompraProducto
-                    nombre={item.nombre}
-                    sku={item.sku}
-                    fase="EN_STOCK"
-                    categoria={item.categoria}
-                    departamento={item.departamento}
-                    subcategoria={item.subcategoria}
-                    precio={Number(item.precio) || 0}
-                    imagen_url={item.imagen_url}
-                    className="mt-0"
-                  />
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         )}
       </section>
