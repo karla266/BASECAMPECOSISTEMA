@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { posApiUrl } from '@/lib/apiBase'
 import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
@@ -38,28 +38,36 @@ export default function TheTripSmokeShop() {
     setMayorDeEdad(true)
   }
 
-  const cargarCatalogo = async () => {
-    const params = new URLSearchParams()
-    params.set('categoria', categoriaActiva)
-    params.set('only_in_stock', 'true')
-    params.set('limit', '120')
-    if (query.trim()) params.set('q', query.trim())
-    
-    const response = await fetch(`${posApiUrl('/api/v1/thetrip/productos/search')}?${params.toString()}`, { cache: 'no-store' })
-    if (!response.ok) {
-      throw new Error(`No se pudo cargar el catalogo (${response.status})`)
-    }
-    const data = await response.json()
-    setProductos(Array.isArray(data.items) ? data.items : [])
-  }
-
+  // Cargar catálogo completo una sola vez al iniciar
   useEffect(() => {
     if (!mayorDeEdad) return
-    cargarCatalogo().catch((error) => {
-      console.error('No se pudo consultar el catalogo de The Trip:', error)
-      setProductos([])
+    async function fetchCatalogo() {
+      try {
+        const response = await fetch(posApiUrl('/api/v1/thetrip/productos/search?limit=500'), { cache: 'no-store' })
+        if (response.ok) {
+          const data = await response.json()
+          setProductos(Array.isArray(data.items) ? data.items : [])
+        }
+      } catch (error) {
+        console.error('Error al cargar catálogo:', error)
+      }
+    }
+    fetchCatalogo()
+  }, [mayorDeEdad])
+
+  // Filtrado local en tiempo real por categoría y texto de búsqueda
+  const productosFiltrados = useMemo(() => {
+    return productos.filter((item) => {
+      const cumpleCategoria = categoriaActiva === 'TODOS' || item.categoria?.toUpperCase() === categoriaActiva.toUpperCase()
+      const q = query.toLowerCase().trim()
+      const cumpleQuery =
+        !q ||
+        item.nombre?.toLowerCase().includes(q) ||
+        item.sku?.toLowerCase().includes(q) ||
+        item.descripcion?.toLowerCase().includes(q)
+      return cumpleCategoria && cumpleQuery
     })
-  }, [mayorDeEdad, categoriaActiva, query])
+  }, [productos, categoriaActiva, query])
 
   if (mayorDeEdad === null) {
     return (
@@ -151,13 +159,13 @@ export default function TheTripSmokeShop() {
         </div>
       </section>
 
-      {/* Listado de Productos */}
+      {/* Listado de Productos Filtrados */}
       <section className="max-w-6xl mx-auto px-6 pb-12">
-        {productos.length === 0 ? (
+        {productosFiltrados.length === 0 ? (
           <div className="text-center py-20 text-zinc-500 text-xs">No se encontraron productos para el filtro actual.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {productos.map((item) => (
+            {productosFiltrados.map((item) => (
               <div
                 key={item.id}
                 className="bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 rounded-2xl p-5 flex flex-col justify-between transition space-y-4"
