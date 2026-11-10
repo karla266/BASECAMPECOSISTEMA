@@ -58,8 +58,12 @@ export default function BluntWrapSelector() {
 
         <div className="mt-5 grid gap-4 md:grid-cols-[minmax(0,16rem)_1fr] md:items-start">
           <img
-            src={GALERIA[foto].src}
-            alt={GALERIA[foto].alt}
+            src={
+              elegido.imagenes && elegido.imagenes.length > 0
+                ? elegido.imagenes[0]
+                : GALERIA[foto].src
+            }
+            alt={elegido.nombre || GALERIA[foto].alt}
             className="h-80 w-full rounded-2xl object-cover"
           />
           <div>
