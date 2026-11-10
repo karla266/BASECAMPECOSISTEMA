@@ -6,7 +6,6 @@ import inventarioData from '@/data/inventario_thetrip.json'
 import BotonCompraProducto from '@/components/thetrip/BotonCompraProducto'
 
 interface ProductoSmoke {
-  id?: number
   sku: string
   nombre: string
   categoria?: string
@@ -38,21 +37,23 @@ export default function TheTripSmokeShop() {
     setMayorDeEdad(true)
   }
 
-  // Lista completa de productos desde el JSON sincronizado localmente
+  // Extraer productos del JSON local directamente
   const productosBase: ProductoSmoke[] = inventarioData.productos || []
 
-  // Filtrado local en tiempo real por categoría y texto de búsqueda
+  // Filtrado local instantáneo que machea exactamente con SICAR
   const productosFiltrados = useMemo(() => {
     return productosBase.filter((item) => {
       const catItem = (item.categoria || item.departamento || '').toUpperCase()
       const cumpleCategoria = categoriaActiva === 'TODOS' || catItem.includes(categoriaActiva)
-      
-      const q = query.toLowerCase().trim()
-      const nombre = (item.nombre || '').toLowerCase()
-      const sku = (item.sku || '').toLowerCase()
-      const desc = (item.descripcion || '').toLowerCase()
 
-      const cumpleQuery = !q || nombre.includes(q) || sku.includes(q) || desc.includes(q)
+      const q = query.toLowerCase().trim()
+      if (!q) return cumpleCategoria
+
+      // Separar palabras clave para buscar coincidencias parciales (ej. "pipa color")
+      const palabras = q.split(/\s+/)
+      const textoCompleto = `${item.nombre || ''} ${item.sku || ''} ${item.descripcion || ''}`.toLowerCase()
+
+      const cumpleQuery = palabras.every((palabra) => textoCompleto.includes(palabra))
 
       return cumpleCategoria && cumpleQuery
     })
@@ -154,14 +155,14 @@ export default function TheTripSmokeShop() {
           <div className="text-center py-20 text-zinc-500 text-xs">No se encontraron productos para el filtro actual.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {productosFiltrados.map((item) => {
+            {productosFiltrados.map((item, index) => {
               const precioVal = item.precio_mxn ?? item.precio ?? 0
               const stockVal = item.stock_disponible ?? item.stock ?? 0
               const fotoVal = (item.imagenes && item.imagenes.length > 0) ? item.imagenes[0] : item.imagen_url
 
               return (
                 <div
-                  key={item.sku}
+                  key={item.sku || index}
                   className="bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 rounded-2xl p-5 flex flex-col justify-between transition space-y-4"
                 >
                   <div>
