@@ -17,23 +17,81 @@ interface SicarSyncItem {
   departamento?: string;
 }
 
-// Limpia caracteres y genera tokens alfanuméricos relevantes (> 2 caracteres)
-function extraerTokens(texto: string): string[] {
-  return texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .split(/\s+/)
-    .filter(t => t.length > 2 && !["para", "con", "los", "las", "del", "que", "1024x1024", "otros"].includes(t));
-}
+// Diccionario de equivalencias para enriquecer tokens de sabores y marcas
+const SINONIMOS: Record<string, string[]> = {
+  "blueberry": ["mora", "arandano"],
+  "grape": ["uva", "purple"],
+  "pineapple": ["pina"],
+  "strawberry": ["fresa"],
+  "chocolate": ["choco"],
+  "watermelon": ["sandia"],
+  "peach": ["durazno"],
+  "apple": ["manzana"],
+  "banana": ["platano"],
+  "melon": ["menlon"],
+  "crema": ["cream", "batida"],
+  "acrilico": ["acrylic"],
+  "silicon": ["silicone"],
+  "charola": ["bandeja", "tray"],
+  "moledor": ["grinder"],
+  "sabana": ["papel", "rolling", "tips"],
+  "pipa": ["pipe"]
+};
 
-function normalizarCadena(texto: string): string {
+const PALABRAS_CLAVE_CONOCIDAS = [
+  "blunt", "wrap", "xxl", "platinum", "double", "kreepy", "original",
+  "afghan", "hemp", "blazy", "susan", "raw", "ocb", "smoking", "lion",
+  "cyclones", "hornet", "juicy", "elements", "alien", "tips", "filter",
+  "bong", "pipa", "grinder", "bubbler", "dabber", "charola", "bandeja",
+  "silicon", "acrilico", "pyrex", "vidrio", "conos", "cones",
+  "blueberry", "chocolate", "grape", "melon", "menlon", "mango", "vanilla",
+  "strawberry", "kiwi", "pineapple", "pinapple", "watermelon", "cherry",
+  "fresa", "mora", "uva", "pina", "durazno", "cereza", "platano", "sandia",
+  "zero", "black", "purple", "sweet", "wet", "cosmic", "spark"
+];
+
+function normalizar(texto: string): string {
   return texto
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]/g, "");
+}
+
+function extraerTokensDescompuestos(nombreArchivoOProducto: string): Set<string> {
+  const norm = normalizar(nombreArchivoOProducto)
+    .replace(/1024x1024|1296x|500x500|\d{1,4}x\d{1,4}/g, "")
+    .replace(/teotros|thetrip/g, "");
+
+  const tokens = new Set<string>();
+
+  // 1. Detectar palabras clave conocidas incrustadas
+  for (const kw of PALABRAS_CLAVE_CONOCIDAS) {
+    if (norm.includes(kw)) {
+      tokens.add(kw);
+      if (SINONIMOS[kw]) {
+        SINONIMOS[kw].forEach(s => tokens.add(s));
+      }
+    }
+  }
+
+  // 2. Fragmentar por caracteres no alfanuméricos tradicionales
+  const partes = nombreArchivoOProducto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .filter(t => t.length > 2 && !["para", "con", "los", "las", "del", "que", "otros"].includes(t));
+
+  for (const p of partes) {
+    tokens.add(p);
+    if (SINONIMOS[p]) {
+      SINONIMOS[p].forEach(s => tokens.add(s));
+    }
+  }
+
+  return tokens;
 }
 
 export async function POST(req: NextRequest) {
@@ -67,7 +125,7 @@ export async function POST(req: NextRequest) {
     interface FotoIndexada {
       archivo: string;
       nombreNorm: string;
-      tokens: string[];
+      tokens: Set<string>;
     }
     const catalogoFotos: FotoIndexada[] = [];
 
@@ -76,11 +134,10 @@ export async function POST(req: NextRequest) {
         const archivos = fs.readdirSync(RUTA_UPLOADS);
         for (const arch of archivos) {
           if (arch.toLowerCase().endsWith(".webp")) {
-            const base = arch.replace(/\.webp$/i, "").replace(/^te-otros-/, "");
             catalogoFotos.push({
               archivo: arch,
-              nombreNorm: normalizarCadena(base),
-              tokens: extraerTokens(base)
+              nombreNorm: normalizar(arch.replace(/\.webp$/i, "")),
+              tokens: extraerTokensDescompuestos(arch)
             });
           }
         }
@@ -104,7 +161,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. Mapear existentes por SKU
     const mapaProductos = new Map<string, any>();
     for (const prod of rawContenido.productos) {
       if (prod && prod.sku) {
@@ -126,28 +182,35 @@ export async function POST(req: NextRequest) {
       const catLimpia = (item.categoria && item.categoria !== "SIN DEFINIR") ? item.categoria : "Parafernalia";
       const depLimpio = item.departamento || "The Trip";
 
-      // 4. Emparejamiento inteligente de foto
-      const nombreNormProd = normalizarCadena(item.nombre || "");
-      const tokensProd = extraerTokens(item.nombre || "");
+      // 3. Matching enriquecido
+      const nombreNormProd = normalizar(item.nombre || "");
+      const tokensProd = extraerTokensDescompuestos(item.nombre || "");
+
       let mejorFoto = "";
       let mayorPuntaje = 0;
 
       for (const f of catalogoFotos) {
-        // Coincidencia exacta de cadena normalizada
-        if (nombreNormProd.length > 5 && (f.nombreNorm.includes(nombreNormProd) || nombreNormProd.includes(f.nombreNorm))) {
-          mejorFoto = `/uploads/${f.archivo}`;
-          break;
-        }
-
-        // Puntuación por coincidencia de tokens compartidos
+        // Coincidencia de tokens compartidos
         let coincidencias = 0;
-        for (const tp of tokensProd) {
-          if (f.tokens.includes(tp) || f.nombreNorm.includes(tp)) {
+        let tieneSaborMarca = false;
+
+        tokensProd.forEach(tp => {
+          if (f.tokens.has(tp)) {
             coincidencias++;
+            // Mayor peso si coincide sabor o identificador de variante
+            if (["blueberry", "chocolate", "grape", "kreepy", "melon", "menlon", "mango", "vanilla", "strawberry", "kiwi", "pineapple", "pinapple", "watermelon", "cherry", "pina", "uva", "fresa", "sandia", "zero"].includes(tp)) {
+              tieneSaborMarca = true;
+              coincidencias += 2;
+            }
           }
+        });
+
+        // Coincidencia directa de subcadena
+        if (nombreNormProd.length > 5 && f.nombreNorm.includes(nombreNormProd)) {
+          coincidencias += 4;
         }
 
-        if (coincidencias >= 2 && coincidencias > mayorPuntaje) {
+        if (coincidencias > mayorPuntaje && (coincidencias >= 3 || (tieneSaborMarca && coincidencias >= 2))) {
           mayorPuntaje = coincidencias;
           mejorFoto = `/uploads/${f.archivo}`;
         }
