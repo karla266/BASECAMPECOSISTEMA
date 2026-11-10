@@ -17,13 +17,23 @@ interface SicarSyncItem {
   departamento?: string;
 }
 
-function generarSlug(texto: string): string {
+// Limpia caracteres y genera tokens alfanuméricos relevantes (> 2 caracteres)
+function extraerTokens(texto: string): string[] {
   return texto
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "_")
-    .replace(/^_+|_+$/g, "");
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .filter(t => t.length > 2 && !["para", "con", "los", "las", "del", "que", "1024x1024", "otros"].includes(t));
+}
+
+function normalizarCadena(texto: string): string {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
 }
 
 export async function POST(req: NextRequest) {
@@ -53,14 +63,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Indexar archivos WebP disponibles en public/uploads
-    const fotosDisponibles: string[] = [];
+    // 1. Indexar fotos disponibles en public/uploads
+    interface FotoIndexada {
+      archivo: string;
+      nombreNorm: string;
+      tokens: string[];
+    }
+    const catalogoFotos: FotoIndexada[] = [];
+
     if (fs.existsSync(RUTA_UPLOADS)) {
       try {
         const archivos = fs.readdirSync(RUTA_UPLOADS);
         for (const arch of archivos) {
           if (arch.toLowerCase().endsWith(".webp")) {
-            fotosDisponibles.push(arch);
+            const base = arch.replace(/\.webp$/i, "").replace(/^te-otros-/, "");
+            catalogoFotos.push({
+              archivo: arch,
+              nombreNorm: normalizarCadena(base),
+              tokens: extraerTokens(base)
+            });
           }
         }
       } catch (err) {
@@ -68,7 +89,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 2. Leer archivo de inventario existente
+    // 2. Cargar inventario_thetrip.json
     let rawContenido: any = { productos: [] };
     if (fs.existsSync(RUTA_INVENTARIO)) {
       try {
@@ -105,16 +126,30 @@ export async function POST(req: NextRequest) {
       const catLimpia = (item.categoria && item.categoria !== "SIN DEFINIR") ? item.categoria : "Parafernalia";
       const depLimpio = item.departamento || "The Trip";
 
-      // Búsqueda heurística de foto WebP si no tiene
-      const slugSku = generarSlug(skuNorm);
-      const slugNombre = generarSlug(item.nombre || "");
-      let fotoEncontrada = "";
+      // 4. Emparejamiento inteligente de foto
+      const nombreNormProd = normalizarCadena(item.nombre || "");
+      const tokensProd = extraerTokens(item.nombre || "");
+      let mejorFoto = "";
+      let mayorPuntaje = 0;
 
-      for (const foto of fotosDisponibles) {
-        const fotoSlug = foto.toLowerCase().replace(".webp", "");
-        if (fotoSlug.includes(slugSku) || slugSku.includes(fotoSlug) || (slugNombre.length > 5 && fotoSlug.includes(slugNombre.substring(0, 15)))) {
-          fotoEncontrada = `/uploads/${foto}`;
+      for (const f of catalogoFotos) {
+        // Coincidencia exacta de cadena normalizada
+        if (nombreNormProd.length > 5 && (f.nombreNorm.includes(nombreNormProd) || nombreNormProd.includes(f.nombreNorm))) {
+          mejorFoto = `/uploads/${f.archivo}`;
           break;
+        }
+
+        // Puntuación por coincidencia de tokens compartidos
+        let coincidencias = 0;
+        for (const tp of tokensProd) {
+          if (f.tokens.includes(tp) || f.nombreNorm.includes(tp)) {
+            coincidencias++;
+          }
+        }
+
+        if (coincidencias >= 2 && coincidencias > mayorPuntaje) {
+          mayorPuntaje = coincidencias;
+          mejorFoto = `/uploads/${f.archivo}`;
         }
       }
 
@@ -130,15 +165,14 @@ export async function POST(req: NextRequest) {
         }
         prod.departamento = depLimpio;
 
-        // Si no tenía fotos y encontramos una, la agregamos
-        if ((!prod.imagenes || prod.imagenes.length === 0) && fotoEncontrada) {
-          prod.imagenes = [fotoEncontrada];
+        if ((!prod.imagenes || prod.imagenes.length === 0) && mejorFoto) {
+          prod.imagenes = [mejorFoto];
           fotosAsociadas++;
         }
         actualizados++;
       } else {
-        const imagenesInit = fotoEncontrada ? [fotoEncontrada] : [];
-        if (fotoEncontrada) fotosAsociadas++;
+        const imagenesInit = mejorFoto ? [mejorFoto] : [];
+        if (mejorFoto) fotosAsociadas++;
 
         const nuevoProd = {
           id: `prod_sicar_${item.id}`,
@@ -165,7 +199,7 @@ export async function POST(req: NextRequest) {
     };
 
     fs.writeFileSync(RUTA_INVENTARIO, JSON.stringify(payloadFinal, null, 2), "utf-8");
-    console.log(`[SYNC] OK: ${actualizados} act, ${nuevos} nuevos, ${fotosAsociadas} fotos vinculadas. Total: ${listaFinal.length}`);
+    console.log(`[SYNC] OK: ${actualizados} act, ${nuevos} nuevos, ${fotosAsociadas} fotos asociadas.`);
 
     return NextResponse.json({
       success: true,
