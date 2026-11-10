@@ -5,7 +5,8 @@ import path from "path";
 export const dynamic = "force-dynamic";
 
 const RUTA_INVENTARIO = path.join(process.cwd(), "data", "inventario_thetrip.json");
-const RUTA_UPLOADS = path.join(process.cwd(), "public", "uploads");
+const RUTA_UPLOADS_LOCAL = path.join(process.cwd(), "public", "uploads");
+const RUTA_UPLOADS_HOSTINGER = "/home/u893741392/domains/basecamp420.com/public_html/uploads";
 
 interface SicarSyncItem {
   id: number;
@@ -17,7 +18,6 @@ interface SicarSyncItem {
   departamento?: string;
 }
 
-// Diccionario de equivalencias para enriquecer tokens de sabores y marcas
 const SINONIMOS: Record<string, string[]> = {
   "blueberry": ["mora", "arandano"],
   "grape": ["uva", "purple"],
@@ -65,7 +65,6 @@ function extraerTokensDescompuestos(nombreArchivoOProducto: string): Set<string>
 
   const tokens = new Set<string>();
 
-  // 1. Detectar palabras clave conocidas incrustadas
   for (const kw of PALABRAS_CLAVE_CONOCIDAS) {
     if (norm.includes(kw)) {
       tokens.add(kw);
@@ -75,7 +74,6 @@ function extraerTokensDescompuestos(nombreArchivoOProducto: string): Set<string>
     }
   }
 
-  // 2. Fragmentar por caracteres no alfanuméricos tradicionales
   const partes = nombreArchivoOProducto
     .toLowerCase()
     .normalize("NFD")
@@ -121,7 +119,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Indexar fotos disponibles en public/uploads
+    // 1. Detectar carpeta de uploads (preferir ruta persistente de Hostinger si existe)
+    let rutaEfectivaUploads = "";
+    if (fs.existsSync(RUTA_UPLOADS_HOSTINGER) && fs.readdirSync(RUTA_UPLOADS_HOSTINGER).some(f => f.endsWith(".webp"))) {
+      rutaEfectivaUploads = RUTA_UPLOADS_HOSTINGER;
+    } else if (fs.existsSync(RUTA_UPLOADS_LOCAL) && fs.readdirSync(RUTA_UPLOADS_LOCAL).some(f => f.endsWith(".webp"))) {
+      rutaEfectivaUploads = RUTA_UPLOADS_LOCAL;
+    }
+
     interface FotoIndexada {
       archivo: string;
       nombreNorm: string;
@@ -129,9 +134,9 @@ export async function POST(req: NextRequest) {
     }
     const catalogoFotos: FotoIndexada[] = [];
 
-    if (fs.existsSync(RUTA_UPLOADS)) {
+    if (rutaEfectivaUploads) {
       try {
-        const archivos = fs.readdirSync(RUTA_UPLOADS);
+        const archivos = fs.readdirSync(rutaEfectivaUploads);
         for (const arch of archivos) {
           if (arch.toLowerCase().endsWith(".webp")) {
             catalogoFotos.push({
@@ -142,7 +147,7 @@ export async function POST(req: NextRequest) {
           }
         }
       } catch (err) {
-        console.warn("[SYNC] Error al leer public/uploads:", err);
+        console.warn("[SYNC] Error al leer directorio de fotos:", err);
       }
     }
 
@@ -190,14 +195,12 @@ export async function POST(req: NextRequest) {
       let mayorPuntaje = 0;
 
       for (const f of catalogoFotos) {
-        // Coincidencia de tokens compartidos
         let coincidencias = 0;
         let tieneSaborMarca = false;
 
         tokensProd.forEach(tp => {
           if (f.tokens.has(tp)) {
             coincidencias++;
-            // Mayor peso si coincide sabor o identificador de variante
             if (["blueberry", "chocolate", "grape", "kreepy", "melon", "menlon", "mango", "vanilla", "strawberry", "kiwi", "pineapple", "pinapple", "watermelon", "cherry", "pina", "uva", "fresa", "sandia", "zero"].includes(tp)) {
               tieneSaborMarca = true;
               coincidencias += 2;
@@ -205,7 +208,6 @@ export async function POST(req: NextRequest) {
           }
         });
 
-        // Coincidencia directa de subcadena
         if (nombreNormProd.length > 5 && f.nombreNorm.includes(nombreNormProd)) {
           coincidencias += 4;
         }
@@ -228,7 +230,8 @@ export async function POST(req: NextRequest) {
         }
         prod.departamento = depLimpio;
 
-        if ((!prod.imagenes || prod.imagenes.length === 0) && mejorFoto) {
+        // Actualizar o asignar foto si se encontró una mejor coincidencia
+        if (mejorFoto && (!prod.imagenes || prod.imagenes.length === 0 || prod.imagenes[0] !== mejorFoto)) {
           prod.imagenes = [mejorFoto];
           fotosAsociadas++;
         }
@@ -262,7 +265,6 @@ export async function POST(req: NextRequest) {
     };
 
     fs.writeFileSync(RUTA_INVENTARIO, JSON.stringify(payloadFinal, null, 2), "utf-8");
-    console.log(`[SYNC] OK: ${actualizados} act, ${nuevos} nuevos, ${fotosAsociadas} fotos asociadas.`);
 
     return NextResponse.json({
       success: true,
@@ -270,6 +272,8 @@ export async function POST(req: NextRequest) {
       actualizados,
       nuevos,
       fotos_asociadas: fotosAsociadas,
+      fotos_disponibles_en_disco: catalogoFotos.length,
+      directorio_usado: rutaEfectivaUploads || "NINGUNO_ENCONTRADO",
       timestamp: payloadFinal.ultima_actualizacion
     });
   } catch (error: any) {
