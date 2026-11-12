@@ -17,6 +17,12 @@ required=(
   NEXT_PUBLIC_POS_API_BASE
 )
 
+if [[ "${1-}" == "--contract-only" ]]; then
+  printf 'Production environment contract checked: %s required names.\n' "${#required[@]}"
+  printf '%s\n' "${required[@]}"
+  exit 0
+fi
+
 placeholder_re='^(|change[-_ ]?me|your[-_ ]|replace[-_ ]|placeholder|example|todo|xxx+)$'
 missing=0
 
@@ -27,11 +33,6 @@ for key in "${required[@]}"; do
     missing=1
   fi
 done
-
-if [[ "${1-}" == "--contract-only" ]]; then
-  printf 'Production environment contract checked: %s required names.\n' "${#required[@]}"
-  exit 0
-fi
 
 if (( missing )); then
   exit 1
