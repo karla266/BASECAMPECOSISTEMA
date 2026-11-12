@@ -1,8 +1,8 @@
+import { useCart } from '@/context/CartContext';
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart } from "@/context/CartContext";
 
 type ProductoCatalogo = {
   sku: string;
@@ -175,12 +175,12 @@ export default function FloatingSalesAssistant() {
   const abrirCheckout = (producto?: ProductoCatalogo) => {
     const item = producto ?? catalogo[0];
     if (item) {
-      addItem({
+      addItem({ id: item.sku || String(Date.now()), quantity: 1, type: "product",
         sku: item.sku,
-        nombre: item.nombre,
-        precio: item.precio,
-        imagen_url: item.imagen_url || "",
-        disponibilidad: item.disponibilidad || "EN_STOCK",
+        title: item.nombre,
+        unitPrice: item.precio,
+        
+        
       });
       router.push(`/checkout?sku=${encodeURIComponent(item.sku)}`);
     } else {

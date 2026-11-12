@@ -1,3 +1,4 @@
+export type DisponibilidadCarrito = 'EN_STOCK' | 'PREVENTA' | 'AGOTADO';
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
@@ -37,6 +38,10 @@ interface CartContextValue {
   clearCart: () => void;
   totalAmount: number;
   totalCount: number;
+  abierto: boolean;
+  setAbierto: (abierto: boolean) => void;
+  abrirCart: () => void;
+  cerrarCart: () => void;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -44,6 +49,7 @@ const STORAGE_KEY = 'basecamp420_unified_cart_v1';
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [abierto, setAbierto] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -82,6 +88,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, newItem];
     });
+    // Opcional: Abre el cajón automáticamente al agregar un producto
+    setAbierto(true);
   };
 
   const removeItem = (id: string) => {
@@ -89,6 +97,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const clearCart = () => setItems([]);
+
+  const abrirCart = () => setAbierto(true);
+  const cerrarCart = () => setAbierto(false);
 
   const totalAmount = items.reduce(
     (acc, item) => acc + item.unitPrice * item.quantity,
@@ -99,7 +110,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, clearCart, totalAmount, totalCount }}
+      value={{
+        items,
+        addItem,
+        removeItem,
+        clearCart,
+        totalAmount,
+        totalCount,
+        abierto,
+        setAbierto,
+        abrirCart,
+        cerrarCart,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -1,8 +1,8 @@
+import { useCart, type DisponibilidadCarrito } from '@/context/CartContext';
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart, type DisponibilidadCarrito } from "@/context/CartContext";
 
 type ProductoChat = {
   sku: string;
@@ -49,12 +49,12 @@ export default function SalesChatbot() {
   }
 
   function agregar(producto: ProductoChat) {
-    addItem({
+    addItem({ id: producto.sku || String(Date.now()), quantity: 1, type: "product",
       sku: producto.sku,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      imagen_url: producto.imagen_url,
-      disponibilidad: producto.disponibilidad,
+      title: producto.nombre,
+      unitPrice: producto.precio,
+      
+      
     });
   }
 

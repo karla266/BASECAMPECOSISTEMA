@@ -1,90 +1,84 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { useCart, type DisponibilidadCarrito } from "@/context/CartContext";
-import { BADGE_PREVENTA, faseComercial, precioActivo, type ProductoCta } from "@/lib/ctaProducto";
+import React, { useState } from 'react';
+import { useCart, type DisponibilidadCarrito } from '@/context/CartContext';
 
-type Props = ProductoCta & {
-  nombre: string;
-  sku: string;
-  fase?: string | null;
-  imagen_url?: string | null;
-  className?: string;
-};
+interface BotonCompraProps {
+  producto?: {
+    sku: string;
+    title?: string;
+    nombre?: string;
+    unitPrice?: number;
+    precio?: number;
+    estado?: string;
+  };
+  sku?: string;
+  title?: string;
+  nombre?: string;
+  unitPrice?: number;
+  precio?: number;
+  estado?: string;
+  stockDisponible?: number;
+}
 
-export default function BotonCompraProducto({
-  nombre,
-  sku,
-  fase,
-  categoria,
-  departamento,
-  subcategoria,
-  proveedor,
-  descripcion,
-  tags,
-  precio,
-  costo,
-  imagen_url,
-  cantidad = 1,
-  className = "mt-5",
-}: Props) {
-  const router = useRouter();
-  const { addItem } = useCart();
-  const estado = faseComercial(fase) || "EN_STOCK";
-  const disponibilidad: DisponibilidadCarrito = estado === "PREVENTA" ? "PREVENTA" : "EN_STOCK";
-  const precioFinal = precioActivo({
-    nombre,
-    sku,
-    categoria,
-    departamento,
-    subcategoria,
-    proveedor,
-    descripcion,
-    tags,
-    precio,
-    costo,
-    fase,
-    disponibilidad: fase,
-  });
+export default function BotonCompraProducto(props: BotonCompraProps) {
+  const { addItem, abrirCart } = useCart();
+  const [cantidad, setCantidad] = useState(1);
+  const [agregando, setAgregando] = useState(false);
+
+  // Unificar las props ya vengan en el objeto producto o planas
+  const pSku = props.producto?.sku || props.sku || "SKU-GENERICO";
+  const pTitle = props.producto?.title || props.producto?.nombre || props.title || props.nombre || "Producto Basecamp 420";
+  const pPrice = props.producto?.unitPrice || props.producto?.precio || props.unitPrice || props.precio || 0;
+  const pEstado = props.producto?.estado || props.estado || "EN_STOCK";
+  const stockDisponible = props.stockDisponible ?? 10;
+
+  const estado: string = pEstado;
+  const disponibilidad: DisponibilidadCarrito = estado === "PREVENTA" ? "PREVENTA" : (stockDisponible > 0 ? "EN_STOCK" : "AGOTADO");
 
   function agregar() {
-    addItem(
-      {
-        sku,
-        nombre,
-        precio: precioFinal,
-        imagen_url: imagen_url || "",
-        disponibilidad,
-      },
-      cantidad
-    );
-  }
-
-  function comprar() {
-    agregar();
-    router.push("/checkout");
+    setAgregando(true);
+    addItem({
+      id: pSku || String(Date.now()),
+      sku: pSku,
+      title: pTitle,
+      unitPrice: pPrice,
+      quantity: cantidad,
+      type: "product"
+    });
+    abrirCart();
+    setTimeout(() => setAgregando(false), 600);
   }
 
   return (
-    <div className={`${className} space-y-2`}>
-      {disponibilidad === "PREVENTA" ? (
-        <p className="inline-flex min-h-12 items-center rounded-full bg-amber-500 px-4 text-xs font-bold leading-5 text-zinc-950">
-          {BADGE_PREVENTA}
-        </p>
-      ) : null}
+    <div className="flex flex-col gap-3 w-full">
+      <div className="flex items-center gap-3">
+        <label htmlFor="cantidad-input" className="text-xs text-neutral-400 font-medium">Cantidad:</label>
+        <input
+          id="cantidad-input"
+          type="number"
+          min="1"
+          max={stockDisponible}
+          value={cantidad}
+          onChange={(e) => setCantidad(Math.max(1, parseInt(e.target.value) || 1))}
+          className="w-20 px-3 py-1.5 bg-neutral-900 border border-neutral-800 rounded-lg text-white text-center text-sm font-bold focus:outline-none focus:border-emerald-500"
+        />
+        <span className="text-xs text-neutral-500">Disponibilidad: {disponibilidad}</span>
+      </div>
+
       <button
         type="button"
         onClick={agregar}
-        className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-zinc-600 px-4 text-center text-sm font-bold text-white"
+        disabled={disponibilidad === "AGOTADO"}
+        className={`w-full py-3 px-6 rounded-xl font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${
+          disponibilidad === "AGOTADO"
+            ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+            : agregando
+            ? "bg-emerald-600 text-neutral-950 scale-95"
+            : "bg-emerald-500 hover:bg-emerald-400 text-neutral-950 shadow-emerald-500/20"
+        }`}
       >
-        Agregar al Carrito
-      </button>
-      <button
-        type="button"
-        onClick={comprar}
-        className="flex min-h-12 w-full items-center justify-center rounded-2xl bg-amber-500 px-4 text-center text-sm font-bold text-zinc-950"
-      >
-        {disponibilidad === "PREVENTA" ? "Apartar Pre-venta" : "Comprar Ahora"}
+        {disponibilidad === "AGOTADO" ? "Agotado temporalmente" : agregando ? "¡Agregado al Carrito!" : "Agregar al Carrito • Comprar"}
       </button>
     </div>
   );

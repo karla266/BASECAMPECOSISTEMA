@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Page() {
+export const dynamic = 'force-static';
+
+export default function DiaCumbrePage() {
   return (
     <main className="max-w-5xl mx-auto px-6 py-16 space-y-6 text-white">
       <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Basecamp 420 • Orizaba</span>
