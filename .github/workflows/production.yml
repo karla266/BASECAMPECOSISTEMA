@@ -54,13 +54,15 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Install SSH trust configuration
-        env:
-          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+      - name: Pin Hostinger ED25519 host key
         run: |
-          test -n "$HOSTINGER_KNOWN_HOSTS"
+          expected='SHA256:wCeca9DNPU54kJla/8AYTaosvYL9efmjoq3OCImR7cg'
+          scan="$(ssh-keyscan -T 10 -p 65002 -t ed25519 basecamp420.com 2>/dev/null)"
+          test -n "$scan"
+          actual="$(printf '%s\n' "$scan" | ssh-keygen -lf - -E sha256 | awk '{print $2}')"
+          test "$actual" = "$expected"
           install -d -m 700 "$HOME/.ssh"
-          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          printf '%s\n' "$scan" > "$HOME/.ssh/known_hosts"
           chmod 600 "$HOME/.ssh/known_hosts"
 
       - name: Enforce persistent uploads and production environment
@@ -71,6 +73,6 @@ jobs:
           install -d -m 700 "$HOME/.ssh"
           printf '%s\n' "$HOSTINGER_SSH_KEY" > "$HOME/.ssh/id_ed25519"
           chmod 600 "$HOME/.ssh/id_ed25519"
-          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes u893741392@basecamp420.com 'bash -s' < scripts/ensure_persistent_uploads.sh
-          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes u893741392@basecamp420.com 'bash -s -- --server-check' < scripts/verify_production_env.sh
-          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes u893741392@basecamp420.com 'mkdir -p /home/u893741392/domains/basecamp420.com/tmp && touch /home/u893741392/domains/basecamp420.com/tmp/restart.txt'
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'bash -s' < scripts/ensure_persistent_uploads.sh
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'bash -s -- --server-check' < scripts/verify_production_env.sh
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'mkdir -p /home/u893741392/domains/basecamp420.com/tmp && touch /home/u893741392/domains/basecamp420.com/tmp/restart.txt'
