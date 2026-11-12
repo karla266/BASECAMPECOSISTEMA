@@ -1,0 +1,40 @@
+name: Weekly Autonomous Content via Pull Request
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+jobs:
+  generate-content-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar generación semanal y validar compilación
+        run: |
+          npm run publish:weekly --if-present
+          node scripts/ci-audit-gates.mjs
+          npm run build
+
+      - name: Crear Pull Request para revisión antes de publicar
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(content): actualización semanal validada"
+          title: "Publicación semanal automatizada (Validada por CI)"
+          body: "Generación automática de contenido y catálogo verificada contra build y reglas de conversión."
+          branch: automation/weekly-content-update
+          base: main

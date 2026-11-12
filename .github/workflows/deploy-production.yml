@@ -1,0 +1,100 @@
+name: Production Deploy & Post-Deploy Verification
+
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  pre-deploy-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio real
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar con lockfile
+        run: npm ci
+
+      - name: Ejecutar pruebas
+        run: npm test --if-present
+
+      - name: Ejecutar Linter
+        run: npm run lint
+
+      - name: Ejecutar guardia de conversión y SEO
+        run: node scripts/ci-audit-gates.mjs
+
+      - name: Verificar compilación limpia
+        run: npm run build
+
+  post-deploy-hostinger:
+    needs: pre-deploy-checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ejecutar Post-Despliegue, Persistencia y Passenger en Hostinger
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: 65002
+          script_stop: true
+          script: |
+            set -euo pipefail
+            DOMAIN_DIR="$HOME/domains/basecamp420.com"
+            SHARED_UPLOADS="/home/u893741392/shared_uploads"
+
+            echo "=== 1. Esperando actualización del build activo en Hostinger ==="
+            sleep 15
+            CURRENT_DIR=$(readlink -f "$DOMAIN_DIR/hbuilds/current" || echo "$DOMAIN_DIR/public_html")
+            echo "Directorio de build activo: $CURRENT_DIR"
+
+            echo "=== 2. Comprobando variables de producción sin exponer secretos ==="
+            ENV_FILE="$DOMAIN_DIR/.env.production"
+            if [ ! -f "$ENV_FILE" ] && [ -f "$CURRENT_DIR/nodejs/.env.production" ]; then
+              ENV_FILE="$CURRENT_DIR/nodejs/.env.production"
+            fi
+            for VAR_NAME in SICAR_HOST DB_SMOKESHOP_NAME MP_ACCESS_TOKEN; do
+              if ! grep -q "^${VAR_NAME}=" "$ENV_FILE" 2>/dev/null; then
+                echo "[ERROR] Falta la variable obligatoria $VAR_NAME en .env.production"
+                exit 1
+              fi
+            done
+            echo "[OK] Variables críticas presentes."
+
+            echo "=== 3. Vinculando persistencia de ~/shared_uploads ==="
+            mkdir -p "$SHARED_UPLOADS/covers" "$SHARED_UPLOADS/podcasts" "$SHARED_UPLOADS/productos"
+            mkdir -p "$CURRENT_DIR/nodejs/public"
+            ln -sfn "$SHARED_UPLOADS" "$CURRENT_DIR/nodejs/public/uploads"
+            ln -sfn "$SHARED_UPLOADS" "$DOMAIN_DIR/public_html/uploads"
+            test -L "$CURRENT_DIR/nodejs/public/uploads"
+
+            echo "=== 4. Señalando reinicio limpio a Phusion Passenger ==="
+            mkdir -p "$CURRENT_DIR/nodejs/tmp"
+            touch "$CURRENT_DIR/nodejs/tmp/restart.txt"
+
+            echo "=== 5. Registrando trazabilidad del commit desplegado ==="
+            echo "${{ github.sha }} | $(date -u +"%Y-%m-%dT%H:%M:%SZ") | OK" >> "$DOMAIN_DIR/deploy_history.log"
+            tail -n 5 "$DOMAIN_DIR/deploy_history.log"
+
+      - name: Verificar salud HTTP de rutas críticas en producción
+        run: |
+          sleep 10
+          BASE_URL="https://www.basecamp420.com"
+          for ROUTE in "/" "/checkout" "/calendario" "/cursos" "/sitemap.xml" "/robots.txt"; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" -L "${BASE_URL}${ROUTE}")
+            echo "Verificando ${BASE_URL}${ROUTE} -> HTTP ${STATUS}"
+            if [ "$STATUS" -ne 200 ]; then
+              echo "[ERROR] La ruta ${ROUTE} devolvió HTTP ${STATUS}"
+              exit 1
+            fi
+          done

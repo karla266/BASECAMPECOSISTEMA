@@ -1,0 +1,33 @@
+name: PR Quality & Conversion Gate
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias con lockfile
+        run: npm ci
+
+      - name: Ejecutar pruebas unitarias y de integración
+        run: npm test --if-present
+
+      - name: Ejecutar Linter
+        run: npm run lint
+
+      - name: Auditar Checkout, Cero WhatsApp en CTAs, Sitemap y Rutas
+        run: node scripts/ci-audit-gates.mjs
+
+      - name: Compilar aplicación Next.js
+        run: npm run build
