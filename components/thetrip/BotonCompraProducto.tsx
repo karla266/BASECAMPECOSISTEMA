@@ -11,6 +11,7 @@ interface BotonCompraProps {
     unitPrice?: number;
     precio?: number;
     estado?: string;
+    fase?: string;
   };
   sku?: string;
   title?: string;
@@ -18,6 +19,7 @@ interface BotonCompraProps {
   unitPrice?: number;
   precio?: number;
   estado?: string;
+  fase?: string;
   stockDisponible?: number;
 }
 
@@ -30,11 +32,10 @@ export default function BotonCompraProducto(props: BotonCompraProps) {
   const pSku = props.producto?.sku || props.sku || "SKU-GENERICO";
   const pTitle = props.producto?.title || props.producto?.nombre || props.title || props.nombre || "Producto Basecamp 420";
   const pPrice = props.producto?.unitPrice || props.producto?.precio || props.unitPrice || props.precio || 0;
-  const pEstado = props.producto?.estado || props.estado || "EN_STOCK";
+  const pFase = props.producto?.fase || props.fase || props.producto?.estado || props.estado || "EN_STOCK";
   const stockDisponible = props.stockDisponible ?? 10;
 
-  const estado: string = pEstado;
-  const disponibilidad: DisponibilidadCarrito = estado === "PREVENTA" ? "PREVENTA" : (stockDisponible > 0 ? "EN_STOCK" : "AGOTADO");
+  const disponibilidad: DisponibilidadCarrito = (pFase === "PREVENTA" || pFase === "sobre_pedido") ? "PREVENTA" : (stockDisponible > 0 ? "EN_STOCK" : "AGOTADO");
 
   function agregar() {
     setAgregando(true);
