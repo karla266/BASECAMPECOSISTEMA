@@ -12,6 +12,9 @@ interface BotonCompraProps {
     precio?: number;
     estado?: string;
     fase?: string;
+    categoria?: string;
+    departamento?: string;
+    subcategoria?: string;
   };
   sku?: string;
   title?: string;
@@ -21,6 +24,7 @@ interface BotonCompraProps {
   estado?: string;
   fase?: string;
   stockDisponible?: number;
+  [key: string]: any; // Permite recibir cualquier prop adicional de los catálogos sin error de tipos
 }
 
 export default function BotonCompraProducto(props: BotonCompraProps) {
