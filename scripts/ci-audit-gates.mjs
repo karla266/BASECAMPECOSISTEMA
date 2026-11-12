@@ -13,6 +13,9 @@ function fail(msg) {
 const requiredPaths = [
   'src/app/checkout',
   'src/app/calendario',
+  'src/app/cursos',
+  'src/app/renta',
+  'src/app/vuelos',
   'public/robots.txt'
 ];
 

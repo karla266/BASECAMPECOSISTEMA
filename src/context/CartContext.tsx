@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackConversionEvent } from '@/lib/analytics';
 
 export type CartItemType = 'product' | 'flight' | 'food' | 'course' | 'rental';
 
@@ -22,6 +23,9 @@ export interface CartItem {
     deliveryDate?: string;
     deliveryTime?: string;
     deliveryPoint?: string;
+    rentalDays?: number;
+    securityDeposit?: number;
+    serialCode?: string;
     notes?: string;
   };
 }
@@ -59,6 +63,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [items]);
 
   const addItem = (newItem: CartItem) => {
+    trackConversionEvent('add_to_cart', {
+      sku: newItem.sku,
+      type: newItem.type,
+      unitPrice: newItem.unitPrice,
+      quantity: newItem.quantity,
+    });
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === newItem.id);
       if (existingIndex > -1) {

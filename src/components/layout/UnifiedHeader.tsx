@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
+import { trackConversionEvent } from '@/lib/analytics';
 
 export type HeaderVariant = 'main' | 'store' | 'editorial' | 'admin';
 
@@ -44,9 +46,11 @@ const NAV_ITEMS: Record<HeaderVariant, Array<{ label: string; href: string }>> =
 export default function UnifiedHeader({
   variant,
   transparentHero = false,
-  cartCount = 0,
+  cartCount,
 }: UnifiedHeaderProps) {
   const pathname = usePathname() || '/';
+  const { totalCount } = useCart();
+  const effectiveCount = typeof cartCount === 'number' ? cartCount : totalCount;
 
   const resolvedVariant: HeaderVariant =
     variant ||
@@ -98,15 +102,17 @@ export default function UnifiedHeader({
             <>
               <Link
                 href="/calendario"
+                onClick={() => trackConversionEvent('cta_click', { target: '/calendario', source: 'header' })}
                 className="px-4 py-2 rounded-lg text-sm font-semibold bg-neutral-800 hover:bg-neutral-700 transition-colors"
               >
                 Reservar Vuelo
               </Link>
               <Link
                 href="/checkout"
+                onClick={() => trackConversionEvent('cta_click', { target: '/checkout', source: 'header' })}
                 className="px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-500 text-neutral-950 hover:bg-emerald-400 transition-colors"
               >
-                Checkout {cartCount > 0 ? `(${cartCount})` : ''}
+                Checkout {effectiveCount > 0 ? `(${effectiveCount})` : ''}
               </Link>
             </>
           ) : (

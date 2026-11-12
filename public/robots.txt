@@ -2,9 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Allow: /api/mcp
-
-# Agent & AI Crawl Signals
-Content-Signal: search=yes, ai-train=no
 
 Sitemap: https://www.basecamp420.com/sitemap.xml
