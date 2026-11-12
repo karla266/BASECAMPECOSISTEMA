@@ -1,154 +1,253 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { useEffect, useState } from 'react'
-import { posApiUrl } from '@/lib/apiBase'
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
 
-interface ConfigEmpresa {
-  ofrece_renta_equipo?: boolean
+interface RentalAsset {
+  sku: string;
+  serialPrefix: string;
+  name: string;
+  category: string;
+  dailyRate: number;
+  securityDeposit: number;
+  status: 'DISPONIBLE' | 'ASIGNADO_A_TOUR';
 }
 
-const categorias = [
+const RENTAL_CATALOG: RentalAsset[] = [
   {
-    title: 'Alta montaña',
-    icon: '⛰️',
-    items: [
-      'Casco de escalada y trekking',
-      'Arnés y cintas de seguridad',
-      'Mochilas de 30 a 65 L',
-      'Pies de gato y cuerdas de 8 a 60 m',
-      'Bastones telescópicos',
-      'Gafas de sol de montaña',
-    ],
+    sku: 'RENT-CASCO-ARNES',
+    serialPrefix: 'QR-FLIGHT-01',
+    name: 'Kit Casco Certificado + Arnés de Práctica Tierra',
+    category: 'Vuelo Libre / Inflado',
+    dailyRate: 450,
+    securityDeposit: 1000,
+    status: 'DISPONIBLE',
   },
   {
-    title: 'Camping',
-    icon: '🏕️',
-    items: [
-      'Tiendas de campaña 2 a 4 personas',
-      'Sleeping bags de 3 y 4 estaciones',
-      'Matracas inflables y aislantes',
-      'Linternas frontales y cargadores',
-      'Sacos de dormir térmicos',
-      'Mesas plegables y sillas de camping',
-    ],
+    sku: 'RENT-PIOLET-CRAMPON',
+    serialPrefix: 'QR-ALTA-04',
+    name: 'Combo Alta Montaña: Piolet Técnico + Crampones 12 Puntas',
+    category: 'Glaciar / Pico de Orizaba',
+    dailyRate: 550,
+    securityDeposit: 1200,
+    status: 'DISPONIBLE',
   },
   {
-    title: 'Trekking y senderismo',
-    icon: '🥾',
-    items: [
-      'Botas de senderismo',
-      'Impermeables y capas antiviento',
-      'Mochilas de hidratación',
-      'Básculas y whiskas',
-      'Botiquines de emergencia',
-      'Accesorios de campamento',
-    ],
+    sku: 'RENT-TENT-2P',
+    serialPrefix: 'QR-CAMP-09',
+    name: 'Casa de Campaña Impermeable 2 Personas (3 Estaciones)',
+    category: 'Camping / Trekking',
+    dailyRate: 350,
+    securityDeposit: 800,
+    status: 'DISPONIBLE',
   },
-]
+  {
+    sku: 'RENT-BASTONES-STOVE',
+    serialPrefix: 'QR-TREK-12',
+    name: 'Par de Bastones de Trekking + Estufa Portátil de Campamento',
+    category: 'Senderismo / Trepacerros',
+    dailyRate: 220,
+    securityDeposit: 500,
+    status: 'DISPONIBLE',
+  },
+];
 
-export default function RentaPage() {
-  const [habilitado, setHabilitado] = useState(true)
+export default function OutdoorRentalPage() {
+  const router = useRouter();
+  const { addItem } = useCart();
 
-  useEffect(() => {
-    fetch(posApiUrl('/api/v1/config/empresa'))
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: ConfigEmpresa | null) => {
-        if (data && typeof data.ofrece_renta_equipo === 'boolean') {
-          setHabilitado(data.ofrece_renta_equipo)
-        }
-      })
-      .catch(() => setHabilitado(true))
-  }, [])
+  const [selectedSku, setSelectedSku] = useState(RENTAL_CATALOG[0].sku);
+  const [quantity, setQuantity] = useState(1);
+  const [rentalDays, setRentalDays] = useState(1);
+  const [pickupDate, setPickupDate] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [inspectionAccepted, setInspectionAccepted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  if (!habilitado) {
-    return (
-      <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: '#020817', color: '#e2e8f0', padding: '24px' }}>
-        <div style={{ maxWidth: '620px', background: '#0f172a', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '20px', padding: '32px', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '12px' }}>⛺</div>
-          <h1 style={{ margin: '0 0 12px', fontSize: '2rem' }}>Renta de equipo temporalmente no disponible</h1>
-          <p style={{ margin: 0, color: '#cbd5e1', lineHeight: 1.7 }}>
-            El servicio de alquiler de equipo para alta montaña y camping está desactivado en este momento. Puedes consultar otros servicios de Basecamp 420 o volver a la experiencia de reserva web del sitio.
-          </p>
-          <div style={{ marginTop: '24px' }}>
-            <Link href="/" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>
-              Volver al inicio
-            </Link>
-          </div>
-        </div>
-      </main>
-    )
-  }
+  const asset = RENTAL_CATALOG.find((a) => a.sku === selectedSku) || RENTAL_CATALOG[0];
+  const rentalSubtotal = asset.dailyRate * rentalDays * quantity;
+  const totalDeposit = asset.securityDeposit * quantity;
+  const totalUnitCharge = asset.dailyRate * rentalDays + asset.securityDeposit;
+
+  const handleAddRentalToCheckout = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (!pickupDate) {
+      setErrorMsg('Selecciona la fecha de check-out del equipo.');
+      return;
+    }
+    if (!customerName.trim()) {
+      setErrorMsg('Ingresa el nombre del titular responsable del contrato de renta.');
+      return;
+    }
+    if (!inspectionAccepted) {
+      setErrorMsg('Debes aceptar el protocolo de inspección fotográfica Check-Out / Check-In y garantía.');
+      return;
+    }
+
+    addItem({
+      id: `RENT-${asset.sku}-${pickupDate}-${rentalDays}D`,
+      sku: asset.sku,
+      title: `Renta: ${asset.name} (${rentalDays} día(s) + Depósito Reembolsable)`,
+      unitPrice: totalUnitCharge,
+      quantity,
+      type: 'rental',
+      metadata: {
+        deliveryDate: pickupDate,
+        passengerName: customerName.trim(),
+        rentalDays,
+        securityDeposit: totalDeposit,
+        serialCode: asset.serialPrefix,
+        notes: `Tarifa renta: $${rentalSubtotal} MXN + Garantía reembolsable: $${totalDeposit} MXN`,
+      },
+    });
+
+    router.push('/checkout');
+  };
 
   return (
-    <main style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #020817 0%, #0f172a 100%)', color: '#f8fafc' }}>
-      <header style={{ padding: '20px 24px', borderBottom: '1px solid rgba(148,163,184,0.2)', background: 'rgba(15,23,42,0.85)', backdropFilter: 'blur(12px)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <Link href="/" style={{ color: '#f8fafc', textDecoration: 'none', fontWeight: 800, letterSpacing: '1px' }}>BASECAMP 420</Link>
-          <nav style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', color: '#cbd5e1', fontSize: '0.82rem' }}>
-            <Link href="/" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Inicio</Link>
-            <Link href="/#parapente" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Parapente</Link>
-            <Link href="/checkout" style={{ color: '#86efac', textDecoration: 'none', fontWeight: 700 }}>Ir al checkout</Link>
-          </nav>
-        </div>
-      </header>
+    <section className="max-w-5xl mx-auto px-6 py-12 space-y-10">
+      <div>
+        <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+          Activos Serializados con Código QR Unitario
+        </span>
+        <h1 className="text-3xl font-extrabold text-white mt-1">
+          Renta de Equipo Outdoor y Alta Montaña
+        </h1>
+        <p className="text-neutral-400 mt-2">
+          Reserva tu equipo con disponibilidad garantizada, checklist fotográfico de entrega y depósito en garantía reembolsable al check-in.
+        </p>
+      </div>
 
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '24px', alignItems: 'stretch' }}>
-          <div style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.18), rgba(15,23,42,0.9))', border: '1px solid rgba(134,239,172,0.3)', borderRadius: '24px', padding: '28px' }}>
-            <span style={{ color: '#86efac', fontSize: '0.78rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 800 }}>Renta de equipo</span>
-            <h1 style={{ margin: '16px 0 12px', fontSize: 'clamp(2.4rem, 3.2vw, 4rem)', lineHeight: 1.1 }}>Alta montaña y camping</h1>
-            <p style={{ margin: 0, color: '#dbeafe', fontSize: '1.06rem', lineHeight: 1.8 }}>
-              Alquila equipo confiable para senderismo, camping, montaña y excursiones ligeras. Todo para salir a la aventura con una preparación más segura y funcional.
-            </p>
-            <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <Link href="/reservar" style={{ display: 'inline-block', background: '#22c55e', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Reservar en sitio</Link>
-              <Link href="/" style={{ display: 'inline-block', background: 'transparent', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.4)', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 700 }}>Volver al inicio</Link>
-            </div>
-          </div>
-
-          <div style={{ background: '#0f172a', border: '1px solid rgba(148,163,184,0.2)', borderRadius: '24px', padding: '24px', display: 'grid', gap: '12px' }}>
-            <div style={{ fontSize: '2rem' }}>🎒</div>
-            <div>
-              <h2 style={{ margin: '0 0 8px', fontSize: '1.2rem' }}>Incluye</h2>
-              <ul style={{ margin: 0, paddingLeft: '18px', color: '#dbeafe', lineHeight: 1.9 }}>
-                <li>Mochilas y campamento</li>
-                <li>Equipo térmico y protección</li>
-                <li>Seguridad para la montaña</li>
-                <li>Asesoría de uso por experiencia</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '12px 24px 72px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
-          {categorias.map((categoria) => (
-            <div key={categoria.title} style={{ background: '#0f172a', border: '1px solid rgba(148,163,184,0.2)', borderRadius: '18px', padding: '22px' }}>
-              <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{categoria.icon}</div>
-              <h3 style={{ margin: '0 0 14px', color: '#f8fafc' }}>{categoria.title}</h3>
-              <ul style={{ margin: 0, paddingLeft: '18px', color: '#cbd5e1', lineHeight: 1.8 }}>
-                {categoria.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
+      <form
+        onSubmit={handleAddRentalToCheckout}
+        className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 md:p-8 space-y-6"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {RENTAL_CATALOG.map((item) => (
+            <button
+              key={item.sku}
+              type="button"
+              onClick={() => setSelectedSku(item.sku)}
+              className={`p-5 rounded-xl border text-left transition-all ${
+                selectedSku === item.sku
+                  ? 'border-emerald-500 bg-emerald-500/10'
+                  : 'border-neutral-800 bg-neutral-950'
+              }`}
+            >
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold text-emerald-400">{item.category}</span>
+                <span className="text-xs px-2 py-0.5 rounded bg-neutral-800 text-neutral-300">
+                  {item.serialPrefix} • {item.status}
+                </span>
+              </div>
+              <h2 className="font-bold text-white text-base mt-2">{item.name}</h2>
+              <p className="text-sm text-neutral-300 mt-2">
+                Renta por día: <strong>${item.dailyRate} MXN</strong> • Depósito en garantía:{' '}
+                <strong>${item.securityDeposit} MXN</strong>
+              </p>
+            </button>
           ))}
         </div>
-      </section>
 
-      <section style={{ background: '#020817', borderTop: '1px solid rgba(148,163,184,0.2)', padding: '32px 24px 64px' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', background: 'linear-gradient(135deg, rgba(15,118,110,0.12), rgba(15,23,42,0.9))', border: '1px solid rgba(45,212,191,0.25)', borderRadius: '20px', padding: '24px' }}>
-          <h2 style={{ marginTop: 0, marginBottom: '8px', fontSize: '1.6rem' }}>Cotiza tu equipo</h2>
-          <p style={{ margin: 0, color: '#dbeafe', lineHeight: 1.8 }}>
-            Mándanos el tipo de actividad, número de personas y días requeridos para preparar un presupuesto con equipos confiables para montaña, camping y trekking.
-          </p>
-          <div style={{ marginTop: '20px' }}>
-            <Link href="/reservar" style={{ display: 'inline-block', background: '#14b8a6', color: '#062b12', borderRadius: '12px', padding: '12px 18px', textDecoration: 'none', fontWeight: 800 }}>Solicitar presupuesto</Link>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="md:col-span-2">
+            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+              Titular Responsable del Contrato
+            </label>
+            <input
+              type="text"
+              placeholder="Nombre completo como aparece en INE"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+              Fecha de Salida (Check-Out)
+            </label>
+            <input
+              type="date"
+              value={pickupDate}
+              min={new Date().toISOString().split('T')[0]}
+              onChange={(e) => setPickupDate(e.target.value)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+              required
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                Días
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={15}
+                value={rentalDays}
+                onChange={(e) => setRentalDays(Math.max(1, Number(e.target.value)))}
+                className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3 py-2.5 text-white text-sm text-center"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                Equipos
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={10}
+                value={quantity}
+                onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
+                className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3 py-2.5 text-white text-sm text-center"
+                required
+              />
+            </div>
           </div>
         </div>
-      </section>
-    </main>
-  )
+
+        <label className="flex items-start gap-3 text-sm text-neutral-300 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={inspectionAccepted}
+            onChange={(e) => setInspectionAccepted(e.target.checked)}
+            className="mt-1 rounded border-neutral-700"
+          />
+          <span>
+            Acepto el checklist de inspección fotográfica al recoger (Check-Out) y devolver (Check-In) el activo serializado. El depósito en garantía (${totalDeposit.toLocaleString('es-MX')} MXN) se reembolsa íntegramente tras validar el buen estado del equipo.
+          </span>
+        </label>
+
+        {errorMsg && (
+          <p className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-lg px-4 py-2">
+            {errorMsg}
+          </p>
+        )}
+
+        <div className="pt-4 border-t border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div>
+            <p className="text-xs text-neutral-400">
+              Renta (${rentalSubtotal.toLocaleString('es-MX')}) + Garantía Reembolsable (${totalDeposit.toLocaleString('es-MX')})
+            </p>
+            <p className="text-2xl font-extrabold text-white">
+              ${(rentalSubtotal + totalDeposit).toLocaleString('es-MX')} MXN
+            </p>
+          </div>
+          <button
+            type="submit"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold bg-emerald-500 text-neutral-950 hover:bg-emerald-400 transition-colors"
+          >
+            Bloquear Serie QR y Pagar en Checkout
+          </button>
+        </div>
+      </form>
+    </section>
+  );
 }

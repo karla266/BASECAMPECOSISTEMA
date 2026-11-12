@@ -10,7 +10,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/aventura',
+        source: '/the-trip', destination: '/thetrip', permanent: true },
+      { source: '/aventura',
         destination: '/vuelos',
         permanent: true,
       },

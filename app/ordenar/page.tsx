@@ -1,143 +1,247 @@
-"use client";
+'use client';
 
-import { FormEvent, useState } from "react";
-import NavegacionSitio from "@/components/sitio/NavegacionSitio";
-import { PUNTOS_ENTREGA, leerMenu, pesosDesdeCentavos } from "@/lib/palapa-menu";
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
 
-const MENU = leerMenu().filter((producto) => producto.disponible);
-const ICONO: Record<string, string> = { bebidas: "🍺", comida: "🌮" };
+interface MenuItem {
+  sku: string;
+  name: string;
+  description: string;
+  price: number;
+}
 
-export default function OrdenarPage() {
-  const [cantidades, setCantidades] = useState<Record<string, number>>({});
-  const [abierto, setAbierto] = useState(false);
-  const [nombre, setNombre] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [punto, setPunto] = useState("");
-  const [notas, setNotas] = useState("");
-  const [enviando, setEnviando] = useState(false);
-  const [error, setError] = useState("");
+const FOOD_MENU: MenuItem[] = [
+  {
+    sku: 'FOOD-MICHELADA',
+    name: 'Michelada Artesanal de Cumbre',
+    description: 'Preparada con escarchado de la casa y mix especial en vaso de litro.',
+    price: 110,
+  },
+  {
+    sku: 'FOOD-HOTDOG',
+    name: 'Hot Dog Campestre Especial',
+    description: 'Salchicha tipo Frankfurt, tocino ahumado, cebolla caramelizada y aderezos.',
+    price: 85,
+  },
+  {
+    sku: 'FOOD-TACO',
+    name: 'Orden de Tacos a la Parrilla',
+    description: 'Tortilla recién hecha con corte jugoso, guacamole y salsas de molcajete.',
+    price: 95,
+  },
+  {
+    sku: 'FOOD-DESAYUNO',
+    name: 'Desayuno Montañero Anturios',
+    description: 'Chilaquiles o huevos al gusto, café de olla ilimitado y pan de leña.',
+    price: 165,
+  },
+];
 
-  const lineas = MENU.flatMap((producto) => {
-    const cantidad = cantidades[producto.id] || 0;
-    return cantidad > 0 ? [{ ...producto, cantidad }] : [];
+export default function FoodOrderPage() {
+  const router = useRouter();
+  const { addItem } = useCart();
+
+  const [quantities, setQuantities] = useState<Record<string, number>>({
+    'FOOD-MICHELADA': 0,
+    'FOOD-HOTDOG': 0,
+    'FOOD-TACO': 0,
+    'FOOD-DESAYUNO': 0,
   });
-  const totalCentavos = lineas.reduce((total, linea) => total + linea.precio * 100 * linea.cantidad, 0);
 
-  function cambiar(id: string, delta: number) {
-    setCantidades((actual) => {
-      const siguiente = Math.max(0, Math.min(30, (actual[id] || 0) + delta));
-      return { ...actual, [id]: siguiente };
-    });
-  }
+  const [deliveryDate, setDeliveryDate] = useState('');
+  const [deliveryTime, setDeliveryTime] = useState('13:00');
+  const [deliveryPoint, setDeliveryPoint] = useState('Restaurante Campestre Anturios');
+  const [notes, setNotes] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  async function pagar(evento: FormEvent<HTMLFormElement>) {
-    evento.preventDefault();
-    setEnviando(true);
-    setError("");
-    try {
-      const respuesta = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tipo: "pedido_palapa",
-          nombre,
-          telefono,
-          punto,
-          notas,
-          items: lineas.map((linea) => ({ id: linea.id, cantidad: linea.cantidad })),
-        }),
-      });
-      const datos = (await respuesta.json()) as { error?: string; checkoutUrl?: string };
-      if (!respuesta.ok || !datos.checkoutUrl) throw new Error(datos.error || "No se pudo abrir Mercado Pago.");
-      window.location.href = datos.checkoutUrl;
-    } catch (causa) {
-      setError(causa instanceof Error ? causa.message : "No se pudo abrir Mercado Pago.");
-      setEnviando(false);
+  const updateQty = (sku: string, delta: number) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [sku]: Math.max(0, (prev[sku] || 0) + delta),
+    }));
+  };
+
+  const selectedItems = FOOD_MENU.filter((item) => (quantities[item.sku] || 0) > 0);
+  const subtotal = selectedItems.reduce(
+    (sum, item) => sum + item.price * (quantities[item.sku] || 0),
+    0
+  );
+
+  const handleCheckoutFood = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (selectedItems.length === 0) {
+      setErrorMsg('Selecciona al menos un alimento o bebida para continuar.');
+      return;
     }
-  }
+    if (!deliveryDate) {
+      setErrorMsg('Indica la fecha programada para la entrega de tu orden.');
+      return;
+    }
+
+    for (const item of selectedItems) {
+      addItem({
+        id: `${item.sku}-${deliveryDate}-${deliveryTime}`,
+        sku: item.sku,
+        title: `${item.name} (${deliveryPoint})`,
+        unitPrice: item.price,
+        quantity: quantities[item.sku],
+        type: 'food',
+        metadata: {
+          deliveryDate,
+          deliveryTime,
+          deliveryPoint,
+          notes: notes.trim(),
+        },
+      });
+    }
+
+    router.push('/checkout');
+  };
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-zinc-950 pb-36 pt-20 text-zinc-100">
-      <NavegacionSitio />
-      <div className="mx-auto max-w-3xl px-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">Palapa Basecamp 420</p>
-        <h1 className="mt-2 text-3xl font-black">Ordena antes de subir</h1>
-        <p className="mt-2 text-sm leading-6 text-zinc-400">Micheladas, hot dogs y tacos para tenerlos listos al aterrizar o al llegar al recorrido. El cobro es con Mercado Pago.</p>
-        <div className="mt-6 grid gap-4">
-          {MENU.map((producto) => {
-            const cantidad = cantidades[producto.id] || 0;
+    <section className="max-w-4xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-extrabold text-white mb-2">
+        Ordenar Alimentos y Bebidas (Pre-Orden)
+      </h1>
+      <p className="text-neutral-400 mb-8">
+        Programa tus alimentos para tenerlos listos al aterrizar de tu vuelo o al llegar a Restaurante Anturios y Palapa El Paraíso.
+      </p>
+
+      <form onSubmit={handleCheckoutFood} className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {FOOD_MENU.map((item) => {
+            const qty = quantities[item.sku] || 0;
             return (
-              <article key={producto.id} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl" aria-hidden>{producto.id.includes("hot") ? "🌭" : ICONO[producto.categoria] || "🍽️"}</span>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="text-lg font-semibold text-white">{producto.nombre}</h2>
-                    <p className="mt-1 text-sm leading-6 text-zinc-400">{producto.descripcion}</p>
-                    <p className="mt-2 font-semibold text-emerald-300">${producto.precio} MXN</p>
+              <div
+                key={item.sku}
+                className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex justify-between items-start gap-2">
+                    <h2 className="font-bold text-white text-lg">{item.name}</h2>
+                    <span className="text-emerald-400 font-extrabold">
+                      ${item.price} MXN
+                    </span>
+                  </div>
+                  <p className="text-sm text-neutral-400 mt-1">{item.description}</p>
+                </div>
+
+                <div className="flex items-center justify-between mt-5 pt-3 border-t border-neutral-800">
+                  <span className="text-xs text-neutral-400">Cantidad</span>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => updateQty(item.sku, -1)}
+                      className="w-8 h-8 rounded-lg bg-neutral-800 text-white font-bold hover:bg-neutral-700"
+                    >
+                      -
+                    </button>
+                    <span className="w-6 text-center font-bold text-white">{qty}</span>
+                    <button
+                      type="button"
+                      onClick={() => updateQty(item.sku, 1)}
+                      className="w-8 h-8 rounded-lg bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-end gap-3">
-                  <button type="button" aria-label={`Quitar ${producto.nombre}`} onClick={() => cambiar(producto.id, -1)} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-xl border border-zinc-700 text-xl">−</button>
-                  <span className="w-8 text-center text-lg font-semibold">{cantidad}</span>
-                  <button type="button" aria-label={`Sumar ${producto.nombre}`} onClick={() => cambiar(producto.id, 1)} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-xl bg-emerald-500 text-xl font-black text-zinc-950">+</button>
-                </div>
-              </article>
+              </div>
             );
           })}
         </div>
-      </div>
 
-      {totalCentavos > 0 ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zinc-800 bg-zinc-950/95 px-4 py-3 backdrop-blur">
-          <div className="mx-auto flex max-w-3xl items-center justify-between gap-3">
-            <p className="text-sm font-semibold text-white">Total ${pesosDesdeCentavos(totalCentavos)} MXN</p>
-            <button type="button" onClick={() => setAbierto(true)} className="inline-flex min-h-12 items-center rounded-xl bg-emerald-500 px-4 text-sm font-black text-zinc-950">
-              Revisar Pedido
+        <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 space-y-5">
+          <h3 className="text-lg font-bold text-white">
+            Logística de Entrega y Punto de Servicio
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                Fecha de Entrega
+              </label>
+              <input
+                type="date"
+                value={deliveryDate}
+                min={new Date().toISOString().split('T')[0]}
+                onChange={(e) => setDeliveryDate(e.target.value)}
+                className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                Hora Programada
+              </label>
+              <input
+                type="time"
+                value={deliveryTime}
+                onChange={(e) => setDeliveryTime(e.target.value)}
+                className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                Punto de Entrega
+              </label>
+              <select
+                value={deliveryPoint}
+                onChange={(e) => setDeliveryPoint(e.target.value)}
+                className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+              >
+                <option value="Restaurante Campestre Anturios">
+                  Restaurante Campestre Anturios (Check-in)
+                </option>
+                <option value="Zona de Aterrizaje Fortín">
+                  Zona de Aterrizaje Fortín (Post-vuelo)
+                </option>
+                <option value="Palapa El Paraíso">Palapa El Paraíso</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+              Notas de Preparación (Opcional)
+            </label>
+            <input
+              type="text"
+              placeholder="Ej. Sin cebolla, salsa aparte, mesa junto al mirador..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-3.5 py-2.5 text-white text-sm"
+            />
+          </div>
+
+          {errorMsg && (
+            <p className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-lg px-4 py-2">
+              {errorMsg}
+            </p>
+          )}
+
+          <div className="pt-4 border-t border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+              <p className="text-xs text-neutral-400">Subtotal de Alimentos</p>
+              <p className="text-2xl font-extrabold text-white">
+                ${subtotal.toLocaleString('es-MX')} MXN
+              </p>
+            </div>
+            <button
+              type="submit"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold bg-emerald-500 text-neutral-950 hover:bg-emerald-400 transition-colors"
+            >
+              Confirmar Orden e Ir al Checkout
             </button>
           </div>
         </div>
-      ) : null}
-
-      {abierto ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-black/70 sm:items-center sm:justify-center">
-          <form onSubmit={(evento) => void pagar(evento)} className="max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl bg-zinc-900 p-5 sm:max-w-lg sm:rounded-3xl">
-            <h2 className="text-2xl font-black text-white">Checkout</h2>
-            <ul className="mt-3 text-sm text-zinc-300">
-              {lineas.map((linea) => (
-                <li key={linea.id}>{linea.cantidad} x {linea.nombre}</li>
-              ))}
-            </ul>
-            <label className="mt-4 grid gap-2 text-sm">
-              Nombre del cliente
-              <input required minLength={3} value={nombre} onChange={(evento) => setNombre(evento.target.value)} className="min-h-12 rounded-xl border border-zinc-700 bg-zinc-950 px-4" />
-            </label>
-            <label className="mt-3 grid gap-2 text-sm">
-              WhatsApp a 10 dígitos
-              <input required inputMode="numeric" pattern="\d{10}" value={telefono} onChange={(evento) => setTelefono(evento.target.value.replace(/\D/g, "").slice(0, 10))} className="min-h-12 rounded-xl border border-zinc-700 bg-zinc-950 px-4" />
-            </label>
-            <fieldset className="mt-4 grid gap-2">
-              <legend className="text-sm">Punto y momento de entrega</legend>
-              {PUNTOS_ENTREGA.map((opcion) => (
-                <label key={opcion.id} className="flex min-h-12 items-center gap-3 rounded-xl border border-zinc-800 px-3 text-sm">
-                  <input type="radio" name="punto" required checked={punto === opcion.id} onChange={() => setPunto(opcion.id)} />
-                  {opcion.etiqueta}
-                </label>
-              ))}
-            </fieldset>
-            <label className="mt-4 grid gap-2 text-sm">
-              Notas o especificaciones
-              <textarea value={notas} onChange={(evento) => setNotas(evento.target.value)} maxLength={240} placeholder="Tacos sin cebolla, michelada sin picante" className="min-h-24 rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3" />
-            </label>
-            {error ? <p className="mt-3 text-sm text-amber-300">{error}</p> : null}
-            <button type="submit" disabled={enviando} className="mt-4 min-h-12 w-full rounded-xl bg-emerald-500 text-base font-black text-zinc-950 disabled:opacity-40">
-              {enviando ? "Abriendo Mercado Pago..." : `Pagar $${pesosDesdeCentavos(totalCentavos)} MXN`}
-            </button>
-            <button type="button" onClick={() => setAbierto(false)} className="mt-3 min-h-12 w-full rounded-xl border border-zinc-700 text-sm">
-              Seguir editando
-            </button>
-          </form>
-        </div>
-      ) : null}
-    </main>
+      </form>
+    </section>
   );
 }

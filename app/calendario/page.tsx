@@ -1,237 +1,244 @@
-﻿'use client';
+'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import BotonWhatsappVuelo from '@/components/vuelos/BotonWhatsappVuelo';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
 
-function CalendarioContent() {
-  const searchParams = useSearchParams();
-  const folioInicial = searchParams.get('folio') || '';
-  const statusPago = searchParams.get('status');
+type FlightSlot = '10:00' | '12:00' | '14:00' | '16:00';
 
-  const [folio, setFolio] = useState(folioInicial);
-  const [esFolioValido, setEsFolioValido] = useState(false);
-  const [fechaSeleccionada, setFechaSeleccionada] = useState('');
-  const [horarioSeleccionado, setHorarioSeleccionado] = useState('10:00');
-  const [nombreCliente, setNombreCliente] = useState('');
-  const [telefonoCliente, setTelefonoCliente] = useState('');
-  const [pesoKg, setPesoKg] = useState(75);
-  const [cupos, setCupos] = useState<Record<string, { disponible: boolean; piloto: string }>>({});
+interface SlotStatus {
+  time: FlightSlot;
+  label: string;
+  titularBusy: boolean;
+}
 
-  useEffect(() => {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(fechaSeleccionada)) return;
-    void fetch(`/api/vuelos/disponibilidad?fecha=${fechaSeleccionada}`)
-      .then((respuesta) => respuesta.json())
-      .then((datos: { slots?: Array<{ horario: string; disponible: boolean; piloto: string }> }) => {
-        const mapa: Record<string, { disponible: boolean; piloto: string }> = {};
-        for (const slot of datos.slots || []) mapa[slot.horario] = { disponible: slot.disponible, piloto: slot.piloto };
-        setCupos(mapa);
-      })
-      .catch(() => setCupos({}));
-  }, [fechaSeleccionada]);
-  const [procesandoPago, setProcesandoPago] = useState(false);
+const OFFICIAL_SLOTS: SlotStatus[] = [
+  { time: '10:00', label: '10:00 AM — Apertura térmica estable', titularBusy: false },
+  { time: '12:00', label: '12:00 PM — Térmica activa panorámica', titularBusy: false },
+  { time: '14:00', label: '02:00 PM — Ventana de tarde Valle de Fortín', titularBusy: true },
+  { time: '16:00', label: '04:00 PM — Última ventana diurna', titularBusy: false },
+];
 
-  const HORARIOS_OFICIALES = [
-    { turno: '10:00', desc: 'Apertura térmica' },
-    { turno: '12:00', desc: 'Térmica activa' },
-    { turno: '14:00', desc: 'Vuelo sobre el valle' },
-    { turno: '16:00', desc: 'Última ventana del día' },
-  ];
+export default function UnifiedFlightBookingPage() {
+  const router = useRouter();
+  const { addItem } = useCart();
 
-  useEffect(() => {
-    if (folio.trim().length >= 8) {
-      setEsFolioValido(true);
-    } else {
-      setEsFolioValido(false);
-    }
-  }, [folio]);
+  const [flightDate, setFlightDate] = useState('');
+  const [selectedSlot, setSelectedSlot] = useState<FlightSlot>('10:00');
+  const [passengerName, setPassengerName] = useState('');
+  const [passengerWeightKg, setPassengerWeightKg] = useState<number>(70);
+  const [packageType, setPackageType] = useState<'standard' | 'certificate'>('standard');
+  const [weatherPolicyAccepted, setWeatherPolicyAccepted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const currentSlotObj = OFFICIAL_SLOTS.find((s) => s.time === selectedSlot);
+  const assignedPilot = currentSlotObj?.titularBusy
+    ? 'Piloto Certificado de Respaldo (Directorio APPI Fortín)'
+    : 'Salvador Lara (Master Instructor APPI)';
+
+  const unitPrice = packageType === 'certificate' ? 2800 : 1600;
+
+  const handleProceedToCheckout = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg('');
 
-    // 1. Canje de folio físico de Mercado Libre -> Notifica por WhatsApp sin cobrar
-    if (esFolioValido) {
-      const folioParam = encodeURIComponent(folio.trim());
-      window.location.href = `/reservar?folio=${folioParam}`;
+    if (!flightDate) {
+      setErrorMsg('Selecciona una fecha válida para tu vuelo.');
+      return;
+    }
+    if (!passengerName.trim()) {
+      setErrorMsg('Ingresa el nombre completo del pasajero.');
+      return;
+    }
+    if (passengerWeightKg < 25 || passengerWeightKg > 115) {
+      setErrorMsg('El peso operativo seguro para vuelo tándem es entre 25 kg y 115 kg.');
+      return;
+    }
+    if (!weatherPolicyAccepted) {
+      setErrorMsg('Debes aceptar la política de seguridad meteorológica y reprogramación.');
       return;
     }
 
-    // 2. Compra Web Directa ($1,600 MXN) -> Redirige a pasarela Mercado Pago
-    setProcesandoPago(true);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre: nombreCliente,
-          telefono: telefonoCliente,
-          fecha: fechaSeleccionada,
-          horario: horarioSeleccionado,
-          pesoKg,
-        }),
-      });
+    const bookingId = `FLIGHT-${flightDate}-${selectedSlot}-${packageType}`;
 
-      const data = await res.json();
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      } else {
-        alert(data.error || 'Error al conectar con la pasarela de pagos');
-      }
-    } catch (err) {
-      console.error('Error al procesar cobro:', err);
-      alert('Error de conexión con el servidor');
-    } finally {
-      setProcesandoPago(false);
-    }
+    addItem({
+      id: bookingId,
+      sku: packageType === 'certificate' ? 'VUELO-CERT-2800' : 'VUELO-WEB-1600',
+      title:
+        packageType === 'certificate'
+          ? `Vuelo en Parapente Tándem + Certificado (${flightDate} ${selectedSlot})`
+          : `Vuelo en Parapente Tándem Web (${flightDate} ${selectedSlot})`,
+      unitPrice,
+      quantity: 1,
+      type: 'flight',
+      metadata: {
+        flightDate,
+        flightSlot: selectedSlot,
+        passengerName: passengerName.trim(),
+        passengerWeightKg,
+        assignedPilot,
+        includesCertificate: packageType === 'certificate',
+        weatherPolicyAccepted: true,
+      },
+    });
+
+    router.push('/checkout');
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-neutral-900 border border-neutral-800 rounded-3xl p-6 md:p-10 text-white shadow-2xl">
-      {statusPago === 'approved' && (
-        <div className="mb-6 p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500 text-center text-emerald-300 text-sm font-bold">
-          🎉 ¡Pago acreditado exitosamente! Tu vuelo quedó agendado.
-        </div>
-      )}
+    <section className="max-w-4xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-extrabold text-white mb-2">
+        Reserva Oficial de Vuelo en Parapente Tándem
+      </h1>
+      <p className="text-neutral-400 mb-8">
+        Selecciona tu fecha, horario de despegue y modalidad. Tu lugar queda bloqueado al confirmar en el checkout.
+      </p>
 
-      <div className="text-center mb-8">
-        <span className="text-xs uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20 font-bold">
-          Agenda Oficial · Fortín de las Flores
-        </span>
-        <h1 className="text-3xl md:text-4xl font-black mt-3">Reserva tu Vuelo en Parapente</h1>
-        <p className="text-neutral-400 text-sm mt-2">
-          Piloto APPI Master Instructor: Salvador Lara (33 años de trayectoria)
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-neutral-950 border border-neutral-800 p-4 rounded-2xl">
-          <label className="block text-xs font-bold uppercase tracking-wider text-neutral-300 mb-2">
-            ¿Tienes un Certificado de Vuelo de Mercado Libre?
-          </label>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              placeholder="Ingresa tu folio (Ej. 20260000001)"
-              value={folio}
-              onChange={(e) => setFolio(e.target.value)}
-              className="flex-1 bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
-            />
-            {esFolioValido && (
-              <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-3 py-2 rounded-xl flex items-center font-bold">
-                ✓ Folio Verificado
-              </span>
-            )}
-          </div>
-          <p className="text-[11px] text-neutral-500 mt-2">
-            Deja este campo vacío si vas a pagar los $1,600 MXN en línea con tarjeta o SPEI.
-          </p>
-        </div>
-
+      <form
+        onSubmit={handleProceedToCheckout}
+        className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 md:p-8 space-y-6"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-neutral-400 mb-1">Nombre Completo del Pasajero</label>
-            <input
-              type="text"
-              required
-              value={nombreCliente}
-              onChange={(e) => setNombreCliente(e.target.value)}
-              placeholder="Nombre y Apellidos"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-neutral-400 mb-1">WhatsApp de Contacto</label>
-            <input
-              type="tel"
-              required
-              value={telefonoCliente}
-              onChange={(e) => setTelefonoCliente(e.target.value)}
-              placeholder="10 dígitos (ej. 272 123 4567)"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-xs font-semibold text-neutral-400 mb-1">Peso aproximado (kg)</label>
-          <input
-            type="number"
-            min={40}
-            max={120}
-            required
-            value={pesoKg}
-            onChange={(e) => setPesoKg(Number(e.target.value || 0))}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-semibold text-neutral-400 mb-1">Fecha Deseada de Vuelo</label>
-          <input
-            type="date"
-            required
-            value={fechaSeleccionada}
-            onChange={(e) => setFechaSeleccionada(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-semibold text-neutral-400 mb-2">Horario de Despegue (Slots Oficiales)</label>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {HORARIOS_OFICIALES.map((h) => (
-              <button
-                type="button"
-                key={h.turno}
-                onClick={() => setHorarioSeleccionado(h.turno)}
-                disabled={fechaSeleccionada !== '' && cupos[h.turno]?.disponible === false}
-                className={`min-h-12 rounded-xl border p-4 text-left transition disabled:cursor-not-allowed disabled:opacity-40 ${
-                  horarioSeleccionado === h.turno
-                    ? 'border-amber-400 bg-amber-400/10 text-white'
-                    : 'border-neutral-800 bg-neutral-950 text-neutral-400 hover:border-neutral-700'
-                }`}
-              >
-                <div className="font-bold text-sm text-amber-400">{h.turno}</div>
-                <div className="text-xs text-neutral-400 mt-0.5">
-                  {cupos[h.turno]?.disponible === false ? 'Slot saturado' : cupos[h.turno]?.piloto || h.desc}
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="pt-4 border-t border-neutral-800">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-neutral-400 text-sm">Monto a liquidar:</span>
-            <span className="text-2xl font-black text-white">
-              {esFolioValido ? '$0 MXN (Pagado en ML)' : '$1,600 MXN'}
-            </span>
-          </div>
+          <button
+            type="button"
+            onClick={() => setPackageType('standard')}
+            className={`p-4 rounded-xl border text-left transition-all ${
+              packageType === 'standard'
+                ? 'border-emerald-500 bg-emerald-500/10'
+                : 'border-neutral-800 bg-neutral-950'
+            }`}
+          >
+            <p className="font-bold text-white text-lg">Vuelo Tándem Web</p>
+            <p className="text-emerald-400 font-extrabold text-2xl mt-1">$1,600 MXN</p>
+            <p className="text-xs text-neutral-400 mt-1">
+              Incluye equipo certificado, seguro de vuelo e instructor APPI.
+            </p>
+          </button>
 
           <button
-            type="submit"
-            disabled={procesandoPago || (fechaSeleccionada !== '' && cupos[horarioSeleccionado]?.disponible === false)}
-            className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-extrabold py-3.5 px-6 rounded-xl text-base transition shadow-lg"
+            type="button"
+            onClick={() => setPackageType('certificate')}
+            className={`p-4 rounded-xl border text-left transition-all ${
+              packageType === 'certificate'
+                ? 'border-emerald-500 bg-emerald-500/10'
+                : 'border-neutral-800 bg-neutral-950'
+            }`}
           >
-            {procesandoPago
-              ? 'Conectando con Mercado Pago...'
-              : esFolioValido
-              ? 'Confirmar Turno con mi Folio'
-              : 'Pagar $1,600 MXN y Confirmar Vuelo'}
+            <p className="font-bold text-white text-lg">Vuelo + Certificado de Experiencia</p>
+            <p className="text-emerald-400 font-extrabold text-2xl mt-1">$2,800 MXN</p>
+            <p className="text-xs text-neutral-400 mt-1">
+              Incluye vuelo tándem, certificado oficial impreso y paquete multimedia.
+            </p>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-semibold text-neutral-200 mb-2">
+              Fecha de Vuelo
+            </label>
+            <input
+              type="date"
+              value={flightDate}
+              min={new Date().toISOString().split('T')[0]}
+              onChange={(e) => setFlightDate(e.target.value)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-4 py-3 text-white"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-neutral-200 mb-2">
+              Horario Oficial de Despegue
+            </label>
+            <select
+              value={selectedSlot}
+              onChange={(e) => setSelectedSlot(e.target.value as FlightSlot)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-4 py-3 text-white"
+            >
+              {OFFICIAL_SLOTS.map((slot) => (
+                <option key={slot.time} value={slot.time}>
+                  {slot.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-semibold text-neutral-200 mb-2">
+              Nombre Completo del Pasajero
+            </label>
+            <input
+              type="text"
+              placeholder="Ej. Karla Guzmán"
+              value={passengerName}
+              onChange={(e) => setPassengerName(e.target.value)}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-4 py-3 text-white"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-neutral-200 mb-2">
+              Peso del Pasajero (kg)
+            </label>
+            <input
+              type="number"
+              min={25}
+              max={115}
+              value={passengerWeightKg}
+              onChange={(e) => setPassengerWeightKg(Number(e.target.value))}
+              className="w-full rounded-lg bg-neutral-950 border border-neutral-800 px-4 py-3 text-white"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 flex justify-between items-center">
+          <div>
+            <p className="text-xs uppercase tracking-wider text-neutral-400">
+              Piloto Asignado por Disponibilidad
+            </p>
+            <p className="text-sm font-bold text-emerald-400 mt-0.5">{assignedPilot}</p>
+          </div>
+          <span className="text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+            Slot Verificado
+          </span>
+        </div>
+
+        <label className="flex items-start gap-3 text-sm text-neutral-300 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={weatherPolicyAccepted}
+            onChange={(e) => setWeatherPolicyAccepted(e.target.checked)}
+            className="mt-1 rounded border-neutral-700"
+          />
+          <span>
+            Acepto la política meteorológica y de cancelación: el despegue está sujeto a condiciones de viento y visibilidad seguras en montaña. En caso de clima adverso, la reserva se reprograma sin penalización.
+          </span>
+        </label>
+
+        {errorMsg && (
+          <p className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-lg px-4 py-2.5">
+            {errorMsg}
+          </p>
+        )}
+
+        <div className="pt-2 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-neutral-800">
+          <div>
+            <p className="text-xs text-neutral-400">Total a pagar en Checkout</p>
+            <p className="text-2xl font-extrabold text-white">${unitPrice.toLocaleString('es-MX')} MXN</p>
+          </div>
+          <button
+            type="submit"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold bg-emerald-500 text-neutral-950 hover:bg-emerald-400 transition-colors"
+          >
+            Pagar y Confirmar en Checkout
           </button>
         </div>
       </form>
-    </div>
-  );
-}
-
-export default function CalendarioPage() {
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-neutral-950 px-4 pb-28 pt-8">
-      <Suspense fallback={<div className="text-center text-white">Cargando agenda...</div>}>
-        <CalendarioContent />
-      </Suspense>
-      <BotonWhatsappVuelo />
-    </main>
+    </section>
   );
 }

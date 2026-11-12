@@ -1,105 +1,67 @@
-import BannerPalapa from "@/components/palapa/BannerPalapa";
-import NavegacionSitio from "@/components/sitio/NavegacionSitio";
-import PieSitio from "@/components/sitio/PieSitio";
-import { datosAnturios, etiquetaPrecio } from "@/lib/experiencias";
-import Link from "next/link";
-
-const datos = datosAnturios();
-
-export const metadata = {
-  title: datos.seo.titulo,
-  description: datos.seo.descripcion,
-  keywords: ["Restaurante Anturios", "desayuno", "Fortín de las Flores", "Orizaba", "parapente", "Basecamp 420"],
-  alternates: { canonical: "https://www.basecamp420.com/anturios" },
-  openGraph: {
-    title: datos.seo.titulo,
-    description: datos.seo.descripcion,
-    url: "https://www.basecamp420.com/anturios",
-    siteName: "Basecamp 420",
-    locale: "es_MX",
-    type: "website",
-  },
-};
-
-const esquema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Restaurant",
-      name: "Restaurante Campestre Anturios",
-      description: datos.hero.subtitulo,
-      url: "https://www.basecamp420.com/anturios",
-      servesCuisine: "Mexicana",
-      telephone: "+522727258748",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Fortín de las Flores",
-        addressRegion: "Veracruz",
-        addressCountry: "MX",
-      },
-      areaServed: ["Orizaba", "Fortín de las Flores"],
-      hasMenu: {
-        "@type": "Menu",
-        hasMenuSection: {
-          "@type": "MenuSection",
-          name: "Desayuno montañero",
-          hasMenuItem: datos.menu.map((plato) => ({
-            "@type": "MenuItem",
-            name: plato.nombre,
-            description: plato.descripcion,
-          })),
-        },
-      },
-    },
-  ],
-};
+import React from 'react';
+import Link from 'next/link';
 
 export default function AnturiosPage() {
   return (
-    <main className="overflow-x-hidden bg-zinc-950 pb-28 text-zinc-100">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(esquema).replace(/</g, "\\u003c") }} />
-      <NavegacionSitio />
-      <section className="relative h-screen max-h-[100dvh] w-full overflow-hidden">
-        <img src={datos.hero.imagen} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">{datos.hero.kicker}</p>
-          <h1 className="mt-3 max-w-xl text-4xl font-semibold text-white sm:text-6xl">{datos.hero.titulo}</h1>
-          <p className="mt-3 text-lg font-semibold text-emerald-100">El Punto de Encuentro y Desayuno Montañero</p>
-          <p className="mt-4 max-w-lg text-sm leading-6 text-zinc-100 sm:text-base">{datos.hero.subtitulo}</p>
-          <div className="mt-6 grid gap-3 sm:max-w-md">
-            <a href="/reservar" className="inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-semibold text-zinc-950">
-              Ordenar desayuno previo
-            </a>
-            <a href="/reservar" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 px-5 text-sm font-semibold text-white">
-              Reservar mesa para grupos
-            </a>
-          </div>
-        </div>
-      </section>
+    <section className="max-w-5xl mx-auto px-6 py-12 space-y-8">
+      <div>
+        <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+          Gastronomía de Montaña y Check-In Oficial de Vuelo
+        </span>
+        <h1 className="text-3xl font-extrabold text-white mt-1">
+          Restaurante Campestre Anturios
+        </h1>
+        <p className="text-neutral-400 mt-2">
+          Punto de encuentro para pilotos y pasajeros antes del despegue. Ordena tu desayuno montañero en línea o estructura una reservación de grupo.
+        </p>
+      </div>
 
-      <section className="mx-auto max-w-5xl px-5 py-12">
-        <p className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-5 text-sm leading-6 text-emerald-50">{datos.checkin}</p>
-        <h2 className="mt-10 text-2xl font-semibold text-white">Menú matutino</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {datos.menu.map((plato) => (
-            <article key={plato.id} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
-              <h3 className="text-xl font-semibold text-white">{plato.nombre}</h3>
-              <p className="mt-2 text-sm leading-6 text-zinc-300">{plato.descripcion}</p>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">{plato.detalle}</p>
-              <p className="mt-4 text-sm font-semibold text-emerald-300">{etiquetaPrecio(plato.precioCentavos)}</p>
-            </article>
-          ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-white">Pre-Orden de Alimentos</h2>
+            <p className="text-sm text-neutral-400 mt-1">
+              Programa tu desayuno montañero, tacos a la parrilla o bebidas antes de llegar.
+            </p>
+          </div>
+          <Link
+            href="/ordenar"
+            className="mt-6 inline-block text-center py-3 rounded-xl font-bold bg-emerald-500 text-neutral-950 hover:bg-emerald-400"
+          >
+            Ordenar Alimentos Ahora
+          </Link>
         </div>
-        <Link href="/experiencia-completa" className="mt-8 inline-flex min-h-12 items-center text-sm font-semibold text-emerald-300">
-          Ver el Día Cumbre completo
-        </Link>
-      </section>
-      <BannerPalapa />
-      <PieSitio />
-      <a href="/reservar" className="fixed bottom-5 right-5 z-50 inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-500 px-5 text-sm font-bold text-zinc-950 shadow-lg shadow-emerald-500/25">
-        Reservar ahora
-      </a>
-    </main>
+
+        <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-white">Paquete Día Cumbre</h2>
+            <p className="text-sm text-neutral-400 mt-1">
+              Combina tu desayuno en Anturios con vuelo tándem en parapente.
+            </p>
+          </div>
+          <Link
+            href="/dia-cumbre"
+            className="mt-6 inline-block text-center py-3 rounded-xl font-bold bg-neutral-800 text-white hover:bg-neutral-700"
+          >
+            Ver Experiencia Día Cumbre
+          </Link>
+        </div>
+
+        <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-white">Reservación de Grupo</h2>
+            <p className="text-sm text-neutral-400 mt-1">
+              Agenda mesas para grupos corporativos, expediciones o eventos especiales con anticipo.
+            </p>
+          </div>
+          <Link
+            href="/alianzas"
+            className="mt-6 inline-block text-center py-3 rounded-xl font-bold bg-neutral-800 text-white hover:bg-neutral-700"
+          >
+            Reservar Grupo / Evento
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
