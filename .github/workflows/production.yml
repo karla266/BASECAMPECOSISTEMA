@@ -1,0 +1,81 @@
+name: Basecamp 420 production
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: basecamp420-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Verify production environment contract
+        run: bash scripts/verify_production_env.sh --contract-only
+
+      - name: Build application
+        run: npm run build
+
+      - name: Reject unsafe deployment references
+        run: |
+          if grep -RniE '(^|[^[:alnum:]_])(pm2|npm[[:space:]]+run[[:space:]]+start[[:space:]]+--[[:space:]]+pm2)' --exclude-dir=.git --exclude-dir=node_modules .; then
+            echo 'Unsafe PM2 deployment reference detected.'
+            exit 1
+          fi
+
+  post-deploy:
+    name: Verify Hostinger runtime
+    needs: validate
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Pin Hostinger ED25519 host key
+        run: |
+          expected='SHA256:wCeca9DNPU54kJla/8AYTaosvYL9efmjoq3OCImR7cg'
+          scan="$(ssh-keyscan -T 10 -p 65002 -t ed25519 basecamp420.com 2>/dev/null)"
+          test -n "$scan"
+          actual="$(printf '%s\n' "$scan" | ssh-keygen -lf - -E sha256 | awk '{print $2}')"
+          test "$actual" = "$expected"
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$scan" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Enforce persistent uploads and production environment
+        env:
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+        run: |
+          test -n "$HOSTINGER_SSH_KEY"
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_SSH_KEY" > "$HOME/.ssh/id_ed25519"
+          chmod 600 "$HOME/.ssh/id_ed25519"
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'bash -s' < scripts/ensure_persistent_uploads.sh
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'bash -s -- --server-check' < scripts/verify_production_env.sh
+          ssh -p 65002 -i "$HOME/.ssh/id_ed25519" -o BatchMode=yes -o IdentitiesOnly=yes u893741392@basecamp420.com 'mkdir -p /home/u893741392/domains/basecamp420.com/tmp && touch /home/u893741392/domains/basecamp420.com/tmp/restart.txt'
